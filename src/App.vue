@@ -1,9 +1,25 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
+// Import the store.
+import { useSessionDetailsStore } from './stores/SessionDetailsStore.js'
+
+export default {
+  setup() {
+    const sessionDetailsStore = useSessionDetailsStore();
+    return {
+      sessionDetailsStore
+    }
+  },
+  data() {
+    return {
+      isLoggedIn: false
+    }
+  }
+}
 </script>
 
 <template>
-  <header>
+  <header v-if="isLoggedIn">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <RouterLink to="/" class="nav-link">
