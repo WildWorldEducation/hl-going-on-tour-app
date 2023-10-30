@@ -1,5 +1,44 @@
-<script setup>
+<script>
+import router from "../router";
 
+export default {
+    data() {
+        return {
+            username: null,
+            password: null
+        }
+    },
+    methods: {
+        LoginAttempt() {
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(
+                    {
+                        username: this.username,
+                        password: this.password,
+                    })
+            };
+            var url = '/api/login-attempt';
+
+            fetch(url, requestOptions)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (data) {
+                    if (data.account == "authorized") {
+                        router.push({ name: "home" });
+                    }
+                    else if (data.account == "wrong-password") {
+                        alert("wrong password")
+                    }
+                    else {
+                        alert("no account")
+                    }
+                })
+        }
+    }
+}
 </script>
 
 <template>
@@ -18,14 +57,14 @@
             <div class="mb-3 mt-3 text-start">
                 <!-- <img class="me-1" src="images/icons/user-solid.svg" alt="" width="16" height="16"> -->
                 <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" placeholder="Username" class="form-control" required>
+                <input type="text" v-model="username" placeholder="Username" class="form-control" required>
             </div>
             <div class="mb-3 text-start">
                 <!-- <img class="me-1" src="images/icons/lock-solid.svg" alt="" width="16" height="16"> -->
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" placeholder="Password" class="form-control" required>
+                <input type="password" v-model="password" placeholder="Password" class="form-control" required>
             </div>
-            <button type="submit" onclick="LoginAttempt()" class="btn btn-dark">Login</button>
+            <button type="submit" @click="LoginAttempt()" class="btn btn-dark">Login</button>
             <p>&nbsp;</p>
             <p class="text-center">Don't have an account? <a href="create-account">Sign up</a></p>
         </div>

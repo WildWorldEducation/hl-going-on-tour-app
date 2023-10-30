@@ -93,6 +93,51 @@ app.get('/api/get-session-details', (req, res) => {
 });
 
 
+// Log in with username and password.
+app.post('/api/login-attempt', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    // Execute SQL query that'll select the account from the database based on the specified username and password.
+    let sqlQuery1 = "SELECT * FROM healthy_lifestyles.users WHERE healthy_lifestyles.users.username = '" + req.body.username + "' AND healthy_lifestyles.users.password = '" + req.body.password + "';";
+    let query1 = conn.query(sqlQuery1, (err, results) => {
+        try {
+            if (err) {
+                throw err;
+            }
+            // Create session object.
+            else if (results.length > 0) {
+                req.session.userId = results[0].id;
+                req.session.userName = req.body.username;
+                req.session.firstName = results[0].first_name;
+                req.session.lastName = results[0].last_name;
+                req.session.isAdmin = results[0].is_admin;
+                res.json({ account: 'authorized' })
+            } else {
+                // If both the username and password are not correct, check if the account exists.
+                let sqlQuery2 = "SELECT * FROM healthy_lifestyles.users WHERE healthy_lifestyles.users.username = '" + req.body.username + "';";
+                let query2 = conn.query(sqlQuery2, (err, results) => {
+                    try {
+                        if (err) {
+                            throw err;
+                        }
+                        // Tell user their password is incorrect.
+                        else if (results.length > 0) {
+                            res.json({ account: 'wrong-password' })
+                        }
+                        // If neither the username or password are correct, let user know.
+                        else {
+                            res.json({ account: 'no-account' })
+                        }
+                    } catch (err) {
+                        next(err)
+                    }
+                });
+            }
+        } catch (err) {
+            next(err)
+        }
+    });
+});
+
 // Routes -----------------------------
 // The view, which is the SPA Vue app.
 const environment = process.env.NODE_ENV;
