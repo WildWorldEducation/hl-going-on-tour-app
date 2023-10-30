@@ -78,13 +78,24 @@ conn.connect((err) => {
     console.log('MariaDB connected...');
 });
 
+// API calls ----------------------------------------------------------------
+// Send the user session variable.
+app.get('/api/get-session-details', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    if (req.session.userName) {
+        req.session.isLoggedIn = true;
+    }
+    else {
+        req.session.isLoggedIn = false;
+    }
+
+    res.json(req.session);
+});
+
+
 // Routes -----------------------------
-
-
-
-
+// The view, which is the SPA Vue app.
 const environment = process.env.NODE_ENV;
-
 
 app.get("/*", async (_req, res) => {
     const data = {
@@ -103,6 +114,7 @@ const parseManifest = async () => {
 
     return JSON.parse(manifestFile);
 };
+
 
 /**
  * API Response

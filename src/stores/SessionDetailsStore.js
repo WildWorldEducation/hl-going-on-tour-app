@@ -9,7 +9,7 @@ export const useSessionDetailsStore = defineStore("sessionDetails", {
     },
     actions: {
         async getSessionDetails() {
-            const result = await fetch('/get-session-details');
+            const result = await fetch('/api/get-session-details');
             const data = await result.json();
 
             this.isLoggedIn = data.isLoggedIn;

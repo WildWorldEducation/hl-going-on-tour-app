@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+import { useSessionDetailsStore } from "../stores/SessionDetailsStore";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -17,9 +19,22 @@ const router = createRouter({
   ]
 })
 
+// So as to only load stores once initially.
+var hasInitialLoadCompleted = false;
+
+var sessionDetailsStore;
+
 router.beforeEach(async (to) => {
+  // Make sure certain initial data has been loaded to the store before the home page opens.              
+  sessionDetailsStore = useSessionDetailsStore();
+  // Run the API call.
+  if (sessionDetailsStore.isLoggedIn != true) {
+    await sessionDetailsStore.getSessionDetails();
+  }
+
   if (
-    1 == 1 &&
+    hasInitialLoadCompleted == false &&
+    sessionDetailsStore.isLoggedIn == false &&
     // Avoid an infinite redirect
     to.name !== 'login'
   ) {

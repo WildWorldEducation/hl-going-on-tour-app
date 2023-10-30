@@ -9,17 +9,12 @@ export default {
     return {
       sessionDetailsStore
     }
-  },
-  data() {
-    return {
-      isLoggedIn: false
-    }
   }
 }
 </script>
 
 <template>
-  <header v-if="isLoggedIn">
+  <header v-if="sessionDetailsStore.isLoggedIn">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <RouterLink to="/" class="nav-link">
