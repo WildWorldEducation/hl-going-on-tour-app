@@ -1,22 +1,39 @@
-// Middleware 
-var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-const mysql = require('mysql');
-const sessions = require('express-session');
 
 var app = express();
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
 
-// View engine setup.
-app.set('views', path.join(__dirname, 'views'));
+// Middleware 
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+
+const path = require('path')
+const fs = require('fs').promises;
+const publicPath = path.join(path.resolve(), "public");
+const distPath = path.join(path.resolve(), "dist");
+
+// Allow things to work.
+var cors = require('cors')
+app.use(cors())
+
+// Login with Google.
+var jwt = require('jsonwebtoken');
+
+// Limit effects max image size that can be uploaded.
+app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.urlencoded({ limit: "5mb", extended: true, parameterLimit: 50000 }));
+app.use(express.json({ limit: '5mb' }));
+app.use(express.urlencoded({ limit: '5mb', extended: true }));
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
-// Sessions.
+const sessions = require('express-session');
+// parsing the incoming data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// For Vue Router.
+var history = require('connect-history-api-fallback');
+
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
@@ -25,8 +42,9 @@ app.use(sessions({
     resave: false
 }));
 
-// Login with Google.
-var jwt = require('jsonwebtoken');
+// Route files.
+
+app.locals.title = ''
 
 /*------------------------------------------
 --------------------------------------------
@@ -36,10 +54,17 @@ Database Connection
 const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'H3@lthyL1f35tyl3s',
+    password: 'C0ll1ns1n5t1tut32022',
     password: 'password',
-    database: 'healthy_lifestyles'
+    database: 'skill_tree'
 });
+
+
+if (process.env.NODE_ENV === "production") {
+    app.use("/", express.static(distPath));
+} else {
+    app.use("/", express.static(publicPath));
+}
 
 /*------------------------------------------
 --------------------------------------------
@@ -53,36 +78,31 @@ conn.connect((err) => {
     console.log('MariaDB connected...');
 });
 
-
-const publicPath = path.join(path.resolve(), "public");
-const distPath = path.join(path.resolve(), "dist");
-
-if (process.env.NODE_ENV === "production") {
-    app.use("/", express.static(distPath));
-} else {
-    app.use("/", express.static(publicPath));
-}
+// Routes -----------------------------
 
 
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
+
+const environment = process.env.NODE_ENV;
+
+
+app.get("/*", async (_req, res) => {
+    const data = {
+        environment,
+        manifest: await parseManifest(),
+    };
+
+    res.render("index.html.ejs", data);
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+const parseManifest = async () => {
+    if (environment !== "production") return {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-});
+    const manifestPath = path.join(path.resolve(), "dist", "manifest.json");
+    const manifestFile = await fs.readFile(manifestPath);
 
-module.exports = app;
-
+    return JSON.parse(manifestFile);
+};
 
 /**
  * API Response
