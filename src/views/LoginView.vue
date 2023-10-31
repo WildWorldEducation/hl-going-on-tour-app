@@ -101,7 +101,7 @@ export default {
     </div>
 </template>
 
-<style>
+<style scoped>
 .login-page {
     height: 100%;
     background-image: url("../images/login-background.jpg");

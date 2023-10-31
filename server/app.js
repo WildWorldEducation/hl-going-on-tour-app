@@ -93,6 +93,7 @@ app.get('/api/get-session-details', (req, res) => {
 });
 
 
+// Log in and out.
 // Log in with username and password.
 app.post('/api/login-attempt', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
@@ -143,6 +144,31 @@ app.post('/api/logout', (req, res) => {
     // Destroy the user session.
     req.session.destroy();
     res.end()
+});
+
+// Users.
+// List users.
+// List users API.
+app.get('/api/users/list', function (req, res, next) {
+    // Check if the user is logged in and an admin.   
+    if (req.session.userName && req.session.isAdmin == 1) {
+        res.setHeader('Content-Type', 'application/json');
+        let sqlQuery = "SELECT * FROM healthy_lifestyles.users;";
+        let query = conn.query(sqlQuery, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    res.json(results);
+                }
+            } catch (err) {
+                next(err)
+            }
+        });
+    }
+    else
+        res.redirect('/')
 });
 
 // Routes -----------------------------
