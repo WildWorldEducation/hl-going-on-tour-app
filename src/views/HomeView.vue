@@ -42,7 +42,7 @@ export default {
       <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
         <StudentList />
       </div>
-      <div class="col-md-9">
+      <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin }">
         <div class="row grid-cards mt-3">
           <div class="grid-card level-button-outer">
             <a id="module-1" class="level-button-inner module-1-unlocked"

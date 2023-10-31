@@ -30,8 +30,16 @@ export default {
 </script>
 
 <template>
-    <div v-for="user in usersStore.users">11</div>
-    student list
+    <button class="user-block btn" v-for="user in usersStore.users">{{ user.username }}</button>
 </template>
 
-<style scoped></style>
+<style scoped>
+.user-block {
+    width: 220px;
+    height: 80px;
+    border-radius: 8px;
+    border: 2px solid white;
+    margin-top: 10px;
+    color: white;
+}
+</style>
