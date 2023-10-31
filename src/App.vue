@@ -1,4 +1,5 @@
 <script>
+import router from "./router";
 import { RouterLink, RouterView } from 'vue-router'
 // Import the store.
 import { useSessionDetailsStore } from './stores/SessionDetailsStore.js'
@@ -8,6 +9,20 @@ export default {
     const sessionDetailsStore = useSessionDetailsStore();
     return {
       sessionDetailsStore
+    }
+  },
+  methods: {
+    LogOut() {
+      this.sessionDetailsStore.isLoggedIn = false;
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      };
+      var url = '/api/logout';
+      fetch(url, requestOptions)
+        .then(function (response) {
+          router.push({ name: "login" });
+        })
     }
   }
 }
@@ -30,7 +45,8 @@ export default {
           </ul>
           <ul class="navbar-nav d-flex">
             <li class="nav-item me-2">
-              <RouterLink to="#" class="nav-link">Logout</RouterLink>
+              <button v-if="sessionDetailsStore.isLoggedIn == true" @click="LogOut()" class="btn btn-dark">Logout
+              </button>
             </li>
           </ul>
         </div>

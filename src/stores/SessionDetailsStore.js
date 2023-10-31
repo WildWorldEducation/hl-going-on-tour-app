@@ -5,6 +5,7 @@ export const useSessionDetailsStore = defineStore("sessionDetails", {
         return {
             isLoggedIn: null,
             userId: null,
+            isAdmin: null
         }
     },
     actions: {
@@ -14,6 +15,7 @@ export const useSessionDetailsStore = defineStore("sessionDetails", {
 
             this.isLoggedIn = data.isLoggedIn;
             this.userId = data.userId;
+            this.isAdmin = data.isAdmin;
 
             return this.$state;
         },

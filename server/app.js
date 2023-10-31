@@ -138,6 +138,13 @@ app.post('/api/login-attempt', (req, res, next) => {
     });
 });
 
+// Log out.
+app.post('/api/logout', (req, res) => {
+    // Destroy the user session.
+    req.session.destroy();
+    res.end()
+});
+
 // Routes -----------------------------
 // The view, which is the SPA Vue app.
 const environment = process.env.NODE_ENV;
