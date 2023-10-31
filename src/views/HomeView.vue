@@ -91,9 +91,9 @@ export default {
 <style scoped>
 /* Page level */
 
-main {
+/* main {
   height: 100%;
-}
+} */
 
 .dashboard {
   background-image: url("/images/dash-background.jpg");
