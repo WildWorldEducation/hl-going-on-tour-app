@@ -1,20 +1,33 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
-//import type { Game } from 'phaser'
 
-let gameInstance = null
-const containerId = 'game-container'
-const game = await import('@/game/game')
+import { ref } from 'vue'
+import { launch } from '@/game/game.js';
 
-onMounted(() => {
-    gameInstance = game
-})
+// binds to the v-if on our button to toggle visibility
+const showButton = ref(true)
 
-onUnmounted(() => {
-    gameInstance?.destroy(false)
-})
+function handleClickStart() {
+    // hides launch button
+    showButton.value = false;
+
+    // Runs the launch function
+    launch();
+}
+
 </script>
 
 <template>
-    <div :id="containerId" />
+    <div id="game">
+        <button v-if="showButton" @click="handleClickStart">Start</button>
+    </div>
 </template>
+
+<style scoped>
+#game {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+</style>

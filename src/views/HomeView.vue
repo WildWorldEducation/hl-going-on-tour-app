@@ -30,8 +30,11 @@ export default {
           <a id="resumeGameLink" class="resume-button-inner" href="#"><span>Resume game</span></a>
         </div>
         <div class="grid-card resume-button-outer">
-          <a id="restart-link" class="resume-button-inner" href="/game?resume=Scene1_1"><span>Restart
-              game</span></a>
+          <!-- <a id="restart-link" class="resume-button-inner" href="/game?resume=Scene1_1"><span>Restart
+              game</span></a> -->
+
+          <router-link id="restart-link" class="resume-button-inner" to="/game?resume=Scene1_1">Restart
+            game</router-link>
         </div>
       </div>
     </div>
@@ -47,6 +50,9 @@ export default {
           <div class="grid-card level-button-outer">
             <a id="module-1" class="level-button-inner module-1-unlocked"
               href="/game?resume=Scene1_1"><span>Intro<br>&<br>Prelude</span></a>
+
+
+
           </div>
           <div class="grid-card level-button-outer">
             <a id="module-3" class="level-button-inner thumbnail">

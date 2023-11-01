@@ -1,3 +1,5 @@
+import WideButton from '../Custom_Classes/WideButton.js'
+
 export default class Scene1_1 extends Phaser.Scene {
     constructor() {
         super('Scene1_1');
