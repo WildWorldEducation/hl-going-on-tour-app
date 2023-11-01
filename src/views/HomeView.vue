@@ -14,7 +14,86 @@ export default {
   components: {
     StudentList
   },
-  created() {
+  mounted() {
+    // Get the buttons.
+    const resume = document.getElementById("resumeGameLink")
+    // const m2 = document.getElementById("module-2")
+    const m3 = document.getElementById("module-3")
+    const m4 = document.getElementById("module-4")
+    const m5 = document.getElementById("module-5")
+    const m6 = document.getElementById("module-6")
+    const m7 = document.getElementById("module-7")
+    const m8 = document.getElementById("module-8")
+    const m9 = document.getElementById("module-9")
+    const m10 = document.getElementById("module-10")
+
+    // Get the student's id.
+    const url1 = '/api/user-details';
+    fetch(url1)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+
+        // Find out the student's progress through the game.
+        const url2 = '/api/user-progress/' + data.userId;
+        fetch(url2)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            // Set the link for where the game should resume from.
+            resume.href = "/game?resume=" + data.last_slide
+
+            // Set how the button should display.
+            // if (data.module_unlocked >= 2) {
+            //     m2.classList.add("module-2-unlocked");
+            //     m2.href = "/game?resume=scene2_1";
+            //     var span = document.createElement('span');
+            //     span.innerHTML = "Prelude";
+            //     m2.appendChild(span);
+            // }
+            if (data.module_unlocked >= 3) {
+              m3.classList.add("module-3-unlocked");
+              m3.href = "/game?resume=scene3_1"
+            }
+            if (data.module_unlocked >= 4) {
+              m4.classList.add("module-4-unlocked");
+              m4.href = "/game?resume=scene4_1"
+            }
+            if (data.module_unlocked >= 5) {
+              m5.classList.add("module-5-unlocked");
+              m5.href = "/game?resume=scene5_1"
+            }
+            if (data.module_unlocked >= 6) {
+              m6.classList.add("module-6-unlocked");
+              m6.href = "/game?resume=scene6_1"
+            }
+            if (data.module_unlocked >= 7) {
+              m7.classList.add("module-7-unlocked");
+              m7.href = "/game?resume=scene7_1"
+            }
+            if (data.module_unlocked >= 8) {
+              m8.classList.add("module-8-unlocked");
+              m8.href = "/game?resume=scene8_1"
+            }
+            if (data.module_unlocked >= 9) {
+              m9.classList.add("module-9-unlocked");
+              m9.href = "/game?resume=scene9_1"
+            }
+            if (data.module_unlocked >= 10) {
+              m10.classList.add("module-10-unlocked");
+              m10.href = "/game?resume=scene10_1"
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 }
 </script>
@@ -30,11 +109,8 @@ export default {
           <a id="resumeGameLink" class="resume-button-inner" href="#"><span>Resume game</span></a>
         </div>
         <div class="grid-card resume-button-outer">
-          <!-- <a id="restart-link" class="resume-button-inner" href="/game?resume=Scene1_1"><span>Restart
-              game</span></a> -->
-
-          <router-link id="restart-link" class="resume-button-inner" to="/game?resume=Scene1_1">Restart
-            game</router-link>
+          <router-link id="restart-link" class="resume-button-inner" to="/game?resume=Scene1_1"><span>Restart
+              game</span></router-link>
         </div>
       </div>
     </div>

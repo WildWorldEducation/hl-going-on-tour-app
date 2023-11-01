@@ -79,6 +79,10 @@ conn.connect((err) => {
 });
 
 // API calls ----------------------------------------------------------------
+
+/**
+ * Query user data.
+ */
 // Send the user session variable.
 app.get('/api/get-session-details', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -90,6 +94,16 @@ app.get('/api/get-session-details', (req, res) => {
     }
 
     res.json(req.session);
+});
+
+app.get('/api/user-details', function (req, res, next) {
+    if (req.session.userName) {
+        res.setHeader('Content-Type', 'application/json');
+        res.json(req.session);
+    }
+    // Otherwise, redirect to login page.
+    else
+        res.redirect('/')
 });
 
 
@@ -145,6 +159,37 @@ app.post('/api/logout', (req, res) => {
     req.session.destroy();
     res.end()
 });
+
+
+
+/*
+ * Saving and Loading.
+ */
+// API to get user progress through the games.
+app.get('/api/user-progress/:id', function (req, res, next) {
+    // Check if the user is logged in.  
+    if (req.session.userName) {
+        let sqlQuery = `
+      SELECT last_slide, module_unlocked
+      FROM healthy_lifestyles.users
+      WHERE healthy_lifestyles.users.id = ` + req.params.id + `;`;
+
+        let query = conn.query(sqlQuery, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+
+                res.json(results[0]);
+            } catch (err) {
+                next(err)
+            }
+        });
+    } else
+        res.redirect('/')
+});
+
+
 
 // Users.
 // List users.
