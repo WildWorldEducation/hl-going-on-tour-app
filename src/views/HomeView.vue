@@ -1,14 +1,32 @@
 <script>
 // Import the store.
 import { useSessionDetailsStore } from '../stores/SessionDetailsStore.js'
+import { useUsersStore } from '../stores/UsersStore.js'
 
 import StudentList from '../components/StudentList.vue'
 
 export default {
   setup() {
     const sessionDetailsStore = useSessionDetailsStore();
+    const usersStore = useUsersStore();
     return {
-      sessionDetailsStore
+      sessionDetailsStore, usersStore
+    }
+  },
+  data() {
+    return {
+      user: {
+        id: null,
+      },
+      resume: null,
+      m3: null,
+      m4: null,
+      m5: null,
+      m6: null,
+      m7: null,
+      m8: null,
+      m9: null,
+      m10: null,
     }
   },
   components: {
@@ -16,16 +34,15 @@ export default {
   },
   mounted() {
     // Get the buttons.
-    const resume = document.getElementById("resumeGameLink")
-    // const m2 = document.getElementById("module-2")
-    const m3 = document.getElementById("module-3")
-    const m4 = document.getElementById("module-4")
-    const m5 = document.getElementById("module-5")
-    const m6 = document.getElementById("module-6")
-    const m7 = document.getElementById("module-7")
-    const m8 = document.getElementById("module-8")
-    const m9 = document.getElementById("module-9")
-    const m10 = document.getElementById("module-10")
+    this.resume = document.getElementById("resumeGameLink")
+    this.m3 = document.getElementById("module-3")
+    this.m4 = document.getElementById("module-4")
+    this.m5 = document.getElementById("module-5")
+    this.m6 = document.getElementById("module-6")
+    this.m7 = document.getElementById("module-7")
+    this.m8 = document.getElementById("module-8")
+    this.m9 = document.getElementById("module-9")
+    this.m10 = document.getElementById("module-10")
 
     // Get the student's id.
     const url1 = '/api/user-details';
@@ -34,8 +51,6 @@ export default {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
-
         // Find out the student's progress through the game.
         const url2 = '/api/user-progress/' + data.userId;
         fetch(url2)
@@ -44,47 +59,39 @@ export default {
           })
           .then((data) => {
             // Set the link for where the game should resume from.
-            resume.href = "/game?resume=" + data.last_slide
+            this.resume.href = "/game?resume=" + data.last_slide
 
-            // Set how the button should display.
-            // if (data.module_unlocked >= 2) {
-            //     m2.classList.add("module-2-unlocked");
-            //     m2.href = "/game?resume=scene2_1";
-            //     var span = document.createElement('span');
-            //     span.innerHTML = "Prelude";
-            //     m2.appendChild(span);
-            // }
             if (data.module_unlocked >= 3) {
-              m3.classList.add("module-3-unlocked");
-              m3.href = "/game?resume=scene3_1"
+              this.m3.classList.add("module-3-unlocked");
+              this.m3.href = "/game?resume=scene3_1"
             }
             if (data.module_unlocked >= 4) {
-              m4.classList.add("module-4-unlocked");
-              m4.href = "/game?resume=scene4_1"
+              this.m4.classList.add("module-4-unlocked");
+              this.m4.href = "/game?resume=scene4_1"
             }
             if (data.module_unlocked >= 5) {
-              m5.classList.add("module-5-unlocked");
-              m5.href = "/game?resume=scene5_1"
+              this.m5.classList.add("module-5-unlocked");
+              this.m5.href = "/game?resume=scene5_1"
             }
             if (data.module_unlocked >= 6) {
-              m6.classList.add("module-6-unlocked");
-              m6.href = "/game?resume=scene6_1"
+              this.m6.classList.add("module-6-unlocked");
+              this.m6.href = "/game?resume=scene6_1"
             }
             if (data.module_unlocked >= 7) {
-              m7.classList.add("module-7-unlocked");
-              m7.href = "/game?resume=scene7_1"
+              this.m7.classList.add("module-7-unlocked");
+              this.m7.href = "/game?resume=scene7_1"
             }
             if (data.module_unlocked >= 8) {
-              m8.classList.add("module-8-unlocked");
-              m8.href = "/game?resume=scene8_1"
+              this.m8.classList.add("module-8-unlocked");
+              this.m8.href = "/game?resume=scene8_1"
             }
             if (data.module_unlocked >= 9) {
-              m9.classList.add("module-9-unlocked");
-              m9.href = "/game?resume=scene9_1"
+              this.m9.classList.add("module-9-unlocked");
+              this.m9.href = "/game?resume=scene9_1"
             }
             if (data.module_unlocked >= 10) {
-              m10.classList.add("module-10-unlocked");
-              m10.href = "/game?resume=scene10_1"
+              this.m10.classList.add("module-10-unlocked");
+              this.m10.href = "/game?resume=scene10_1"
             }
           })
           .catch(function (error) {
@@ -94,6 +101,11 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+  },
+  methods: {
+    changeUserId(user) {
+      console.log(user)
+    }
   }
 }
 </script>
@@ -119,7 +131,8 @@ export default {
         <h1>VISIT LEVELS</h1>
       </div>
       <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
-        <StudentList />
+        <!-- <StudentList @changeUserId="changeUserId($event)" /> -->
+        <StudentList @changeUserId="changeUserId($event)" />
       </div>
       <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin }">
         <div class="row grid-cards mt-3">

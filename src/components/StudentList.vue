@@ -11,27 +11,36 @@ export default {
     },
     data() {
         return {
+            activeIndex: null
         }
     },
     async created() {
         // Run the GET request.
-        if (this.usersStore.users.length < 1)
-            this.usersStore.getUsers()
+        if (this.usersStore.users.length < 1) {
+            await this.usersStore.getUsers()
+            this.activeIndex = this.usersStore.users[0]
+        }
     },
     computed: {
 
     },
     methods: {
-        changeUserId(userId) {
-            this.$emit('changeUserId', userId)
-        }
+        toggle(user) {
+            this.activeIndex = user
+        },
+        // changeUserId(userId) {
+        //     this.$emit('changeUserId', userId)
+        // }
     }
 }
 </script>
 
 <template>
-    <button class="user-block btn" v-for="user in usersStore.users">{{ user.username }}</button>
-</template>
+    <button class="user-block btn" :class="{ 'active': user == activeIndex }" v-for="(user) in usersStore.users"
+        @click="toggle(user)">{{ user.username
+        }}
+    </button>
+</template>  
 
 <style scoped>
 .user-block {
@@ -41,5 +50,10 @@ export default {
     border: 2px solid white;
     margin-top: 10px;
     color: white;
+}
+
+.active {
+    border-color: #FCFF71;
+    color: #FCFF71;
 }
 </style>
