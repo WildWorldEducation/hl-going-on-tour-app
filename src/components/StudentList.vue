@@ -18,8 +18,11 @@ export default {
         // Run the GET request.
         if (this.usersStore.users.length < 1) {
             await this.usersStore.getUsers()
-            this.activeIndex = this.usersStore.users[0]
         }
+        // Set the first button to be selected on page load.
+        this.activeIndex = this.usersStore.users[0]
+        // Send data for the first student to the parent component.
+        this.toggle(this.usersStore.users[0])
     },
     computed: {
 
@@ -27,9 +30,10 @@ export default {
     methods: {
         toggle(user) {
             this.activeIndex = user
+            this.$emit('changeUserId', user.id)
         },
         // changeUserId(userId) {
-        //     this.$emit('changeUserId', userId)
+        //    
         // }
     }
 }
