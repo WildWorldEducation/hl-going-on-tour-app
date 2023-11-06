@@ -44,7 +44,7 @@ export default {
 <template>
     <div class="login-page">
         <div class="form-signin my-1">
-            <img class="mb-4" src="images/ontour-logo.png" alt="" width="250" height="250">
+            <img class="mb-4" src="/images/ontour-logo.png" alt="" width="250" height="250">
             <!-- Login with Google -->
             <div id="g_id_onload" data-client_id="309231279221-r46j4e6utpo00t2292rlpgmeifu3foob.apps.googleusercontent.com"
                 data-context="signin" data-ux_mode="popup" data-login_uri="/api/google-login-attempt"

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "NODE_ENV=production node server/app.js",
     "dev:frontend": "vite",
     "dev:backend": "nodemon server/app.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
