@@ -54,9 +54,9 @@ Database Connection
 const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'C0ll1ns1n5t1tut32022',
-    //  password: 'password',
-    database: 'skill_tree'
+    password: 'H3@lthyL1f35tyl3s',
+   // password: 'password',
+    database: 'healthy_lifestyles'
 });
 
 
