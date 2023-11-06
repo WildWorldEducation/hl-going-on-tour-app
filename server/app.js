@@ -55,7 +55,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'C0ll1ns1n5t1tut32022',
-    password: 'password',
+    //  password: 'password',
     database: 'skill_tree'
 });
 
@@ -196,7 +196,8 @@ app.get('/api/user-progress/:id', function (req, res, next) {
 // List users API.
 app.get('/api/users/list', function (req, res, next) {
     // Check if the user is logged in and an admin.   
-    if (req.session.userName && req.session.isAdmin == 1) {
+    //if (req.session.userName && req.session.isAdmin == 1) {
+    if (req.session.userName) {
         res.setHeader('Content-Type', 'application/json');
         let sqlQuery = "SELECT * FROM healthy_lifestyles.users;";
         let query = conn.query(sqlQuery, (err, results) => {
