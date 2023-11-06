@@ -132,70 +132,79 @@ export default {
       <div v-if="!this.sessionDetailsStore.isAdmin" class="row text-center">
         <h1>VISIT LEVELS</h1>
       </div>
-      <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
-        <!-- <StudentList @changeUserId="changeUserId($event)" /> -->
+      <div id="" v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
         <StudentList @changeUserId="changeUserId($event)" />
       </div>
       <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin }">
         <div class="row grid-cards mt-3">
           <div id="module-1" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m1Status == 'completed', 'in-progress': this.m1Status == 'in progress' }">
-            <a class="level-button-inner module-1-unlocked"
+            :class="{ 'completed': this.m1Status == 'completed', 'in-progress': this.m1Status == 'in progress', 'not-started': this.m1Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin" class="level-button-inner
+              module-1-unlocked"><span>Intro<br>&<br>Prelude</span></a>
+            <a v-else class="level-button-inner module-1-unlocked"
               href="/game?resume=scene1_1"><span>Intro<br>&<br>Prelude</span></a>
             <p>{{ m1Status }}</p>
           </div>
           <div id="module-2" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m2Status == 'completed', 'in-progress': this.m2Status == 'in progress' }">
-            <a v-if="this.m2Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m2Status == 'completed', 'in-progress': this.m2Status == 'in progress', 'not-started': this.m2Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m2Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene3_1"></a>
             <p>{{ m2Status }}</p>
           </div>
           <div id="module-3" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m3Status == 'completed', 'in-progress': this.m3Status == 'in progress' }">
-            <a v-if="this.m3Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m3Status == 'completed', 'in-progress': this.m3Status == 'in progress', 'not-started': this.m3Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m3Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene4_1"></a>
             <p>{{ m3Status }}</p>
           </div>
           <div id="module-4" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m4Status == 'completed', 'in-progress': this.m4Status == 'in progress' }">
-            <a v-if="this.m4Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m4Status == 'completed', 'in-progress': this.m4Status == 'in progress', 'not-started': this.m4Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m4Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene5_1"></a>
             <p>{{ m4Status }}</p>
           </div>
           <div id="module-5" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m5Status == 'completed', 'in-progress': this.m5Status == 'in progress' }">
-            <a v-if="this.m5Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m5Status == 'completed', 'in-progress': this.m5Status == 'in progress', 'not-started': this.m5Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m5Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene6_1"></a>
             <p>{{ m5Status }}</p>
           </div>
           <div id="module-6" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m6Status == 'completed', 'in-progress': this.m6Status == 'in progress' }">
-            <a v-if="this.m6Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m6Status == 'completed', 'in-progress': this.m6Status == 'in progress', 'not-started': this.m6Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m6Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene7_1"></a>
             <p>{{ m6Status }}</p>
           </div>
           <div id="module-7" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m7Status == 'completed', 'in-progress': this.m7Status == 'in progress' }">
-            <a v-if="this.m7Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m7Status == 'completed', 'in-progress': this.m7Status == 'in progress', 'not-started': this.m7Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m7Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene8_1"></a>
             <p>{{ m7Status }}</p>
           </div>
           <div id="module-8" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m8Status == 'completed', 'in-progress': this.m8Status == 'in progress' }">
-            <a v-if="this.m8Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m8Status == 'completed', 'in-progress': this.m8Status == 'in progress', 'not-started': this.m8Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m8Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene9_1"></a>
             <p>{{ m8Status }}</p>
           </div>
           <div id="module-9" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m9Status == 'completed', 'in-progress': this.m9Status == 'in progress' }">
-            <a v-if="this.m9Status == 'not started'" class="level-button-inner thumbnail">
+            :class="{ 'completed': this.m9Status == 'completed', 'in-progress': this.m9Status == 'in progress', 'not-started': this.m9Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m9Status == 'not started'"
+              class="level-button-inner thumbnail">
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene10_1"></a>
             <p>{{ m9Status }}</p>
@@ -204,10 +213,39 @@ export default {
       </div>
     </div>
   </main>
+
+
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+    aria-controls="offcanvasExample">
+    Button with data-bs-target
+  </button>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-/* Page level */
+/* Screen smaller than 900px - 2 columns */
+@media (max-width: 900px) {
+  .grid-cards {}
+}
+
+
+
+.not-started p {
+  color: white;
+}
+
 .in-progress a {
   border-color: #FCFF71;
 }
@@ -266,7 +304,7 @@ export default {
 
 
 .grid-card {
-  width: 300px;
+  width: 100%;
 }
 
 .grid-card p {

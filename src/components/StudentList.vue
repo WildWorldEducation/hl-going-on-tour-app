@@ -32,9 +32,6 @@ export default {
             this.activeIndex = user
             this.$emit('changeUserId', user.id)
         },
-        // changeUserId(userId) {
-        //    
-        // }
     }
 }
 </script>
@@ -48,12 +45,17 @@ export default {
 
 <style scoped>
 .user-block {
-    width: 220px;
+    width: 100%;
     height: 80px;
     border-radius: 8px;
     border: 2px solid white;
     margin-top: 10px;
     color: white;
+}
+
+.user-block:hover {
+    border-color: #FCFF71;
+    color: #FCFF71;
 }
 
 .active {
