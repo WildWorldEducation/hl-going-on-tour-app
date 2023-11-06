@@ -1,0 +1,48 @@
+{
+  "src/main.css": {
+    "file": "assets/main-23282ea4.css",
+    "src": "src/main.css"
+  },
+  "src/main.js": {
+    "css": [
+      "assets/main-23282ea4.css"
+    ],
+    "dynamicImports": [
+      "src/views/LoginView.vue",
+      "src/views/GameView.vue"
+    ],
+    "file": "assets/main-8f1a7499.js",
+    "isEntry": true,
+    "src": "src/main.js"
+  },
+  "src/views/GameView.css": {
+    "file": "assets/GameView-603c2ab7.css",
+    "src": "src/views/GameView.css"
+  },
+  "src/views/GameView.vue": {
+    "css": [
+      "assets/GameView-603c2ab7.css"
+    ],
+    "file": "assets/GameView-1e8d18eb.js",
+    "imports": [
+      "src/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/GameView.vue"
+  },
+  "src/views/LoginView.css": {
+    "file": "assets/LoginView-c4f18e0d.css",
+    "src": "src/views/LoginView.css"
+  },
+  "src/views/LoginView.vue": {
+    "css": [
+      "assets/LoginView-c4f18e0d.css"
+    ],
+    "file": "assets/LoginView-98c6967a.js",
+    "imports": [
+      "src/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/LoginView.vue"
+  }
+}
