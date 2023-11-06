@@ -213,35 +213,9 @@ export default {
       </div>
     </div>
   </main>
-
-
-
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-    aria-controls="offcanvasExample">
-    Button with data-bs-target
-  </button>
-
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped>
-/* Screen smaller than 900px - 2 columns */
-@media (max-width: 900px) {
-  .grid-cards {}
-}
-
-
-
 .not-started p {
   color: white;
 }
@@ -311,6 +285,12 @@ export default {
   text-align: center;
 }
 
+/* Screen smaller than 600px - 1 column */
+@media (max-width: 599px) {
+  .grid-cards {
+    display: block;
+  }
+}
 
 /* Screen larger than 600px - 2 columns */
 @media (min-width: 600px) {
