@@ -163,8 +163,6 @@ var urlString = window.location.href
 var url = new URL(urlString);
 var lastCompletedSlide = url.searchParams.get("resume");
 
-console.log(lastCompletedSlide)
-
 if (lastCompletedSlide != "scene1_1") {
     // Find that scene within the array of scenes.
     for (let i = 0; i < sceneArray.length; i++) {
