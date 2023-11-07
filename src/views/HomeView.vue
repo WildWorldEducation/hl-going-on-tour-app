@@ -119,8 +119,8 @@ export default {
         <h1>RESUME GAME</h1>
       </div>
       <div class="row grid-cards">
-        <div class="grid-card resume-button-outer">
-          <a id="resumeGameLink" class="resume-button-inner" href="#"><span>Resume game</span></a>
+        <div id="resumeGameLink" class="grid-card resume-button-outer">
+          <a class="resume-button-inner" href="#"><span>Resume game</span></a>
         </div>
         <div class="grid-card resume-button-outer">
           <router-link id="restart-link" class="resume-button-inner" to="/game?resume=Scene1_1"><span>Restart
@@ -149,6 +149,11 @@ export default {
             :class="{ 'completed': this.m2Status == 'completed', 'in-progress': this.m2Status == 'in progress', 'not-started': this.m2Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m2Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene3_1"></a>
             <p>{{ m2Status }}</p>
@@ -157,6 +162,11 @@ export default {
             :class="{ 'completed': this.m3Status == 'completed', 'in-progress': this.m3Status == 'in progress', 'not-started': this.m3Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m3Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene4_1"></a>
             <p>{{ m3Status }}</p>
@@ -165,6 +175,11 @@ export default {
             :class="{ 'completed': this.m4Status == 'completed', 'in-progress': this.m4Status == 'in progress', 'not-started': this.m4Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m4Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene5_1"></a>
             <p>{{ m4Status }}</p>
@@ -173,6 +188,11 @@ export default {
             :class="{ 'completed': this.m5Status == 'completed', 'in-progress': this.m5Status == 'in progress', 'not-started': this.m5Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m5Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene6_1"></a>
             <p>{{ m5Status }}</p>
@@ -181,6 +201,11 @@ export default {
             :class="{ 'completed': this.m6Status == 'completed', 'in-progress': this.m6Status == 'in progress', 'not-started': this.m6Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m6Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene7_1"></a>
             <p>{{ m6Status }}</p>
@@ -189,6 +214,11 @@ export default {
             :class="{ 'completed': this.m7Status == 'completed', 'in-progress': this.m7Status == 'in progress', 'not-started': this.m7Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m7Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene8_1"></a>
             <p>{{ m7Status }}</p>
@@ -197,6 +227,11 @@ export default {
             :class="{ 'completed': this.m8Status == 'completed', 'in-progress': this.m8Status == 'in progress', 'not-started': this.m8Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m8Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene9_1"></a>
             <p>{{ m8Status }}</p>
@@ -205,6 +240,11 @@ export default {
             :class="{ 'completed': this.m9Status == 'completed', 'in-progress': this.m9Status == 'in progress', 'not-started': this.m9Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin || this.m9Status == 'not started'"
               class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
             </a>
             <a v-else class="level-button-inner thumbnail" href="/game?resume=scene10_1"></a>
             <p>{{ m9Status }}</p>
@@ -216,6 +256,11 @@ export default {
 </template>
 
 <style scoped>
+.lock-icon {
+  width: 15%;
+  opacity: 100%;
+}
+
 .not-started p {
   color: white;
 }
@@ -290,6 +335,14 @@ export default {
   .grid-cards {
     display: block;
   }
+
+  .grid-card {
+    margin: auto;
+  }
+
+  #resumeGameLink {
+    margin-bottom: 15px;
+  }
 }
 
 /* Screen larger than 600px - 2 columns */
@@ -326,41 +379,41 @@ export default {
   background-size: cover;
 }
 
-#module-3 a {
+#module-2 a {
   background-image: url("/images/getting-ready-level-thumbnail.jpg");
 }
 
-#module-4 a {
+#module-3 a {
   background-image: url("/images/nyc-level-thumbnail.jpg");
 }
 
-#module-5 a {
+#module-4 a {
   background-image: url("/images/chicago-level-thumbnail.jpg");
 }
 
-#module-6 a {
+#module-5 a {
   background-image: url("/images/on-the-way-level-thumbnail.jpg");
 }
 
-#module-7 a {
+#module-6 a {
   background-image: url("/images/las-vegas-level-thumbnail.jpg");
 }
 
-#module-8 a {
+#module-7 a {
   background-image: url("/images/california-level-thumbnail.jpg");
 }
 
-#module-9 a {
+#module-8 a {
   background-image: url("/images/check-it.jpg");
 }
 
-#module-10 a {
+#module-9 a {
   background-image: url("/images/encore.jpg");
 }
 
 
 /* Hover state for unlocked button */
-#resumeGameLink:hover,
+#resumeGameLink a:hover,
 #restart-link:hover {
   /* 50% opacity */
   background-color: #4c90f780;
@@ -371,7 +424,7 @@ export default {
   aspect-ratio: 16 / 9;
 }
 
-#resumeGameLink {
+#resumeGameLink a {
   color: #62FB5F;
   border: 4px solid #62FB5F;
 }
@@ -382,7 +435,7 @@ export default {
 }
 
 .level-button-inner {
-  display: block;
+  display: flex;
   border: 4px solid white;
   border-radius: 25px;
   width: 100%;
@@ -390,6 +443,7 @@ export default {
   text-align: center;
   position: relative;
   background-color: #4C90F733;
+  justify-content: center;
 }
 
 .level-button-inner span,
