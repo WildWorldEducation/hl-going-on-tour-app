@@ -163,13 +163,15 @@ var urlString = window.location.href
 var url = new URL(urlString);
 var lastCompletedSlide = url.searchParams.get("resume");
 
+console.log(lastCompletedSlide)
+
 if (lastCompletedSlide != "scene1_1") {
     // Find that scene within the array of scenes.
     for (let i = 0; i < sceneArray.length; i++) {
         // Instantiate the class to get the name.
         var sceneClass = new sceneArray[i]();
-        // Move the scene to the front of the array.
-        if (lastCompletedSlide == sceneClass.constructor.name.toLowerCase()) {
+        // Move the scene to the front of the array.       
+        if (lastCompletedSlide == sceneClass.sys.config.toLowerCase()) {
             sceneArray.unshift(sceneArray.splice(i, 1)[0]);
         }
     }
