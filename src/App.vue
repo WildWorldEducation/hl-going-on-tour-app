@@ -30,7 +30,7 @@ export default {
 
 <template>
   <header v-if="sessionDetailsStore.isLoggedIn">
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="navbar" class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <span class="navbar-brand">Healthy Lifestyles: Going On Tour</span>
         <button v-if="sessionDetailsStore.isLoggedIn == true" @click="LogOut()" class="btn btn-dark">Logout
@@ -42,4 +42,15 @@ export default {
   <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+#navbar {
+  background-color: #0f3a53;
+  color: #FCFF71;
+}
+
+.navbar-brand {
+  color: white;
+  font-family: 'Angkor';
+  font-weight: 400;
+}
+</style>

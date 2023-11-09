@@ -129,13 +129,13 @@ export default {
       </div>
     </div>
     <div class="row">
-      <div v-if="!this.sessionDetailsStore.isAdmin" class="row text-center">
+      <div v-if="!this.sessionDetailsStore.isAdmin" class="row text-center mt-5">
         <h1>VISIT LEVELS</h1>
       </div>
       <div id="" v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
         <StudentList @changeUserId="changeUserId($event)" />
       </div>
-      <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin }">
+      <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin }" style="height:calc(90vh-54px)">
         <div class="row grid-cards mt-3">
           <div id="module-1" class="grid-card level-button-outer"
             :class="{ 'completed': this.m1Status == 'completed', 'in-progress': this.m1Status == 'in progress', 'not-started': this.m1Status == 'not started' }">
@@ -298,6 +298,8 @@ export default {
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Angkor', serif;
+  height: calc(100% - 58px);
+  overflow-y: auto;
 }
 
 .dashboard h1 {
@@ -317,7 +319,6 @@ export default {
   margin: 0 auto;
   display: grid;
   gap: 1rem;
-  margin-bottom: 50px;
   justify-content: center;
 }
 

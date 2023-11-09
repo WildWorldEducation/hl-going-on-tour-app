@@ -18,7 +18,7 @@ function handleClickStart() {
 
 <template>
     <div id="game">
-        <button v-if="showButton" @click="handleClickStart">Start</button>
+        <button v-if="showButton" @click="handleClickStart" class="btn btn-light">Start</button>
     </div>
 </template>
 
@@ -29,5 +29,11 @@ function handleClickStart() {
     justify-content: center;
     align-items: center;
     margin: 0;
+    font-family: 'Angkor';
+}
+
+#game button {
+    background-color: #0f3a53;
+    color: #FCFF71;
 }
 </style>

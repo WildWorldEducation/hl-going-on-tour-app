@@ -34,16 +34,23 @@ export default {
         },
     }
 }
-</script>
+</script> 
 
 <template>
-    <button class="user-block btn" :class="{ 'active': user == activeIndex }" v-for="(user) in usersStore.users"
-        @click="toggle(user)">{{ user.username
-        }}
-    </button>
+    <div class="scroll">
+        <button class="user-block btn" :class="{ 'active': user == activeIndex }" v-for="(user) in usersStore.users"
+            @click="toggle(user)">{{ user.username
+            }}
+        </button>
+    </div>
 </template>  
 
 <style scoped>
+.scroll {
+    overflow-y: auto;
+    height: 100vh;
+}
+
 .user-block {
     width: 100%;
     height: 80px;
