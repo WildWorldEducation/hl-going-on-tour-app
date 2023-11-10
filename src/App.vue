@@ -32,7 +32,11 @@ export default {
   <header v-if="sessionDetailsStore.isLoggedIn">
     <nav id="navbar" class="navbar navbar-expand-lg">
       <div class="container-fluid">
+        <RouterLink to="/" class="nav-link">
+          <img src="/images/ontour-logo.png" alt="" width="50" height="50">
+        </RouterLink>
         <span class="navbar-brand">Healthy Lifestyles: Going On Tour</span>
+
         <button v-if="sessionDetailsStore.isLoggedIn == true" @click="LogOut()" class="btn btn-dark">Logout
         </button>
       </div>
@@ -52,5 +56,12 @@ export default {
   color: white;
   font-family: 'Angkor';
   font-weight: 400;
+}
+
+/* Screen smaller than 600px - 1 column */
+@media (max-width: 599px) {
+  .navbar-brand {
+    display: none;
+  }
 }
 </style>
