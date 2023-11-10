@@ -405,11 +405,11 @@ export default {
 }
 
 #module-8 a {
-  background-image: url("/images/check-it.jpg");
+  background-image: url("/images/check-it-level-thumbnail.jpg");
 }
 
 #module-9 a {
-  background-image: url("/images/encore.jpg");
+  background-image: url("/images/encore-level-thumbnail.jpg");
 }
 
 
