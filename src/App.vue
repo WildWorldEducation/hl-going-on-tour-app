@@ -11,6 +11,7 @@ export default {
       sessionDetailsStore
     }
   },
+
   methods: {
     LogOut() {
       this.sessionDetailsStore.isLoggedIn = false;
@@ -29,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <header v-if="sessionDetailsStore.isLoggedIn">
+  <header v-if="sessionDetailsStore.isLoggedIn && $route.name != 'game'">
     <nav id="navbar" class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <RouterLink to="/" class="nav-link">
