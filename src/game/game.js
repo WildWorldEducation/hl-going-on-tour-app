@@ -109,6 +109,10 @@ import Scene4_17 from './scenes/4_Level2/scene4_17.js'
 import Scene4_18 from './scenes/4_Level2/scene4_18.js'
 import Scene4_19 from './scenes/4_Level2/scene4_19.js'
 import Scene4_20 from './scenes/4_Level2/scene4_20.js'
+import Scene4_21 from './scenes/4_Level2/scene4_21.js'
+import Scene4_22 from './scenes/4_Level2/scene4_22.js'
+import Scene4_23 from './scenes/4_Level2/scene4_23.js'
+import Scene4_24 from './scenes/4_Level2/scene4_24.js'
 
 // Level 3: Chicago
 import Scene5_1 from './scenes/5_Level3/scene5_1.js'
@@ -168,6 +172,7 @@ var sceneArray = [
     Scene4_18,
     Scene4_19,
     Scene4_20,
+    Scene4_21, Scene4_22, Scene4_23, Scene4_24,
     Scene5_1, Scene5_2, Scene5_3, Scene5_4,
     Scene6_1,
     Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7,
