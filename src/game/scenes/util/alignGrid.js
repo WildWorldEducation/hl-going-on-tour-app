@@ -1,4 +1,4 @@
-class AlignGrid {
+export default class AlignGrid {
     constructor(config) {
         this.config = config;
         if (!config.scene) {

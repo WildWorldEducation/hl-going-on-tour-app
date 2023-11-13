@@ -1,4 +1,6 @@
-class FormUtil {
+import AlignGrid from './alignGrid.js'
+
+export default class FormUtil {
     constructor(config) {
         //super();
         this.scene = config.scene;
@@ -9,7 +11,7 @@ class FormUtil {
             scene: this.scene,
             rows: config.rows,
             cols: config.cols
-        }); 
+        });
     }
     showNumbers() {
         this.alignGrid.showNumbers();
