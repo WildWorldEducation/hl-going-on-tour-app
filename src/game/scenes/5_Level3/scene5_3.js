@@ -15,6 +15,7 @@ export default class Scene5_3 extends Phaser.Scene {
 
         // Sprites.
         this.load.image('text-card1', 'assets/Images/General/text-card2.png');
+        this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
     }
 
     create() {
@@ -28,17 +29,20 @@ export default class Scene5_3 extends Phaser.Scene {
         var textBox = this.add.sprite(0, 0, 'text-card1').setOrigin(0);
         textBox.x = this.sys.canvas.width/2 - textBox.width/2;
         textBox.y = this.sys.canvas.height/2 - textBox.height/2;
+        textBox.scale = 0.9;
+        textBox.alpha = 0.9;
 
         this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
             `
             Some other names for Chicago include:
-            - Chi-Town
-            - The Windy City
-            - The City by the Lake (Lake Michigan)
-            - The Jewel of the Midwest
-            - The City Beautiful
+
+            \u2022 Chi-Town
+            \u2022 The Windy City
+            \u2022 The City by the Lake (Lake Michigan)
+            \u2022 The Jewel of the Midwest
+            \u2022 The City Beautiful
             `,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.6, 0.6);
+            { fontFamily: "Arial", fontSize: "65px", color: '#000000', align: 'center' }).setOrigin(0.65, 0.6);
         // Dealing with text quality.
         this.contentText.scale = 0.5
 

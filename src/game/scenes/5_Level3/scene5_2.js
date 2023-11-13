@@ -14,6 +14,7 @@ export default class Scene5_2 extends Phaser.Scene {
 
         // Sprites.
         this.load.image('text-card1', 'assets/Images/General/text-card2.png');
+        this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
 
     }
 
@@ -24,22 +25,39 @@ export default class Scene5_2 extends Phaser.Scene {
         background.height = this.sys.canvas.height;
         background.play();
 
+        
+
         // Text box
         var textBox = this.add.sprite(0, 0, 'text-card1').setOrigin(0);
         textBox.x = this.sys.canvas.width/2 - textBox.width/2;
         textBox.y = this.sys.canvas.height/2 - textBox.height/2;
+        textBox.scale = 0.9;
 
-        this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
-            `
-            Chicago also has many nicknames
-            including "Second City", which refers
-            to the rebuilding effort following the
-            Great Chicago Fire of 1871 that
-            destroyed much of the city.
-            `,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.6, 0.6);
-        // Dealing with text quality.
-        this.contentText.scale = 0.5
+        this.tweens.add({
+            targets: textBox,
+            ease: 'Expo.easeIn',
+            alpha: {
+                getStart: () => 0,
+                getEnd: () => 0.9
+              },
+            duration: 4000,
+            repeat: 0,
+            onComplete: () => {
+                this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
+                    `
+                    Chicago also has many nicknames
+                    including "Second City", which refers
+                    to the rebuilding effort following the
+                    Great Chicago Fire of 1871 that
+                    destroyed much of the city.
+                    `,
+                    { fontFamily: "Arial", fontSize: "65px", color: '#000000', align: 'center' }).setOrigin(0.7, 0.625);
+                // Dealing with text quality.
+                this.contentText.scale = 0.5
+            }
+        });
+
+        
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

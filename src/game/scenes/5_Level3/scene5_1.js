@@ -21,35 +21,64 @@ export default class Scene5_1 extends Phaser.Scene {
     create() {
         // City bg.
         var background = this.add.sprite(0, 0, 'city-bg').setOrigin(0);
-        background.displayWidth = this.sys.canvas.width;
+        background.displayWidth = this.sys.canvas.width + 200;
         background.displayHeight = this.sys.canvas.height;
 
-        // Text box
+        //this.cameras.main.setZoom(1);
+
+        this.tweens.add({
+            targets: background,
+            ease: 'Sine.easeInOut',
+            duration: 1000,
+            x: -200
+        })
+
+        // Text box.
         var textBox = this.add.sprite(0, 0, 'text-card1').setOrigin(0);
         textBox.x = this.sys.canvas.width/2 - textBox.width/2;
         textBox.y = this.sys.canvas.height/2 - textBox.height/2;
+        textBox.scale = 0.9;
 
-        this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
-            `
-            Chicago, Illinois is a major center
-            for music, where distinctive forms
-            of jazz, blues, and other genres
-            like electronic dance music (EDM)
-            were developed.
-            `,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.6, 0.6);
-        // Dealing with text quality.
-        this.contentText.scale = 0.5
-
-        // Title.
+        // Title box.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 500, 150, 32);
-        this.instructionText = this.add.text(55, 75, "Welcome to Chicago!",
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
-        // Dealing with text quality.
-        this.instructionText.scale = 0.5
-        this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
+        this.textBg.fillRoundedRect(-530, 0, 500, 150, 32);
+
+        this.tweens.add({
+            targets: textBox,
+            ease: 'Expo.easeIn',
+            alpha: {
+                getStart: () => 0,
+                getEnd: () => 0.9
+              },
+            duration: 1000,
+            repeat: 0,
+            onComplete: () => {
+                this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
+                    `
+                    Chicago, Illinois is a major center
+                    for music, where distinctive forms
+                    of jazz, blues, and other genres
+                    like electronic dance music (EDM)
+                    were developed.
+                    `,
+                    { fontFamily: "Arial", fontSize: "65px", color: '#000000', align: 'center' }).setOrigin(0.7, 0.625);
+                // Dealing with text quality.
+                this.contentText.scale = 0.5;
+
+                this.tweens.add({
+                    targets: this.textBg,
+                    x: 500,
+                    duration: 250
+                });
+
+                this.instructionText = this.add.text(55, 75, "Welcome to Chicago!",
+                    { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
+                // Dealing with text quality.
+                this.instructionText.scale = 0.5
+                this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
+            }
+        });
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
