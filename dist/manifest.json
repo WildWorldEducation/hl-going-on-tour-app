@@ -11,7 +11,7 @@
       "src/views/LoginView.vue",
       "src/views/GameView.vue"
     ],
-    "file": "assets/main-5cfd257d.js",
+    "file": "assets/main-63d8d2a1.js",
     "isEntry": true,
     "src": "src/main.js"
   },
@@ -23,7 +23,7 @@
     "css": [
       "assets/GameView-05c7094b.css"
     ],
-    "file": "assets/GameView-cf5126c0.js",
+    "file": "assets/GameView-3f267d49.js",
     "imports": [
       "src/main.js"
     ],
@@ -38,7 +38,7 @@
     "css": [
       "assets/LoginView-c4f18e0d.css"
     ],
-    "file": "assets/LoginView-ca90b380.js",
+    "file": "assets/LoginView-89ef6890.js",
     "imports": [
       "src/main.js"
     ],
