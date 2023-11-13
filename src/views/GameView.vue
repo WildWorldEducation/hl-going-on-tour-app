@@ -17,7 +17,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
     <!-- Text input, for the first module -->
     <input style="display: none;" type="text" placeholder="Type your first name here" id="student-name"
-        class="text-input" /> 
+        class="text-input" />
 
     <!-- Text input, for the 4th module -->
     <textarea rows="10" style="display: none;" type="text" placeholder="Type your talents here:" id="talents" />
@@ -65,9 +65,9 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 /* The student name text input field */
 @font-face {
     font-family: 'kristen-itc';
-    src: url('assets/Fonts/kristen_itc_normal.woff2') format('woff2'),
+    src: url('/assets/Fonts/kristen_itc_normal.woff2') format('woff2'),
         /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-        url('assets/Fonts/kristen_itc_normal.ttf') format('truetype');
+        url('/assets/Fonts/kristen_itc_normal.ttf') format('truetype');
     /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
