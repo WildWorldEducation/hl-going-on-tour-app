@@ -17,19 +17,19 @@ export default class Scene7_3 extends Phaser.Scene {
 
 
         // // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/7_Level4/7_Welcome_Screen/Click_sound.mp3"]);
+        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
 
 
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('bg-7-3', 'assets/Images/7_Level4/Backgrounds/background-4.png');
-        this.load.image('envelope', '/assets/Images/7_Level4/sprite/envelope.png');
-        this.load.image('stamp-1', '/assets/Images/7_Level4/sprite/stamp1.png');
-        this.load.image('stamp-2', '/assets/Images/7_Level4/sprite/stamp2.png');
-        this.load.image('stamp-3', '/assets/Images/7_Level4/sprite/stamp3.png');
+        this.load.image('bg-7-3', 'assets/Images/7_Level4/Backgrounds/background-4.jpg');
+        this.load.image('envelope', '/assets/Images/7_Level4/sprite/envelope/envelope.png');
+        this.load.image('stamp-1', '/assets/Images/7_Level4/sprite/envelope/stamp1.png');
+        this.load.image('stamp-2', '/assets/Images/7_Level4/sprite/envelope/stamp2.png');
+        this.load.image('stamp-3', '/assets/Images/7_Level4/sprite/envelope/stamp3.png');
         this.load.image('tick', 'assets/Images/General/tick.png');
-        this.load.image('letter-address', 'assets/Images/7_Level4/sprite/letter-address.png');
+        this.load.image('letter-address', 'assets/Images/7_Level4/sprite/envelope/letter-info.png');
 
     }
 
@@ -55,7 +55,7 @@ export default class Scene7_3 extends Phaser.Scene {
         this.envelop = this.add.sprite(370, 350, 'envelope').setOrigin(0).setScale(0.7);
 
         // Letter Info
-        this.letterInfo = this.add.sprite(997, 703, 'letter-info').setOrigin(0).setScale(1);
+        this.letterAddress = this.add.sprite(997, 703, 'letter-address').setOrigin(0).setScale(1);
 
         // Title.
         this.tileBg = this.add.graphics();

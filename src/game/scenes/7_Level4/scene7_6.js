@@ -18,31 +18,23 @@ export default class Scene7_6 extends Phaser.Scene {
 
 
         // // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/7_Level4/7_Welcome_Screen/Click_sound.mp3"]);
-        this.load.audio("circle-click", ["assets/Audio/SFX/7_Level4/Scene 7_6/circleClick.mp3"]);
+        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("circle-click", ["assets/Audio/SFX/7_Level4/chime-sound.mp3"]);
 
 
         // Sprites.
-        this.load.image('bg-7-6', 'assets/Images/7_Level4/Backgrounds/background-5.png');
+        this.load.image('bg-7-6', 'assets/Images/7_Level4/Backgrounds/background-5.jpg');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
-        this.load.image('cir1-pic', '/assets/Images/7_Level4/sprite/hot-chili.png');
-        this.load.image('cir2-pic', '/assets/Images/7_Level4/sprite/touch-iron.png');
-        this.load.image('cir3-pic', '/assets/Images/7_Level4/sprite/foumart.png');
-
+        this.load.image('text-bg', 'assets/Images/7_Level4/sprite/text-bg.png');
+        this.load.image('pointer', 'assets/Images/7_Level4/sprite/sensory-overload/yellow-pointer.png');
+        this.load.image('cir1-pic', 'assets/Images/7_Level4/sprite/sensory-overload/hot-chili.png');
+        this.load.image('cir2-pic', 'assets/Images/7_Level4/sprite/sensory-overload/touch-iron.png');
+        this.load.image('cir3-pic', 'assets/Images/7_Level4/sprite/sensory-overload/foumart.png');
     }
 
     create() {
         // Background
-        /**
-         * Because this image does not fit the screen
-         * We make it fit screen by assign new value to displayWidth equal to the config width
-         * And scale Y base on the new width which will scale the X axis of the sprite
-         */
         var bg = this.add.sprite(0, 0, 'bg-7-6').setOrigin(0);
-        bg.displayWidth = this.game.config.width;
-        bg.scaleY = bg.scaleX;
-        ; // use a single color for background
 
 
         // Circle Click sound
@@ -66,6 +58,8 @@ export default class Scene7_6 extends Phaser.Scene {
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
 
+        // Yellow pointer (Just sprite without any animation)
+        this.pointer = this.add.sprite(670, 380, 'pointer').setScale(0.3);
 
         // Circle 1
         const r1 = this.add.circle(340, 760, 80, 0xffffffff);

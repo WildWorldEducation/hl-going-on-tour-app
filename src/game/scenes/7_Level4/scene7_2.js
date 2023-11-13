@@ -23,7 +23,7 @@ export default class Scene7_2 extends Phaser.Scene {
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('bg-7-2', 'assets/Images/7_Level4/Backgrounds/background-3.png');
+        this.load.image('bg-7-2', 'assets/Images/7_Level4/Backgrounds/background-3.jpg');
 
 
     }

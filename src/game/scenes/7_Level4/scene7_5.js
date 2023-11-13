@@ -1,7 +1,8 @@
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
+
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import game from '../main.js';
 
 export default class Scene7_5 extends Phaser.Scene {
     constructor() {
@@ -19,7 +20,7 @@ export default class Scene7_5 extends Phaser.Scene {
 
 
         // // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/7_Level4/7_Welcome_Screen/Click_sound.mp3"]);
+        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
 
 
         // Sprites.
@@ -39,9 +40,9 @@ export default class Scene7_5 extends Phaser.Scene {
 
         // Video
 
-        const vid = this.add.video(0, 0, 'vid7_5');
-        vid.setOrigin(0)
-        vid.play();
+        this.vid = this.add.video(0, 0, 'vid7_5');
+        this.vid.setOrigin(0)
+        this.vid.play();
 
 
         // Title.
@@ -74,5 +75,29 @@ export default class Scene7_5 extends Phaser.Scene {
 
         // Save user progress.
         const save = new SaveProgress(this);
+        /** 
+             * This is the Loading Bar for the video scene\
+             * If it look does not align with the design. Comment the below code block
+             * */
+
+        this.progressBar = this.add.graphics();
+    }
+
+    /**
+         * This is the Loading Bar for the video scene\
+         * If it look does not align with the design. Comment the below code block
+         * */
+    update() {
+        this.progressBar.clear();
+
+        // Width of progressBar is the game width 
+        const size = game.config.width;
+
+
+        /** 
+         * In Update we just rerender the rectangle width based on video progress
+        */
+        this.progressBar.fillStyle(0x004aad);
+        this.progressBar.fillRect(0, game.config.height - 10, size * this.vid.getProgress(), 10);
     }
 }

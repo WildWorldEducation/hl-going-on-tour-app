@@ -1,6 +1,5 @@
 import BackButton from '../Custom_Classes/BackButton.js';
 import SideButton from '../Custom_Classes/SideButton.js';
-import SaveProgress from '../Custom_Classes/SaveProgress.js'
 
 export default class Scene7_4 extends Phaser.Scene {
     constructor() {
@@ -15,17 +14,17 @@ export default class Scene7_4 extends Phaser.Scene {
 
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
-        this.load.image('person', '/assets/Images/7_Level4/sprite/person-eat-apple.png');
-        this.load.image('sight', '/assets/Images/7_Level4/sprite/sightSprite/sight.png');
-        this.load.image('sight-connect-line', '/assets/Images/7_Level4/sprite/sightSprite/sightLine.png');
-        this.load.image('hearing', '/assets/Images/7_Level4/sprite/hearingSprite/hearing.png');
-        this.load.image('hearing-connect-line', '/assets/Images/7_Level4/sprite/hearingSprite/hearingLine.png');
-        this.load.image('taste', '/assets/Images/7_Level4/sprite/tasteSprite/taste.png');
-        this.load.image('taste-connect-line', '/assets/Images/7_Level4/sprite/tasteSprite/taste-connect-line.png');
-        this.load.image('smell', '/assets/Images/7_Level4/sprite/smellSprite/smell.png');
-        this.load.image('smell-connect-line', '/assets/Images/7_Level4/sprite/smellSprite/smell-connect-line.png');
-        this.load.image('touch', '/assets/Images/7_Level4/sprite/touchSprite/touch.png');
-        this.load.image('touch-connect-line', '/assets/Images/7_Level4/sprite/touchSprite/touch-connect-line.png');
+        this.load.image('person', '/assets/Images/7_Level4/sprite/senses/person-eat-apple.png');
+        this.load.image('sight', '/assets/Images/7_Level4/sprite/senses/sightSprite/sight.png');
+        this.load.image('sight-connect-line', '/assets/Images/7_Level4/sprite/senses/sightSprite/sightLine.png');
+        this.load.image('hearing', '/assets/Images/7_Level4/sprite/senses/hearingSprite/hearing.png');
+        this.load.image('hearing-connect-line', '/assets/Images/7_Level4/sprite/senses/hearingSprite/hearingLine.png');
+        this.load.image('taste', '/assets/Images/7_Level4/sprite/senses/tasteSprite/taste.png');
+        this.load.image('taste-connect-line', '/assets/Images/7_Level4/sprite/senses/tasteSprite/taste-connect-line.png');
+        this.load.image('smell', '/assets/Images/7_Level4/sprite/senses/smellSprite/smell.png');
+        this.load.image('smell-connect-line', '/assets/Images/7_Level4/sprite/senses/smellSprite/smell-connect-line.png');
+        this.load.image('touch', '/assets/Images/7_Level4/sprite/senses/touchSprite/touch.png');
+        this.load.image('touch-connect-line', '/assets/Images/7_Level4/sprite/senses/touchSprite/touch-connect-line.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
     }
 

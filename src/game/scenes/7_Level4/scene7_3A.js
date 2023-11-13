@@ -10,13 +10,13 @@ export default class Scene7_3A extends Phaser.Scene {
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         // Sprites.        
-        this.load.image('wood-bg', '/assets/Images/7_Level4/Backgrounds/background-4.png');
+        this.load.image('wood-bg', '/assets/Images/7_Level4/Backgrounds/background-4.jpg');
         this.load.image('x-mark', 'assets/Images/General/x-mark.png');
-        this.load.image('wave', 'assets/Images/7_Level4/sprite/wave.png');
+        this.load.image('wave', 'assets/Images/7_Level4/sprite/envelope/wave.png');
 
         this.load.image('text-bg-4-4', 'assets/Images/General/text-card.png');
-        this.load.image('rabbit-in-hat', 'assets/Images/7_Level4/sprite/rabbit-in-hat.png');
-        this.load.image('tile-border', 'assets/Images/7_Level4/sprite/tile-border.png');
+        this.load.image('rabbit-in-hat', 'assets/Images/7_Level4/sprite/envelope/rabbit-in-hat.png');
+        this.load.image('tile-border', 'assets/Images/7_Level4/sprite/envelope/tile-border.png');
         this.load.image('blank-envelope', 'assets/Images/4_Level2/stamps/envelope2.png');
 
     }
