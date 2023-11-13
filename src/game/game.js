@@ -119,6 +119,19 @@ import Scene5_1 from './scenes/5_Level3/scene5_1.js'
 import Scene5_2 from './scenes/5_Level3/scene5_2.js'
 import Scene5_3 from './scenes/5_Level3/scene5_3.js'
 import Scene5_4 from './scenes/5_Level3/scene5_4.js'
+import Scene5_4A from './scenes/5_Level3/scene5_4A.js'
+import Scene5_4B from './scenes/5_Level3/scene5_4B.js'
+import Scene5_4C from './scenes/5_Level3/scene5_4C.js'
+import Scene5_4D from './scenes/5_Level3/scene5_4D.js'
+import Scene5_4E from './scenes/5_Level3/scene5_4E.js'
+import Scene5_4F from './scenes/5_Level3/scene5_4F.js'
+import Scene5_4G from './scenes/5_Level3/scene5_4G.js'
+import Scene5_5 from './scenes/5_Level3/scene5_5.js'
+import Scene5_6 from './scenes/5_Level3/scene5_6.js'
+import Scene5_7 from './scenes/5_Level3/scene5_7.js'
+import Scene5_8 from './scenes/5_Level3/scene5_8.js'
+import Scene5_9 from './scenes/5_Level3/scene5_9.js'
+import Scene5_10 from './scenes/5_Level3/scene5_10.js'
 
 // On The Way
 import Scene6_1 from './scenes/6_OnTheWay/scene6_1.js'
@@ -173,7 +186,11 @@ var sceneArray = [
     Scene4_19,
     Scene4_20,
     Scene4_21, Scene4_22, Scene4_23, Scene4_24,
-    Scene5_1, Scene5_2, Scene5_3, Scene5_4,
+    Scene5_1, Scene5_2, Scene5_3,
+    Scene5_4, Scene5_4A, Scene5_4B, Scene5_4C, Scene5_4D, Scene5_4E, Scene5_4F, Scene5_4G,
+    Scene5_5, Scene5_6, Scene5_7, Scene5_8,
+    Scene5_9,
+    Scene5_10,
     Scene6_1,
     Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7,
 ]
