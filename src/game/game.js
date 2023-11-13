@@ -147,6 +147,9 @@ import Scene7_4 from './scenes/7_Level4/scene7_4.js'
 import Scene7_5 from './scenes/7_Level4/scene7_5.js'
 import Scene7_6 from './scenes/7_Level4/scene7_6.js'
 import Scene7_7 from './scenes/7_Level4/scene7_7.js'
+import Scene7_8 from './scenes/7_Level4/scene7_8.js'
+import Scene7_9 from './scenes/7_Level4/scene7_9.js'
+
 
 // Declare array of scenes.
 var sceneArray = [
@@ -192,7 +195,7 @@ var sceneArray = [
     Scene5_9,
     Scene5_10,
     Scene6_1,
-    Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7,
+    Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7, Scene7_8, Scene7_9
 ]
 
 // Resume from last completed slide.---

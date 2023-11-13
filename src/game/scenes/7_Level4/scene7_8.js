@@ -2,7 +2,7 @@ import UnlockModule from '../Custom_Classes/UnlockModule.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
-import game from '../main.js';
+
 
 export default class Scene7_8 extends Phaser.Scene {
     constructor() {
@@ -82,13 +82,13 @@ export default class Scene7_8 extends Phaser.Scene {
         this.progressBar.clear();
 
         // Width of progressBar is the game width 
-        const size = game.config.width;
+        const size = 1920;
 
 
         /** 
          * In Update we just rerender the rectangle width based on video progress
         */
         this.progressBar.fillStyle(0x004aad);
-        this.progressBar.fillRect(0, game.config.height - 10, size * this.vid.getProgress(), 10);
+        this.progressBar.fillRect(0, 1080 - 10, size * this.vid.getProgress(), 10);
     }
 }
