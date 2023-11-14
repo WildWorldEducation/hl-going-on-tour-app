@@ -11,19 +11,19 @@
       "src/views/LoginView.vue",
       "src/views/GameView.vue"
     ],
-    "file": "assets/main-f6706101.js",
+    "file": "assets/main-c3a2d949.js",
     "isEntry": true,
     "src": "src/main.js"
   },
   "src/views/GameView.css": {
-    "file": "assets/GameView-a39b9e3b.css",
+    "file": "assets/GameView-b511c43c.css",
     "src": "src/views/GameView.css"
   },
   "src/views/GameView.vue": {
     "css": [
-      "assets/GameView-a39b9e3b.css"
+      "assets/GameView-b511c43c.css"
     ],
-    "file": "assets/GameView-479b9180.js",
+    "file": "assets/GameView-0cd7f8a3.js",
     "imports": [
       "src/main.js"
     ],
@@ -38,7 +38,7 @@
     "css": [
       "assets/LoginView-c4f18e0d.css"
     ],
-    "file": "assets/LoginView-7272e5c7.js",
+    "file": "assets/LoginView-b3167f4a.js",
     "imports": [
       "src/main.js"
     ],
