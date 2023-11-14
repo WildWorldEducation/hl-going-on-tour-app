@@ -125,7 +125,7 @@ seconds! Who do you think held the record before Justin Bieber?`,
             btn2Border.setAlpha(0)
             btn3Border.setAlpha(1)
             isCorrect = false
-        }, this);
+        }, this); 
 
 
         // Submit button.

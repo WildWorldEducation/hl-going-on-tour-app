@@ -31,12 +31,10 @@ export default class Scene4_9_correct extends Phaser.Scene {
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
+        const submitBtn = new WideButton(this, 0, 900, 'Submit', this.nextBtnAudio);
         submitBtn.on('pointerdown', function () {
             this.scene.start("Scene4_10", { music: this.music });
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
-        submitBtn.alpha = 1
     }
 }
