@@ -1,4 +1,4 @@
-(function () {
+export function pleaseRotate() {
     var PleaseRotate = {},
         currentOrientation = null,
         isMobile = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent),
@@ -274,4 +274,4 @@
         }
     }
 
-})();
+};

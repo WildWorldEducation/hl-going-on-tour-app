@@ -2,6 +2,7 @@
 
 import { ref } from 'vue'
 import { launch } from '../game/game.js';
+import { pleaseRotate } from '../game/scenes/util/pleaserotate.js';
 
 // binds to the v-if on our button to toggle visibility
 const showButton = ref(true)
@@ -12,6 +13,9 @@ function handleClickStart() {
 
     // Runs the launch function
     launch();
+
+    // To make sure orientation is correct.
+    pleaseRotate()
 }
 
 </script>
