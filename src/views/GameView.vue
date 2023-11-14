@@ -119,18 +119,19 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
 /* Text input from Module 4: NYC */
 #talents {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     border: 2px dashed black;
     z-index: 2;
     top: 57%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 50% !important;
+    width: 45% !important;
     resize: none;
     text-align: center;
     font-size: medium;
     font-style: italic;
+    aspect-ratio: 4.3 / 1;
 }
 
 /* Text input from Module 4: NYC */
