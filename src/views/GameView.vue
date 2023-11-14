@@ -24,20 +24,20 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
     <!-- Check boxes, for 4th module -->
     <div style="display: none;" id="m4-checkboxes" class="checkboxes">
-        <div style="margin-left: 25%;">
-            <p class="form-check">
+        <div style="margin-left: 20%;">
+            <p class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-1">
                 <label class="form-check-label" for="defaultCheck1">
                     Pens can malfunction and actually burst
                 </label>
             </p>
-            <p class="form-check">
+            <p class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-2">
                 <label class="form-check-label" for="defaultCheck1">
                     They have chemical fluids in them
                 </label>
             </p>
-            <p class="form-check">
+            <p class="form-check mb-2">
                 <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-3">
                 <label class="form-check-label" for="defaultCheck1">
                     The vape pen could have weed or fentanyl in it
@@ -87,11 +87,29 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     .text-input {
         font-size: 2em;
     }
+
+    .checkboxes {
+        font-size: 1.2em;
+    }
+}
+
+@media only screen and (min-width: 901px) {
+    .text-input {
+        font-size: 2em;
+    }
+
+    .checkboxes {
+        font-size: 1.5em;
+    }
 }
 
 @media only screen and (max-width: 700px) {
     .text-input {
         font-size: 1em;
+    }
+
+    .checkboxes {
+        font-size: 0.8em;
     }
 }
 
@@ -165,6 +183,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     border: none;
     background: transparent;
     font-family: 'Open Sans';
-
+    color: black
 }
 </style>
