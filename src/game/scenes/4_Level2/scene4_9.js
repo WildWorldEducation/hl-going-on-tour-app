@@ -1,4 +1,3 @@
-import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import WideButton from '../Custom_Classes/WideButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
@@ -125,7 +124,7 @@ seconds! Who do you think held the record before Justin Bieber?`,
             btn2Border.setAlpha(0)
             btn3Border.setAlpha(1)
             isCorrect = false
-        }, this); 
+        }, this);
 
 
         // Submit button.
@@ -141,14 +140,6 @@ seconds! Who do you think held the record before Justin Bieber?`,
         }, this);
         submitBtn.x = 960 - 130
 
-
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_10");
-        }, this);
-        nextBtn.y = nextBtn.y - 40
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
