@@ -11,6 +11,7 @@ export default class Scene4_15_incorrect extends Phaser.Scene {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Audio.
+        this.load.audio("fail-4-9", ["assets/Audio/SFX/4_Level2/fail.mp3"]);
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
         this.load.image('textBG4-15', 'assets/Images/General/text-card3.png');
@@ -19,9 +20,13 @@ export default class Scene4_15_incorrect extends Phaser.Scene {
     }
 
     create() {
+        // Audio.
+        this.failAudio = this.sound.add("fail-4-9", { loop: false });
+        this.failAudio.play()
+
         // BG.        
         var bg = this.add.sprite(0, 0, 'bg4-15B').setOrigin(0);
-        const cover = this.add.rectangle(960, 540, 1920, 1080, 0xffffff).setAlpha(0.8);
+        const cover = this.add.rectangle(960, 540, 1920, 1080, 0xffffff).setAlpha(0.6);
 
         // Hide the checkboxes.
         this.formUtil = new FormUtil({
