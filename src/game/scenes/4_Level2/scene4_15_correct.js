@@ -11,13 +11,18 @@ export default class Scene4_15_correct extends Phaser.Scene {
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("success-4-15", ["assets/Audio/SFX/4_Level2/success.mp3"]);
         //Sprites                
         this.load.image('textBG4-15', 'assets/Images/General/text-card3.png');
         this.load.image('bg4-15B', 'assets/Images/4_Level2/securityBG-blurred.jpg');
-        this.load.image('correct4-15', 'assets/Images/4_Level2/correct.png');
+        this.load.image('correct4-15', 'assets/Images/4_Level2/correct2.png');
     }
 
     create() {
+        // Audio.        
+        this.successAudio = this.sound.add("success-4-15", { loop: false });
+        this.successAudio.play()
+
         // BG.        
         var bg = this.add.sprite(0, 0, 'bg4-15B').setOrigin(0);
         const cover = this.add.rectangle(960, 540, 1920, 1080, 0xffffff).setAlpha(0.8);
