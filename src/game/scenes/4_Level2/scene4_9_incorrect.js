@@ -14,7 +14,7 @@ export default class Scene4_9_incorrect extends Phaser.Scene {
         this.load.audio("fail-4-9", ["assets/Audio/SFX/4_Level2/fail.mp3"]);
         // Sprites.        
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
-        this.load.image('char-incorrect', 'assets/Images/3_Level1/genre-quiz/char-incorrect.png');
+        this.load.image('char-incorrect', 'assets/Images/4_Level2/incorrect.png');
     }
 
     create() {

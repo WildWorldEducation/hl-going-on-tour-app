@@ -10,20 +10,22 @@ export default class Scene4_9_correct extends Phaser.Scene {
     }
 
     preload() {
-        // Sprites.        
-        this.load.image('stars', 'assets/Images/3_Level1/stars.png');
-        this.load.image('char-correct', 'assets/Images/3_Level1/genre-quiz/char-correct.png');
+        // Audio.
+        this.load.audio("success-4-9", ["assets/Audio/SFX/4_Level2/success.mp3"]);
+
+        // Sprites.                
+        this.load.image('char-correct', 'assets/Images/4_Level2/correct.png');
     }
 
     create() {
+        // Audio.        
+        this.successAudio = this.sound.add("success-4-9", { loop: false });
+        this.successAudio.play()
+
         // BG.
         this.cameras.main.setBackgroundColor("#959fe4");
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
         bg.alpha = 0.5
-
-        // Stars.
-        var stars = this.add.sprite(400, 100, 'stars').setOrigin(0.5);
-        stars.setScale(0.6)
 
         // BG
         this.textBg = this.add.graphics();
@@ -38,7 +40,7 @@ Taylor Swift held the record before Justin Bieber.`,
         this.text.scale = 0.5
 
         // Char
-        var char = this.add.sprite(960, 600, 'char-correct').setOrigin(0.5);
+        var char = this.add.sprite(960, 600, 'char-correct').setOrigin(0.5).setScale(0.9);
 
 
         // Submit button.
