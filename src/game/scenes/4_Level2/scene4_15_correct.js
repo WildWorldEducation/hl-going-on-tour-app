@@ -34,8 +34,8 @@ export default class Scene4_15_correct extends Phaser.Scene {
         this.text = this.add.rexBBCodeText(960, 540,
             `[b]Correct![/b]
             
-Excellent, yes vape pens are usually not allowed
-inside concert venues because of ALL those reasons.`,
+            Excellent, yes vape pens are usually not allowed
+inside concert venues for all of those reasons.`,
             { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
         this.text.scale = 0.5
