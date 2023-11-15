@@ -25,8 +25,20 @@ export default class Scene4_9_correct extends Phaser.Scene {
         var stars = this.add.sprite(400, 100, 'stars').setOrigin(0.5);
         stars.setScale(0.6)
 
+        // BG
+        this.textBg = this.add.graphics();
+        this.textBg.fillStyle(0xFFFFFF, 1);
+        this.textBg.fillRoundedRect(210, 180, 1500, 650, 32);
+        // Text
+        this.text = this.add.text(960, 260,
+            `Nice! Well done.
+Taylor Swift held the record before Justin Bieber.`,
+            { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5, 0.5);
+        // Dealing with text quality.
+        this.text.scale = 0.5
+
         // Char
-        var char = this.add.sprite(960, 500, 'char-correct').setOrigin(0.5);
+        var char = this.add.sprite(960, 600, 'char-correct').setOrigin(0.5);
 
 
         // Submit button.
