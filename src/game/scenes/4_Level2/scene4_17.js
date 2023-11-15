@@ -10,14 +10,19 @@ export default class Scene4_17 extends Phaser.Scene {
     preload() {
         // Video.
         this.load.video('vid4-5', 'assets/Videos/4_Level2/vid4-5.mp4');
-        // Audio.
+        // Audio.   
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("cheering-4-17", ["assets/Audio/SFX/4_Level2/cheer.mp3"]);
         //Sprites                
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('textBG4-17', 'assets/Images/General/text-card3.png');
     }
 
     create() {
+        // SFX
+        this.cheer = this.sound.add("cheering-4-17", { loop: false });
+        this.cheer.play()
+
         // Video.
         const vid = this.add.video(0, 0, 'vid4-5');
         vid.setOrigin(0)
