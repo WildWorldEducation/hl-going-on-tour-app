@@ -10,12 +10,18 @@ export default class Scene4_9_incorrect extends Phaser.Scene {
     }
 
     preload() {
+        // Audio.
+        this.load.audio("fail-4-9", ["assets/Audio/SFX/4_Level2/fail.mp3"]);
         // Sprites.        
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
         this.load.image('char-incorrect', 'assets/Images/3_Level1/genre-quiz/char-incorrect.png');
     }
 
     create() {
+        // Audio.        
+        this.failAudio = this.sound.add("fail-4-9", { loop: false });
+        this.failAudio.play()
+
         // BG.
         this.cameras.main.setBackgroundColor("#959fe4");
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
