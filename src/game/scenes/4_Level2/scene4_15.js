@@ -8,6 +8,8 @@ export default class Scene4_15 extends Phaser.Scene {
     constructor() {
         super('Scene4_15');
     }
+
+
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);

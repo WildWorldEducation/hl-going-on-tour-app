@@ -24,9 +24,9 @@ export default class Scene4_10 extends Phaser.Scene {
         var bg = this.add.sprite(0, 0, 'dj').setOrigin(0);
 
         // Text.
-        var textBG = this.add.sprite(500, 300, 'textBG4-10').setOrigin(0.5).setScale(1.7);
+        var textBG = this.add.sprite(600, 300, 'textBG4-10').setOrigin(0.5).setScale(1.7);
         textBG.alpha = 0.9
-        this.text = this.add.rexBBCodeText(500, 300,
+        this.text = this.add.rexBBCodeText(600, 300,
             `Tonight you can choose to see a "triple threat"
 performer. A triple threat performer has
 strengths in multiple areas, such as singing,

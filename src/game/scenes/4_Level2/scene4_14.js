@@ -6,6 +6,11 @@ export default class Scene4_14 extends Phaser.Scene {
     constructor() {
         super('Scene4_14');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
@@ -46,8 +51,8 @@ pens, and laser pointers.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
+            this.music.stop()
             this.scene.start("Scene4_15");
-            this.clicks++
         }, this);
         nextBtn.y = nextBtn.y - 40
 
