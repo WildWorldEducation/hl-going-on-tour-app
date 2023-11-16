@@ -136,14 +136,15 @@ and select to which music genre this song belongs to.`,
 
             const btnGraphic = this.add.graphics();
             const btnBorder = this.add.graphics();
-            const btnText = this.add.text(100, 60, data.text, {
+            const btnText = this.add.text(30, 60, data.text, {
                 fontFamily: "Arial",
                 fontSize: "72px",
-                fill: "#000000"
+                fill: "#000000",
+                align: "left"
             });
 
 
-            btnText.setOrigin(0.5).setScale(0.5);
+            btnText.setOrigin(0, 0.5).setScale(0.5);
             btnGraphic.fillStyle(btnConfig.fill, 1);
             btnGraphic.fillRoundedRect(0, 0, btnConfig.width, btnConfig.height, btnConfig.radius);
 
