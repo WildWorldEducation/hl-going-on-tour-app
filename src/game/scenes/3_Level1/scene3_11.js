@@ -56,7 +56,7 @@ export default class Scene3_11 extends Phaser.Scene {
         // Title.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 400, 150, 32);
+        this.textBg.fillRoundedRect(-30, 0, 350, 150, 32);
         this.titleText = this.add.text(55, 75, "Audio quiz",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
