@@ -54,6 +54,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
     <!-- Text input, for the 4th module -->
     <textarea rows="10" style="display: none;" type="text" placeholder="Write down your answer here:" id="m4-notepad" />
+
+    <!-- Text area for scene 7_10 -->
+    <textarea rows='15' style="display: none;" type="text" placeholder="Type your answer here:"
+        id="scene7_10-book"></textarea>
+    <!-- Text area for scene 7_14 -->
+    <textarea rows='20' style="display: none;" type="text" placeholder="Type your answer here:"
+        id="scene7_14-book"></textarea>
 </template>
 
 <style scoped>
@@ -184,5 +191,57 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     background: transparent;
     font-family: 'Open Sans';
     color: black
+}
+
+/* * Text area input for scene 7_10 * */
+#scene7_10-book {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 17%;
+    left: 58%;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    width: 20.5% !important;
+
+    border: dashed;
+    border-width: 4px;
+    text-align: center;
+    font-size: 'medium';
+    background-color: #ffffff;
+}
+
+/* remove the border that replace doted border while focus */
+*:focus {
+    outline: none;
+}
+
+#scene7_10-book:focus-visible {
+    border: dashed;
+    resize: none;
+}
+
+/* * Text area input for scene 7_10 * */
+#scene7_14-book {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 7%;
+    left: 53.5%;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    width: 31% !important;
+    height: 84% !important;
+    border: dashed;
+    border-width: 4px;
+
+    text-align: center;
+    font-size: 'medium';
+    background-color: #fcf8eb;
+
+}
+
+
+#scene7_14-book:focus-visible {
+
+    resize: none;
 }
 </style>
