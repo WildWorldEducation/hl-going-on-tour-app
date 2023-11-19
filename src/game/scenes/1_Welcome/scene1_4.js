@@ -21,7 +21,7 @@ export default class Scene1_4 extends Phaser.Scene {
         // Sprites.
         this.load.image('tablet', 'assets/Images/1_Welcome/Backgrounds/tablet.jpg');
         this.load.image('tablet-blurry', 'assets/Images/1_Welcome/Backgrounds/tablet-blurry.jpg');
-        this.load.image('exclamation', 'assets/Images/General/exclamation.svg');
+        this.load.image('exclamation', 'assets/Images/General/exclamation.png');
     }
 
     create() {
