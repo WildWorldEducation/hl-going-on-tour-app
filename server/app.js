@@ -55,7 +55,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-   // password: 'password',
+    password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -216,6 +216,75 @@ app.get('/api/users/list', function (req, res, next) {
     else
         res.redirect('/')
 });
+
+
+/**
+ * Create New Item
+ *
+ * @return response()
+ */
+app.post('/api/users/add', (req, res, next) => {
+    if (req.session.userName) {
+        let data = {
+            first_name: req.body.first_name, last_name: req.body.last_name, username: req.body.username, email: req.body.email,
+            password: req.body.password, start_date: req.body.current_date
+        };
+
+        // Check if username or email address already exist.
+        let sqlQuery1 = "SELECT * FROM users WHERE username = '" + req.body.username + "';";
+        let query1 = conn.query(sqlQuery1, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+                if (results.length > 0) {
+                    res.json({ notification: 'username already taken' })
+                }
+                else {
+
+                    let sqlQuery2 = "SELECT * FROM users WHERE email = '" + req.body.email + "';";
+                    let query2 = conn.query(sqlQuery2, data, (err, results) => {
+                        try {
+                            if (err) {
+                                throw err;
+                            }
+                            else {
+                                if (results.length > 0) {
+                                    res.json({ notification: 'email already taken' })
+                                }
+                                else {
+                                    // If not, add to database.
+                                    let sqlQuery3 = "INSERT INTO users SET ?";
+                                    let query3 = conn.query(sqlQuery3, data, (err, results) => {
+                                        try {
+                                            if (err) {
+                                                throw err;
+                                            }
+                                            else {
+                                                res.json({ notification: 'account created' })
+                                            }
+                                        } catch (err) {
+                                            next(err)
+                                        }
+                                    });
+                                }
+                            }
+                        } catch (err) {
+                            next(err)
+                        }
+                    });
+                }
+            } catch (err) {
+                next(err)
+            }
+        });
+
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 
 // Routes -----------------------------
 // The view, which is the SPA Vue app.
