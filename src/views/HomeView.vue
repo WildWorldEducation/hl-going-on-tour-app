@@ -344,6 +344,12 @@ export default {
   #resumeGameLink {
     margin-bottom: 15px;
   }
+
+  .dashboard a,
+  #module-1 span {
+    font-size: 4.5vh;
+    line-height: 1;
+  }
 }
 
 /* Screen larger than 600px - 2 columns */
@@ -351,12 +357,23 @@ export default {
   .grid-cards {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .dashboard a,
+  #module-1 span {
+    font-size: 3.5vh;
+  }
 }
 
 /* Screen larger than 900px - 3 columns */
 @media (min-width: 900px) {
   .grid-cards {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard a,
+  #module-1 span {
+    font-size: 4.5vh;
+    line-height: 1;
   }
 }
 
