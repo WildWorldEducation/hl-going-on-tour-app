@@ -1,8 +1,13 @@
 <script>
 // Import the store.
+import { useUsersStore } from '../stores/UsersStore.js'
 
 export default {
     setup() {
+        const usersStore = useUsersStore();
+        return {
+            usersStore
+        }
     },
     data() {
         return {
@@ -82,6 +87,7 @@ export default {
                     }
                     else {
                         alert(data.notification);
+                        this.usersStore.getUsers()
                         window.location.href = '../';
                     }
                 })
