@@ -292,7 +292,7 @@ export default {
 <style scoped>
 .button-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .lock-icon {
