@@ -48,7 +48,6 @@ export default {
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.user.email)) {
                 this.Submit()
             } else {
-                console.log(this.user.email)
                 alert("Please enter a valid email address")
             }
         },
@@ -78,8 +77,7 @@ export default {
                 .then(function (response) {
                     return response.json()
                 })
-                .then(function (data) {
-                    console.log(data)
+                .then((data) => {
                     // Let user know if username or email address is already taken.
                     if (data.notification == "username already taken" ||
                         data.notification == "email already taken") {
@@ -88,7 +86,7 @@ export default {
                     else {
                         alert(data.notification);
                         this.usersStore.getUsers()
-                        window.location.href = '../';
+                        this.$router.push("/");
                     }
                 })
         }
