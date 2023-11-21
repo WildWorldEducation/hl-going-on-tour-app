@@ -108,6 +108,10 @@ export default {
           }
         }
       }
+    },
+    async deleteUser() {
+      await this.usersStore.deleteUser(this.user.id)
+      this.usersStore.getUsers()
     }
   }
 }
@@ -154,7 +158,7 @@ export default {
                 fill="white" />
             </svg>
           </router-link>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger" @click="deleteUser()">
             <!-- X icon -->
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path

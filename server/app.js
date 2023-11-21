@@ -55,7 +55,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    password: 'password',
+    //   password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -317,7 +317,6 @@ app.get('/api/users/:id', (req, res, next) => {
  *
  * @return response()
  */
-
 app.put('/users/:id/edit', (req, res, next) => {
     if (req.session.userName) {
         let sqlQuery = "UPDATE users SET first_name='" + req.body.firstname + "', last_name = '" + req.body.lastname + "', username = '" + req.body.username + "', email = '" + req.body.email + "', password = '" + req.body.password + "' WHERE id=" + req.params.id;
@@ -337,6 +336,29 @@ app.put('/users/:id/edit', (req, res, next) => {
     }
 });
 
+/**
+ * Delete Item
+ *
+ * @return response()
+ */
+app.delete('/users/:id', (req, res, next) => {
+    if (req.session.userName) {
+        let sqlQuery = "DELETE FROM users WHERE id=" + req.params.id;
+
+        let query = conn.query(sqlQuery, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+            } catch (err) {
+                next(err)
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
 
 // Routes -----------------------------
 // The view, which is the SPA Vue app.
