@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     changeUserId(userId) {
+      this.user.id = userId
 
       // Get the correct user.
       for (let i = 0; i < this.usersStore.users.length; i++) {
@@ -132,7 +133,7 @@ export default {
       <div v-if="!this.sessionDetailsStore.isAdmin" class="row text-center mt-5">
         <h1>VISIT LEVELS</h1>
       </div>
-      <div id="" v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
+      <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
         <div class="button-row">
           <router-link class="btn btn-dark" to="/users/add"> <!-- Plus sign -->
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +142,7 @@ export default {
                 fill="white" />
             </svg>
           </router-link>
-          <button class="btn btn-dark">
+          <router-link class="btn btn-dark" :to="'/users/edit/' + this.user.id">
             <!-- Pencil icon -->
             <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -152,7 +153,7 @@ export default {
                 d="M18.2555 3.11796L14.934 0.260817C14.832 0.172259 14.7134 0.104756 14.5852 0.0621907C14.4569 0.0196256 14.3215 0.00283902 14.1868 0.0127967C14.052 0.0227543 13.9205 0.0592596 13.7999 0.120212C13.6793 0.181165 13.572 0.265362 13.484 0.36796L12.4805 1.50725L17.359 5.71439L18.3519 4.56082C18.5289 4.35602 18.6181 4.08969 18.6 3.81958C18.582 3.54948 18.4582 3.29738 18.2555 3.11796Z"
                 fill="white" />
             </svg>
-          </button>
+          </router-link>
           <button class="btn btn-danger">
             <!-- X icon -->
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

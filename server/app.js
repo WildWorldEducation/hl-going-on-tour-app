@@ -278,7 +278,59 @@ app.post('/api/users/add', (req, res, next) => {
                 next(err)
             }
         });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
 
+
+// Show one specific user.
+app.get('/api/users/:id', (req, res, next) => {
+    if (req.session.userName) {
+        res.setHeader('Content-Type', 'application/json');
+
+        let sqlQuery = `
+        SELECT *
+        FROM users
+        WHERE users.id = ` + req.params.id + `;`;
+
+        let query = conn.query(sqlQuery, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+
+                res.json(results[0]);
+            } catch (err) {
+                next(err)
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+/**
+ * Update User
+ *
+ * @return response()
+ */
+
+app.put('/users/:id/edit', (req, res, next) => {
+    if (req.session.userName) {
+        let sqlQuery = "UPDATE users SET first_name='" + req.body.firstname + "', last_name = '" + req.body.lastname + "', username = '" + req.body.username + "', email = '" + req.body.email + "', password = '" + req.body.password + "' WHERE id=" + req.params.id;
+        let query = conn.query(sqlQuery, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+                res.end();
+            } catch (err) {
+                next(err)
+            }
+        });
     }
     else {
         res.redirect('/login');
