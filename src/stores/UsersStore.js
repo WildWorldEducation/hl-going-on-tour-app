@@ -6,7 +6,7 @@ export const useUsersStore = defineStore("users", {
     }),
     actions: {
         async getUsers() {
-            const result = await fetch('/api/users/list');
+            const result = await fetch('/users/api/list');
             const data = await result.json();
             this.users = data;
         },
