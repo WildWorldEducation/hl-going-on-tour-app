@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    password: 'password',
+    //  password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -29,6 +29,35 @@ conn.connect((err) => {
     }
     console.log('MariaDB connected...');
 });
+
+/**
+ * List Items
+ *
+ * @return response()
+ */
+router.get('/api/list', function (req, res, next) {
+    // Check if the user is logged in and an admin.   
+    //if (req.session.userName && req.session.isAdmin == 1) {
+    if (req.session.userName) {
+        res.setHeader('Content-Type', 'application/json');
+        let sqlQuery = "SELECT * FROM healthy_lifestyles.users;";
+        let query = conn.query(sqlQuery, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    res.json(results);
+                }
+            } catch (err) {
+                next(err)
+            }
+        });
+    }
+    else
+        res.redirect('/')
+});
+
 
 
 /**
