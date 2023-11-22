@@ -20,7 +20,7 @@ export default {
     },
     methods: {
         getUser() {
-            fetch('/api/users/' + this.userId)
+            fetch('/users/api/' + this.userId)
                 .then(function (response) {
                     return response.json();
                 }).then(data => this.user = data)
@@ -62,7 +62,7 @@ export default {
                     })
             };
 
-            var url = '/users/' + this.userId + '/edit';
+            var url = '/users/api/' + this.userId + '/edit';
             fetch(url, requestOptions)
                 .then(() => {
                     this.usersStore.getUsers()

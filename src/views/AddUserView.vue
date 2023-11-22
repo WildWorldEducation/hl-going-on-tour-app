@@ -72,7 +72,7 @@ export default {
                         current_date: currentDate
                     })
             };
-            var url = '/api/users/add';
+            var url = '/users/api/add';
             fetch(url, requestOptions)
                 .then(function (response) {
                     return response.json()

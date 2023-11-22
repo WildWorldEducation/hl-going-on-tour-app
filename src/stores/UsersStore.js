@@ -15,7 +15,7 @@ export const useUsersStore = defineStore("users", {
                 return u.id !== id
             })
 
-            const result = fetch('/users/' + id,
+            const result = fetch('/users/api/' + id,
                 {
                     method: 'DELETE',
                 });
