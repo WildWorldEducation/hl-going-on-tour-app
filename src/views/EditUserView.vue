@@ -23,7 +23,11 @@ export default {
             fetch('/users/api/' + this.userId)
                 .then(function (response) {
                     return response.json();
-                }).then(data => this.user = data)
+                }).then(data => this.user = data).
+                then(() => {
+                    this.user.originalUsername = this.user.username
+                    this.user.originalEmail = this.user.email
+                })
         },
         ValidateForm() {
             if (this.user.first_name == "" || this.user.first_name == null) {
@@ -59,15 +63,28 @@ export default {
                         username: this.user.username,
                         email: this.user.email,
                         password: this.user.password,
+                        original_username: this.user.originalUsername,
+                        original_email: this.user.originalEmail
                     })
             };
 
             var url = '/users/api/' + this.userId + '/edit';
             fetch(url, requestOptions)
-                .then(() => {
-                    this.usersStore.getUsers()
-                    this.$router.push("/");
-                });
+                .then(function (response) {
+                    return response.json()
+                })
+                .then((data) => {
+                    // Let user know if username or email address is already taken.
+                    if (data.notification == "username already taken" ||
+                        data.notification == "email already taken") {
+                        alert(data.notification);
+                    }
+                    else {
+                        alert(data.notification);
+                        this.usersStore.getUsers()
+                        this.$router.push("/");
+                    }
+                })
         },
     }
 }

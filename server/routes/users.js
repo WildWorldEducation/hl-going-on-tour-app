@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    //  password: 'password',
+    //password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -126,8 +126,76 @@ router.post('/api/add', (req, res, next) => {
     }
 });
 
+/**
+ * Update User
+ *
+ * @return response()
+ */
+router.put('/api/:id/edit', (req, res, next) => {
+    if (req.session.userName) {
+        // Check if username or email address already exist.
+        let sqlQuery1 = `SELECT * FROM users 
+        WHERE username = '` + req.body.username +
+            `' AND email <> '` + req.body.original_email + `';`;
+        let query1 = conn.query(sqlQuery1, (err, results) => {
+            try {
+                if (err) {
+                    throw err;
+                }
+                if (results.length > 0) {
+                    res.json({ notification: 'username already taken' })
+                }
+                else {
 
-// Show one specific user.
+                    let sqlQuery2 = `SELECT * FROM users 
+                    WHERE email = '` + req.body.email +
+                        `' AND username <> '` + req.body.original_username + `';`;
+                    let query2 = conn.query(sqlQuery2, (err, results) => {
+                        try {
+                            if (err) {
+                                throw err;
+                            }
+                            else {
+                                if (results.length > 0) {
+                                    res.json({ notification: 'email already taken' })
+                                }
+                                else {
+                                    // If not, add to database.
+                                    let sqlQuery3 = "UPDATE users SET first_name='" + req.body.firstname + "', last_name = '" + req.body.lastname + "', username = '" + req.body.username + "', email = '" + req.body.email + "', password = '" + req.body.password + "' WHERE id=" + req.params.id;
+                                    let query = conn.query(sqlQuery3, (err, results) => {
+                                        try {
+                                            if (err) {
+                                                throw err;
+                                            }
+                                            res.json({ notification: 'account edited' })
+                                        } catch (err) {
+                                            next(err)
+                                        }
+                                    });
+                                }
+                            }
+                        } catch (err) {
+                            next(err)
+                        }
+                    });
+                }
+            } catch (err) {
+                next(err)
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
+
+
+/**
+ * Show Item
+ *
+ * @return response()
+ */
 router.get('/api/:id', (req, res, next) => {
     if (req.session.userName) {
         res.setHeader('Content-Type', 'application/json');
@@ -154,29 +222,6 @@ router.get('/api/:id', (req, res, next) => {
     }
 });
 
-/**
- * Update User
- *
- * @return response()
- */
-router.put('/api/:id/edit', (req, res, next) => {
-    if (req.session.userName) {
-        let sqlQuery = "UPDATE users SET first_name='" + req.body.firstname + "', last_name = '" + req.body.lastname + "', username = '" + req.body.username + "', email = '" + req.body.email + "', password = '" + req.body.password + "' WHERE id=" + req.params.id;
-        let query = conn.query(sqlQuery, (err, results) => {
-            try {
-                if (err) {
-                    throw err;
-                }
-                res.end();
-            } catch (err) {
-                next(err)
-            }
-        });
-    }
-    else {
-        res.redirect('/login');
-    }
-});
 
 /**
  * Delete Item
