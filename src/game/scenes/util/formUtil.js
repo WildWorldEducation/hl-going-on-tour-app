@@ -1,5 +1,13 @@
 import AlignGrid from './alignGrid.js'
 
+/**
+ *
+ *
+ * @class FormUtil
+ * - Utility class to dealing with text area html DOM element
+ * @param {Phaser Scene} scene - current phaser scene
+ * @param {object} config - config object can contain number of cols, rows, width, height of alignGrid 
+ */
 export default class FormUtil {
     constructor(config) {
         //super();
@@ -10,9 +18,17 @@ export default class FormUtil {
         this.alignGrid = new AlignGrid({
             scene: this.scene,
             rows: config.rows,
-            cols: config.cols
+            cols: config.cols,
+            height: config.height,
+            width: config.width
         });
     }
+    /**
+     *
+     *
+     * @memberof FormUtil
+     * - Show the matrix with index of align grid class
+     */
     showNumbers() {
         this.alignGrid.showNumbers();
     }
@@ -26,6 +42,16 @@ export default class FormUtil {
         var h = this.gameHeight * per;
         el.style.height = h + "px";
     }
+
+    /**
+     *
+     * - Place the html DOM element at the cell with index in align grid
+     * @param {float} index - index of cell
+     * @param {*} elName - id name or class name of the html DOM element
+     * @param {boolean} [centerX=true] - Will place at the middle or not
+     * @param {boolean} [centerY=false]  - Will place at the middle or not
+     * @memberof FormUtil 
+     */
     placeElementAt(index, elName, centerX = true, centerY = false) {
         //get the position from the grid
         var pos = this.alignGrid.getPosByIndex(index);
@@ -84,6 +110,15 @@ export default class FormUtil {
     getTextValue(elName) {
         var el = document.getElementById(elName);
         return el.innerText;
+    }
+    getRangeValue(elName) {
+        var el = document.getElementById(elName);
+        return el.value;
+    }
+    setRangeValue(elName, value) {
+        var el = document.getElementById(elName);
+        el.value = value;
+        return 0;
     }
     hideElement(elName) {
         var el = document.getElementById(elName);

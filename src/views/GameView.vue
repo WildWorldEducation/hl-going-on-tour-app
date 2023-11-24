@@ -58,9 +58,49 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     <!-- Text area for scene 7_10 -->
     <textarea rows='15' style="display: none;" type="text" placeholder="Type your answer here:"
         id="scene7_10-book"></textarea>
+
     <!-- Text area for scene 7_14 -->
     <textarea rows='20' style="display: none;" type="text" placeholder="Type your answer here:"
         id="scene7_14-book"></textarea>
+
+    <!-- Text area for scene 7_16_C2 -->
+    <textarea rows='20' style="display: none;" type="text" placeholder="Type your answer here:"
+        id="scene7_16_C2-book"></textarea>
+
+    <!-- Text area for scene 7_18 -->
+    <textarea rows='20' style="display: none;" type="text" placeholder="Type your answer here:"
+        id="scene7_18-book"></textarea>
+
+    <!-- Scene 7_21 range input  -->
+    <div id="scene7_21-range-input" class="rangeTimeDiv" style="display: none;">
+        <datalist class="minute-mark">
+            <option value="0" class="startMinute">0</option>
+            <option value="15" label="15">15</option>
+            <option value="30" label="30">30</option>
+            <option value="45" label="45">45</option>
+            <option value="60" label="60">60</option>
+            <option value="75" label="75">75</option>
+            <option value="90" id="endMinute" label="90">90</option>
+        </datalist>
+        <input type="range" id="timeSpend" name="time-spend" list="markers" step="15" min="0" max="90" value="0" />
+        <br />
+        <div class="labelForRange">Minutes</div>
+    </div>
+    <!-- Scene 7_22 range input (use separate input for each scene for easier save management) -->
+    <div id="scene7_22-range-input" class="rangeTimeDiv" style="display: none;">
+        <datalist class="minute-mark">
+            <option value="0" class="startMinute">0</option>
+            <option value="15" label="15">15</option>
+            <option value="30" label="30">30</option>
+            <option value="45" label="45">45</option>
+            <option value="60" label="60">60</option>
+            <option value="75" label="75">75</option>
+            <option value="90" id="endMinute" label="90">90</option>
+        </datalist>
+        <input type="range" id="timeSpend-22" name="time-spend-22" list="markers" step="15" min="0" max="90" value="0" />
+        <br />
+        <div class="labelForRange">Minutes</div>
+    </div>
 </template>
 
 <style scoped>
@@ -236,12 +276,214 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     text-align: center;
     font-size: 'medium';
     background-color: #fcf8eb;
-
 }
-
 
 #scene7_14-book:focus-visible {
-
     resize: none;
 }
+
+/* * Text area input for scene 7_16_C2 * */
+#scene7_16_C2-book {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 7%;
+    left: 53.5%;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    width: 31% !important;
+    height: 84% !important;
+    border: dashed;
+    border-width: 4px;
+
+    text-align: center;
+    font-size: 'medium';
+    background-color: #fcf8eb;
+
+}
+
+#scene7_16_C2-book:focus-visible {
+    resize: none;
+}
+
+/* -- */
+/* * Text area input for scene 7_16_C2 * */
+#scene7_18-book {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 7%;
+    left: 53.5%;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    width: 31% !important;
+    height: 84% !important;
+    border: dashed;
+    border-width: 4px;
+
+    text-align: center;
+    font-size: 'medium';
+    background-color: #fcf8eb;
+}
+
+#scene7_18-book:focus-visible {
+    resize: none;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* css for range input div */
+.rangeTimeDiv {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 50% !important;
+}
+
+.minute-mark {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 74%;
+    font-weight: 900;
+    font-style: bold;
+    font-family: Arial;
+    font-size: 30px;
+
+}
+
+.minute-mark option {
+    padding-left: 30px;
+    font-style: bold;
+    font-weight: 700;
+}
+
+.startMinute {
+    padding-left: 15px !important;
+    padding-right: 15px;
+}
+
+
+.rangeTimeDiv>.labelForRange {
+    text-align: center;
+    font-size: 33px;
+    font-weight: 700;
+    font-style: bold;
+    width: 75%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* input[type="range"] {
+                width: 400px;
+                margin: 2;
+            } */
+.rangeTimeDiv>input[type=range] {
+    height: 33px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 75%;
+    border-radius: 33px;
+}
+
+.rangeTimeDiv>input[type=range]:focus {
+    outline: none;
+}
+
+.rangeTimeDiv>input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 33px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #FFFFFF;
+    border-radius: 33px;
+    border: 4.5px solid #004aad;
+}
+
+.rangeTimeDiv>input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 5px solid #FFFDF0;
+    height: 45px;
+    width: 45px;
+    border-radius: 50px;
+    background: #004aad;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-bottom: 1px;
+    margin-top: -10px;
+}
+
+
+
+.rangeTimeDiv>input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #FFFFFF;
+}
+
+.rangeTimeDiv>input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 33px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #FFFFFF;
+    border-radius: 33px;
+    border: 3px solid #004aad;
+}
+
+.rangeTimeDiv>input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 3.5px solid #FFFDF0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: #004aad;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.rangeTimeDiv>input[type=range]::-ms-track {
+    width: 100%;
+    height: 33px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.rangeTimeDiv>input[type=range]::-ms-fill-lower {
+    background: #FFFFFF;
+    border: 3px solid #2B00FF;
+    border-radius: 66px;
+    box-shadow: 0px 0px 0px #000000;
+}
+
+.rangeTimeDiv>input[type=range]::-ms-fill-upper {
+    background: #FFFFFF;
+    border: 3px solid #2B00FF;
+    border-radius: 66px;
+    box-shadow: 0px 0px 0px #000000;
+}
+
+.rangeTimeDiv>input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 1px 1px 1px #000000;
+    border: 3.5px solid #FFFDF0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: #004aad;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.rangeTimeDiv>input[type=range]:focus::-ms-fill-lower {
+    background: #FFFFFF;
+}
+
+.rangeTimeDiv>input[type=range]:focus::-ms-fill-upper {
+    background: #FFFFFF;
+}
+
+/* ---------------------------------------------------------------------------------------------- */
 </style>

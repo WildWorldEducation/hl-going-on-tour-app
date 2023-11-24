@@ -1,15 +1,14 @@
-import FormUtil from '../util/formUtil.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import CustomButton from '../Custom_Classes/CustomButton.js';
+import FormUtil from '../util/formUtil.js'
 
-export default class Scene7_14 extends Phaser.Scene {
+export default class Scene7_18 extends Phaser.Scene {
     constructor() {
-        super('Scene7_14');
+        super('Scene7_18');
     }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
 
@@ -26,7 +25,7 @@ export default class Scene7_14 extends Phaser.Scene {
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('text-book', 'assets/Images/7_Level4/sprite/text-book.png');
-        this.load.image('person-with-speaker', 'assets/Images/7_Level4/sprite/person-with-speaker.jpg');
+        this.load.image('pointing-person-zoom', 'assets/Images/7_Level4/sprite/pointing-person-zoom.png');
         this.load.image('light-bulb', 'assets/Images/7_Level4/sprite/answer-note-book/light-bulb.png');
         this.load.image('glow-effect', 'assets/Images/7_Level4/sprite/answer-note-book/glow-effect.png');
         this.load.image('text-bubble', 'assets/Images/7_Level4/sprite/answer-note-book/text-bubble.png');
@@ -43,17 +42,18 @@ export default class Scene7_14 extends Phaser.Scene {
         // Text book sprite
         const textBook = this.add.sprite(0, 0, 'text-book').setOrigin(-0.1, 0.003);
 
-        // Person with speaker
-        const personWithSpeaker = this.add.sprite(300, 430, 'person-with-speaker').setOrigin(0);
-        personWithSpeaker.setScale(0.5)
+        // base scene sprites
+        const pointingPerson = this.add.sprite(340, 507, 'pointing-person-zoom').setOrigin(0);
+        pointingPerson.setScale(0.8);
 
+        const mainSceneLightBulb = this.add.sprite(770, 530, 'light-bulb');
+        mainSceneLightBulb.setScale(0.17).setAngle(15);
 
         // Dash line border DISABLE
         // this.line1 = drawLine(this, 1030, 70, 680, 16, 3, 10, 'horizontal');
         // this.line2 = drawLine(this, 1030 + 680, 70, 920, 16, 3, 10, 'vertical');
         // this.line3 = drawLine(this, 1030, 70 + 920, 680, 16, 3, 10, 'horizontal');
         // this.line4 = drawLine(this, 1030, 70, 920, 16, 3, 10, 'vertical');
-
 
         // Text input.
         /** 
@@ -62,11 +62,10 @@ export default class Scene7_14 extends Phaser.Scene {
         */
         this.formUtil = new FormUtil({
             scene: this,
-
         });
 
-        this.formUtil.showElement("scene7_14-book");
-        this.formUtil.scaleToGameW("scene7_14-book", .8);
+        this.formUtil.showElement("scene7_18-book");
+        this.formUtil.scaleToGameW("scene7_18-book", .8);
 
 
         // Music
@@ -74,9 +73,8 @@ export default class Scene7_14 extends Phaser.Scene {
 
         // instructionText and it background sprite. 
         this.instructionText = this.add.rexBBCodeText(235, 100,
-            // "Before you continue,\nmake sure your [b]sound is activated![/b]\nThen [b]click the Blue Arrow[/b]\non the right to continue.",
-            "What are some ads, brands, signs or \n\nother types of influential outlets you \n\nsee throughout your day?",
-            { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'left', }).setOrigin(0, 0);
+            "Now think about the marketing that \nmay take place during these activities. \nWhere do you recognize marketing \nand advertising in your daily \nactivities?",
+            { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'left', lineSpacing: 50 }).setOrigin(0, 0);
         // Dealing with text quality.
         this.instructionText.setScale(0.5, 0.49);
 
@@ -116,7 +114,7 @@ export default class Scene7_14 extends Phaser.Scene {
         tryAgainBtn.on('pointerdown', () => {
             console.log('pointer Down');
             this.noAnswerCtnr.setAlpha(0);
-            this.formUtil.showElement('scene7_14-book');
+            this.formUtil.showElement('scene7_18-book');
             nextBtn.setInteractive();
             backBtn.setInteractive();
         })
@@ -131,9 +129,9 @@ export default class Scene7_14 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
-            let answer = document.getElementById('scene7_14-book').value;
-            if (answer.length === 0) { 
-                this.formUtil.hideElement('scene7_14-book');
+            let answer = document.getElementById('scene7_18-book').value;
+            if (answer.length === 0) {
+                this.formUtil.hideElement('scene7_18-book');
                 this.noAnswerCtnr.setAlpha(1);
                 nextBtn.disableInteractive();
                 backBtn.disableInteractive();
@@ -148,8 +146,8 @@ export default class Scene7_14 extends Phaser.Scene {
                 })
 
             } else {
-                this.formUtil.hideElement('scene7_14-book');
-                this.scene.start("Scene7_15", { music: this.music });
+                this.formUtil.hideElement('scene7_18-book');
+                this.scene.start("Scene7_19", { music: this.music });
             }
         }, this);
 
@@ -157,8 +155,8 @@ export default class Scene7_14 extends Phaser.Scene {
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.formUtil.hideElement('scene7_14-book');
-            this.scene.start("Scene7_13");
+            this.formUtil.hideElement('scene7_18-book');
+            this.scene.start("Scene7_17");
         }, this);
 
 
