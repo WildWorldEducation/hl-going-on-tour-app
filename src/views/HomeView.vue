@@ -28,6 +28,7 @@ export default {
       m7Status: 'not started',
       m8Status: 'not started',
       m9Status: 'not started',
+      isStudentList: true
     }
   },
   components: {
@@ -49,6 +50,15 @@ export default {
   },
   methods: {
     changeUserId(userId) {
+      // Only for mobile phone UI.
+      // display and hide the student list and student progress.
+      if (!this.isStudentList)
+        this.isStudentList = true
+      else
+        this.isStudentList = false
+
+      // -----------------------
+
       this.user.id = userId
 
       // Get the correct user.
@@ -112,6 +122,9 @@ export default {
     async deleteUser() {
       await this.usersStore.deleteUser(this.user.id)
       this.usersStore.getUsers()
+    },
+    showStudentList() {
+      this.isStudentList = true
     }
   }
 }
@@ -133,11 +146,13 @@ export default {
         </div>
       </div>
     </div>
+    <button v-if="!isStudentList" @click="showStudentList()" class="btn btn-dark showStudentListBtn">back</button>
     <div class="row">
       <div v-if="!this.sessionDetailsStore.isAdmin" class="row text-center mt-5">
         <h1>VISIT LEVELS</h1>
       </div>
-      <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3">
+
+      <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3" :class="{ hideStudentList: !isStudentList }">
         <div class="button-row">
           <router-link class="btn btn-dark" to="/users/add"> <!-- Plus sign -->
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +184,8 @@ export default {
         </div>
         <StudentList @changeUserId="changeUserId($event)" />
       </div>
-      <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin }" style="height:calc(90vh-54px)">
+      <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin, 'hideStudentProgress': isStudentList }"
+        style="height:calc(90vh-54px)">
         <div class="row grid-cards mt-3">
           <div id="module-1" class="grid-card level-button-outer"
             :class="{ 'completed': this.m1Status == 'completed', 'in-progress': this.m1Status == 'in progress', 'not-started': this.m1Status == 'not started' }">
@@ -369,6 +385,10 @@ export default {
   text-align: center;
 }
 
+.showStudentListBtn {
+  display: none;
+}
+
 /* Screen smaller than 600px - 1 column */
 @media (max-width: 599px) {
   .grid-cards {
@@ -386,6 +406,18 @@ export default {
   #module-1 span {
     font-size: 4.5vh;
     line-height: 1;
+  }
+
+  .hideStudentList {
+    display: none;
+  }
+
+  .hideStudentProgress {
+    display: none;
+  }
+
+  .showStudentListBtn {
+    display: block;
   }
 }
 
