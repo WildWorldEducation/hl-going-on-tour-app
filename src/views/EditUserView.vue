@@ -114,7 +114,9 @@ export default {
             <input v-model="user.password" type="text" class="form-control">
         </div>
 
-        <button class="btn btn-dark" @click="ValidateForm()">Submit</button>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-dark" @click="ValidateForm()">Submit</button>
+        </div>
     </div>
 </template>
 

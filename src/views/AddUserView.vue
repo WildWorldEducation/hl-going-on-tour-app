@@ -117,7 +117,9 @@ export default {
             <label class="form-label">Email address</label>
             <input v-model="user.email" type="email" class="form-control">
         </div>
-        <button class="btn btn-dark" @click="ValidateForm()">Submit</button>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-dark" @click="ValidateForm()">Submit</button>
+        </div>
     </div>
 </template>
 
