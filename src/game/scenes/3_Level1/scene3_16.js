@@ -83,7 +83,11 @@ and select to which music genre this song belongs to.`,
         var btn1Text = this.add.text(100, 60, "A. Country", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn1Text.setOrigin(0.5).setScale(0.5)
         btn1Text.alpha = 1
-        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1Text]);
+        const btn1Border = this.add.graphics();
+        btn1Border.lineStyle(5, '0x87d1ff');
+        btn1Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn1Border.setAlpha(0)
+        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1Text, btn1Border]);
         btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
@@ -97,6 +101,10 @@ and select to which music genre this song belongs to.`,
         });
         btn1.on('pointerdown', function () {
             isCorrect = false
+            btn1Border.setAlpha(1)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(0)
         }, this);
         btn1Graphic.alpha = 1
 
@@ -107,7 +115,11 @@ and select to which music genre this song belongs to.`,
         var btn2Text = this.add.text(100, 60, "B. Rock", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn2Text.setOrigin(0.5).setScale(0.5)
         btn2Text.alpha = 1
-        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2Text]);
+        const btn2Border = this.add.graphics();
+        btn2Border.lineStyle(5, '0x87d1ff');
+        btn2Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn2Border.setAlpha(0)
+        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2Text, btn2Border]);
         btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn2.on('pointerover', function () {
             // Change mouse cursor.
@@ -121,6 +133,10 @@ and select to which music genre this song belongs to.`,
         });
         btn2.on('pointerdown', function () {
             isCorrect = false
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(1)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(0)
         }, this);
         btn2Graphic.alpha = 1
 
@@ -131,7 +147,11 @@ and select to which music genre this song belongs to.`,
         var btn3Text = this.add.text(100, 60, "C. Jazz", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn3Text.setOrigin(0.5).setScale(0.5)
         btn3Text.alpha = 1
-        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3Text]);
+        const btn3Border = this.add.graphics();
+        btn3Border.lineStyle(5, '0x87d1ff');
+        btn3Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn3Border.setAlpha(0)
+        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3Text, btn3Border]);
         btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn3.on('pointerover', function () {
             // Change mouse cursor.
@@ -145,6 +165,10 @@ and select to which music genre this song belongs to.`,
         });
         btn3.on('pointerdown', function () {
             isCorrect = false
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(1)
+            btn4Border.setAlpha(0)
         }, this);
         btn3Graphic.alpha = 1
 
@@ -155,7 +179,11 @@ and select to which music genre this song belongs to.`,
         var btn4Text = this.add.text(100, 60, "D. Hip Hop", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn4Text.setOrigin(0.5).setScale(0.5)
         btn4Text.alpha = 1
-        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4Text]);
+        const btn4Border = this.add.graphics();
+        btn4Border.lineStyle(5, '0x87d1ff');
+        btn4Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn4Border.setAlpha(0)
+        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4Text, btn4Border]);
         btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn4.on('pointerover', function () {
             // Change mouse cursor.
@@ -169,6 +197,10 @@ and select to which music genre this song belongs to.`,
         });
         btn4.on('pointerdown', function () {
             isCorrect = true
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(1)
         }, this);
         btn4Graphic.alpha = 1
 

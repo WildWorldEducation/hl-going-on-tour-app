@@ -76,12 +76,16 @@ export default class Scene3_15 extends Phaser.Scene {
         btn1Graphic.fillRoundedRect(0, 0, 690, 120, 8);
         var btn1Text = this.add.text(200, 60, "A. Song 1", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn1Text.setOrigin(0.5).setScale(0.5)
+        const btn1Border = this.add.graphics();
+        btn1Border.lineStyle(5, '0x87d1ff');
+        btn1Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn1Border.setAlpha(0)
         // playBtn.
         var btn1PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
         btn1PlayBtn.setScale(0.28)
         var btn1StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
         btn1StopBtn.setScale(0.28).setAlpha(0)
-        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1PlayBtn, btn1StopBtn, btn1Text]);
+        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1PlayBtn, btn1StopBtn, btn1Text, btn1Border]);
         btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
@@ -99,6 +103,10 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(0)
             btn3StopBtn.setAlpha(0)
             btn4StopBtn.setAlpha(0)
+            btn1Border.setAlpha(1)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(0)
             // Stop other tracks.            
             this.rock3.stop()
             this.pop2.stop()
@@ -114,12 +122,16 @@ export default class Scene3_15 extends Phaser.Scene {
         btn2Graphic.fillRoundedRect(0, 0, 690, 120, 8);
         var btn2Text = this.add.text(200, 60, "B. Song 2", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn2Text.setOrigin(0.5).setScale(0.5)
+        const btn2Border = this.add.graphics();
+        btn2Border.lineStyle(5, '0x87d1ff');
+        btn2Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn2Border.setAlpha(0)
         // playBtn.
         var btn2PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
         btn2PlayBtn.setScale(0.28)
         var btn2StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
         btn2StopBtn.setScale(0.28).setAlpha(0)
-        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2PlayBtn, btn2StopBtn, btn2Text]);
+        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2PlayBtn, btn2StopBtn, btn2Text, btn2Border]);
         btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn2.on('pointerover', function () {
             // Change mouse cursor.
@@ -137,6 +149,10 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(1)
             btn3StopBtn.setAlpha(0)
             btn4StopBtn.setAlpha(0)
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(1)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(0)
             // Stop other tracks.
             this.rock3.stop()
             this.pop1.stop()
@@ -152,12 +168,16 @@ export default class Scene3_15 extends Phaser.Scene {
         btn3Graphic.fillRoundedRect(0, 0, 690, 120, 8);
         var btn3Text = this.add.text(200, 60, "C. Song 3", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn3Text.setOrigin(0.5).setScale(0.5)
+        const btn3Border = this.add.graphics();
+        btn3Border.lineStyle(5, '0x87d1ff');
+        btn3Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn3Border.setAlpha(0)
         // playBtn.
         var btn3PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
         btn3PlayBtn.setScale(0.28)
         var btn3StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
         btn3StopBtn.setScale(0.28).setAlpha(0)
-        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3PlayBtn, btn3StopBtn, btn3Text]);
+        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3PlayBtn, btn3StopBtn, btn3Text, btn3Border]);
         btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn3.on('pointerover', function () {
             // Change mouse cursor.
@@ -175,6 +195,10 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(0)
             btn3StopBtn.setAlpha(1)
             btn4StopBtn.setAlpha(0)
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(1)
+            btn4Border.setAlpha(0)
             // Stop other tracks.
             this.pop1.stop()
             this.pop2.stop()
@@ -190,12 +214,16 @@ export default class Scene3_15 extends Phaser.Scene {
         btn4Graphic.fillRoundedRect(0, 0, 690, 120, 8);
         var btn4Text = this.add.text(200, 60, "D. Song 4", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn4Text.setOrigin(0.5).setScale(0.5)
+        const btn4Border = this.add.graphics();
+        btn4Border.lineStyle(5, '0x87d1ff');
+        btn4Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn4Border.setAlpha(0)
         // playBtn.
         var btn4PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
         btn4PlayBtn.setScale(0.28)
         var btn4StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
         btn4StopBtn.setScale(0.28).setAlpha(0)
-        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4PlayBtn, btn4StopBtn, btn4Text]);
+        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4PlayBtn, btn4StopBtn, btn4Text, btn4Border]);
         btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn4.on('pointerover', function () {
             // Change mouse cursor.
@@ -213,6 +241,10 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(0)
             btn3StopBtn.setAlpha(0)
             btn4StopBtn.setAlpha(1)
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(1)
             // Stop other tracks.
             this.pop1.stop()
             this.rock3.stop()
