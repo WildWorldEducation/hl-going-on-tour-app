@@ -52,7 +52,12 @@ Think about all the options and try again.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const submitBtn = new WideButton(this, 1920 - 260 - 80, 1080 - 60 - 60, 'Try again', this.nextBtnAudio);
         submitBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_16", { music: this.music });
+            this.scene.start("Scene4_15", { music: this.music });
+            // Clear all checkboxes
+            document.getElementById("m4-checkbox-1").checked = false;
+            document.getElementById("m4-checkbox-2").checked = false;
+            document.getElementById("m4-checkbox-3").checked = false;
+            document.getElementById("m4-checkbox-4").checked = false;
         }, this);
     }
 }
