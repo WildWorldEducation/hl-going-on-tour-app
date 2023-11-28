@@ -244,7 +244,7 @@ Impossible."`)
 
 
         // Instructions.
-        var textBG = this.add.sprite(1350, 150, 'text-card-4-6').setOrigin(0.5).setAlpha(0.8)
+        var textBG = this.add.sprite(1350, 150, 'text-card-4-6').setOrigin(0.5).setAlpha(0.9)
         this.instructionText = this.add.rexBBCodeText(1350, 150,
             `[b]Click on the images below[/b] to
 explore some more unknown
