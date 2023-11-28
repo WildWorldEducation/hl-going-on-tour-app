@@ -40,7 +40,8 @@ export default class Scene4_15_incorrect extends Phaser.Scene {
 
         // Text background.
         var textCard = this.add.sprite(960, 540, 'textBG4-15').setOrigin(0.5).setAlpha(0.9).setScale(2)
-        //Text.
+        //Dealing with slide variations, depending if the 
+        // first or second time user is here.
         let string = ""
         let buttonString = ""
         let sceneString = ""
