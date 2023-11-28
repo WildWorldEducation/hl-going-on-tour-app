@@ -7,6 +7,11 @@ export default class Scene4_18 extends Phaser.Scene {
     constructor() {
         super('Scene4_18');
     }
+
+    init(data) {
+        this.cheer = data.cheer;
+    }
+
     preload() {
         // Video.
         this.load.video('vid4-6', 'assets/Videos/4_Level2/vid4-6.mp4');
@@ -47,6 +52,7 @@ export default class Scene4_18 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
+            this.cheer.stop()
             this.scene.start("Scene4_19");
         }, this);
         nextBtn.y = nextBtn.y - 40

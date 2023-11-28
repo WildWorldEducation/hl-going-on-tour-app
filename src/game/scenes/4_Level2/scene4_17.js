@@ -53,7 +53,7 @@ people snuck in their vapes.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
-            this.scene.start("Scene4_18");
+            this.scene.start("Scene4_18", { cheer: this.cheer });
         }, this);
         nextBtn.y = nextBtn.y - 40
 
