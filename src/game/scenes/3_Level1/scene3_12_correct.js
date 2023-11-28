@@ -8,7 +8,7 @@ export default class Scene3_12_correct extends Phaser.Scene {
     init(data) {
         this.music = data.music;
     }
-    
+
     preload() {
         // Sprites.        
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
@@ -25,8 +25,12 @@ export default class Scene3_12_correct extends Phaser.Scene {
         var stars = this.add.sprite(400, 100, 'stars').setOrigin(0.5);
         stars.setScale(0.6)
 
+        // BG
+        this.textBg = this.add.graphics();
+        this.textBg.fillStyle(0xFFFFFF, 1);
+        this.textBg.fillRoundedRect(210, 200, 1500, 650, 32);
         // Char
-        var char = this.add.sprite(960, 500, 'char-correct').setOrigin(0.5);
+        var char = this.add.sprite(960, 620, 'char-correct').setOrigin(0.5);
 
 
         // Submit button.
@@ -36,7 +40,7 @@ export default class Scene3_12_correct extends Phaser.Scene {
             this.scene.start("Scene3_13", { music: this.music });
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
     }
 }

@@ -24,8 +24,12 @@ export default class Scene3_16_correct extends Phaser.Scene {
         var stars = this.add.sprite(400, 100, 'stars').setOrigin(0.5);
         stars.setScale(0.6)
 
+        // BG
+        this.textBg = this.add.graphics();
+        this.textBg.fillStyle(0xFFFFFF, 1);
+        this.textBg.fillRoundedRect(210, 200, 1500, 650, 32);
         // Char
-        var char = this.add.sprite(960, 500, 'char-correct').setOrigin(0.5);
+        var char = this.add.sprite(960, 620, 'char-correct').setOrigin(0.5);
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
