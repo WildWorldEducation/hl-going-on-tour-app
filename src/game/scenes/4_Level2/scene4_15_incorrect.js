@@ -16,7 +16,7 @@ export default class Scene4_15_incorrect extends Phaser.Scene {
         //Sprites                
         this.load.image('textBG4-15', 'assets/Images/General/text-card3.png');
         this.load.image('bg4-15B', 'assets/Images/4_Level2/securityBG-blurred.jpg');
-        this.load.image('incorrect4-15', 'assets/Images/4_Level2/incorrect.png');
+        this.load.image('incorrect4-15', 'assets/Images/4_Level2/incorrect2.png');
     }
 
     create() {
