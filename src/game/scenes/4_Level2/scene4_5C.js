@@ -30,7 +30,7 @@ export default class Scene4_5C extends Phaser.Scene {
         // Dealing with text quality.
         this.heading.scale = 0.5
 
-        this.text = this.add.text(1100, 600,
+        this.text = this.add.text(1200, 600,
             `The Brooklyn Bridge is a hybrid cable-stayed/
 suspension bridge in New York City, spanning the
 East River between the boroughs of Manhatten
@@ -43,7 +43,7 @@ walk across.`,
         this.text.scale = 0.5
 
         // image
-        var image = this.add.sprite(250, 350, 'brooklyn-bridge').setOrigin(0)
+        var image = this.add.sprite(220, 300, 'brooklyn-bridge').setOrigin(0)
 
         // Close button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
