@@ -112,7 +112,7 @@ export default {
     },
     async deleteUser() {
       await this.usersStore.deleteUser(this.user.id)
-      this.usersStore.getUsers()
+      this.usersStore.getUsers() 
     },
     showStudentList() {
       this.isStudentList = true

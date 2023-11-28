@@ -11,17 +11,23 @@ export const useUsersStore = defineStore("users", {
             this.users = data;
         },
         async deleteUser(id) {
-            this.users = this.users.filter(u => {
-                return u.id !== id
-            })
+            // Warning popup.
+            var answer = window.confirm("Delete user?");
+            if (answer) {
+                this.users = this.users.filter(u => {
+                    return u.id !== id
+                })
 
-            const result = fetch('/users/api/' + id,
-                {
-                    method: 'DELETE',
-                });
+                const result = fetch('/users/api/' + id,
+                    {
+                        method: 'DELETE',
+                    });
 
-            if (result.error) {
-                console.log(result.error)
+                if (result.error) {
+                    console.log(result.error)
+                }
+
+                this.getUsers()
             }
         }
     }
