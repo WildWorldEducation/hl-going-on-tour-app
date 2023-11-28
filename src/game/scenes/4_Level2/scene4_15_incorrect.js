@@ -7,6 +7,10 @@ export default class Scene4_15_incorrect extends Phaser.Scene {
     constructor() {
         super('Scene4_15_incorrect');
     }
+    init(data) {
+        // So that the second time incorrect it is different.
+        this.timesWrong = data.timesWrong;
+    }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -37,10 +41,26 @@ export default class Scene4_15_incorrect extends Phaser.Scene {
         // Text background.
         var textCard = this.add.sprite(960, 540, 'textBG4-15').setOrigin(0.5).setAlpha(0.9).setScale(2)
         //Text.
-        this.text = this.add.rexBBCodeText(960, 540,
-            `[b]Not quite![/b]
+        let string = ""
+        let buttonString = ""
+        let sceneString = ""
+        if (this.timesWrong == 1) {
+            string = `[b]Not quite![/b]
             
-Think about all the options and try again.`,
+Think about all the options and try again.`;
+            buttonString = 'Try again';
+            sceneString = "Scene4_15"
+        }
+        else {
+            string = `[b]Not quite![/b]
+            
+Vape pens are usually not allowed inside concert
+venues because of ALL these issues.`;
+            buttonString = 'Continue';
+            sceneString = "Scene4_16"
+        }
+        this.text = this.add.rexBBCodeText(960, 540,
+            string,
             { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
         this.text.scale = 0.5
@@ -50,9 +70,9 @@ Think about all the options and try again.`,
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 1920 - 260 - 80, 1080 - 60 - 60, 'Try again', this.nextBtnAudio);
+        const submitBtn = new WideButton(this, 1920 - 260 - 80, 1080 - 60 - 60, buttonString, this.nextBtnAudio);
         submitBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_15", { music: this.music });
+            this.scene.start(sceneString, { timesWrong: 1 });
             // Clear all checkboxes
             document.getElementById("m4-checkbox-1").checked = false;
             document.getElementById("m4-checkbox-2").checked = false;

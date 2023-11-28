@@ -7,8 +7,10 @@ export default class Scene4_15 extends Phaser.Scene {
     constructor() {
         super('Scene4_15');
     }
-
-
+    init(data) {
+        // So that the second time incorrect it is different.
+        this.timesWrong = data.timesWrong;
+    }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -21,6 +23,11 @@ export default class Scene4_15 extends Phaser.Scene {
     }
 
     create() {
+        if (typeof this.timesWrong == 'undefined') {
+            this.timesWrong = 0
+        }
+        this.timesWrong++;
+
         // BG.        
         var bg = this.add.sprite(0, 0, 'bg4-14').setOrigin(0);
 
@@ -62,7 +69,7 @@ export default class Scene4_15 extends Phaser.Scene {
                 this.scene.start("Scene4_15_correct");
             }
             else {
-                this.scene.start("Scene4_15_incorrect");
+                this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong });
             }
 
         }, this);
