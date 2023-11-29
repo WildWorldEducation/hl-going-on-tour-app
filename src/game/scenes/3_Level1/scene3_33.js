@@ -20,9 +20,11 @@ export default class Scene3_33 extends Phaser.Scene {
         ]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("flip-card", ["assets/Audio/SFX/General/flip-card.mp3"]);
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('BG3-23', 'assets/Images/3_Level1/myth-fact-bg.jpg');
+        this.load.image('rotate-arrow', 'assets/Images/3_Level1/rotate-arrow.png');
         // Video.
         this.load.video('fact-vid', 'assets/Videos/3_Level1/fact-vid.mp4');
     }
@@ -45,12 +47,15 @@ export default class Scene3_33 extends Phaser.Scene {
         vid.setOrigin(0)
 
         // Main button ---
+        this.btnAudio = this.sound.add("flip-card", { loop: false });
         // Graphic.
         const btnGraphic = this.add.graphics();
         btnGraphic.fillStyle(0xffffff, 1)
             .fillRoundedRect(560, 350, 800, 600, 16)
-            .lineStyle(6, 0x000000, 1)
+            .lineStyle(6, 0x184586, 1)
             .strokeRoundedRect(560, 350, 800, 600, 16)
+        // Circular arrow.
+        var rotateArrow = this.add.sprite(1260, 860, 'rotate-arrow').setOrigin(0.0)
         // Text.
         this.btnText = this.add.rexBBCodeText(960, 650,
             `[b]Myth or Fact?[/b]
@@ -76,10 +81,13 @@ hundreds of chemicals?`,
         });
         var isAnswer = false;
         btnGraphic.on('pointerdown', () => {
+            this.btnAudio.play()
             if (!isAnswer) {
+                nextBtn.setInteractive()
+                nextBtn.setAlpha(1)
                 vid.alpha = 1
                 vid.play();
-
+                this.btnText.scale = 0.35
                 this.btnText.setText(`[b]Fact[/b]
 
 There have been [b]over 7,760
@@ -93,6 +101,8 @@ lung injury, COPD, and may cause
 asthma and lung cancer.`)
             }
             else {
+                nextBtn.disableInteractive()
+                nextBtn.setAlpha(0)
                 vid.alpha = 0
                 this.btnText.setText(`[b]Myth or Fact?[/b]
 
@@ -112,6 +122,8 @@ hundreds of chemicals?`)
             this.scene.start("Scene3_34", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
+        nextBtn.disableInteractive()
+        nextBtn.setAlpha(0)
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
