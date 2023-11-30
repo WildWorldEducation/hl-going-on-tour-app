@@ -10,6 +10,8 @@ export default class Scene3_36_correct extends Phaser.Scene {
     }
 
     preload() {
+        // Plugin.
+        this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Audio.        
         this.load.audio('success-audio', [
             'assets/Audio/SFX/3_Level1/success.mp3',
@@ -33,9 +35,9 @@ export default class Scene3_36_correct extends Phaser.Scene {
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
         this.textBg.fillRoundedRect(210, 200, 1500, 650, 32);
-        var feedbackText = this.add.text(960, 300,
-            `That's right!
-You selected the correct response.`,
+        var feedbackText = this.add.rexBBCodeText(960, 300,
+            `Nice! Well done.
+Yes, it was [b]changed to 21 at the end of 2019[/b].`,
             { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
         feedbackText.setOrigin(0.5).setScale(0.5)
         // Char
