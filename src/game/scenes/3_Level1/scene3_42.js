@@ -46,6 +46,9 @@ their vocal cords.`,
         // Dealing with text quality.
         this.questionText.scale = 0.5
 
+        const bottomBG = this.add.rectangle(0 + (1920 / 2), 1080 - 125, 1920, 250, 0xffffff);
+        bottomBG.setAlpha(0.6)
+        this.btnAudio = this.sound.add("next-button", { loop: false });
         // Button 1.
         var btn1Graphic = this.add.graphics();
         btn1Graphic.lineStyle(16, 0xffffff, 1);
@@ -54,7 +57,7 @@ their vocal cords.`,
         btn1Graphic.fillRoundedRect(0, 0, 700, 150, 16);
         var btn1Text = this.add.rexBBCodeText(350, 75, "[b]Fact[/b]", { fontFamily: "Arial", fontSize: "84px", fill: "#ffffff" });
         btn1Text.setOrigin(0.5).setScale(0.5)
-        var btn1 = this.add.container(220, 850, [btn1Graphic, btn1Text]);
+        var btn1 = this.add.container(220, 880, [btn1Graphic, btn1Text]);
         btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 700, 150), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
@@ -67,6 +70,7 @@ their vocal cords.`,
             this.canvas.style.cursor = "default";
         });
         btn1.on('pointerdown', function () {
+            this.btnAudio.play()
             this.scene.start("Scene3_43", { music: this.music });
         }, this);
 
@@ -78,7 +82,7 @@ their vocal cords.`,
         btn2Graphic.fillRoundedRect(0, 0, 700, 150, 16);
         var btn2Text = this.add.rexBBCodeText(350, 75, "[b]Myth[/b]", { fontFamily: "Arial", fontSize: "84px", fill: "#ffffff" });
         btn2Text.setOrigin(0.5).setScale(0.5)
-        var btn2 = this.add.container(1000, 850, [btn2Graphic, btn2Text]);
+        var btn2 = this.add.container(1000, 880, [btn2Graphic, btn2Text]);
         btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 700, 150), Phaser.Geom.Rectangle.Contains);
         btn2.on('pointerover', function () {
             // Change mouse cursor.
@@ -91,6 +95,7 @@ their vocal cords.`,
             this.canvas.style.cursor = "default";
         });
         btn2.on('pointerdown', function () {
+            this.btnAudio.play()
             this.scene.start("Scene3_43");
         }, this);
 
@@ -105,7 +110,7 @@ their vocal cords.`,
         // Title.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 400, 150, 32);
+        this.textBg.fillRoundedRect(-30, 0, 350, 150, 32);
         this.titleText = this.add.text(55, 75, "Myth or Fact",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
