@@ -10,12 +10,20 @@ export default class Scene3_12_correct extends Phaser.Scene {
     }
 
     preload() {
+        // Audio.        
+        this.load.audio('success-audio', [
+            'assets/Audio/SFX/3_Level1/success.mp3',
+        ]);
         // Sprites.        
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
         this.load.image('char-correct', 'assets/Images/3_Level1/genre-quiz/char-correct.png');
     }
 
     create() {
+        // Success sound.
+        this.successAudio = this.sound.add("success-audio", { loop: false });
+        this.successAudio.play()
+
         // BG.
         this.cameras.main.setBackgroundColor("#959fe4");
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
