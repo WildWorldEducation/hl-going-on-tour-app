@@ -56,10 +56,14 @@ to purchase tobacco and vaping products?`,
         var btn1Graphic = this.add.graphics();
         btn1Graphic.fillStyle(0xffffff, 1);
         btn1Graphic.fillRoundedRect(0, 0, 690, 120, 8);
+        const btn1Border = this.add.graphics();
+        btn1Border.lineStyle(5, '0x87d1ff');
+        btn1Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn1Border.setAlpha(0)
         var btn1Text = this.add.text(100, 60, "A. 18", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn1Text.setOrigin(0.5).setScale(0.5)
         btn1Text.alpha = 1
-        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1Text]);
+        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1Text, btn1Border]);
         btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
@@ -73,6 +77,10 @@ to purchase tobacco and vaping products?`,
         });
         btn1.on('pointerdown', function () {
             isCorrect = false
+            btn1Border.setAlpha(1)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(0)
         }, this);
         btn1Graphic.alpha = 1
 
@@ -80,10 +88,14 @@ to purchase tobacco and vaping products?`,
         var btn2Graphic = this.add.graphics();
         btn2Graphic.fillStyle(0xffffff, 1);
         btn2Graphic.fillRoundedRect(0, 0, 690, 120, 8);
+        const btn2Border = this.add.graphics();
+        btn2Border.lineStyle(5, '0x87d1ff');
+        btn2Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn2Border.setAlpha(0)
         var btn2Text = this.add.text(100, 60, "B. 19", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn2Text.setOrigin(0.5).setScale(0.5)
         btn2Text.alpha = 1
-        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2Text]);
+        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2Text, btn2Border]);
         btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn2.on('pointerover', function () {
             // Change mouse cursor.
@@ -97,6 +109,10 @@ to purchase tobacco and vaping products?`,
         });
         btn2.on('pointerdown', function () {
             isCorrect = false
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(1)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(0)
         }, this);
         btn2Graphic.alpha = 1
 
@@ -104,10 +120,14 @@ to purchase tobacco and vaping products?`,
         var btn3Graphic = this.add.graphics();
         btn3Graphic.fillStyle(0xffffff, 1);
         btn3Graphic.fillRoundedRect(0, 0, 690, 120, 8);
+        const btn3Border = this.add.graphics();
+        btn3Border.lineStyle(5, '0x87d1ff');
+        btn3Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn3Border.setAlpha(0)
         var btn3Text = this.add.text(100, 60, "C. 20", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn3Text.setOrigin(0.5).setScale(0.5)
         btn3Text.alpha = 1
-        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3Text]);
+        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3Text, btn3Border]);
         btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn3.on('pointerover', function () {
             // Change mouse cursor.
@@ -121,6 +141,10 @@ to purchase tobacco and vaping products?`,
         });
         btn3.on('pointerdown', function () {
             isCorrect = false
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(1)
+            btn4Border.setAlpha(0)
         }, this);
         btn3Graphic.alpha = 1
 
@@ -128,10 +152,14 @@ to purchase tobacco and vaping products?`,
         var btn4Graphic = this.add.graphics();
         btn4Graphic.fillStyle(0xffffff, 1);
         btn4Graphic.fillRoundedRect(0, 0, 690, 120, 8);
+        const btn4Border = this.add.graphics();
+        btn4Border.lineStyle(5, '0x87d1ff');
+        btn4Border.strokeRoundedRect(0, 0, 690, 120, 8);
+        btn4Border.setAlpha(0)
         var btn4Text = this.add.text(100, 60, "D. 21", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
         btn4Text.setOrigin(0.5).setScale(0.5)
         btn4Text.alpha = 1
-        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4Text]);
+        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4Text, btn4Border]);
         btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
         btn4.on('pointerover', function () {
             // Change mouse cursor.
@@ -145,6 +173,10 @@ to purchase tobacco and vaping products?`,
         });
         btn4.on('pointerdown', function () {
             isCorrect = true
+            btn1Border.setAlpha(0)
+            btn2Border.setAlpha(0)
+            btn3Border.setAlpha(0)
+            btn4Border.setAlpha(1)
         }, this);
         btn4Graphic.alpha = 1
 
@@ -160,8 +192,7 @@ to purchase tobacco and vaping products?`,
             }
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
-        submitBtn.alpha = 1
+        submitBtn.y = 1080 - 150
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
