@@ -48,7 +48,7 @@ You selected the correct response.`,
             this.scene.start("Scene3_37", { music: this.music });
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
     }
 }

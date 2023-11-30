@@ -48,6 +48,6 @@ You did not select the correct response.`,
             this.scene.start("Scene3_36", { music: this.music });
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
     }
 }
