@@ -33,6 +33,11 @@ export default class Scene3_36_incorrect extends Phaser.Scene {
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
         this.textBg.fillRoundedRect(210, 200, 1500, 650, 32);
+        var feedbackText = this.add.text(960, 300,
+            `Oh, no!
+You did not select the correct response.`,
+            { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
+        feedbackText.setOrigin(0.5).setScale(0.5)
         // Char
         var char = this.add.sprite(960, 620, 'char-incorrect').setOrigin(0.5);
 
