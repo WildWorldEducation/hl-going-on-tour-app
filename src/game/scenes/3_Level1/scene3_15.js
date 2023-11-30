@@ -271,7 +271,7 @@ export default class Scene3_15 extends Phaser.Scene {
             }
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
 
         // Back button.

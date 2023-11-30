@@ -76,7 +76,7 @@ export default class Scene3_13 extends Phaser.Scene {
         // Button Config.
         const btnConfig = {
             radius: 8,
-            width: 690, 
+            width: 690,
             height: 120,
             fill: 0xffffff,
             border: {
@@ -93,7 +93,7 @@ export default class Scene3_13 extends Phaser.Scene {
         buttonData.forEach((data) => {
             const sound = this.sound.add(data.trackID)
             sounds.push(sound)
-            
+
             const playControl = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
             const stopControl = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
 
@@ -112,20 +112,20 @@ export default class Scene3_13 extends Phaser.Scene {
             btnText.setOrigin(0.5).setScale(0.5);
             btnGraphic.fillStyle(btnConfig.fill, 1);
             btnGraphic.fillRoundedRect(0, 0, btnConfig.width, btnConfig.height, btnConfig.radius);
-            
+
             btnBorder.lineStyle(btnConfig.border.width, btnConfig.border.color);
             btnBorder.strokeRoundedRect(0, 0, btnConfig.width, btnConfig.height, btnConfig.radius);
 
             // not visible on start
             btnBorder.setVisible(false)
             btnBorders.push(btnBorder)
-            
+
             // setup container
-            const btnContainer = this.add.container(data.x, data.y, [ 
-                btnGraphic, btnText, btnBorder, 
-                playControl, stopControl 
+            const btnContainer = this.add.container(data.x, data.y, [
+                btnGraphic, btnText, btnBorder,
+                playControl, stopControl
             ]);
-            
+
             btnContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, btnConfig.width, btnConfig.height), Phaser.Geom.Rectangle.Contains);
 
             btnContainer.on('pointerover', () => {
@@ -141,13 +141,13 @@ export default class Scene3_13 extends Phaser.Scene {
             btnContainer.on('pointerdown', () => {
                 isCorrect = data.isCorrect;
                 this.selectedButton = btnContainer;
-                
+
                 btnBorders.forEach((border) => {
                     border.setVisible(false)
                 })
 
-                btnBorder.setVisible(true)       
-               
+                btnBorder.setVisible(true)
+
                 stopButtons.forEach((e) => {
                     e.setAlpha(0)
                 })
@@ -172,7 +172,7 @@ export default class Scene3_13 extends Phaser.Scene {
             sounds.forEach((e) => {
                 e.stop()
             })
-            
+
             if (isCorrect) {
                 this.scene.start("Scene3_13_correct", { music: this.music });
             }
@@ -181,7 +181,7 @@ export default class Scene3_13 extends Phaser.Scene {
             }
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
 
         // Back button.
@@ -189,7 +189,7 @@ export default class Scene3_13 extends Phaser.Scene {
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene3_12");
-            
+
             // stop sounds when navigating back
             sounds.forEach((e) => {
                 e.stop()

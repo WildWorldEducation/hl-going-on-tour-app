@@ -214,7 +214,7 @@ and select to which music genre this song belongs to.`,
             }
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
 
         // Back button.

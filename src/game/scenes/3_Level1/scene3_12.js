@@ -104,7 +104,6 @@ export default class Scene3_12 extends Phaser.Scene {
 and select to which music genre this song belongs to.`,
             { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
         headerText.setOrigin(0.5).setScale(0.5)
-        headerText.alpha = 1
 
         // Buttons.
         // data of each button,
@@ -133,7 +132,6 @@ and select to which music genre this song belongs to.`,
         let btnBorders = []
         // setting up each button
         buttonData.forEach((data) => {
-
             const btnGraphic = this.add.graphics();
             const btnBorder = this.add.graphics();
             const btnText = this.add.text(30, 60, data.text, {
@@ -185,7 +183,6 @@ and select to which music genre this song belongs to.`,
             buttonGroup.add(btnContainer);
         });
 
-
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
@@ -199,7 +196,7 @@ and select to which music genre this song belongs to.`,
             }
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
 
         // Back button.
@@ -207,10 +204,8 @@ and select to which music genre this song belongs to.`,
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene3_11");
-
             // stop audio
             this.country1.stop()
-
         }, this);
         backBtn.y = backBtn.y - 40
 

@@ -36,18 +36,23 @@ export default class Scene3_15_incorrect extends Phaser.Scene {
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
         this.textBg.fillRoundedRect(210, 200, 1500, 650, 32);
+        var feedbackText = this.add.text(960, 300,
+            `Oh, no!
+You did not select the correct response.`,
+            { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
+        feedbackText.setOrigin(0.5).setScale(0.5)
         // Char
         var char = this.add.sprite(960, 620, 'char-incorrect').setOrigin(0.5);
 
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
+        const submitBtn = new WideButton(this, 0, 0, 'Try again', this.nextBtnAudio);
         submitBtn.on('pointerdown', function () {
             this.scene.start("Scene3_15");
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
+        submitBtn.y = 1080 - 150
         submitBtn.alpha = 1
     }
 }
