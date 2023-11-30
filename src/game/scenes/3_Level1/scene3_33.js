@@ -115,6 +115,16 @@ hundreds of chemicals?`)
             isAnswer = !isAnswer
         });
 
+        // Progress bar.       
+        // 800 divided by 7 circles is 114. 35 is the offset.
+        var progressBarCircle1 = this.add.sprite(560 + 35, 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle2 = this.add.sprite(560 + (114 * 1 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle3 = this.add.sprite(560 + (114 * 2 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle4 = this.add.sprite(560 + (114 * 3 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle5 = this.add.sprite(560 + (114 * 4 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle6 = this.add.sprite(560 + (114 * 5 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle7 = this.add.sprite(560 + (114 * 6 + 35), 980, 'circle-empty').setOrigin(0.0)
+
         // Next button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);

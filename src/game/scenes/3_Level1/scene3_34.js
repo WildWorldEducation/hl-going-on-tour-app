@@ -25,6 +25,8 @@ export default class Scene3_34 extends Phaser.Scene {
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('BG3-23', 'assets/Images/3_Level1/myth-fact-bg.jpg');
         this.load.image('rotate-arrow', 'assets/Images/3_Level1/rotate-arrow.png');
+        this.load.image('circle-empty', 'assets/Images/General/circle-empty.png');
+        this.load.image('circle-full', 'assets/Images/General/circle-full.png');
         // Video.
         this.load.video('fact-vid', 'assets/Videos/3_Level1/fact-vid.mp4');
     }
@@ -110,6 +112,16 @@ addictive as traditional ones?`)
 
             isAnswer = !isAnswer
         });
+
+        // Progress bar.       
+        // 800 divided by 7 circles is 114. 35 is the offset.
+        var progressBarCircle1 = this.add.sprite(560 + 35, 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle2 = this.add.sprite(560 + (114 * 1 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle3 = this.add.sprite(560 + (114 * 2 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle4 = this.add.sprite(560 + (114 * 3 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle5 = this.add.sprite(560 + (114 * 4 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle6 = this.add.sprite(560 + (114 * 5 + 35), 980, 'circle-full').setOrigin(0.0)
+        var progressBarCircle7 = this.add.sprite(560 + (114 * 6 + 35), 980, 'circle-full').setOrigin(0.0)
 
         // Next button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
