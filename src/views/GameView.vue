@@ -101,6 +101,22 @@ import PhaserContainer from '../components/PhaserContainer.vue'
         <br />
         <div class="labelForRange">Minutes</div>
     </div>
+    <!-- Scene 7_23 range input -->
+    <div id="scene7_23-range-input" class="rangeTimeDiv" style="display: none;">
+        <datalist class="minute-mark" id="s7_23-range-label">
+            <option value="0" class="startMinute" id="s7_23-start-minute">0</option>
+            <option value="15" label="15">15</option>
+            <option value="30" id="s7_23-30m" label="30">30</option>
+            <option value="45" id="s7_23-45m" label="45">45</option>
+            <option value="60" id="s7_23-60m" label="60">60</option>
+            <option value="75" label="75">75</option>
+            <option value="90" id="s7_23-90m" label="90">90</option>
+            <option value="90+" id="s7_23-end-minute " label="90+">90+</option>
+        </datalist>
+        <input type="range" id="timeSpend-23" name="time-spend-22" list="markers" step="15" min="0" max="105" value="0" />
+        <br />
+        <div class="labelForRange">Minutes</div>
+    </div>
 </template>
 
 <style scoped>
@@ -484,6 +500,46 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 .rangeTimeDiv>input[type=range]:focus::-ms-fill-upper {
     background: #FFFFFF;
 }
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Tan comment - Due to the defaults css for option it will not align well with the value
+    So we have to manual resizing margin of some option for a better match
+*/
+#scene7_23-range-input {
+    position: absolute;
+    top: 80%;
+    left: 48%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 55% !important;
+}
+
+#s7_23-start-minute {
+    padding-left: 15px !important;
+    margin-right: 10px !important;
+
+}
+
+#s7_23-60m {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+}
+
+#s7_23-45m {
+    margin-left: 10px !important;
+}
+
+#s7_23-30m {
+    margin-left: 15px !important;
+}
+
+#s7_23-90m {
+    margin-left: 15px !important;
+}
+
+
+/* */
 
 /* ---------------------------------------------------------------------------------------------- */
 </style>

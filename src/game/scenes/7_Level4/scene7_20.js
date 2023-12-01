@@ -2,7 +2,6 @@ import SideButton from '../Custom_Classes/SideButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 
-
 export default class Scene7_20 extends Phaser.Scene {
     constructor() {
         super('Scene7_20');
@@ -65,7 +64,7 @@ export default class Scene7_20 extends Phaser.Scene {
          *  This is a very hacky solution to make a long line before the author name             *
          *  Will replace this if have better solution                                            *
          ****************************************************************************************/
-
+ 
         this.instructionText = this.add.rexBBCodeText(this.TextBg.x, this.TextBg.y,
             "We all have the same amount of \ntime: [b]24 hours in a day, 168 \nhours per week, and a \nwhopping 8,760 hours per year![/b] \n\nHow you spend the time we are all \ngranted is up to you! This is what \nTime Management is all about. \n[b]Managing your time wisely is \nessential to success in school, \nand like most skills [y=-35]_[/y] life in \ngeneral.",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center', lineSpacing: 10 }).setOrigin(-0.08, -0.16);

@@ -12,8 +12,6 @@ export default class Scene7_22 extends Phaser.Scene {
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
 
-        // Video.
-        this.load.video('vid7_20', 'assets/Videos/7_Level4/Scene7_20-vid.mp4');
 
         // // Module music.
 
@@ -35,6 +33,8 @@ export default class Scene7_22 extends Phaser.Scene {
         this.load.image('60-minute-green', 'assets/Images/7_Level4/sprite/time-clock-green/60-minutes.png');
         this.load.image('75-minute-green', 'assets/Images/7_Level4/sprite/time-clock-green/75-minutes.png');
         this.load.image('90-minute-green', 'assets/Images/7_Level4/sprite/time-clock-green/90-minutes.png');
+        // - text pointer sprite -
+        this.load.image('text-pointer', 'assets/Images/7_Level4/sprite/time-clock-green/text-pointer.png');
     }
 
     create() {
@@ -75,6 +75,29 @@ export default class Scene7_22 extends Phaser.Scene {
             "[b]How long do you \nspend time on \nschool work?[/b]",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center', lineSpacing: 18 }).setOrigin(0.5, 0.7);
         this.textInBubble.setScale(0.5);
+
+        // text pointer
+        const textPointer = this.add.sprite(940, 780, 'text-pointer').setScale(1.2);
+        textPointer.setAlpha(0);
+        // animation for text pointer will more somewhere else latter
+        const chain = this.tweens.chain({
+            tweens: [
+                {
+                    targets: [textPointer],
+                    alpha: 1,
+                    delay: 700,
+                    duration: 1000,
+                    repeat: 0,
+                },
+                {
+                    targets: [textPointer],
+                    alpha: 0,
+                    duration: 1000,
+                    repeat: 0,
+                    delay: 3000
+                },
+            ],
+        });
 
         // -- End of sprites in Scene -- //
 
@@ -154,7 +177,6 @@ export default class Scene7_22 extends Phaser.Scene {
                     break;
             }
         }
-
         // -+ End of clock based on input range +- //
 
         // Next button.
@@ -223,7 +245,6 @@ export default class Scene7_22 extends Phaser.Scene {
                 default:
                     break;
             }
-
         }
     }
 }

@@ -1,5 +1,16 @@
+/**
+ * * Creates an instance of SideButton ( next scene button).
+ * @param {*} scene - current scene
+ * @param {*} x - x position
+ * @param {*} y - y position
+ * @param {*} sprite - image inside the button
+ * @param {*} audio - sound when button is clicked
+ * @param {*} disable - lock button interaction in certain scene
+ * @param {*} enable - unlock button interaction when button was lock
+ * @memberof SideButton
+ */
 export default class SideButton extends Phaser.GameObjects.Container {
-    constructor(scene, x, y, sprite, audio) {
+    constructor(scene, x, y, sprite, audio, disable, enable) {
         super(scene);
         this.scene = scene;
         this.x = x;
@@ -43,8 +54,33 @@ export default class SideButton extends Phaser.GameObjects.Container {
             this.canvas.style.cursor = "default";
         });
         this.on('pointerdown', () => {
-            audio.play()
+            audio &&
+                audio.play();
         });
+
+        /* when the disable variable set to true 
+        *  things become grey
+        */
+        if (disable) {
+            this.disableInteractive();
+            btnGraphic.clear()
+                .fillStyle(0x737373, 1)
+                .fillRoundedRect(0, 0, 150, 100, 32)
+                .lineStyle(6, 0xffffff, 1)
+                .strokeRoundedRect(0, 0, 150, 100, 32);
+        }
+
+        /* when the enable variable set to true 
+        *  things become normal
+        */
+        if (enable) {
+            this.setInteractive(new Phaser.Geom.Rectangle(0, 0, 150, 100), Phaser.Geom.Rectangle.Contains);
+            btnGraphic.clear()
+                .fillStyle(0x004aad, 1)
+                .fillRoundedRect(0, 0, 150, 100, 32)
+                .lineStyle(6, 0xffffff, 1)
+                .strokeRoundedRect(0, 0, 150, 100, 32);
+        }
 
         this.scene.add.existing(this);
     }

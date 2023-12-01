@@ -80,8 +80,8 @@ Cab City, you can
 probably figure out why.`);
         });
 
-        const info2 = this.add.circle(1510, 350, 45, 0x004aad);
-        this.info2Text = this.add.rexBBCodeText(1510, 350,
+        const info2 = this.add.circle(1310, 350, 45, 0x004aad);
+        this.info2Text = this.add.rexBBCodeText(1310, 350,
             `[i]i[/i]`,
             { fontFamily: "Arial", fontSize: "108px", color: '#ffffff', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
@@ -100,7 +100,7 @@ probably figure out why.`);
             this.canvas.style.cursor = "default";
         });
         info2.on('pointerdown', () => {
-            var info2SpeechBubble = this.createSpeechBubble(1450, 0, 450, 250,
+            var info2SpeechBubble = this.createSpeechBubble(1250, 0, 450, 250,
                 `[b]Walk[/b]
                 
 NYC is considered one of the most
@@ -203,7 +203,7 @@ interesting things to see.`);
         bubble.fillRoundedRect(0, 0, bubbleWidth, bubbleHeight, 16);
 
         //  Calculate arrow coordinates
-        
+
         const point1X = Math.floor(bubbleWidth / 7);
         const point1Y = bubbleHeight;
         const point2X = Math.floor((bubbleWidth / 7) * 2);
