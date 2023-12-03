@@ -454,7 +454,7 @@ export default {
   }
 
   #module-1 span {
-    font-size: 4.5vh;
+    font-size: 3vw;
     line-height: 1;
   }
 }
