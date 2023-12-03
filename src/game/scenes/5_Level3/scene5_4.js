@@ -1,24 +1,24 @@
-import SideButton from '../Custom_Classes/SideButton.js'
-import BackButton from '../Custom_Classes/BackButton.js';
-import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import GenericScene from '../Custom_Classes/GenericScene.js';
 
-
-
-export default class Scene5_4 extends Phaser.Scene {
+export default class Scene5_4 extends GenericScene {
     constructor() {
-        super('Scene5_4');
+        super('Scene5_4', 'assets/Images/5_Level3/letter-scene/wood-bg.jpg');
+
+        this.contentString = `
+        Chicago is famous for many
+        things. [b]Click on the 7 stamps[/b] to
+        learn more.`;
+        this.titleString = "Facts about Chicago";
+        this.shouldTextBox = false;
+        this.previousScene = 'Scene5_3';
+        this.nextScene = 'Scene5_5';
     }
     preload() {
-        // Plugin.
-        this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-        // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        super.preload();
 
         // Sprites.
-        this.load.image('wood-bg', 'assets/Images/5_Level3/letter-scene/wood-bg.png');
         this.load.image('envelope', 'assets/Images/5_Level3/letter-scene/envelope.png');
-        this.load.image('tick', 'assets/Images/General/tick.png');
+        this.load.image('tick', 'assets/Images/5_Level3/letter-scene/tick.png');
         this.load.image('stamp1', 'assets/Images/5_Level3/letter-scene/stamp1.png');
         this.load.image('stamp2', 'assets/Images/5_Level3/letter-scene/stamp2.png');
         this.load.image('stamp3', 'assets/Images/5_Level3/letter-scene/stamp3.png');
@@ -27,211 +27,82 @@ export default class Scene5_4 extends Phaser.Scene {
         this.load.image('stamp6', 'assets/Images/5_Level3/letter-scene/stamp6.png');
         this.load.image('stamp7', 'assets/Images/5_Level3/letter-scene/stamp7.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('text-card1', 'assets/Images/General/text-card2.png');
+        this.load.image('text-card1', 'assets/Images/General/text-card.png');
 
     }
 
     create() {
-        // City bg.
-        const background = this.add.sprite(0, 0, 'wood-bg').setOrigin(0);
-        background.width = this.sys.canvas.width;
-        background.height = this.sys.canvas.height;
-
-        // Title box.
-        this.textBg = this.add.graphics();
-        this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 500, 150, 32);
-
-        this.instructionText = this.add.text(55, 75, "Facts about Chicago",
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
-        // Dealing with text quality.
-        this.instructionText.scale = 0.5
-        this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
+        super.create();
 
         // Text box
-        var textBox = this.add.sprite(900, 40, 'text-card1').setOrigin(0);
-        textBox.scale = 0.9;
-        textBox.scaleY = 0.45;
-        textBox.alpha = 0.9;
+        this.textBox = this.add.sprite(1400, 135, 'text-card1');
+        this.textBox.alpha = 0.9;
+        this.textBox.setScale(0.9);
 
-        this.contentText = this.add.rexBBCodeText(textBox.x, textBox.y,
+        this.contentText = this.add.rexBBCodeText(this.textBox.x, this.textBox.y + 20, 
             `
             Chicago is famous for many
             things. [b]Click on the 7 stamps[/b] to
             learn more.
             `,
-            { fontFamily: "Arial", fontSize: "65px", color: '#000000', align: 'center' }).setOrigin(0, -0.1);
-        // Dealing with text quality.
-        this.contentText.scale = 0.5;
+                { fontFamily: "Arial", fontSize: "38px", color: '#000000', align: 'center' });
+        this.contentText.setOrigin(0.6);
 
         // Envelope.
-        var envelope = this.add.sprite(0, 0, 'envelope').setOrigin(0.5);
-        envelope.x = this.cameras.main.width / 2
-        envelope.y = this.cameras.main.height / 2 + 100
-        envelope.setScale(0.9);
+        this.envelope = this.add.sprite(0, 0, 'envelope').setOrigin(0.5);
+        this.envelope.x = this.cameras.main.width / 2;
+        this.envelope.y = this.cameras.main.height / 2 + 100;
+        this.envelope.setScale(0.9);
 
-        this.addressText = this.add.rexBBCodeText(950, 650,
+        this.addressText = this.add.rexBBCodeText(1000, 655,
             `
             Ms. Haley Whites
             Summer Palm
             Main Street 97
             `,
-            { fontFamily: "Comic Sans MS", fontSize: "65px", color: '#000000', align: 'center' }).setOrigin(0, -0.1);
+            { fontFamily: "'Just Another Hand', cursive", fontSize: "112px", color: '#5A5A5A', align: 'center', lineSpacing: -45 }).setOrigin(0);
         // Dealing with text quality.
         this.addressText.scale = 0.5;
 
-        const stamp1 = this.add.sprite(375, 350, 'stamp1').setOrigin(0)
-        stamp1.setScale(0.65);
-        stamp1.angle = 5
-        stamp1.setInteractive({
-            useHandCursor: true
-        });
-        stamp1.on('pointerdown', () => {
-            localStorage.setItem("stamp1", "true");
-            this.scene.start("Scene5_4A");
-        });
-
-        const stamp2 = this.add.sprite(600, 350, 'stamp2').setOrigin(0)
-        stamp2.setScale(0.65);
-        stamp2.angle = 1
-        stamp2.setInteractive({
-            useHandCursor: true
-        });
-        stamp2.on('pointerdown', () => {
-            localStorage.setItem("stamp2", "true");
-            this.scene.start("Scene5_4B");
-        });
-
-        const stamp3 = this.add.sprite(775, 365, 'stamp3').setOrigin(0)
-        stamp3.setScale(0.65);
-        stamp3.angle = -3
-        stamp3.setInteractive({
-            useHandCursor: true
-        });
-        stamp3.on('pointerdown', () => {
-            localStorage.setItem("stamp3", "true");
-            this.scene.start("Scene5_4C");
-        });
-
-        const stamp4 = this.add.sprite(940, 350, 'stamp4').setOrigin(0)
-        stamp4.setScale(0.65);
-        stamp4.angle = 1
-        stamp4.setInteractive({
-            useHandCursor: true
-        });
-        stamp4.on('pointerdown', () => {
-            localStorage.setItem("stamp4", "true");
-            this.scene.start("Scene5_4D");
-        });
-
-        const stamp5 = this.add.sprite(1150, 330, 'stamp5').setOrigin(0)
-        stamp5.setScale(0.65);
-        stamp5.angle = 1
-        stamp5.setInteractive({
-            useHandCursor: true
-        });
-        stamp5.on('pointerdown', () => {
-            localStorage.setItem("stamp5", "true");
-            this.scene.start("Scene5_4E");
-        });
-
-        const stamp6 = this.add.sprite(1100, 500, 'stamp6').setOrigin(0)
-        stamp6.setScale(0.65);
-        stamp6.angle = 1
-        stamp6.setInteractive({
-            useHandCursor: true
-        });
-        stamp6.on('pointerdown', () => {
-            localStorage.setItem("stamp6", "true");
-            this.scene.start("Scene5_4F");
-        });
-
-        const stamp7 = this.add.sprite(1325, 350, 'stamp7').setOrigin(0)
-        stamp7.setScale(0.65);
-        stamp7.angle = -4
-        stamp7.setInteractive({
-            useHandCursor: true
-        });
-        stamp7.on('pointerdown', () => {
-            localStorage.setItem("stamp7", "true");
-            this.scene.start("Scene5_4G");
-        });
-
-        // circle is around +30, +20 (x, y)
-        const circle1 = this.add.circle(535, 530, 20, 0x01ac42);
-        var tick1 = this.add.sprite(535, 530, 'tick').setOrigin(0.5).setScale(0.6);
-
-        if (localStorage.getItem("stamp1") != "true") {
-            circle1.setAlpha(0)
-            tick1.setAlpha(0)
+        // STAMPS
+        const createStamp = (x, y, stampName, angle, sceneName) => {
+            const stamp = this.add.sprite(x, y, stampName).setOrigin(0);
+            stamp.angle = angle;
+            stamp.setInteractive({
+                useHandCursor: true
+            });
+            stamp.on('pointerdown', () => {
+                this.nextBtnAudio.play();
+                localStorage.setItem(stampName, "true");
+                this.scene.start(sceneName);
+            });
         }
 
-        const circle2 = this.add.circle(610, 360, 20, 0x01ac42);
-        var tick2 = this.add.sprite(610, 360, 'tick').setOrigin(0.5).setScale(0.6);
+        const stamp1 = createStamp(375, 350, 'stamp1', 5, 'Scene5_4A');
+        const stamp2 = createStamp(600, 350, 'stamp2', 1, 'Scene5_4B');
+        const stamp3 = createStamp(775, 365, 'stamp3', -3, 'Scene5_4C');
+        const stamp4 = createStamp(940, 350, 'stamp4', 1, 'Scene5_4D');
+        const stamp5 = createStamp(1150, 330, 'stamp5', 1, 'Scene5_4E');
+        const stamp6 = createStamp(1100, 500, 'stamp6', 1, 'Scene5_4F');
+        const stamp7 = createStamp(1325, 350, 'stamp7', -4, 'Scene5_4G');
 
-        if (localStorage.getItem("stamp2") != "true") {
-            circle2.setAlpha(0)
-            tick2.setAlpha(0)
+        const createCheckmark = (x, y, stampName) => {
+            const circle = this.add.circle(x, y, 20, 0x01ac42);
+            var tick = this.add.sprite(x, y, 'tick').setOrigin(0.5);
+    
+            if (localStorage.getItem(stampName) != "true") {
+                circle.setAlpha(0);
+                tick.setAlpha(0);
+            }
         }
 
-        const circle3 = this.add.circle(790, 515, 20, 0x01ac42)
-        var tick3 = this.add.sprite(790, 515, 'tick').setOrigin(0.5).setScale(0.6);
-
-        if (localStorage.getItem("stamp3") != "true") {
-            circle3.setAlpha(0)
-            tick3.setAlpha(0)
-        }
-
-        const circle4 = this.add.circle(1060, 365, 20, 0x01ac42)
-        var tick4 = this.add.sprite(1060, 365, 'tick').setOrigin(0.5).setScale(0.6);
-
-        if (localStorage.getItem("stamp4") != "true") {
-            circle4.setAlpha(0)
-            tick4.setAlpha(0)
-        }
-
-        const circle5 = this.add.circle(1150, 425, 20, 0x01ac42)
-        var tick5 = this.add.sprite(1150, 425, 'tick').setOrigin(0.5).setScale(0.6);
-
-        if (localStorage.getItem("stamp5") != "true") {
-            circle5.setAlpha(0)
-            tick5.setAlpha(0)
-        }
-
-        const circle6 = this.add.circle(1240, 620, 20, 0x01ac42)
-        var tick6 = this.add.sprite(1240, 620, 'tick').setOrigin(0.5).setScale(0.6);
-
-        if (localStorage.getItem("stamp6") != "true") {
-            circle6.setAlpha(0)
-            tick6.setAlpha(0)
-        }
-
-        const circle7 = this.add.circle(1490, 365, 20, 0x01ac42)
-        var tick7 = this.add.sprite(1490, 365, 'tick').setOrigin(0.5).setScale(0.6);
-
-        if (localStorage.getItem("stamp7") != "true") {
-            circle7.setAlpha(0)
-            tick7.setAlpha(0)
-        }
-
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
-            this.nextBtnAudio.play();
-            this.scene.start("Scene5_5", { });
-        }, this);
-        nextBtn.y = nextBtn.y - 40;
-
-        // Back button.
-        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
-        backBtn.on('pointerdown', function () {
-            this.nextBtnAudio.play();
-            this.scene.start("Scene5_3", { });
-        }, this);
-        backBtn.y = backBtn.y - 40;
-
-        // Save user progress.
-        const save = new SaveProgress(this)
+        // CIRCLES
+        const check1 = createCheckmark(535, 530, 'stamp1');
+        const check2 = createCheckmark(610, 360, 'stamp2');
+        const check3 = createCheckmark(790, 515, 'stamp3');
+        const check4 = createCheckmark(1060, 365, 'stamp4');
+        const check5 = createCheckmark(1150, 425, 'stamp5');
+        const check6 = createCheckmark(1240, 620, 'stamp6');
+        const check7 = createCheckmark(1490, 365, 'stamp7');
     }
 }

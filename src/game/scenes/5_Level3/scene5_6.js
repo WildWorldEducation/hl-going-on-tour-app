@@ -1,62 +1,72 @@
-import SideButton from '../Custom_Classes/SideButton.js'
-import BackButton from '../Custom_Classes/BackButton.js'
+import GenericScene from '../Custom_Classes/GenericScene.js';
 
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
-
-export default class Scene5_6 extends Phaser.Scene {
+export default class Scene5_6 extends GenericScene {
     constructor() {
-        super('Scene5_6');
+        super('Scene5_6', 'assets/Videos/5_Level3/scene5-vid4.mp4');
+        this.isBackgroundVideo = true;
+        this.shouldTextBox = false;
+        this.titleString = "What Would YOU Do?";
+        this.previousScene = 'Scene5_5';
+        this.nextScene = 'Scene5_7';
     }
     preload() {
-        // Plugin.
-        this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        super.preload();
 
-        // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-        // Sprites.
-        this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('text-card1', 'assets/Images/General/text-card2.png');
-   
-        // Videos.
-        this.load.video('bg2', 'assets/Videos/5_Level3/skate-tablet.mp4');
+        this.load.image(this.sceneName + 'map-marker', 'assets/Images/5_Level3/map-marker-75.png');
     }
 
     create() {
-        // Video.
-        const background = this.add.video(0, 0, 'bg2').setOrigin(0);
-        background.width = this.sys.canvas.width;
-        background.height = this.sys.canvas.height;
-        background.play();
-
-        // Title.
-        this.textBg = this.add.graphics();
-        this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 500, 150, 32);
-        this.instructionText = this.add.text(55, 75, "What Would YOU Do?",
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
-        // Dealing with text quality.
-        this.instructionText.scale = 0.5
-        this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
-
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
+        super.create();
+        
+        // Creating the markers.
+        this.marker1 = this.add.image(555, 680, this.sceneName + 'map-marker').setOrigin(0.5);
+        this.marker1.setInteractive({
+            useHandCursor: true
+        });
+        this.marker1.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene5_7", { });
-        }, this);
-        nextBtn.y = nextBtn.y - 40
+            // pop up here
+        });
+        this.marker1.alpha = 0;
 
-        // Back button.
-        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
-        backBtn.on('pointerdown', function () {
+        this.marker2 = this.add.image(863, 350, this.sceneName + 'map-marker').setOrigin(0.5);
+        this.marker2.setInteractive({
+            useHandCursor: true
+        });
+        this.marker2.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene5_5", { });
-        }, this);
-        backBtn.y = backBtn.y - 40;
+            // pop up here
+        });
+        this.marker2.alpha = 0;
 
-        // Unlock module.
-        const unlock = new UnlockModule(5)
+        this.marker3 = this.add.image(1285, 795, this.sceneName + 'map-marker').setOrigin(0.5);
+        this.marker3.setInteractive({
+            useHandCursor: true
+        });
+        this.marker3.on('pointerdown', () => {
+            this.nextBtnAudio.play();
+            // pop up here
+        });
+        this.marker3.alpha = 0;
+
+        this.marker4 = this.add.image(1390, 665, this.sceneName + 'map-marker').setOrigin(0.5);
+        this.marker4.setInteractive({
+            useHandCursor: true
+        });
+        this.marker4.on('pointerdown', () => {
+            this.nextBtnAudio.play();
+            // pop up here
+        });
+        this.marker4.alpha = 0;
+
+        this.tweens.add({
+            targets: [this.marker1, this.marker2, this.marker3, this.marker4],
+            delay: 5000,
+            alpha: {
+                getStart: () => 0,
+                getEnd: () => 1
+              },
+            duration: 0,
+        });
     }
 }

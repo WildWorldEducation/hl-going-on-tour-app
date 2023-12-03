@@ -1,79 +1,63 @@
-import SideButton from '../Custom_Classes/SideButton.js'
-import BackButton from '../Custom_Classes/BackButton.js'
+import GenericScene from '../Custom_Classes/GenericScene.js';
 
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
-
-export default class Scene5_7 extends Phaser.Scene {
+export default class Scene5_7 extends GenericScene {
     constructor() {
-        super('Scene5_7');
+        super('Scene5_7', 'assets/Images/5_Level3/zoom-buildings.jpg');
+        this.titleString = "OR... go to some other Chicago sights?";
+        this.shouldTextBox = false;
+        this.previousScene = 'Scene5_6';
+        this.nextScene = 'Scene5_8';
+        this.titleBoxWidth = 800;
+        this.textBoxType = '3';
     }
     preload() {
-        // Plugin.
-        this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-        // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-        // Sprites.
-        this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('text-card1', 'assets/Images/General/text-card2.png');
-   
-        // Videos.
-        this.load.image('bg', 'assets/Images/5_Level3/zoom-buildings.png');
+        super.preload();
+        this.load.image(this.sceneName + 'stage', 'assets/Images/5_Level3/circled-images/stage.png');
+        this.load.image(this.sceneName + 'comedy', 'assets/Images/5_Level3/circled-images/comedy.png');
+        this.load.image(this.sceneName + 'cactus', 'assets/Images/5_Level3/circled-images/cactus.png');
+        this.load.image(this.sceneName + 'market', 'assets/Images/5_Level3/circled-images/market.png');
     }
 
     create() {
-        // Video.
-        const background = this.add.sprite(0, 0, 'bg').setOrigin(0);
-        background.width = this.sys.canvas.width;
-        background.height = this.sys.canvas.height;
+        super.create();
+        this.textBox = this.add.sprite(1400, 175, this.sceneName + 'text-box');
+        this.textBox.alpha = 0.9;
 
-        // Text box
-        var textBox = this.add.sprite(0, 0, 'text-card1').setOrigin(0);
-        textBox.x = this.sys.canvas.width/2 - textBox.width/2;
-        textBox.y = this.sys.canvas.height/2 - textBox.height/2;
+        this.contentText = this.add.rexBBCodeText(this.textBox.x - this.textBox.width/2 - 35, this.textBox.y - this.textBox.height/3 - 15, 
+        `
+            [b]Click on the images below[/b]
+            to explore some other sights
+            in Chicago!
+        `,
+                { fontFamily: "Arial", fontSize: "65px", color: '#000000', align: 'center' });
+        this.contentText.scale = 0.5;
 
-        this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
-            `
-            You have landed in Chicago and have 5
-            hours to see parts of the city.
-            [b]What would you do with that time?[/b]
+        const img1 = this.add.sprite(0, 0, this.sceneName + 'stage').setScale(0.4);
+        const img2 = this.add.sprite(0, 0, this.sceneName + 'comedy').setScale(0.4);
+        const img3 = this.add.sprite(0, 0, this.sceneName + 'cactus').setScale(0.4);
+        const img4 = this.add.sprite(0, 0, this.sceneName + 'market').setScale(0.4);
+        
+        img1.setInteractive({ cursor: 'pointer' });
+        img2.setInteractive({ cursor: 'pointer' });
+        img3.setInteractive({ cursor: 'pointer' });
+        img4.setInteractive({ cursor: 'pointer' });
 
-            Would you go to some of the classic spots?
-            [b]Click next[/b] to explore them.
-            `,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.6, 0.6);
-        // Dealing with text quality.
-        this.contentText.scale = 0.5
+        const createCircleBorder = () => {
+            let circleBorder = this.add.graphics();
+            circleBorder.lineStyle(4, 0xffffff, 1);
+            circleBorder.strokeCircle(0, 0, 155);
+            return circleBorder;
+        }
 
-        // Title.
-        this.textBg = this.add.graphics();
-        this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 750, 150, 32);
-        this.instructionText = this.add.text(55, 75, "OR... go to some other Chicago sights?",
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
-        // Dealing with text quality.
-        this.instructionText.scale = 0.5
-        this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
-
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
-            this.nextBtnAudio.play();
-            this.scene.start("Scene5_8", { });
-        }, this);
-        nextBtn.y = nextBtn.y - 40
-
-        // Back button.
-        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
-        backBtn.on('pointerdown', function () {
-            this.nextBtnAudio.play();
-            this.scene.start("Scene5_6", { });
-        }, this);
-        backBtn.y = backBtn.y - 40;
-
-        // Unlock module.
-        const unlock = new UnlockModule(5)
+        const circleBorder1 = createCircleBorder();
+        const circleBorder2 = createCircleBorder();
+        const circleBorder3 = createCircleBorder();
+        const circleBorder4 = createCircleBorder();
+        
+        const circle1Ctnr = this.add.container(400, 600, [img1, circleBorder1]);
+        const circle2Ctnr = this.add.container(800, 600, [img2, circleBorder2]);
+        const circle3Ctnr = this.add.container(1200, 600, [img3, circleBorder3]);
+        const circle4Ctnr = this.add.container(1600, 600, [img4, circleBorder4]);
+        //circle1Ctnr.scale = 0.45
     }
 }

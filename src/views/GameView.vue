@@ -55,6 +55,9 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     <!-- Text input, for the 4th module -->
     <textarea rows="10" style="display: none;" type="text" placeholder="Write down your answer here:" id="m4-notepad" />
 
+    <!-- Text input, for the 5th module -->
+    <textarea rows="10" style="display: none;" type="text" placeholder="Type your answer here:" id="m5-notepad"></textarea>
+
     <!-- Text area for scene 7_10 -->
     <textarea rows='15' style="display: none;" type="text" placeholder="Type your answer here:"
         id="scene7_10-book"></textarea>
@@ -234,6 +237,28 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
 #m4-notepad:focus-visible {
     border: none;
+}
+
+/* Text input from module 5: Chicago */
+#m5-notepad {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 57%;
+    left: 50%;
+    position: absolute;
+    transform: translate(7.5%, -60%);
+    width: 35% !important;
+    height: 70%;
+    resize: none;
+    border: dashed !important;
+    text-align: center;
+    font-size: medium;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0);
+}
+
+#m5-notepad:focus {
+    outline: none;
 }
 
 /* Check boxes from Module 4: NYC */

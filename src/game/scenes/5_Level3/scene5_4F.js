@@ -10,7 +10,7 @@ export default class Scene5_4F extends Phaser.Scene {
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         // Sprites.        
-        this.load.image('wood-bg', 'assets/Images/5_Level3/letter-scene/wood-bg.png');
+        this.load.image('wood-bg', 'assets/Images/5_Level3/letter-scene/wood-bg.jpg');
         this.load.image('envelope2', 'assets/Images/5_Level3/letter-scene/envelope2.png');
         this.load.image('city-decal', 'assets/Images/5_Level3/letter-scene/city-decal.png');
         this.load.image('heading-border', 'assets/Images/5_Level3/letter-scene/heading-border.png');
@@ -21,14 +21,12 @@ export default class Scene5_4F extends Phaser.Scene {
 
     create() {
         // BG.
-        var bg = this.add.sprite(0, 0, 'wood-bg').setOrigin(0)
-        var envelope2 = this.add.sprite(960, 540, 'envelope2').setOrigin(0.5)
-        envelope2.scale = 1.4
+        var bg = this.add.sprite(0, 0, 'wood-bg').setOrigin(0);
+        var envelope2 = this.add.sprite(960, 540, 'envelope2').setOrigin(0.5);
 
         const heading_border = this.add.sprite(950, 325, 'heading-border').setOrigin(0.5);
 
         const wavy = this.add.sprite(1500, 250, 'wavy').setOrigin(0.5);
-
         const sport = this.add.sprite(950, 675, 'sport').setOrigin(0.5).setScale(0.75);
 
         //Text.
@@ -36,7 +34,7 @@ export default class Scene5_4F extends Phaser.Scene {
             `[b]FACT 6[/b]`,
             { fontFamily: "Arial", fontSize: "84px", color: '#6E260E', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
-        this.heading.scale = 0.5
+        this.heading.scale = 0.5;
 
         this.text = this.add.text(900, 450,
             `
@@ -44,7 +42,7 @@ export default class Scene5_4F extends Phaser.Scene {
             `,
             { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
-        this.text.scale = 0.5
+        this.text.scale = 0.5;
 
         // Close button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

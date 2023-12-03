@@ -1,79 +1,46 @@
-import SideButton from '../Custom_Classes/SideButton.js';
-import BackButton from '../Custom_Classes/BackButton.js';
+import GenericScene from '../Custom_Classes/GenericScene.js';
 
-export default class Scene5_2 extends Phaser.Scene {
+
+export default class Scene5_2 extends GenericScene {
     constructor() {
-        super('Scene5_2');
+        super('Scene5_2', 'assets/Videos/5_Level3/scene5-vid1.mp4');
+        this.isBackgroundVideo = true;
+        //this.shouldContentText = false;
+        this.previousScene = 'Scene5_1';
+        this.nextScene = 'Scene5_3';
+        this.shouldTitleBox = false;
+        this.contentString = `
+        Chicago also has many nicknames
+        including "Second City", which refers
+        to the rebuilding effort following the
+        Great Chicago Fire of 1871 that
+        destroyed much of the city.`;
+        
     } 
     preload() {
-        // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-        // Video.
-        this.load.video('vid5-1', 'assets/Videos/5_Level3/scene5-vid1.mp4');
-
-        // Sprites.
-        this.load.image('text-card1', 'assets/Images/General/text-card2.png');
-        this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-
+        super.preload();
     }
 
     create() {
-        // Video.
-        const background = this.add.video(0, 0, 'vid5-1').setOrigin(0);
-        background.width = this.sys.canvas.width;
-        background.height = this.sys.canvas.height;
-        background.play();
+        super.create();
 
-        
-
-        // Text box
-        var textBox = this.add.sprite(0, 0, 'text-card1').setOrigin(0);
-        textBox.x = this.sys.canvas.width/2 - textBox.width/2;
-        textBox.y = this.sys.canvas.height/2 - textBox.height/2;
-        textBox.scale = 0.9;
+        this.textBox.alpha = 0;
+        this.contentText.alpha = 0;
+        this.contentText.x += 15;
 
         this.tweens.add({
-            targets: textBox,
-            ease: 'Expo.easeIn',
+            targets: this.textBox,
             alpha: {
                 getStart: () => 0,
                 getEnd: () => 0.9
               },
-            duration: 4000,
+            delay: 3000,
+            duration: 1000,
             repeat: 0,
             onComplete: () => {
-                this.contentText = this.add.rexBBCodeText(textBox.x + textBox.width/2, textBox.y + textBox.height/2,
-                    `
-                    Chicago also has many nicknames
-                    including "Second City", which refers
-                    to the rebuilding effort following the
-                    Great Chicago Fire of 1871 that
-                    destroyed much of the city.
-                    `,
-                    { fontFamily: "Arial", fontSize: "65px", color: '#000000', align: 'center' }).setOrigin(0.7, 0.625);
-                // Dealing with text quality.
-                this.contentText.scale = 0.5
+                this.contentText.alpha = 1;
             }
         });
-
-        
-
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
-            this.nextBtnAudio.play();
-            this.scene.start("Scene5_3", { });
-        }, this);
-        nextBtn.y = nextBtn.y - 40;
-
-        // Back button.
-        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
-        backBtn.on('pointerdown', function () {
-            this.nextBtnAudio.play();
-            this.scene.start("Scene5_1", { });
-        }, this);
-        backBtn.y = backBtn.y - 40;
+       
     }
 }
