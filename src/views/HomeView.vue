@@ -112,7 +112,7 @@ export default {
     },
     async deleteUser() {
       await this.usersStore.deleteUser(this.user.id)
-      this.usersStore.getUsers() 
+      this.usersStore.getUsers()
     },
     showStudentList() {
       this.isStudentList = true
@@ -148,7 +148,7 @@ export default {
 
       <div v-if="this.sessionDetailsStore.isAdmin" class="col-md-3" :class="{ hideStudentList: !isStudentList }">
         <div class="button-row">
-          <button class="btn btn-dark" @click="showStudentProgress()">
+          <button id="progressButton" class="btn btn-dark" @click="showStudentProgress()">
             <!-- Eye icon -->
             <svg xmlns="http://www.w3.org/2000/svg" height="25" width="30"
               viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -393,6 +393,11 @@ export default {
   display: none;
 }
 
+#progressButton {
+  display: none;
+}
+
+
 /* Screen smaller than 600px - 1 column */
 @media (max-width: 599px) {
   .grid-cards {
@@ -423,7 +428,13 @@ export default {
   .showStudentListBtn {
     display: block;
   }
+
+  #progressButton {
+    display: block;
+  }
+
 }
+
 
 /* Screen larger than 600px - 2 columns */
 @media (min-width: 600px) {
