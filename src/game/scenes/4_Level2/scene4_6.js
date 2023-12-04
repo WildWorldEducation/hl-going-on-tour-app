@@ -114,6 +114,7 @@ empower, and promote understanding.
 It was founded by Rocky Bucano and a group of iconic
 entrepreneurs and artists including Kurtis Blow, Ice T, LL Cool J,
 Nas, and many others.`)
+            popupImage.setTexture('hip-hop-museum')
             popupImage.setAlpha(1)
             closeBtn.alpha = 1
             closeBtn.setInteractive()
