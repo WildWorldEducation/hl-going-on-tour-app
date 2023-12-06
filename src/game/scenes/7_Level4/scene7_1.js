@@ -249,10 +249,6 @@ export default class Scene7_1 extends Phaser.Scene {
         }, this);
 
 
-
-
-
-
         // Save user progress.
         const save = new SaveProgress(this);
     }
