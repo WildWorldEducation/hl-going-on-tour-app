@@ -194,9 +194,8 @@ export default {
           <div id="module-1" class="grid-card level-button-outer"
             :class="{ 'completed': this.m1Status == 'completed', 'in-progress': this.m1Status == 'in progress', 'not-started': this.m1Status == 'not started' }">
             <a v-if="this.sessionDetailsStore.isAdmin" class="level-button-inner
-              module-1-unlocked"><span>Intro<br>&<br>Prelude</span></a>
-            <a v-else class="level-button-inner module-1-unlocked"
-              href="/game?resume=scene1_1"><span>Intro<br>&<br>Prelude</span></a>
+              module-1-unlocked"></a>
+            <a v-else class="level-button-inner module-1-unlocked" href="/game?resume=scene1_1"></a>
             <p>{{ m1Status }}</p>
           </div>
           <div id="module-2" class="grid-card level-button-outer"
@@ -477,6 +476,10 @@ export default {
 .thumbnail {
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#module-1 a {
+  background-image: url("/images/intro-and-prelude-level-thumbnail.jpg");
 }
 
 #module-2 a {
