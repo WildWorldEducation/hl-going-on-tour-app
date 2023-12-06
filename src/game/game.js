@@ -76,6 +76,7 @@ import Scene3_43 from './scenes/3_Level1/scene3_43.js'
 import Scene3_44 from './scenes/3_Level1/scene3_44.js'
 import Scene3_45 from './scenes/3_Level1/scene3_45.js'
 // Level 2: New York City
+import Scene4_0 from './scenes/4_Level2/scene4_0.js'
 import Scene4_1 from './scenes/4_Level2/scene4_1.js'
 import Scene4_2 from './scenes/4_Level2/scene4_2.js'
 import Scene4_3 from './scenes/4_Level2/scene4_3.js'
@@ -132,11 +133,36 @@ import Scene5_7 from './scenes/5_Level3/scene5_7.js'
 import Scene5_8 from './scenes/5_Level3/scene5_8.js'
 import Scene5_9 from './scenes/5_Level3/scene5_9.js'
 import Scene5_10 from './scenes/5_Level3/scene5_10.js'
+import Scene5_11 from './scenes/5_Level3/scene5_11.js'
+import Scene5_12 from './scenes/5_Level3/scene5_12.js'
+import Scene5_13 from './scenes/5_Level3/scene5_13.js'
+import Scene5_14 from './scenes/5_Level3/scene5_14.js'
+import Scene5_15 from './scenes/5_Level3/scene5_15.js'
+import Scene5_16 from './scenes/5_Level3/scene5_16.js'
+import Scene5_17 from './scenes/5_Level3/scene5_17.js'
+import Scene5_18 from './scenes/5_Level3/scene5_18.js'
+import Scene5_19 from './scenes/5_Level3/scene5_19.js'
+import Scene5_20 from './scenes/5_Level3/scene5_20.js'
+import Scene5_21 from './scenes/5_Level3/scene5_21.js'
+import Scene5_22 from './scenes/5_Level3/scene5_22.js'
+import Scene5_23 from './scenes/5_Level3/scene5_23.js'
+import Scene5_24 from './scenes/5_Level3/scene5_24.js'
+import Scene5_25 from './scenes/5_Level3/scene5_25.js'
+import Scene5_26 from './scenes/5_Level3/scene5_26.js'
+import Scene5_27 from './scenes/5_Level3/scene5_27.js'
+import Scene5_28 from './scenes/5_Level3/scene5_28.js'
+import Scene5_29 from './scenes/5_Level3/scene5_29.js'
+import Scene5_30 from './scenes/5_Level3/scene5_30.js'
+import Scene5_31 from './scenes/5_Level3/scene5_31.js'
+import Scene5_32 from './scenes/5_Level3/scene5_32.js'
+import Scene5_33 from './scenes/5_Level3/scene5_33.js'
+import Scene5_34 from './scenes/5_Level3/scene5_34.js'
 
 // On The Way
 import Scene6_1 from './scenes/6_OnTheWay/scene6_1.js'
 
 // Level 4: Las Vegas
+import Scene7_0 from './scenes/7_Level4/scene7_0.js'
 import Scene7_1 from './scenes/7_Level4/scene7_1.js'
 import Scene7_2 from './scenes/7_Level4/scene7_2.js'
 import Scene7_3 from './scenes/7_Level4/scene7_3.js'
@@ -170,6 +196,14 @@ import Scene7_19 from './scenes/7_Level4/scene7_19.js'
 import Scene7_20 from './scenes/7_Level4/scene7_20.js'
 import Scene7_21 from './scenes/7_Level4/scene7_21.js'
 import Scene7_22 from './scenes/7_Level4/scene7_22.js'
+import Scene7_23 from './scenes/7_Level4/scene7_23.js'
+import Scene7_24 from './scenes/7_Level4/scene7_24.js'
+import Scene7_25 from './scenes/7_Level4/scene7_25.js'
+import Scene7_26 from './scenes/7_Level4/scene7_26.js'
+import Scene7_27 from './scenes/7_Level4/scene7_27.js'
+import Scene7_28 from './scenes/7_Level4/scene7_28.js'
+import Scene7_29 from './scenes/7_Level4/scene7_29.js'
+import Scene7_30 from './scenes/7_Level4/scene7_30.js'
 
 // Declare array of scenes.
 var sceneArray = [
@@ -191,9 +225,10 @@ var sceneArray = [
     Scene3_38, Scene3_39,
     Scene3_40, Scene3_41, Scene3_42,
     Scene3_43, Scene3_44, Scene3_45,
-    Scene4_1, Scene4_2, Scene4_3,
+    Scene4_0, Scene4_1, Scene4_2, Scene4_3,
     Scene4_4, Scene4_4A, Scene4_4B, Scene4_4C,
-    Scene4_5, Scene4_5A, Scene4_5B, Scene4_5C, Scene4_5D, Scene4_5E, Scene4_5F, Scene4_6,
+    Scene4_5, Scene4_5A, Scene4_5B, Scene4_5C, Scene4_5D, Scene4_5E, Scene4_5F,
+    Scene4_6,
     Scene4_7,
     Scene4_8,
     Scene4_9, Scene4_9_correct, Scene4_9_incorrect,
@@ -211,13 +246,15 @@ var sceneArray = [
     Scene4_21, Scene4_22, Scene4_23, Scene4_24,
     Scene5_1, Scene5_2, Scene5_3,
     Scene5_4, Scene5_4A, Scene5_4B, Scene5_4C, Scene5_4D, Scene5_4E, Scene5_4F, Scene5_4G,
-    Scene5_5, Scene5_6, Scene5_7, Scene5_8,
-    Scene5_9,
-    Scene5_10,
+    Scene5_5, Scene5_6,
+    Scene5_7, Scene5_8, Scene5_9, Scene5_10, Scene5_11,
+    Scene5_12, Scene5_13, Scene5_14, Scene5_15, Scene5_16, Scene5_17, Scene5_18,
+    Scene5_19, Scene5_20, Scene5_21, Scene5_22, Scene5_23, Scene5_24, Scene5_25,
+    Scene5_26, Scene5_27, Scene5_28, Scene5_29, Scene5_30, Scene5_31, Scene5_32, Scene5_33, Scene5_34,
     Scene6_1,
-    Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7, Scene7_8, Scene7_9, Scene7_10, Scene7_11,
+    Scene7_0, Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7, Scene7_8, Scene7_9, Scene7_10, Scene7_11,
     Scene7_12, Scene7_13, Scene7_14, Scene7_15, Scene7_16, Scene7_16_A1, Scene7_16_A2, Scene7_16_A3, Scene7_16_B1, Scene7_16_B2, Scene7_16_B3, Scene7_16_C1, Scene7_16_C2,
-    Scene7_17, Scene7_18, Scene7_19, Scene7_20, Scene7_21, Scene7_22
+    Scene7_17, Scene7_18, Scene7_19, Scene7_20, Scene7_21, Scene7_22, Scene7_23, Scene7_24, Scene7_25, Scene7_26, Scene7_27, Scene7_28, Scene7_29, Scene7_30
 ]
 
 // Resume from last completed slide.---
