@@ -15,14 +15,13 @@ export default class Scene1_1 extends Phaser.Scene {
         this.load.audio("start", ["assets/Audio/SFX/1_Welcome/start.mp3"]);
 
         // Sprites.
-        // this.load.image('background1', 'assets/Images/1_Welcome/Backgrounds/theatre-lights-off.jpg');
-        // this.load.image('background2', 'assets/Images/1_Welcome/Backgrounds/theatre-lights-on.jpg');
-        this.load.image('bg-1-1', 'assets/Images/1_Welcome/Backgrounds/opening-screen.png');
+        this.load.image('bg-1-1A', 'assets/Images/1_Welcome/Backgrounds/theatre-lights-off.jpg');
+        this.load.image('bg-1-1B', 'assets/Images/1_Welcome/Backgrounds/theatre-lights-on.jpg');
 
         this.load.image('small-arrow', 'assets/Images/1_Welcome/Sprites/arrow-small.png');
         this.load.image('big-arrow', 'assets/Images/1_Welcome/Sprites/arrow-big.png');
 
-        //  this.load.image('logo', 'images/ontour-logo.png');
+        this.load.image('logo', 'images/ontour-logo.png');
     }
 
     create() {
@@ -38,21 +37,21 @@ export default class Scene1_1 extends Phaser.Scene {
         this.start = this.sound.add("start");
 
         // Background.
-        // var bg2 = this.add.sprite(0, 0, 'background2').setOrigin(0);
-        // bg2.displayWidth = this.sys.canvas.width;
-        // bg2.displayHeight = this.sys.canvas.height;
+        var bg2 = this.add.sprite(0, 0, 'bg-1-1B').setOrigin(0);
+        bg2.displayWidth = this.sys.canvas.width;
+        bg2.displayHeight = this.sys.canvas.height;
 
-        var bg = this.add.sprite(0, 0, 'bg-1-1').setOrigin(0);
+        var bg = this.add.sprite(0, 0, 'bg-1-1A').setOrigin(0);
         bg.setScale(2)
-        // bg.displayWidth = this.sys.canvas.width;
-        // bg.displayHeight = this.sys.canvas.height;
+        bg.displayWidth = this.sys.canvas.width;
+        bg.displayHeight = this.sys.canvas.height;
 
-        // this.tweens.add({
-        //     targets: bg,
-        //     alpha: 0,
-        //     duration: 1000,
-        //     repeat: 0,
-        // });
+        this.tweens.add({
+            targets: bg,
+            alpha: 0,
+            duration: 1000,
+            repeat: 0,
+        });
 
         // Start button.
         const startBtn = new WideButton(this, 0, 0, 'Start', this.start);
@@ -64,6 +63,6 @@ export default class Scene1_1 extends Phaser.Scene {
         startBtn.y = startBtn.y - 40
 
         // Logo.
-        //  var logo = this.add.sprite(50, 240, 'logo').setOrigin(0).setScale(1.1);
+        var logo = this.add.sprite(50, 240, 'logo').setOrigin(0).setScale(1.1);
     }
 }
