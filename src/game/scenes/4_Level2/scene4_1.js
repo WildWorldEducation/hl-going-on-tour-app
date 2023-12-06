@@ -1,4 +1,5 @@
 import SideButton from '../Custom_Classes/SideButton.js'
+import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import UnlockModule from '../Custom_Classes/UnlockModule.js'
 
@@ -45,6 +46,14 @@ the many music tours that play in
             this.scene.start("Scene4_2");
         }, this);
         nextBtn.y = nextBtn.y - 40
+
+        // Back button.
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
+        backBtn.on('pointerdown', function () {
+            this.scene.start("Scene4_0");
+        }, this);
+        backBtn.y = backBtn.y - 40
 
         // Title.
         this.textBg = this.add.graphics();
