@@ -516,7 +516,7 @@ export default {
 }
 
 #module-6 a {
-  background-image: url("/images/las-vegas-level-thumbnail.jpg");
+  background-image: url("/images/vegas-level-thumbnail.jpg");
   background-position: center;
 }
 
