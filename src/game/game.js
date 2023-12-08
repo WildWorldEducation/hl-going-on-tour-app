@@ -116,6 +116,7 @@ import Scene4_23 from './scenes/4_Level2/scene4_23.js'
 import Scene4_24 from './scenes/4_Level2/scene4_24.js'
 
 // Level 3: Chicago
+import Scene5_0 from './scenes/5_Level3/scene5_0.js'
 import Scene5_1 from './scenes/5_Level3/scene5_1.js'
 import Scene5_2 from './scenes/5_Level3/scene5_2.js'
 import Scene5_3 from './scenes/5_Level3/scene5_3.js'
@@ -205,6 +206,8 @@ import Scene7_28 from './scenes/7_Level4/scene7_28.js'
 import Scene7_29 from './scenes/7_Level4/scene7_29.js'
 import Scene7_30 from './scenes/7_Level4/scene7_30.js'
 
+import Scene8_0 from './scenes/8_Level5/scene8_0.js'
+
 // Declare array of scenes.
 var sceneArray = [
     Scene1_1, Scene1_2, Scene1_3, Scene1_4, Scene1_5,
@@ -244,7 +247,7 @@ var sceneArray = [
     Scene4_19,
     Scene4_20,
     Scene4_21, Scene4_22, Scene4_23, Scene4_24,
-    Scene5_1, Scene5_2, Scene5_3,
+    Scene5_0, Scene5_1, Scene5_2, Scene5_3,
     Scene5_4, Scene5_4A, Scene5_4B, Scene5_4C, Scene5_4D, Scene5_4E, Scene5_4F, Scene5_4G,
     Scene5_5, Scene5_6,
     Scene5_7, Scene5_8, Scene5_9, Scene5_10, Scene5_11,
@@ -254,7 +257,8 @@ var sceneArray = [
     Scene6_1,
     Scene7_0, Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7, Scene7_8, Scene7_9, Scene7_10, Scene7_11,
     Scene7_12, Scene7_13, Scene7_14, Scene7_15, Scene7_16, Scene7_16_A1, Scene7_16_A2, Scene7_16_A3, Scene7_16_B1, Scene7_16_B2, Scene7_16_B3, Scene7_16_C1, Scene7_16_C2,
-    Scene7_17, Scene7_18, Scene7_19, Scene7_20, Scene7_21, Scene7_22, Scene7_23, Scene7_24, Scene7_25, Scene7_26, Scene7_27, Scene7_28, Scene7_29, Scene7_30
+    Scene7_17, Scene7_18, Scene7_19, Scene7_20, Scene7_21, Scene7_22, Scene7_23, Scene7_24, Scene7_25, Scene7_26, Scene7_27, Scene7_28, Scene7_29, Scene7_30,
+    Scene8_0
 ]
 
 // Resume from last completed slide.---
