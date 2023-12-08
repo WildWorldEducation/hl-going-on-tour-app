@@ -405,6 +405,7 @@ export default {
 
   .grid-card {
     margin: auto;
+    font-size: 10vw;
   }
 
   #resumeGameLink {
@@ -441,6 +442,11 @@ export default {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .grid-card {
+    margin: auto;
+    font-size: 5vw;
+  }
+
   #module-1 span {
     font-size: 3.5vh;
   }
@@ -451,6 +457,12 @@ export default {
   .grid-cards {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .grid-card {
+    margin: auto;
+    font-size: 3vw;
+  }
+
 
   #module-1 span {
     font-size: 3vw;
@@ -480,38 +492,47 @@ export default {
 
 #module-1 a {
   background-image: url("/images/intro-and-prelude-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-2 a {
   background-image: url("/images/getting-ready-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-3 a {
   background-image: url("/images/nyc-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-4 a {
   background-image: url("/images/chicago-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-5 a {
   background-image: url("/images/on-the-way-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-6 a {
   background-image: url("/images/las-vegas-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-7 a {
   background-image: url("/images/california-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-8 a {
   background-image: url("/images/check-it-level-thumbnail.jpg");
+  background-position: center;
 }
 
 #module-9 a {
   background-image: url("/images/encore-level-thumbnail.jpg");
+  background-position: center;
 }
 
 
