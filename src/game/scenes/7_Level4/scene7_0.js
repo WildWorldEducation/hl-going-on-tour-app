@@ -13,7 +13,7 @@ export default class Scene7_0 extends Phaser.Scene {
 
         // Sprites.        
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('las-vegas-bg', '/assets/Images/7_Level4/backgrounds/vegas-level.jpg');
+        this.load.image('las-vegas-bg', '/assets/Images/7_Level4/vegas-level.jpg');
     }
 
     create() {
