@@ -120,6 +120,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
         <br />
         <div class="labelForRange">Minutes</div>
     </div>
+
+    <!-- text area for scene 8_3  -->
+    <textarea rows='20' style="display: none;" type="text" placeholder="Type your answer here:" id="scene8_3-book"
+        class="book-textarea"></textarea>
+    <!-- text area for scene 8_7  -->
+    <textarea rows='20' class="book-textarea" style="display: none;" type="text" placeholder="Type your answer here:"
+        id="scene8_7-book"></textarea>
 </template>
 
 <style scoped>
@@ -563,6 +570,56 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     margin-left: 15px !important;
 }
 
+/* California */
+/* -- */
+/* * Text area input for scene8_3 * */
+#scene8_3-book {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 7%;
+    left: 53.5%;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    width: 31% !important;
+    height: 84% !important;
+    border: dashed;
+    border-width: 4px;
+
+    text-align: center;
+    font-size: 'medium';
+    background-color: #fcf8eb;
+}
+
+#scene8_3-book:focus-visible {
+    resize: none;
+}
+
+
+/* -- */
+/* * Text area input for scene8_7 * */
+#scene8_7-book {
+    font-family: 'Open Sans';
+    z-index: 2;
+    top: 7%;
+    left: 53.5%;
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    width: 31% !important;
+    height: 84% !important;
+    border: dashed;
+    border-width: 4px;
+    text-align: center;
+    font-size: 'medium';
+    background-color: #fcf8eb;
+}
+
+#scene8_7-book:focus-visible {
+    resize: none;
+}
+
+textarea[class^="book-textarea"]::placeholder {
+    font-size: 2.5rem !important;
+}
 
 /* */
 
