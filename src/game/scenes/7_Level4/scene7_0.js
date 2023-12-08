@@ -13,12 +13,12 @@ export default class Scene7_0 extends Phaser.Scene {
 
         // Sprites.        
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-        this.load.image('las-vegas-level', '/assets/Images/7_Level4/backgrounds/las-vegas-level.jpg');
+        this.load.image('las-vegas-bg', '/assets/Images/7_Level4/backgrounds/vegas-level.jpg');
     }
 
     create() {
         // Background Sprite
-        var vegasLevel = this.add.sprite(0, 0, 'las-vegas-level').setOrigin(0);
+        var vegasLevel = this.add.sprite(0, 0, 'las-vegas-bg').setOrigin(0);
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
