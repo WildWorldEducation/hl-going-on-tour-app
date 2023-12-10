@@ -17,6 +17,7 @@ export default {
     return {
       user: {
         id: null,
+        username: null
       },
       resume: null,
       m1Status: 'not started',
@@ -28,7 +29,9 @@ export default {
       m7Status: 'not started',
       m8Status: 'not started',
       m9Status: 'not started',
-      isStudentList: true
+      isStudentList: true,
+      showModal: false,
+      deleteCheckUsername: null
     }
   },
   components: {
@@ -56,6 +59,7 @@ export default {
       for (let i = 0; i < this.usersStore.users.length; i++) {
         // Reset for each student.
         if (this.usersStore.users[i].id == userId) {
+          this.user.username = this.usersStore.users[i].username;
 
           this.m1Status = 'in progress'
           this.m2Status = 'not started'
@@ -111,14 +115,22 @@ export default {
       }
     },
     async deleteUser() {
-      await this.usersStore.deleteUser(this.user.id)
-      this.usersStore.getUsers()
+      if (this.deleteCheckUsername == this.user.username) {
+        await this.usersStore.deleteUser(this.user.id)
+        this.closeWarningModal()
+      }
     },
     showStudentList() {
       this.isStudentList = true
     },
     showStudentProgress() {
       this.isStudentList = false
+    },
+    showWarningModal() {
+      this.showModal = true;
+    },
+    closeWarningModal() {
+      this.showModal = false;
     }
   }
 }
@@ -177,7 +189,7 @@ export default {
                 fill="white" />
             </svg>
           </router-link>
-          <button class="btn btn-danger" @click="deleteUser()">
+          <button class="btn btn-danger" @click="showWarningModal()">
             <!-- Trash icon -->
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20"
               viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
@@ -306,6 +318,26 @@ export default {
       </div>
     </div>
   </main>
+
+  <!-- The User Deletion Warning Modal -->
+  <div v-if="showModal">
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <p>This action cannot be undone.</p>
+        <p>If you are sure you would like to delete the user, type their name below.</p>
+        <div class="mb-3">
+          <input v-model="deleteCheckUsername" type="text" class="form-control">
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-dark me-1" @click="closeWarningModal()">Cancel</button>
+          <button type="button" class="btn btn-danger" @click="deleteUser()">Delete User</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -578,5 +610,40 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white
+}
+
+
+/* The Warning Modal */
+.modal {
+  display: block;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  color: black;
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 400px;
+  /* Could be more or less, depending on screen size */
 }
 </style>
