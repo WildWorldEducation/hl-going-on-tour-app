@@ -53,7 +53,7 @@ export default class Scene4_18 extends Phaser.Scene {
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
             this.cheer.stop()
-            this.scene.start("Scene4_19");
+            this.scene.start("Scene4_19A");
         }, this);
         nextBtn.y = nextBtn.y - 40
 

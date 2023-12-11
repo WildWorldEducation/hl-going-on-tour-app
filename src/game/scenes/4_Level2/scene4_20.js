@@ -16,11 +16,9 @@ export default class Scene4_20 extends Phaser.Scene {
         //Sprites                
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('textBG4-20', 'assets/Images/General/text-card2.png');
+        this.load.image('smoking-tools', 'assets/Images/4_Level2/smoking-ways.png');
     }
-
     create() {
-        var clicks = 1
-
         // BG.
         this.cameras.main.setBackgroundColor("#959fe4");
 
@@ -32,41 +30,38 @@ export default class Scene4_20 extends Phaser.Scene {
         // Title.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 250, 150, 32);
+        this.textBg.fillRoundedRect(-30, 0, 280, 150, 32);
         this.titleText = this.add.text(55, 75,
             `Nicotine`,
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
-        this.titleText.scale = 0.5
+        this.titleText.scale = 0.5;
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         // Text background.
-        var textCard = this.add.sprite(600, 540, 'textBG4-20').setOrigin(0.5).setAlpha(0.9).setScale(0.9)
-        textCard.setAlpha(0)
+        const textCard = this.add.sprite(600, 540, 'textBG4-20').setOrigin(0.5).setAlpha(0.9).setScale(0.77, 1)
+
         //Text.
         this.text = this.add.rexBBCodeText(600, 540,
-            ``,
-            { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
-        // Dealing with text quality.
-        this.text.scale = 0.5
-        this.text
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', () => {
-            if (clicks == 1) {
-                textCard.setAlpha(1)
-                this.text.setText(`Nicotine is a stimulant that
-can [b]harm the developing
+            `Nicotine is a stimulant that
+can[b] harm the developing
 brain[/b], which [b]continues to
 grow until 25 years old[/b]. It
 is found in many e-cigarettes
 and vapes, though it may
-not be labelled.`)
-            }
-            else if (clicks == 2)
-                this.scene.start("Scene4_21");
-            clicks++
+not be labelled.`,
+            { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
+        // Dealing with text quality.
+        this.text.scale = 0.5;
+
+        // smoking tools sprite
+        const smokingTools = this.add.sprite(1400, 460, 'smoking-tools').setScale(0.75);
+
+        // Next button.
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
+        nextBtn.on('pointerdown', () => {
+            this.scene.start("Scene4_21");
         }, this);
         nextBtn.y = nextBtn.y - 40
 

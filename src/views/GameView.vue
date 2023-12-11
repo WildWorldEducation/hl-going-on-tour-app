@@ -55,6 +55,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     <!-- Text input, for the 4th module -->
     <textarea rows="10" style="display: none;" type="text" placeholder="Write down your answer here:" id="m4-notepad" />
 
+    <!-- ********************** Range Input For Scene 4_22 ***************************** -->
+    <div id="scene4_22-range-input" class="range-illness-stages" style="display: none;">
+        <input type="range" id="lung-popcorn-stage" name="lung-popcorn-stage" step="20" min="0" max="40" value="0" />
+        <br />
+    </div>
+
+
     <!-- Text input, for the 5th module -->
     <textarea rows="10" style="display: none;" type="text" placeholder="Type your answer here:" id="m5-notepad"></textarea>
 
@@ -245,6 +252,123 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 #m4-notepad:focus-visible {
     border: none;
 }
+
+/* ----------------------------------------------------------------------------------------------------- */
+/****** RANGE INPUT IN LEVEL 4 *******/
+/* -- */
+.range-illness-stages {
+    position: absolute;
+    top: 88%;
+    left: 59%;
+    z-index: 2;
+    width: 22% !important;
+    background: #959fe4;
+}
+
+/*=*/
+.range-illness-stages input[type=range] {
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background: transparent;
+}
+
+.range-illness-stages input[type=range]:focus {
+    outline: none;
+}
+
+.range-illness-stages input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 38px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #ffffff;
+    border-radius: 50px;
+    border: 5.5px solid #004bfe;
+}
+
+.range-illness-stages input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 1px #000fce;
+    border: 5px solid #ffffff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    background: #1b75b3;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -13.5px;
+    box-shadow: 1px 1px 1px 1px #000000;
+}
+
+.range-illness-stages input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ffffff;
+}
+
+.range-illness-stages input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 32px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #959fe4;
+    border-radius: 50px;
+    border: 4px solid #004bfe;
+}
+
+.range-illness-stages input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 1px #000fce;
+    border: 5px solid #ffffff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.range-illness-stages input[type=range]::-ms-track {
+    width: 100%;
+    height: 32px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.range-illness-stages input[type=range]::-ms-fill-lower {
+    background: #ffffff;
+    border: 4px solid #004bfe;
+    border-radius: 100px;
+    box-shadow: 0px 0px 0px #000000;
+}
+
+.range-illness-stages input[type=range]::-ms-fill-upper {
+    background: #ffffff;
+    border: 4px solid #004bfe;
+    border-radius: 100px;
+    box-shadow: 0px 0px 0px #000000;
+}
+
+.range-illness-stages input[type=range]::-ms-thumb {
+    box-shadow: 0px 0px 1px #000fce;
+    border: 5px solid #ffffff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: #1b75b3;
+    cursor: pointer;
+}
+
+.range-illness-stages input[type=range]:focus::-ms-fill-lower {
+    background: #ffffff;
+}
+
+.range-illness-stages input[type=range]:focus::-ms-fill-upper {
+    background: #ffffff;
+}
+
+/****** END OF RANGE INPUT IN LEVEL 4 *******/
 
 /* Text input from module 5: Chicago */
 #m5-notepad {

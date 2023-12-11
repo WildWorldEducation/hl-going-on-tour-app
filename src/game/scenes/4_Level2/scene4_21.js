@@ -13,9 +13,11 @@ export default class Scene4_21 extends Phaser.Scene {
         this.load.video('vid4-7', 'assets/Videos/4_Level2/vid4-7.mp4');
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+
         //Sprites                
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('textBG4-21', 'assets/Images/General/text-card.png');
+        this.load.image('smoking-tools', 'assets/Images/4_Level2/smoking-ways.png');
     }
 
     create() {
@@ -36,9 +38,9 @@ export default class Scene4_21 extends Phaser.Scene {
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         // Text background.
-        var textCard = this.add.sprite(600, 540, 'textBG4-21').setOrigin(0.5).setAlpha(0.9).setScale(1.2)
+        const textCard = this.add.sprite(1320, 230, 'textBG4-21').setOrigin(0.5).setAlpha(0.9).setScale(1.2, 1.3)
         //Text.
-        this.text = this.add.rexBBCodeText(600, 540,
+        this.text = this.add.rexBBCodeText(textCard.x, textCard.y,
             `Vape pens and e-cigs [b]contain chemicals
 and metals[/b]. These are just a few of
 thousands of [b]harmful and deadly
@@ -47,20 +49,82 @@ chemicals[/b] found in vapes and e-cigs:`,
         // Dealing with text quality.
         this.text.scale = 0.5
         this.text
+
+        // smoking tools sprite
+        const smokingTools = this.add.sprite(688, 740, 'smoking-tools').setScale(0.7);
+
+        // --  lines in this scene -- //
+        /** Because in the story book the line seem a little thick so We will draw
+         *  a thin rectangle to achieve the look
+        */
+        // shared width
+        const lineWidth = 3.5;
+
+        // line 1 
+        const line1 = this.add.graphics();
+        line1.fillStyle(0xffffff, 1);
+        line1.fillRect(-190, 930, 190, lineWidth);
+        line1.setAngle(-28);
+        // line 2
+        const line2 = this.add.graphics().fillStyle(0xffffff, 1);
+        line2.fillRect(530, 30, 270, lineWidth);
+        line2.setAngle(45);
+        // line 3
+        const line3 = this.add.graphics().fillStyle(0xffffff, 1);
+        line3.fillRect(610, 980, 140, lineWidth);
+        line3.setAngle(-24);
+        // line 4
+        const line4 = this.add.graphics().fillStyle(0xffffff, 1);
+        line4.fillRect(1255, 0, 200, lineWidth);
+        line4.setAngle(40);
+
+        // -- End of lines in this scene -- //
+
+        // += Text in this scene =+ //
+        // text 1
+        const text1 = this.add.rexBBCodeText(70, 930,
+            "Heavy metals such as \n[b]nickel, tin, lead[/b]",
+            { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
+        // Dealing with text quality.
+        text1.setScale(0.5);
+
+        // text 2
+        const text2 = this.add.rexBBCodeText(70, 300,
+            "[b]Diethylene glycol [y=-40]_[/y][/b] a toxic chemical used \nin antifreeze that is linked to lung disease",
+            { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
+        // Dealing with text quality.
+        text2.setScale(0.5);
+
+        // text 3
+        const text3 = this.add.rexBBCodeText(1085, 530,
+            "[b]Cadmium [y=-40]_[/y][/b] a toxic metal found \nin traditional cigarettes that \ncauses breathing problems and \ndisease",
+            { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
+        // Dealing with text quality.
+        text3.setScale(0.5);
+
+        // text 3
+        const text4 = this.add.rexBBCodeText(1140, 900,
+            "[b]Formaldehyde - [/b] toxic chemicals which \ncan be used in cleaning products, glue, \nand mortuaries!",
+            { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
+        // Dealing with text quality.
+        text4.setScale(0.5);
+
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
             this.scene.start("Scene4_22");
         }, this);
-        nextBtn.y = nextBtn.y - 40
+        nextBtn.y = nextBtn.y - 40;
 
         // Back button.        
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene4_20");
         }, this);
-        backBtn.y = backBtn.y - 40
+        backBtn.y = backBtn.y - 40;
+
+
 
         // Save user progress.
         const save = new SaveProgress(this)
