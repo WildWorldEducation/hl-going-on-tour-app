@@ -24,7 +24,7 @@ export default class Scene4_10 extends Phaser.Scene {
         var bg = this.add.sprite(0, 0, 'dj').setOrigin(0);
 
         // Text.
-        var textBG = this.add.sprite(600, 300, 'textBG4-10').setOrigin(0.5).setScale(1.7);
+        var textBG = this.add.sprite(600, 300, 'textBG4-10').setOrigin(0.5).setScale(1.7, 1.5);
         textBG.alpha = 0.9
         this.text = this.add.rexBBCodeText(600, 300,
             `Tonight you can choose to see a "triple threat"
@@ -37,17 +37,29 @@ Who do you want to see?
         // Dealing with text quality.
         this.text.scale = 0.5
 
-        // Buttons.
+        // // -- Buttons. -- // //
+        /**
+         * When a button was clicked we will change text and clear old button graphic with new one
+         */
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const btn1 = new WideButton2(this, 200, 600, 'Harry Styles', this.nextBtnAudio);
         btn1.on('pointerdown', function () {
             circle1.setAlpha(1)
             tick1.setAlpha(1)
-            this.textCardBg.alpha = 1
+            this.textCardBg.alpha = 1;
             this.text.setText(`Harry Edwards Styles is an English singer,
 songwriter and actor. He grew to fame as a part of the
 band One Direction. He then went solo and continued
 his success winning multiple awards.`);
+            // clear the old btn graphic to make new one with different triangle position based on button position
+            this.textCardBg.clear();
+            this.textCardBg.fillStyle(0xFFFFFF, 1);
+            this.textCardBg.fillRoundedRect(600, 600, 1000, 320, 16);
+            // The pointer triangle
+            var triangle = Phaser.Geom.Triangle.BuildRight(600 - 18, 600 + 50, 45, 45);
+            triangle = Phaser.Geom.Triangle.Rotate(triangle, 120.17);
+            this.textCardBg.fillTriangleShape(triangle);
+
         }, this);
 
         const btn2 = new WideButton2(this, 200, 720, 'Jennifer Lopez', this.nextBtnAudio);
@@ -55,10 +67,18 @@ his success winning multiple awards.`);
             circle2.setAlpha(1)
             tick2.setAlpha(1)
             this.textCardBg.alpha = 1
-            this.text.setText(`Jennifer Lopex is considered a pop culture icon,
+            this.text.setText(`Jennifer Lopez is considered a pop culture icon,
 and is often described as a triple threat entertainer -
 singer, actress, and dancer. She is considered the most
-influential Hispanic entertainer in North America.`)
+influential Hispanic entertainer in North America.`);
+            // clear the old btn graphic to make new one with different triangle position based on button position
+            this.textCardBg.clear();
+            this.textCardBg.fillStyle(0xFFFFFF, 1);
+            this.textCardBg.fillRoundedRect(600, 600, 1000, 320, 16);
+            // The pointer triangle
+            var triangle = Phaser.Geom.Triangle.BuildRight(600 - 18, 600 + 160, 45, 45);
+            triangle = Phaser.Geom.Triangle.Rotate(triangle, 120.17);
+            this.textCardBg.fillTriangleShape(triangle);
         }, this);
 
         const btn3 = new WideButton2(this, 200, 840, 'Jay-Z', this.nextBtnAudio);
@@ -71,19 +91,31 @@ aka Jay-Z, is a triple threat - American rapper, record
 executive, and media proprietor. He is one of the most
 influential hip-hop artists in history. He has been central
 to the creative and commercial success of artists
-including Kanye West, Rihanna, and J. Cole.`)
+including Kanye West, Rihanna, and J. Cole.`);
+            // clear the old btn graphic to make new one with different triangle position based on button position
+            this.textCardBg.clear();
+            this.textCardBg.fillStyle(0xFFFFFF, 1);
+            this.textCardBg.fillRoundedRect(600, 600, 1000, 320, 16);
+            // The pointer triangle
+            var triangle = Phaser.Geom.Triangle.BuildRight(600 - 18, 600 + 290, 45, 45);
+            triangle = Phaser.Geom.Triangle.Rotate(triangle, 120.17);
+            this.textCardBg.fillTriangleShape(triangle);
         }, this);
+        // // -- End Of Buttons -- // //
 
-        //Text card.
+        // // == Text Bubble graphic. == // //
         this.textCardBg = this.add.graphics();
         this.textCardBg.fillStyle(0xFFFFFF, 1);
         this.textCardBg.fillRoundedRect(600, 600, 1000, 320, 16);
-        this.textCardBg.alpha = 0
+        this.textCardBg.alpha = 0;
         this.text = this.add.text(1100, 760,
             ``,
             { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
-        this.text.scale = 0.5
+        this.text.scale = 0.5;
+
+
+        // // == End of Text Bubble graphic. == // // 
 
         // Ticks (checks)
         const circle1 = this.add.circle(530, 600, 30, 0x01ac42).setAlpha(0);
@@ -100,7 +132,7 @@ including Kanye West, Rihanna, and J. Cole.`)
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_11");
+            this.scene.start("Scene4_11A");
         }, this);
         nextBtn.y = nextBtn.y - 40
 

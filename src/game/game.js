@@ -98,7 +98,8 @@ import Scene4_9 from './scenes/4_Level2/scene4_9.js'
 import Scene4_9_correct from './scenes/4_Level2/scene4_9_correct.js'
 import Scene4_9_incorrect from './scenes/4_Level2/scene4_9_incorrect.js'
 import Scene4_10 from './scenes/4_Level2/scene4_10.js'
-import Scene4_11 from './scenes/4_Level2/scene4_11.js'
+import Scene4_11A from './scenes/4_Level2/scene4_11A.js'
+import Scene4_11B from './scenes/4_Level2/scene4_11B.js'
 import Scene4_12 from './scenes/4_Level2/scene4_12.js'
 import Scene4_13 from './scenes/4_Level2/scene4_13.js'
 import Scene4_14 from './scenes/4_Level2/scene4_14.js'
@@ -207,6 +208,22 @@ import Scene7_29 from './scenes/7_Level4/scene7_29.js'
 import Scene7_30 from './scenes/7_Level4/scene7_30.js'
 
 import Scene8_0 from './scenes/8_Level5/scene8_0.js'
+import Scene8_1 from './scenes/8_Level5/scene8_1.js'
+import Scene8_2 from './scenes/8_Level5/scene8_2.js'
+import Scene8_2A from './scenes/8_Level5/scene8_2A.js'
+import Scene8_2B from './scenes/8_Level5/scene8_2B.js'
+import Scene8_2C from './scenes/8_Level5/scene8_2C.js'
+import Scene8_2D from './scenes/8_Level5/scene8_2D.js'
+import Scene8_2E from './scenes/8_Level5/scene8_2E.js'
+import Scene8_2F from './scenes/8_Level5/scene8_2F.js'
+import Scene8_3 from './scenes/8_Level5/scene8_3.js'
+import Scene8_4 from './scenes/8_Level5/scene8_4.js'
+import Scene8_5 from './scenes/8_Level5/scene8_5.js'
+import Scene8_6 from './scenes/8_Level5/scene8_6.js'
+import Scene8_7 from './scenes/8_Level5/scene8_7.js'
+import Scene8_8 from './scenes/8_Level5/scene8_8.js'
+import Scene8_9 from './scenes/8_Level5/scene8_9.js'
+import Scene8_10 from './scenes/8_Level5/scene8_10.js'
 
 // Declare array of scenes.
 var sceneArray = [
@@ -236,7 +253,7 @@ var sceneArray = [
     Scene4_8,
     Scene4_9, Scene4_9_correct, Scene4_9_incorrect,
     Scene4_10,
-    Scene4_11,
+    Scene4_11A, Scene4_11B,
     Scene4_12,
     Scene4_13,
     Scene4_14,
@@ -258,7 +275,8 @@ var sceneArray = [
     Scene7_0, Scene7_1, Scene7_2, Scene7_3, Scene7_3A, Scene7_3B, Scene7_3C, Scene7_4, Scene7_5, Scene7_6, Scene7_7, Scene7_8, Scene7_9, Scene7_10, Scene7_11,
     Scene7_12, Scene7_13, Scene7_14, Scene7_15, Scene7_16, Scene7_16_A1, Scene7_16_A2, Scene7_16_A3, Scene7_16_B1, Scene7_16_B2, Scene7_16_B3, Scene7_16_C1, Scene7_16_C2,
     Scene7_17, Scene7_18, Scene7_19, Scene7_20, Scene7_21, Scene7_22, Scene7_23, Scene7_24, Scene7_25, Scene7_26, Scene7_27, Scene7_28, Scene7_29, Scene7_30,
-    Scene8_0
+    Scene8_0, Scene8_1, Scene8_2, Scene8_2A, Scene8_2B, Scene8_2C, Scene8_2D, Scene8_2E, Scene8_2F, Scene8_3, Scene8_4, Scene8_5, Scene8_6, Scene8_7, Scene8_8,
+    Scene8_9, Scene8_10
 ]
 
 // Resume from last completed slide.---
