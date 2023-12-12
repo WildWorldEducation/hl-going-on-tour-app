@@ -257,6 +257,37 @@ app.get('/api/user-progress/:id', function (req, res, next) {
         res.redirect('/')
 });
 
+// Save scene progress.
+app.put('/api/save-slide', function (req, res, next) {
+    let sqlQuery = "UPDATE users SET last_slide='" + req.body.scene + "' WHERE id = " + req.session.userId + ";";
+    let query = conn.query(sqlQuery, (err, results) => {
+        try {
+            if (err) {
+                throw err;
+            }
+            res.end();
+        } catch {
+            next(err)
+        }
+    });
+});
+
+// Unlock module.
+app.put('/api/unlock-module', function (req, res, next) {
+    let sqlQuery = "UPDATE users SET module_unlocked='" + req.body.moduleNum + "' WHERE id = " + req.session.userId + ";";
+    let query = conn.query(sqlQuery, (err, results) => {
+        try {
+            if (err) {
+                throw err;
+            }
+            res.end();
+        } catch {
+            next(err)
+        }
+    });
+});
+
+
 
 // Routes -----------------------------
 // The view, which is the SPA Vue app.
