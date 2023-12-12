@@ -29,6 +29,7 @@ export default {
       m7Status: 'not started',
       m8Status: 'not started',
       m9Status: 'not started',
+      lastSlide: null,
       isStudentList: true,
       showModal: false,
       deleteCheckUsername: null
@@ -71,7 +72,7 @@ export default {
           this.m8Status = 'not started'
           this.m9Status = 'not started'
 
-          // M3 unlocked
+          // Levels unlocked.
           if (this.usersStore.users[i].module_unlocked > 1) {
             this.m1Status = 'completed'
             this.m2Status = 'in progress'
@@ -111,6 +112,9 @@ export default {
               }
             }
           }
+
+          // Last slide.
+          this.lastSlide = this.usersStore.users[i].last_slide.toLowerCase();
         }
       }
     },
@@ -144,10 +148,10 @@ export default {
       </div>
       <div class="row grid-cards">
         <div id="resumeGameLink" class="grid-card resume-button-outer">
-          <a class="resume-button-inner" href="#"><span>Resume game</span></a>
+          <a class="resume-button-inner" :href="'/game?resume=' + lastSlide"><span>Resume game</span></a>
         </div>
         <div class="grid-card resume-button-outer">
-          <router-link id="restart-link" class="resume-button-inner" to="/game?resume=Scene1_1"><span>Restart
+          <router-link id="restart-link" class="resume-button-inner" to="/game?resume=scene1_1"><span>Restart
               game</span></router-link>
         </div>
       </div>
