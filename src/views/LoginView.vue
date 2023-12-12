@@ -1,3 +1,4 @@
+<!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
 <script>
 import router from "../router";
 
@@ -7,6 +8,12 @@ export default {
             username: null,
             password: null
         }
+    },
+    mounted() {
+        // To allow for logging in with Google.
+        let loginWithGoogleScript = document.createElement('script')
+        loginWithGoogleScript.setAttribute('src', 'https://accounts.google.com/gsi/client')
+        document.head.appendChild(loginWithGoogleScript)
     },
     methods: {
         LoginAttempt() {
