@@ -17,6 +17,11 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
+      path: '/create-account',
+      name: 'create-account',
+      component: () => import('../views/CreateAccountView.vue')
+    },
+    {
       path: '/game',
       name: 'game',
       component: () => import('../views/GameView.vue')
@@ -51,7 +56,8 @@ router.beforeEach(async (to) => {
     hasInitialLoadCompleted == false &&
     sessionDetailsStore.isLoggedIn == false &&
     // Avoid an infinite redirect
-    to.name !== 'login'
+    to.name !== 'login' &&
+    to.name !== 'create-account'
   ) {
     // redirect the user to the login page.
     return { name: 'login' }
