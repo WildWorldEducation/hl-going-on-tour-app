@@ -131,6 +131,7 @@ export default {
       this.isStudentList = false
     },
     showWarningModal() {
+      this.deleteCheckUsername = ""
       this.showModal = true;
     },
     closeWarningModal() {
@@ -330,7 +331,8 @@ export default {
       <!-- Modal content -->
       <div class="modal-content">
         <p>This action cannot be undone.</p>
-        <p>If you are sure you would like to delete the user, type their name below.</p>
+        <p>If you are sure you would like to delete the user (<strong>{{ user.username }}</strong>), type their name
+          below.</p>
         <div class="mb-3">
           <input v-model="deleteCheckUsername" type="text" class="form-control">
         </div>
