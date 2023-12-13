@@ -40,8 +40,27 @@ export default class Scene5_7 extends Phaser.Scene {
 
 
 
+        // Popups       
+        this.popupTextBg = this.add.graphics();
+        this.popupTextBg.fillStyle(0xFFFFFF, 1);
+        this.popupTextBg.fillRoundedRect(960 - 800, 320, 1600, 650, 32);
+        this.popupTextBg.alpha = 0
+        this.popupTextBgBorder = this.add.graphics();
+        this.popupTextBgBorder.lineStyle(6, 0x000000, 1);
+        this.popupTextBgBorder.strokeRoundedRect(960 - 800, 320, 1600, 650, 32);
+        this.popupTextBgBorder.alpha = 0
 
+        this.popupHeading = this.add.rexBBCodeText(660, 460,
+            ``,
+            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0);
+        // Dealing with text quality.
+        this.popupHeading.scale = 0.5
 
+        this.popupText = this.add.text(660, 540,
+            ``,
+            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0);
+        // Dealing with text quality.
+        this.popupText.scale = 0.5
 
         var popupImage = this.add.image(400, 640, 'hip-hop-museum');
         popupImage.scale = 1.1
@@ -100,14 +119,16 @@ export default class Scene5_7 extends Phaser.Scene {
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
-            this.popupHeading.setText('[b]Universal Hip Hop Museum[/b]')
-            this.popupText.setText(`The Universal Hip Hop Museum  in the Bronx celebrates and
-preserves the history of local and global Hip Hop to inspire,
-empower, and promote understanding.
-
-It was founded by Rocky Bucano and a group of iconic
-entrepreneurs and artists including Kurtis Blow, Ice T, LL Cool J,
-Nas, and many others.`)
+            this.popupHeading.setText('[b]Music Box Theatre — Is it Haunted?[/b]')
+            this.popupText.setText(`Catch a flick at an old-fashioned movie house that's haunted by
+the ghost of its old manager. The 800-seat theatre was built in the
+1920s — it opened, in fact, on Aug. 22, 1929, two months before
+the Great Depression.
+And the ghost of a former manager of the cinema is said to favor
+aisle four and has been known to cause the drapes to fall in both
+organ chambers at the same time if an organist displeases them. 
+`)
+            popupImage.setTexture('stage')
             popupImage.setAlpha(1)
             closeBtn.alpha = 1
             closeBtn.setInteractive()
@@ -138,14 +159,12 @@ Nas, and many others.`)
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
-            this.popupHeading.setText('[b]comedy Show[/b]')
-            this.popupText.setText(`An "comedy production" is a production of a play, musical,
-or revue that appears in such a venue in New York City.
-
-The comedy movement started in the 1950s as a reaction to
-the perceived commercialism of Broadway and provided less
-expensive venues for shows that have employed many future
-Broadway artists.`)
+            this.popupHeading.setText('[b]Second City Comedy Club[/b]')
+            this.popupText.setText(`Catch an improv show at the Chicago comedy club that's
+launched the careers of the likes of Steve Carell, Tina Fey, Amy
+Poehler, Stephen Colbert, Sam Richardson and many more. The
+theatre offers both sketch comedy and improv shows every night
+of the week. They also offer classes for youth and adults.`)
             popupImage.setTexture('comedy')
             popupImage.setAlpha(1)
             closeBtn.alpha = 1
@@ -177,16 +196,15 @@ Broadway artists.`)
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
-            this.popupHeading.setText('[b]The Dream House[/b]')
-            this.popupText.setText(`This "light and sound installation" has gone on in various forms
-for over two decades and features music and lighting. The sound
-and light can be experienced as a new form or new media: the
-sound and light enironment.
+            this.popupHeading.setText('[b]National Museum of Mexican Art[/b]')
+            this.popupText.setText(`Chicago has so many amazing museums including the National
+Museum of Mexican Art.
 
-Be prepared to encounter a new collection of pitches with every
-move you make, as you encounter the various resonating sound
-fields. Visitors have described "one of the most unusual things to
-do in NYC."`)
+This free museum exmplifies the culture of the area that many
+Mexican immigrants made their home in Chicago's early days,
+and has over 10,000 pieces that will steep you in the Mexican
+culture through various art forms such as paintings, textile art,
+and sculptures.`)
             popupImage.setTexture('cactus')
             popupImage.setAlpha(1)
             closeBtn.alpha = 1

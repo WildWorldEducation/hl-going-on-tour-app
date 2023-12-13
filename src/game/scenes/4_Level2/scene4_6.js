@@ -12,6 +12,7 @@ export default class Scene4_6 extends Phaser.Scene {
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("suction-cup", ["assets/Audio/SFX/7_Level4/suction-cup-pull.mp3"]);
         //Sprites        
         this.load.image('x-mark', 'assets/Images/General/x-mark.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
@@ -21,20 +22,26 @@ export default class Scene4_6 extends Phaser.Scene {
         this.load.image('dream-house', 'assets/Images/4_Level2/unknown-areas/dream-house.png');
         this.load.image('spyscape', 'assets/Images/4_Level2/unknown-areas/spyscape.png');
         this.load.image('text-card-4-6', 'assets/Images/General/text-card3.png');
+        this.load.image('tick', 'assets/Images/General/tick.png');
+
     }
 
     create() {
         // BG.
         var bg = this.add.sprite(0, 0, 'bg-4-6').setOrigin(0)
 
+        // Audio
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        this.suctionAudio = this.sound.add("suction-cup", { loop: false });
+
         // Popups       
         this.popupTextBg = this.add.graphics();
         this.popupTextBg.fillStyle(0xFFFFFF, 1);
-        this.popupTextBg.fillRoundedRect(960 - 800, 320, 1600, 650, 32);
-        this.popupTextBg.alpha = 0
+        this.popupTextBg.fillRoundedRect(960 - 800, 320, 1600, 660, 32);
+        this.popupTextBg.alpha = 0;
         this.popupTextBgBorder = this.add.graphics();
-        this.popupTextBgBorder.lineStyle(6, 0x000000, 1);
-        this.popupTextBgBorder.strokeRoundedRect(960 - 800, 320, 1600, 650, 32);
+        this.popupTextBgBorder.lineStyle(4, 0x004aad, 1);
+        this.popupTextBgBorder.strokeRoundedRect(960 - 800, 320, 1600, 660, 32);
         this.popupTextBgBorder.alpha = 0
 
         this.popupHeading = this.add.rexBBCodeText(660, 460,
@@ -81,13 +88,23 @@ export default class Scene4_6 extends Phaser.Scene {
         }, this);
         closeBtn.scale = 0.8
         closeBtn.alpha = 0
-        closeBtn.disableInteractive()
+        closeBtn.disableInteractive();
+
+        // The container of popup background
+        this.popupCtnr = this.add.container(0, 0, [this.popupTextBg, this.popupTextBgBorder, this.popupText, this.popupHeading, closeBtn, popupImage]);
+        this.popupCtnr.setDepth(10);
 
 
         // Circles.
         // 1.       
         var hipHopMuseum = this.add.image(0, 0, 'hip-hop-museum');
-        hipHopMuseum.setInteractive({ cursor: 'pointer' })
+        hipHopMuseum.setInteractive({ cursor: 'pointer' });
+        // tick for circle 1
+        const tickCircle1 = this.add.circle(hipHopMuseum.x + 110, hipHopMuseum.y + 100, 30, 0x01ac42);
+        tickCircle1.setScale(1.1).setAlpha(0);
+        const tick1 = this.add.sprite(hipHopMuseum.x + 110, hipHopMuseum.y + 100, 'tick').setOrigin(0.5);
+        tick1.setScale(1.1).setAlpha(0);
+
         hipHopMuseum.on('pointerdown', () => {
             //Hide circles.
             hipHopMuseum.setAlpha(0)
@@ -102,7 +119,11 @@ export default class Scene4_6 extends Phaser.Scene {
             spyScape.setAlpha(0)
             spyScape.disableInteractive()
             circleBorder4.setAlpha(0)
-
+            // play sound
+            this.suctionAudio.play();
+            // show green tick circle
+            tickCircle1.setAlpha(1);
+            tick1.setAlpha(1);
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
@@ -120,13 +141,22 @@ Nas, and many others.`)
             closeBtn.setInteractive()
         });
         var circleBorder1 = this.add.graphics();
-        circleBorder1.lineStyle(6, 0xffffff, 1);
+        circleBorder1.lineStyle(4, 0xffffff, 1);
         circleBorder1.strokeCircle(0, 0, 150);
-        var circle1Ctnr = this.add.container(960 - 185 - 300 - 70, 650, [hipHopMuseum, circleBorder1]);
+
+
+        var circle1Ctnr = this.add.container(960 - 185 - 300 - 70, 660, [hipHopMuseum, circleBorder1, tickCircle1, tick1]);
+
 
         // 2.        
         var offBroadway = this.add.image(0, 0, 'off-broadway');
-        offBroadway.setInteractive({ cursor: 'pointer' })
+        offBroadway.setInteractive({ cursor: 'pointer' });
+        // tick for circle 1
+        const tickCircle2 = this.add.circle(offBroadway.x + 110, offBroadway.y + 100, 30, 0x01ac42);
+        tickCircle2.setScale(1.1).setAlpha(0);
+        const tick2 = this.add.sprite(offBroadway.x + 110, offBroadway.y + 100, 'tick').setOrigin(0.5);
+        tick2.setScale(1.1).setAlpha(0);
+
         offBroadway.on('pointerdown', () => {
             //Hide circles.
             hipHopMuseum.setAlpha(0)
@@ -141,7 +171,11 @@ Nas, and many others.`)
             spyScape.setAlpha(0)
             spyScape.disableInteractive()
             circleBorder4.setAlpha(0)
-
+            // play sound
+            this.suctionAudio.play();
+            // show the green stick
+            tickCircle2.setAlpha(1);
+            tick2.setAlpha(1);
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
@@ -159,13 +193,18 @@ Broadway artists.`)
             closeBtn.setInteractive()
         });
         var circleBorder2 = this.add.graphics();
-        circleBorder2.lineStyle(6, 0xffffff, 1);
+        circleBorder2.lineStyle(4, 0xffffff, 1);
         circleBorder2.strokeCircle(0, 0, 150);
-        var circle2Ctnr = this.add.container(960 - 185, 650, [offBroadway, circleBorder2]);
+        var circle2Ctnr = this.add.container(960 - 185, 660, [offBroadway, circleBorder2, tickCircle2, tick2]);
 
         // 3.        
         var dreamHouse = this.add.image(0, 0, 'dream-house');
-        dreamHouse.setInteractive({ cursor: 'pointer' })
+        dreamHouse.setInteractive({ cursor: 'pointer' });
+        // tick for circle 3
+        const tickCircle3 = this.add.circle(dreamHouse.x + 110, dreamHouse.y + 100, 30, 0x01ac42);
+        tickCircle3.setScale(1.1).setAlpha(0);
+        const tick3 = this.add.sprite(dreamHouse.x + 110, dreamHouse.y + 100, 'tick').setOrigin(0.5);
+        tick3.setScale(1.1).setAlpha(0);
         dreamHouse.on('pointerdown', () => {
             //Hide circles.
             hipHopMuseum.setAlpha(0)
@@ -180,7 +219,11 @@ Broadway artists.`)
             spyScape.setAlpha(0)
             spyScape.disableInteractive()
             circleBorder4.setAlpha(0)
-
+            // play sound
+            this.suctionAudio.play();
+            // show green tick
+            tickCircle3.setAlpha(1);
+            tick3.setAlpha(1);
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
@@ -200,13 +243,18 @@ do in NYC."`)
             closeBtn.setInteractive()
         });
         var circleBorder3 = this.add.graphics();
-        circleBorder3.lineStyle(6, 0xffffff, 1);
+        circleBorder3.lineStyle(4, 0xffffff, 1);
         circleBorder3.strokeCircle(0, 0, 150);
-        var circle3Ctnr = this.add.container(960 + 185, 650, [dreamHouse, circleBorder3]);
+        var circle3Ctnr = this.add.container(960 + 185, 660, [dreamHouse, circleBorder3, tickCircle3, tick3]);
 
         // 4.        
         var spyScape = this.add.image(0, 0, 'spyscape');
-        spyScape.setInteractive({ cursor: 'pointer' })
+        spyScape.setInteractive({ cursor: 'pointer' });
+        // tick for circle 4
+        const tickCircle4 = this.add.circle(spyScape.x + 110, spyScape.y + 100, 30, 0x01ac42);
+        tickCircle4.setScale(1.1).setAlpha(0);
+        const tick4 = this.add.sprite(spyScape.x + 110, spyScape.y + 100, 'tick').setOrigin(0.5);
+        tick4.setScale(1.1).setAlpha(0);
         spyScape.on('pointerdown', () => {
             //Hide circles.
             hipHopMuseum.setAlpha(0)
@@ -221,7 +269,11 @@ do in NYC."`)
             spyScape.setAlpha(0)
             spyScape.disableInteractive()
             circleBorder4.setAlpha(0)
-
+            // play sound
+            this.suctionAudio.play();
+            // show green tick
+            tickCircle4.setAlpha(1);
+            tick4.setAlpha(1)
             // Show popup.
             this.popupTextBg.setAlpha(1)
             this.popupTextBgBorder.setAlpha(1)
@@ -239,9 +291,9 @@ Impossible."`)
             closeBtn.setInteractive()
         });
         var circleBorder4 = this.add.graphics();
-        circleBorder4.lineStyle(6, 0xffffff, 1);
+        circleBorder4.lineStyle(4, 0xffffff, 1);
         circleBorder4.strokeCircle(0, 0, 150);
-        var circle4Ctnr = this.add.container(960 + 185 + 300 + 70, 650, [spyScape, circleBorder4]);
+        var circle4Ctnr = this.add.container(960 + 185 + 300 + 70, 660, [spyScape, circleBorder4, tickCircle4, tick4]);
 
 
         // Instructions.
@@ -266,7 +318,7 @@ areas in New York City!`,
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
             this.scene.start("Scene4_7");
@@ -274,10 +326,10 @@ areas in New York City!`,
         nextBtn.y = nextBtn.y - 40
 
         // Back button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_5");
+            this.scene.start("Scene4_5", { isOpened: true });
         }, this);
         backBtn.y = backBtn.y - 40
 

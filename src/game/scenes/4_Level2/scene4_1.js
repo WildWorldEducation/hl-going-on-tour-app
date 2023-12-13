@@ -3,12 +3,18 @@ import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import UnlockModule from '../Custom_Classes/UnlockModule.js'
 
-
 export default class Scene4_1 extends Phaser.Scene {
     constructor() {
         super('Scene4_1');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         // Sprites.
@@ -18,6 +24,14 @@ export default class Scene4_1 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         var bg = this.add.sprite(0, 0, 'overhead-view4_1').setOrigin(0);
         var tween = this.tweens.add({
             targets: bg,
@@ -43,7 +57,7 @@ the many music tours that play in
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_2");
+            this.scene.start("Scene4_2", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
 

@@ -17,7 +17,9 @@ export default class Scene4_5A extends Phaser.Scene {
 
     create() {
         // BG.
-        var bg = this.add.sprite(0, 0, 'bg-blurred-4-5').setOrigin(0)
+        this.cameras.main.setBackgroundColor("#000000");
+        var bg = this.add.sprite(0, 0, 'bg-blurred-4-5').setOrigin(0);
+        bg.setAlpha(0.3); // we set alpha for bg on top of a camera color to make the veil effect
 
         //Text.
         this.textBg = this.add.graphics();
@@ -45,11 +47,20 @@ Eiffel Tower fame).`,
         // image
         var image = this.add.sprite(300, 160, 'statue-of-liberty').setOrigin(0)
 
+        // popup window container
+        this.windowCntr = this.add.container(0, 0, [this.textBg, this.heading, this.text, image]).setAlpha(0)
+
+        // the animation for this scene
+        this.tweens.add({
+            targets: this.windowCntr,
+            alpha: 1,
+            duration: 500
+        })
         // Close button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const closeBtn = new CloseButton(this, 1920 - 240, 170, 'x-mark', this.nextBtnAudio);
         closeBtn.on('pointerdown', function () {
-            this.scene.start('Scene4_5');
+            this.scene.start('Scene4_5', { isOpened: true });
         }, this);
     }
 }
