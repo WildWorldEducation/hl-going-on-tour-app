@@ -18,7 +18,7 @@ export default class Scene4_4C extends Phaser.Scene {
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         // Sprites.        
-        this.load.image('wood-bg-4-4', 'assets/Images/4_Level2/stamps/wood-bg.jpg');
+        this.load.image('wood-bg-4-4-blur', 'assets/Images/8_Level5/Backgrounds/wood-background-blur.png');
         this.load.image('x-mark', 'assets/Images/General/x-mark.png');
         this.load.image('text-bg-4-4', 'assets/Images/General/text-card.png');
         this.load.image('heading-border-4-4', 'assets/Images/4_Level2/stamps/heading-border.png');
@@ -39,8 +39,9 @@ export default class Scene4_4C extends Phaser.Scene {
         }
 
         // BG.
-        var bg = this.add.sprite(0, 0, 'wood-bg-4-4').setOrigin(0)
-
+        this.cameras.main.setBackgroundColor("#000000");
+        var bg = this.add.sprite(0, 0, 'wood-bg-4-4-blur').setOrigin(0);
+        bg.setAlpha(0.3); // we set alpha for bg on top of a camera color to make the veil effect
         // Envelope.
         var envelope2 = this.add.sprite(960, 540, 'envelope2').setOrigin(0.5)
         envelope2.scale = 1.4

@@ -94,6 +94,7 @@ import Scene4_5F from './scenes/4_Level2/scene4_5F.js'
 import Scene4_6 from './scenes/4_Level2/scene4_6.js'
 import Scene4_7 from './scenes/4_Level2/scene4_7.js'
 import Scene4_8 from './scenes/4_Level2/scene4_8.js'
+import Scene4_8A from './scenes/4_Level2/scene4_8A.js'
 import Scene4_9 from './scenes/4_Level2/scene4_9.js'
 import Scene4_9_correct from './scenes/4_Level2/scene4_9_correct.js'
 import Scene4_9_incorrect from './scenes/4_Level2/scene4_9_incorrect.js'
@@ -254,7 +255,7 @@ var sceneArray = [
     Scene4_5, Scene4_5A, Scene4_5B, Scene4_5C, Scene4_5D, Scene4_5E, Scene4_5F,
     Scene4_6,
     Scene4_7,
-    Scene4_8,
+    Scene4_8, Scene4_8A,
     Scene4_9, Scene4_9_correct, Scene4_9_incorrect,
     Scene4_10,
     Scene4_11A, Scene4_11B,
