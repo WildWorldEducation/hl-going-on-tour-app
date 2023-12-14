@@ -88,7 +88,7 @@ Harry Styles and so many more.`)
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_6");
+            this.scene.start("Scene4_7");
         }, this);
         backBtn.y = backBtn.y - 40
 
