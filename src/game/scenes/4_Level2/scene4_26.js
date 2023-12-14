@@ -19,7 +19,6 @@ export default class Scene4_26 extends Phaser.Scene {
 
         // Music.
         this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
-
         // // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("metal-clap-sound", ["assets/Audio/SFX/4_Level2/metal-clap-sound.mp3"]);

@@ -61,10 +61,12 @@ chemicals[/b] found in vapes and e-cigs:`,
             { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
         this.text.scale = 0.5
-        this.text
+        this.text;
+        // text instruction container
+        const instructionCtnr = this.add.container(0, 0, [textCard, this.text])
 
         // smoking tools sprite
-        const smokingTools = this.add.sprite(688, 740, 'smoking-tools').setScale(0.7);
+        const smokingTools = this.add.sprite(1400, 460, 'smoking-tools').setScale(0.7);
 
         // --  lines in this scene -- //
         /** Because in the story book the line seem a little thick so We will draw
@@ -103,14 +105,14 @@ chemicals[/b] found in vapes and e-cigs:`,
 
         // text 2
         const text2 = this.add.rexBBCodeText(70, 300,
-            "[b]Diethylene glycol [y=-40]_[/y][/b] a toxic chemical used \nin antifreeze that is linked to lung disease",
+            "[b]Diethylene glycol [y=-28]_[/y][/b] a toxic chemical used \nin antifreeze that is linked to lung disease",
             { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
         // Dealing with text quality.
         text2.setScale(0.5);
 
         // text 3
         const text3 = this.add.rexBBCodeText(1085, 530,
-            "[b]Cadmium [y=-40]_[/y][/b] a toxic metal found \nin traditional cigarettes that \ncauses breathing problems and \ndisease",
+            "[b]Cadmium [y=-28]_[/y][/b] a toxic metal found \nin traditional cigarettes that \ncauses breathing problems and \ndisease",
             { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
         // Dealing with text quality.
         text3.setScale(0.5);
@@ -121,6 +123,58 @@ chemicals[/b] found in vapes and e-cigs:`,
             { fontFamily: "Arial", fontSize: "64px", color: '#000000', align: 'center' }).setOrigin(0);
         // Dealing with text quality.
         text4.setScale(0.5);
+
+        /** For Each line and text we add a container for the animate purpose */
+        const line1Text1 = this.add.container(0, 0, [text1, line1]).setAlpha(0);
+        const line2Text2 = this.add.container(0, 0, [text2, line2]).setAlpha(0);
+        const line3Text3 = this.add.container(0, 0, [text3, line3]).setAlpha(0);
+        const line4Text4 = this.add.container(0, 0, [text4, line4]).setAlpha(0);
+
+        // // _=_ Animation Section _=_ // //
+        // first we have to turn all elements in this scene transparent
+        instructionCtnr.setAlpha(0);
+        this.tweens.chain({
+            tweens: [
+                {
+                    targets: smokingTools,
+                    x: 688,
+                    y: 740,
+                    duration: 1000,
+                    delay: 100,
+                },
+                {
+                    targets: instructionCtnr,
+                    alpha: 1,
+                    duration: 100,
+                },
+                {
+                    targets: line3Text3,
+                    alpha: 1,
+                    duration: 700,
+                    delay: 100
+                },
+                {
+                    targets: line4Text4,
+                    alpha: 1,
+                    duration: 700,
+                    delay: 100
+                },
+                {
+                    targets: line1Text1,
+                    alpha: 1,
+                    duration: 700,
+                    delay: 100
+                },
+                {
+                    targets: line2Text2,
+                    alpha: 1,
+                    duration: 700,
+                    delay: 100
+                },
+            ]
+        })
+
+        // // _=_ End Of Tween Animation _=_ // //
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

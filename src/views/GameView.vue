@@ -218,7 +218,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 /* Text input from Module 4: NYC */
 #talents {
     font-family: 'Open Sans', sans-serif;
-    border: 2px dashed black;
+    border: 3.5px dashed black;
     z-index: 2;
     top: 57%;
     left: 50%;
@@ -230,6 +230,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     font-size: medium;
     font-style: italic;
     aspect-ratio: 4.3 / 1;
+    background-color: rgb(255, 255, 255, 0.2);
 }
 
 /* Text input from Module 4: NYC */

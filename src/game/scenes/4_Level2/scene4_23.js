@@ -3,7 +3,6 @@ import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import CustomWhiteTextButton from '../Custom_Classes/CustomWhiteTextBtn.js'
 
-
 export default class Scene4_23 extends Phaser.Scene {
     constructor() {
         super('Scene4_23');
@@ -14,8 +13,8 @@ export default class Scene4_23 extends Phaser.Scene {
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-        // Music.
-        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
+        // Video.   
+        this.load.video('vid4-7', 'assets/Videos/4_Level2/vid4-7.mp4');
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -234,11 +233,28 @@ next button to continue.`,
         this.text;
 
         // Light bulb and light effect
-        const glowEffect = this.add.image(0, 0, 'glow-effect').setScale(1.3).setOrigin(0.15, 1);
+        const glowEffect = this.add.image(0, 0, 'glow-effect').setScale(1.3).setOrigin(0.16, 1);
 
         const lightBulb = this.add.image(1350, 455, 'light-bulb').setScale(0.15).setOrigin(-1.48, 2.55);
         lightBulb.setAngle(11);
         glowEffect.copyPosition(lightBulb);
+        this.lightBulbCtnr = this.add.container(0, 0, [glowEffect, lightBulb]).setAlpha(0);
+
+        const lightBulbChain = this.tweens.chain({
+            tweens: [{
+                targets: this.lightBulbCtnr,
+                alpha: 1,
+                duration: 1000,
+                ease: 'power-3',
+                repeat: 0,
+            },
+            {
+                targets: glowEffect,
+                alpha: 1,
+                duration: 1500
+            }]
+        })
+
         // // -- End of sprite in Scene4_23 -- // // 
 
         // Next button.
