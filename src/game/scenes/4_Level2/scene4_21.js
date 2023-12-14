@@ -31,6 +31,7 @@ export default class Scene4_21 extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
 
@@ -187,7 +188,7 @@ chemicals[/b] found in vapes and e-cigs:`,
         // Back button.        
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_20");
+            this.scene.start("Scene4_20", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40;
 

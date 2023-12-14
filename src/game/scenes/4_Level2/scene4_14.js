@@ -28,6 +28,7 @@ export default class Scene4_14 extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
 
@@ -61,7 +62,7 @@ pens, and laser pointers.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
-            this.music.stop()
+            //  this.music.stop()
             this.scene.start("Scene4_15", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
@@ -70,7 +71,7 @@ pens, and laser pointers.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_13");
+            this.scene.start("Scene4_13", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 

@@ -35,6 +35,7 @@ export default class Scene4_22 extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
 
@@ -181,7 +182,7 @@ about normal and a popcorn lung.`,
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.formUtil.hideElement("scene4_22-range-input");
-            this.scene.start("Scene4_21");
+            this.scene.start("Scene4_21", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
         // Save user progress.

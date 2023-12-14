@@ -25,9 +25,10 @@ export default class Scene4_9_correct extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
-        
+
         // Audio.        
         this.successAudio = this.sound.add("success-4-9", { loop: false });
         this.successAudio.play()

@@ -101,7 +101,7 @@ export default class Scene4_26 extends Phaser.Scene {
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_25");
+            this.scene.start("Scene4_25", { music: this.music });
         }, this);
 
         // Save user progress.

@@ -32,6 +32,7 @@ export default class Scene4_23 extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
 
@@ -268,7 +269,7 @@ next button to continue.`,
         // Back button.        
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_22");
+            this.scene.start("Scene4_22", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 

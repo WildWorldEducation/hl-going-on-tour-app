@@ -6,6 +6,9 @@ export default class Scene4_0 extends Phaser.Scene {
     constructor() {
         super('Scene4_0');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Music.
         this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
@@ -18,8 +21,13 @@ export default class Scene4_0 extends Phaser.Scene {
 
     create() {
         // Music.
-        this.music = this.sound.add("nyc-song", { loop: false });
-        this.music.play()
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.setVolume(0.5);
+            this.music.loop = true
+        }
 
         // BG.        
         var bg = this.add.sprite(0, 0, 'nyc-level').setOrigin(0);

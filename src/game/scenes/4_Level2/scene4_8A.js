@@ -37,6 +37,7 @@ export default class Scene4_8A extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
         // For needing to click the "Next" button twice to proceed.
@@ -102,7 +103,7 @@ Harry Styles and so many more.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_8");
+            this.scene.start("Scene4_8", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 

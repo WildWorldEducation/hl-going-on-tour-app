@@ -31,6 +31,7 @@ export default class Scene4_15 extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
 
@@ -89,7 +90,8 @@ export default class Scene4_15 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_14");
+            this.formUtil.hideElement("m4-checkboxes");
+            this.scene.start("Scene4_14", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 

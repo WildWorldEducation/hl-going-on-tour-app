@@ -30,6 +30,7 @@ export default class Scene4_19A extends Phaser.Scene {
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('nyc-song');
             this.music.play();
+            this.music.setVolume(0.5);
             this.music.loop = true
         }
 
@@ -137,7 +138,7 @@ even contain fentanyl
                 this.textCard.setScale(1.4, 2.1);
             }
             else if (clicks == 1)
-                this.scene.start("Scene4_17"); // Goto 4_17 instead of 4_18 to replicate the playbook flow
+                this.scene.start("Scene4_17", { music: this.music }); // Goto 4_17 instead of 4_18 to replicate the playbook flow
             clicks--
         }, this);
         backBtn.y = backBtn.y - 40;
