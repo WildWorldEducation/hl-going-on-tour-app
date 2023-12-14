@@ -157,7 +157,8 @@ export default {
         </div>
       </div>
     </div>
-    <button v-if="!isStudentList" @click="showStudentList()" class="btn btn-dark showStudentListBtn">back</button>
+    <button v-if="!isStudentList && this.sessionDetailsStore.isAdmin" @click="showStudentList()"
+      class="btn btn-dark showStudentListBtn">back</button>
     <div class="row">
       <div v-if="!this.sessionDetailsStore.isAdmin" class="row text-center mt-5">
         <h1>VISIT LEVELS</h1>
@@ -205,7 +206,8 @@ export default {
         </div>
         <StudentList @changeUserId="changeUserId($event)" />
       </div>
-      <div :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin, 'hideStudentProgress': isStudentList }"
+      <div
+        :class="{ 'col-md-9': this.sessionDetailsStore.isAdmin, 'hideStudentProgress': isStudentList && this.sessionDetailsStore.isAdmin }"
         style="height:calc(90vh-54px)">
         <div class="row grid-cards mt-3">
           <div id="module-1" class="grid-card level-button-outer"
