@@ -12,6 +12,8 @@ export default class Scene4_13 extends Phaser.Scene {
     }
 
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Video.
         this.load.video('vid4-4', 'assets/Videos/4_Level2/vid4-4.mp4');
         // Image

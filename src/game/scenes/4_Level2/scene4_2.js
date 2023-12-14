@@ -6,7 +6,14 @@ export default class Scene4_2 extends Phaser.Scene {
     constructor() {
         super('Scene4_2');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Video.
         this.load.video('vid4-2', 'assets/Videos/4_Level2/vid4-2.mp4');
         // Audio.
@@ -46,7 +53,7 @@ Hendricks in 1959.`,
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
             this.ambientSound.stop()
-            this.scene.start("Scene4_3");
+            this.scene.start("Scene4_3", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
 

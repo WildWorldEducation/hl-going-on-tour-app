@@ -8,9 +8,14 @@ export default class Scene4_16 extends Phaser.Scene {
     constructor() {
         super('Scene4_16');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("failed-bell", ["assets/Audio/SFX/4_Level2/failed-bell.mp3"]);
@@ -24,6 +29,14 @@ export default class Scene4_16 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // BG.        
         var bg = this.add.sprite(0, 0, 'bg4-16').setOrigin(0);
 

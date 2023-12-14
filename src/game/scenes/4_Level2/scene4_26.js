@@ -6,6 +6,9 @@ export default class Scene4_26 extends Phaser.Scene {
     constructor() {
         super('Scene4_26');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
 
         // Plugin. 
@@ -14,7 +17,8 @@ export default class Scene4_26 extends Phaser.Scene {
         // Video.
         this.load.video('vid4-26', 'assets/Videos/4_Level2/vid4-8.mp4');
 
-        // // Module music.
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
 
         // // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);

@@ -6,7 +6,14 @@ export default class Scene4_9 extends Phaser.Scene {
     constructor() {
         super('Scene4_9');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites        
@@ -16,6 +23,14 @@ export default class Scene4_9 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         var isCorrect = false
 
         // BG.
@@ -61,7 +76,7 @@ seconds! Who do you think held the record before Justin Bieber?`,
         btn1.on('pointerdown', function () {
             btn2Border.setAlpha(0)
             btn3Border.setAlpha(0)
-            btn1Border.setAlpha(1) 
+            btn1Border.setAlpha(1)
             isCorrect = true
         }, this);
 

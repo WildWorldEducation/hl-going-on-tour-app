@@ -7,7 +7,12 @@ export default class Scene4_17 extends Phaser.Scene {
     constructor() {
         super('Scene4_17');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Video.
         this.load.video('vid4-5', 'assets/Videos/4_Level2/vid4-5.mp4');
         // Audio.   
@@ -53,7 +58,7 @@ people snuck in their vapes.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
-            this.scene.start("Scene4_18", { cheer: this.cheer });
+            this.scene.start("Scene4_18", { cheer: this.cheer, music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
 

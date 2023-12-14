@@ -10,11 +10,14 @@ export default class Scene4_18 extends Phaser.Scene {
 
     init(data) {
         this.cheer = data.cheer;
+        this.music = data.music;
     }
 
     preload() {
         // Video.
         this.load.video('vid4-6', 'assets/Videos/4_Level2/vid4-6.mp4');
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -53,7 +56,7 @@ export default class Scene4_18 extends Phaser.Scene {
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
             this.cheer.stop()
-            this.scene.start("Scene4_19A");
+            this.scene.start("Scene4_19A", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
 

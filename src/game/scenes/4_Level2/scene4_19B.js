@@ -13,12 +13,16 @@ export default class Scene4_19B extends Phaser.Scene {
     constructor() {
         super('Scene4_19B');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Video.   
         this.load.video('question-man-vid', 'assets/Videos/4_Level2/question-man-vid.mp4');
-
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -28,6 +32,14 @@ export default class Scene4_19B extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         var clicks = 1
 
         /**
@@ -68,7 +80,7 @@ export default class Scene4_19B extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
-            this.scene.start("Scene4_20");
+            this.scene.start("Scene4_20", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40;
 

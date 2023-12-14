@@ -6,12 +6,16 @@ export default class Scene4_19A extends Phaser.Scene {
     constructor() {
         super('Scene4_19A');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Video.   
         this.load.video('smoking-man-vid', 'assets/Videos/4_Level2/smoking-man-1.mp4');
-
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -21,6 +25,14 @@ export default class Scene4_19A extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         var clicks = 1
 
         /**
@@ -87,7 +99,7 @@ even contain fentanyl
                 this.textCard.setScale(1.4, 2.1);
             }
             else if (clicks == 3)
-                this.scene.start("Scene4_19B");
+                this.scene.start("Scene4_19B", { music: this.music });
 
             clicks++
         }, this);

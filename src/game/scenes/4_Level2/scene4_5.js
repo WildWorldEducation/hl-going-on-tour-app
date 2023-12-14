@@ -8,10 +8,13 @@ export default class Scene4_5 extends Phaser.Scene {
     }
     init(data) {
         this.isOpened = data.isOpened; // a variable to tell that if this scene is opened before or not
+        this.music = data.music;
     }
     preload() {
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         //Sprites
         this.load.image('bg-4-5', 'assets/Images/4_Level2/phone/bg.jpg');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
@@ -22,6 +25,14 @@ export default class Scene4_5 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // BG.
         var bg = this.add.sprite(0, 0, 'bg-4-5').setOrigin(0)
         // Audio
@@ -199,7 +210,7 @@ export default class Scene4_5 extends Phaser.Scene {
         // Next button.
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_6");
+            this.scene.start("Scene4_6", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
 

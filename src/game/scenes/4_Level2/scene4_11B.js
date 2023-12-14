@@ -12,9 +12,16 @@ export default class Scene4_11B extends Phaser.Scene {
     constructor() {
         super('Scene4_11B');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -25,6 +32,14 @@ export default class Scene4_11B extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // BG.        
         const stage = this.add.sprite(0, 0, 'stage1').setOrigin(0);
         const stageOpen = this.add.sprite(0, 0, 'stage2').setOrigin(0).setAlpha(0);
@@ -83,7 +98,7 @@ talented musician because I can sing and play the guitar.`,
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
             this.formUtil.hideElement("talents");
-            this.scene.start("Scene4_12");
+            this.scene.start("Scene4_12", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40;
 

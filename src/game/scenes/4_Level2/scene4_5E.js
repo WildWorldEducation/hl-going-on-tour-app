@@ -4,9 +4,16 @@ export default class Scene4_5E extends Phaser.Scene {
     constructor() {
         super('Scene4_5E');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         // Sprites.        
@@ -16,6 +23,14 @@ export default class Scene4_5E extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // BG.
         this.cameras.main.setBackgroundColor("#000000");
         var bg = this.add.sprite(0, 0, 'bg-blurred-4-5').setOrigin(0);
@@ -59,7 +74,7 @@ the state of New York.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const closeBtn = new CloseButton(this, 1920 - 240, 170, 'x-mark', this.nextBtnAudio);
         closeBtn.on('pointerdown', function () {
-            this.scene.start('Scene4_5', { isOpened: true });
+            this.scene.start('Scene4_5', { isOpened: true, music: this.music });
         }, this);
     }
 }

@@ -10,10 +10,13 @@ export default class Scene4_15 extends Phaser.Scene {
     init(data) {
         // So that the second time incorrect it is different.
         this.timesWrong = data.timesWrong;
+        this.music = data.music;
     }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -23,6 +26,14 @@ export default class Scene4_15 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         if (typeof this.timesWrong == 'undefined') {
             this.timesWrong = 0
         }
@@ -66,10 +77,10 @@ export default class Scene4_15 extends Phaser.Scene {
             const box4 = document.getElementById("m4-checkbox-4").checked;
 
             if (box1 && box2 && box3 && box4) {
-                this.scene.start("Scene4_15_correct");
+                this.scene.start("Scene4_15_correct", { music: this.music });
             }
             else {
-                this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong });
+                this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong, music: this.music });
             }
 
         }, this);

@@ -12,6 +12,8 @@ export default class Scene4_14 extends Phaser.Scene {
     }
 
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites                
@@ -21,6 +23,14 @@ export default class Scene4_14 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // BG.        
         var bg = this.add.sprite(0, 0, 'bg4-13').setOrigin(0);
 
@@ -52,7 +62,7 @@ pens, and laser pointers.`,
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', () => {
             this.music.stop()
-            this.scene.start("Scene4_15");
+            this.scene.start("Scene4_15", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
 

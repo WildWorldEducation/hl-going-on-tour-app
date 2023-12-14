@@ -6,9 +6,16 @@ export default class Scene4_15_correct extends Phaser.Scene {
     constructor() {
         super('Scene4_15_correct');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("success-4-15", ["assets/Audio/SFX/4_Level2/success.mp3"]);
@@ -19,6 +26,14 @@ export default class Scene4_15_correct extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // Audio.        
         this.successAudio = this.sound.add("success-4-15", { loop: false });
         this.successAudio.play()

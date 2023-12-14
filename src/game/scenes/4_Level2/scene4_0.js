@@ -19,7 +19,7 @@ export default class Scene4_0 extends Phaser.Scene {
     create() {
         // Music.
         this.music = this.sound.add("nyc-song", { loop: false });
-        this.music.play() 
+        this.music.play()
 
         // BG.        
         var bg = this.add.sprite(0, 0, 'nyc-level').setOrigin(0);

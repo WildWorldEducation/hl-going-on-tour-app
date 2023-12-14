@@ -6,7 +6,14 @@ export default class Scene4_3 extends Phaser.Scene {
     constructor() {
         super('Scene4_3');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Video.
@@ -19,6 +26,14 @@ export default class Scene4_3 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         var bg = this.add.sprite(0, 0, 'statue-dark').setOrigin(0)
 
         var vid = this.add.video(0, 0, 'vid4-3').setOrigin(0);
@@ -68,7 +83,7 @@ Media City`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
-            this.scene.start("Scene4_4");
+            this.scene.start("Scene4_4", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
         nextBtn.alpha = 0

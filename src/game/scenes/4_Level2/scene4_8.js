@@ -7,9 +7,16 @@ export default class Scene4_8 extends Phaser.Scene {
     constructor() {
         super('Scene4_8');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         //Sprites        
@@ -20,6 +27,14 @@ export default class Scene4_8 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // For needing to click the "Next" button twice to proceed.
         this.clicks = 0;
 
@@ -63,7 +78,7 @@ Harry Styles and so many more.`)
                 var lights = this.add.sprite(0, 0, 'lights-4-8').setOrigin(0)
             }
             else if (this.clicks == 2) {
-                this.scene.start("Scene4_9");
+                this.scene.start("Scene4_9", { music: this.music });
             }
             this.clicks++
         }, this);

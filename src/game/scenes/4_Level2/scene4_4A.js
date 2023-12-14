@@ -4,9 +4,16 @@ export default class Scene4_4A extends Phaser.Scene {
     constructor() {
         super('Scene4_4A');
     }
+
+    init(data) {
+        this.music = data.music;
+    }
+
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         // Sprites.        
@@ -21,6 +28,14 @@ export default class Scene4_4A extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+
         // BG.
         var bg = this.add.sprite(0, 0, 'wood-bg-4-4').setOrigin(0)
         var envelope2 = this.add.sprite(960, 540, 'envelope2').setOrigin(0.5)
@@ -57,7 +72,7 @@ What do you like on your pizza?`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const closeBtn = new CloseButton(this, 1920 - 80, 70, 'x-mark', this.nextBtnAudio);
         closeBtn.on('pointerdown', function () {
-            this.scene.start('Scene4_4');
+            this.scene.start('Scene4_4', { music: this.music });
         }, this);
     }
 }

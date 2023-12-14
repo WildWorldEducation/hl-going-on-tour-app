@@ -10,6 +10,8 @@ export default class Scene4_9_correct extends Phaser.Scene {
     }
 
     preload() {
+        // Music.
+        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("success-4-9", ["assets/Audio/SFX/4_Level2/success.mp3"]);
 
@@ -18,6 +20,14 @@ export default class Scene4_9_correct extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('nyc-song');
+            this.music.play();
+            this.music.loop = true
+        }
+        
         // Audio.        
         this.successAudio = this.sound.add("success-4-9", { loop: false });
         this.successAudio.play()
