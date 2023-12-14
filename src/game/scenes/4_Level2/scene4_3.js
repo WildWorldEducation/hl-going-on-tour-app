@@ -63,7 +63,11 @@ explore some other names for New York City.`,
         bg.on('pointerdown', () => {
             vid.alpha = 1
             vid.play()
-
+            this.text.setAlpha(1);
+            vid.play()
+            bg.disableInteractive(); // turn of the hover pointer on the statue
+            // change instruction text
+            this.instructionText.setText("Well done! \nHere are some other names for New York City.")
             nextBtn.alpha = 1
             nextBtn.setInteractive()
         });
