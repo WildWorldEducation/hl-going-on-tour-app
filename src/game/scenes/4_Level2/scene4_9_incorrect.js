@@ -10,8 +10,6 @@ export default class Scene4_9_incorrect extends Phaser.Scene {
     }
 
     preload() {
-        // Music.
-        this.load.audio("nyc-song", ["assets/Audio/Music/4_Level2/nyc-song.mp3"]);
         // Audio.
         this.load.audio("fail-4-9", ["assets/Audio/SFX/4_Level2/fail.mp3"]);
         // Sprites.        
@@ -20,17 +18,17 @@ export default class Scene4_9_incorrect extends Phaser.Scene {
     }
 
     create() {
-        // Music.
-        // Check if music is playing.
-        if (typeof this.music == 'undefined') {
-            this.music = this.sound.add('nyc-song');
-            this.music.play();
-            this.music.loop = true
-        }
-
         // Audio.        
         this.failAudio = this.sound.add("fail-4-9", { loop: false });
-        this.failAudio.play()
+        // Wait for 0.35s to play failed sound 
+        this.time.addEvent({
+            delay: 350,
+            callback: () => {
+                // play the failed sound after 500 ms
+                this.failAudio.play();
+            },
+            loop: false
+        });
 
         // BG.
         this.cameras.main.setBackgroundColor("#959fe4");
@@ -40,7 +38,7 @@ export default class Scene4_9_incorrect extends Phaser.Scene {
         // BG
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(210, 180, 1500, 650, 32);
+        this.textBg.fillRoundedRect(210, 180, 1500, 650, 40);
         // Text
         this.text = this.add.text(960, 260,
             `Oh, no!
@@ -50,7 +48,7 @@ Try again..`,
         this.text.scale = 0.5
 
         // Char
-        var char = this.add.sprite(960, 600, 'char-incorrect').setOrigin(0.5).setScale(1);
+        var char = this.add.sprite(960, 593, 'char-incorrect').setOrigin(0.5).setScale(0.8);
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
