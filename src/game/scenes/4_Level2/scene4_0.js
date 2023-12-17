@@ -17,6 +17,7 @@ export default class Scene4_0 extends Phaser.Scene {
         //Sprites                
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('nyc-level', 'assets/Images/4_Level2/nyc-level.jpg');
+        this.load.spritesheet('fullscreen', 'assets/UI/General/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
     }
 
     create() {
@@ -47,6 +48,19 @@ export default class Scene4_0 extends Phaser.Scene {
             this.scene.start("Scene3_45");
         }, this);
         backBtn.y = backBtn.y - 40
+
+        // Fullscreen mode.
+        const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+        button.on('pointerup', function () {
+            if (this.scale.isFullscreen) {
+                button.setFrame(0);
+                this.scale.stopFullscreen();
+            }
+            else {
+                button.setFrame(1);
+                this.scale.startFullscreen();
+            }
+        }, this);
 
         // Save user progress.
         const save = new SaveProgress(this)

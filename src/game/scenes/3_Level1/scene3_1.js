@@ -17,6 +17,7 @@ export default class Scene3_1 extends Phaser.Scene {
         this.load.image('tyre', 'assets/Images/3_Level1/tyre.png');
         this.load.image('sitting', 'assets/Images/3_Level1/sitting.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
+        this.load.spritesheet('fullscreen', 'assets/UI/General/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
     }
 
     create() {
@@ -69,6 +70,19 @@ export default class Scene3_1 extends Phaser.Scene {
             this.scene.start("Scene3_2", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
+
+        // Fullscreen mode.
+        const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+        button.on('pointerup', function () {
+            if (this.scale.isFullscreen) {
+                button.setFrame(0);
+                this.scale.stopFullscreen();
+            }
+            else {
+                button.setFrame(1);
+                this.scale.startFullscreen();
+            }
+        }, this);
 
         // Save user progress.
         const save = new SaveProgress(this)

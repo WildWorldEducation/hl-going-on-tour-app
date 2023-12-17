@@ -14,6 +14,7 @@ export default class Scene8_0 extends Phaser.Scene {
         // Sprites.        
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('california-level', '/assets/Images/8_Level5/california-level.jpg');
+        this.load.spritesheet('fullscreen', 'assets/UI/General/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
     }
 
     create() {
@@ -32,6 +33,19 @@ export default class Scene8_0 extends Phaser.Scene {
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene7_30");
+        }, this);
+
+        // Fullscreen mode.
+        const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+        button.on('pointerup', function () {
+            if (this.scale.isFullscreen) {
+                button.setFrame(0);
+                this.scale.stopFullscreen();
+            }
+            else {
+                button.setFrame(1);
+                this.scale.startFullscreen();
+            }
         }, this);
 
         // Unlock module.
