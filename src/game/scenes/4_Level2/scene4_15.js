@@ -54,6 +54,20 @@ export default class Scene4_15 extends Phaser.Scene {
         this.titleText.scale = 0.5
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
+        // the blur cover
+        const cover = this.add.rectangle(960, 540, 1920, 1080, 0xffffff).setAlpha(0);
+        const chain = this.tweens.chain({
+            tweens: [
+                {
+                    targets: [cover],
+                    alpha: 0.6,
+                    delay: 1500,
+                    duration: 700,
+                    repeat: 0,
+                },
+            ],
+        });
+
         // Text background.
         var textCard = this.add.sprite(960, 540, 'textBG4-14').setOrigin(0.5).setAlpha(0.9).setScale(2)
 

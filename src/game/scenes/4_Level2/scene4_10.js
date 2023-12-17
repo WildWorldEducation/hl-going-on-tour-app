@@ -7,11 +7,9 @@ export default class Scene4_10 extends Phaser.Scene {
     constructor() {
         super('Scene4_10');
     }
-
     init(data) {
         this.music = data.music;
     }
-
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -58,7 +56,7 @@ Who do you want to see?
          * When a button was clicked we will change text and clear old button graphic with new one
          */
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const btn1 = new WideButton2(this, 200, 600, 'Harry Styles', this.nextBtnAudio);
+        const btn1 = new WideButton2(this, 200, 1100, 'Harry Styles', this.nextBtnAudio); //600
         btn1.on('pointerdown', function () {
             circle1.setAlpha(1)
             tick1.setAlpha(1)
@@ -78,7 +76,7 @@ his success winning multiple awards.`);
 
         }, this);
 
-        const btn2 = new WideButton2(this, 200, 720, 'Jennifer Lopez', this.nextBtnAudio);
+        const btn2 = new WideButton2(this, 200, 1120, 'Jennifer Lopez', this.nextBtnAudio); //720
         btn2.on('pointerdown', function () {
             circle2.setAlpha(1)
             tick2.setAlpha(1)
@@ -97,7 +95,7 @@ influential Hispanic entertainer in North America.`);
             this.textCardBg.fillTriangleShape(triangle);
         }, this);
 
-        const btn3 = new WideButton2(this, 200, 840, 'Jay-Z', this.nextBtnAudio);
+        const btn3 = new WideButton2(this, 200, 1140, 'Jay-Z', this.nextBtnAudio); // 840
         btn3.on('pointerdown', function () {
             circle3.setAlpha(1)
             tick3.setAlpha(1)
@@ -118,6 +116,31 @@ including Kanye West, Rihanna, and J. Cole.`);
             this.textCardBg.fillTriangleShape(triangle);
         }, this);
         // // -- End Of Buttons -- // //
+
+        // // THE ANIMATION FOR BUTTON // //
+        const btn1Tween = this.add.tween({
+            targets: btn1,
+            y: 600,
+            duration: 600,
+            ease: 'power-3'
+        });
+        const btn2Tween = this.add.tween({
+            targets: btn2,
+            y: 720,
+            duration: 600,
+            delay: 300,
+            ease: 'power-3'
+
+        });
+        const btn3Tween = this.add.tween({
+            targets: btn3,
+            y: 840,
+            delay: 600,
+            duration: 600,
+            ease: 'power-3'
+
+        });
+
 
         // // == Text Bubble graphic. == // //
         this.textCardBg = this.add.graphics();

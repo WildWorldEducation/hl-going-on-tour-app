@@ -193,6 +193,10 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     }
 }
 
+#m4-checkboxes .form-check-input[type=checkbox] {
+    border-color: black;
+}
+
 .text-input:focus-visible {
     outline: none;
     background: transparent;

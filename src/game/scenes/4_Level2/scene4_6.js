@@ -7,11 +7,9 @@ export default class Scene4_6 extends Phaser.Scene {
     constructor() {
         super('Scene4_6');
     }
-
     init(data) {
         this.music = data.music;
     }
-
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -311,6 +309,38 @@ Impossible."`)
         circleBorder4.strokeCircle(0, 0, 150);
         var circle4Ctnr = this.add.container(960 + 185 + 300 + 70, 660, [spyScape, circleBorder4, tickCircle4, tick4]);
 
+        // // _*_ Tween Animation for circles _*_ // // 
+        /** Turn off alpha on all circles */
+        circle1Ctnr.setAlpha(0);
+        circle2Ctnr.setAlpha(0);
+        circle3Ctnr.setAlpha(0);
+        circle4Ctnr.setAlpha(0);
+
+        // the tween chain
+        const circlesChain = this.tweens.chain({
+            tweens: [
+                {
+                    targets: circle1Ctnr,
+                    alpha: 1,
+                    duration: 450
+                },
+                {
+                    targets: circle2Ctnr,
+                    alpha: 1,
+                    duration: 450
+                },
+                {
+                    targets: circle3Ctnr,
+                    alpha: 1,
+                    duration: 450
+                },
+                {
+                    targets: circle4Ctnr,
+                    alpha: 1,
+                    duration: 450
+                },
+            ]
+        })
 
         // Instructions.
         var textBG = this.add.sprite(1350, 150, 'text-card-4-6').setOrigin(0.5).setAlpha(0.9)
