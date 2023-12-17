@@ -34,6 +34,7 @@ function handleClickStart() {
     align-items: center;
     margin: 0;
     font-family: 'Angkor';
+    background-color: black;
 }
 
 #game button {
