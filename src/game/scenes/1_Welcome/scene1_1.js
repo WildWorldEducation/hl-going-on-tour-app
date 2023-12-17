@@ -22,6 +22,7 @@ export default class Scene1_1 extends Phaser.Scene {
         this.load.image('big-arrow', 'assets/Images/1_Welcome/Sprites/arrow-big.png');
 
         this.load.image('logo', 'images/ontour-logo.png');
+        this.load.spritesheet('fullscreen', 'assets/UI/General/fullscreen-white.png', { frameWidth: 64, frameHeight: 64 });
     }
 
     create() {
@@ -64,5 +65,18 @@ export default class Scene1_1 extends Phaser.Scene {
 
         // Logo.
         var logo = this.add.sprite(50, 240, 'logo').setOrigin(0).setScale(1.1);
+
+        // Fullscreen mode.
+        const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+        button.on('pointerup', function () {
+            if (this.scale.isFullscreen) {
+                button.setFrame(0);
+                this.scale.stopFullscreen();
+            }
+            else {
+                button.setFrame(1);
+                this.scale.startFullscreen();
+            }
+        }, this);
     }
 }
