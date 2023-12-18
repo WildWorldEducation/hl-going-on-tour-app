@@ -73,8 +73,6 @@ export default class Scene3_1 extends Phaser.Scene {
 
         // Fullscreen mode.
         const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
-        button.setFrame(1);
-        this.scale.startFullscreen();
         button.on('pointerup', function () {
             if (this.scale.isFullscreen) {
                 button.setFrame(0);
