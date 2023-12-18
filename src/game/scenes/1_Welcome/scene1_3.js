@@ -26,6 +26,7 @@ export default class Scene1_3 extends Phaser.Scene {
         this.load.image('right-arm', 'assets/Images/1_Welcome/Sprites/right-arm.png');
         this.load.image('turntable-dial', 'assets/Images/1_Welcome/Sprites/turntable-dial.png');
         this.load.image('left-arm', 'assets/Images/1_Welcome/Sprites/left-arm.png');
+        this.load.spritesheet('fullscreen', 'assets/UI/General/fullscreen.png', { frameWidth: 64, frameHeight: 64 });
     }
 
     create() {
@@ -61,7 +62,8 @@ export default class Scene1_3 extends Phaser.Scene {
 2. If you see [b]continue[/b] or [b]submit[/b], that will [b]move you\nto the next slide[/b].\n
 3. If you don't see either, [b]click the 'next' button\n on the top.[/b]\n
 4. Complete [b]the activities after each level.[/b]\n
-5. Let's JAM!`,
+5. To make the game fullscreen, [b]click the button\n at the top right.[/b]\n
+6. Let's JAM!`,
             { fontFamily: "Arial", fontSize: "84px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
         this.instructionText.scale = 0.5
@@ -128,6 +130,43 @@ export default class Scene1_3 extends Phaser.Scene {
             this.scene.start("Scene1_4", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
+
+        // Fullscreen mode.
+        const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+
+        /* Function to open fullscreen mode */
+        const app = document.getElementsByTagName("body")[0]
+        function openFullscreen() {
+            if (app.requestFullscreen) {
+                app.requestFullscreen();
+            } else if (app.webkitRequestFullscreen) { /* Safari */
+                app.webkitRequestFullscreen();
+            } else if (app.msRequestFullscreen) { /* IE11 */
+                app.msRequestFullscreen();
+            }
+        }
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        button.on('pointerup', () => {
+            if (document.fullscreenElement || document.webkitFullscreenElement ||
+                document.mozFullScreenElement) {
+                button.setFrame(0);
+                closeFullscreen()
+            }
+            else {
+                button.setFrame(1);
+                openFullscreen()
+            }
+        }, this);
 
         // Save user progress.
         const save = new SaveProgress(this)

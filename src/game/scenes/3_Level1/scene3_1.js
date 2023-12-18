@@ -73,14 +73,38 @@ export default class Scene3_1 extends Phaser.Scene {
 
         // Fullscreen mode.
         const button = this.add.image(1920 - 16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
-        button.on('pointerup', function () {
-            if (this.scale.isFullscreen) {
+
+        /* Function to open fullscreen mode */
+        const app = document.getElementsByTagName("body")[0]
+        function openFullscreen() {
+            if (app.requestFullscreen) {
+                app.requestFullscreen();
+            } else if (app.webkitRequestFullscreen) { /* Safari */
+                app.webkitRequestFullscreen();
+            } else if (app.msRequestFullscreen) { /* IE11 */
+                app.msRequestFullscreen();
+            }
+        }
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        button.on('pointerup', () => {
+            if (document.fullscreenElement || document.webkitFullscreenElement ||
+                document.mozFullScreenElement) {
                 button.setFrame(0);
-                this.scale.stopFullscreen();
+                closeFullscreen()
             }
             else {
                 button.setFrame(1);
-                this.scale.startFullscreen();
+                openFullscreen()
             }
         }, this);
 

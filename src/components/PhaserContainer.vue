@@ -40,5 +40,8 @@ function handleClickStart() {
 #game button {
     background-color: #0f3a53;
     color: #FCFF71;
+    width: 150px;
+    height: 50px;
+    font-size: x-large;
 }
 </style>
