@@ -22,10 +22,10 @@ export default class Scene3_1 extends Phaser.Scene {
 
     create() {
         // Module music.
-        const music = this.sound.add('theme-module3');
-        music.play();
-        music.setVolume(0.1);
-        music.loop = true
+        this.music = this.sound.add('theme-module3');
+        this.music.play();
+        this.music.setVolume(0.1);
+        this.music.loop = true
         this.sound.pauseOnBlur = true;
 
         // BG.
