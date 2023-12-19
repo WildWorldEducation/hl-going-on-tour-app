@@ -26,6 +26,7 @@ export default class Scene1_1 extends Phaser.Scene {
     }
 
     create() {
+        this.sound.unlock();
         // Module music.
         const music = this.sound.add('theme-module1');
         music.play();

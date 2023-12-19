@@ -313,7 +313,7 @@ export function launch() {
             mode: Phaser.Scale.FIT,
         },
         audio: {
-            disableWebAudio: true
+            disableWebAudio: false
         },
         parent: "game",
         scene: sceneArray,
