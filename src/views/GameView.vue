@@ -20,7 +20,12 @@ import PhaserContainer from '../components/PhaserContainer.vue'
         class="text-input" />
 
     <!-- Text input, for the 4th module -->
-    <textarea rows="10" style="display: none;" type="text" placeholder="Type your talents here:" id="talents" />
+    <div id="talents" style="display: none;">
+        <p>What are some of your talents? <strong>Write down one of your
+                talents and explain how this is a talent.</strong> Example - I am a
+            talented musician because I can sing and play the guitar.</p>
+        <textarea rows="10" type="text" placeholder="Type your talents here:" />
+    </div>
 
     <!-- Check boxes, for 4th module -->
     <div style="display: none;" id="m4-checkboxes" class="checkboxes">
@@ -222,19 +227,28 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 /* Text input from Module 4: NYC */
 #talents {
     font-family: 'Open Sans', sans-serif;
-    border: 3.5px dashed black;
     z-index: 2;
-    top: 57%;
+    top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 45% !important;
+    width: 50% !important;
     resize: none;
     text-align: center;
-    font-size: medium;
+    font-size: larger;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 25px;
+}
+
+#talents textarea {
+    border: 3.5px dashed black;
     font-style: italic;
-    aspect-ratio: 4.3 / 1;
     background-color: rgb(255, 255, 255, 0.2);
+    aspect-ratio: 4.3 / 1;
+    width: 100%;
+    text-align: center;
 }
 
 /* Text input from Module 4: NYC */

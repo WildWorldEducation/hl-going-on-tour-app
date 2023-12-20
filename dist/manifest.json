@@ -14,7 +14,7 @@
       "src/views/AddUserView.vue",
       "src/views/EditUserView.vue"
     ],
-    "file": "assets/main-09fca174.js",
+    "file": "assets/main-b18730f5.js",
     "isEntry": true,
     "src": "src/main.js"
   },
@@ -26,7 +26,7 @@
     "css": [
       "assets/AddUserView-d27ba60e.css"
     ],
-    "file": "assets/AddUserView-ba6b85a3.js",
+    "file": "assets/AddUserView-fa216b3c.js",
     "imports": [
       "src/main.js"
     ],
@@ -41,7 +41,7 @@
     "css": [
       "assets/CreateAccountView-a2c4b965.css"
     ],
-    "file": "assets/CreateAccountView-7c0404c6.js",
+    "file": "assets/CreateAccountView-b7dc6ed5.js",
     "imports": [
       "src/main.js"
     ],
@@ -56,7 +56,7 @@
     "css": [
       "assets/EditUserView-d812ac6e.css"
     ],
-    "file": "assets/EditUserView-8592dad4.js",
+    "file": "assets/EditUserView-bb0c7b05.js",
     "imports": [
       "src/main.js"
     ],
@@ -64,14 +64,14 @@
     "src": "src/views/EditUserView.vue"
   },
   "src/views/GameView.css": {
-    "file": "assets/GameView-17d48e52.css",
+    "file": "assets/GameView-a3dc535e.css",
     "src": "src/views/GameView.css"
   },
   "src/views/GameView.vue": {
     "css": [
-      "assets/GameView-17d48e52.css"
+      "assets/GameView-a3dc535e.css"
     ],
-    "file": "assets/GameView-50286af8.js",
+    "file": "assets/GameView-e9356d0a.js",
     "imports": [
       "src/main.js"
     ],
@@ -86,7 +86,7 @@
     "css": [
       "assets/LoginView-b5437b75.css"
     ],
-    "file": "assets/LoginView-164638d4.js",
+    "file": "assets/LoginView-0643fb7d.js",
     "imports": [
       "src/main.js"
     ],

@@ -56,16 +56,15 @@ export default class Scene4_11B extends Phaser.Scene {
         this.titleTextCtnr = this.add.container(0, 55, [this.titleBg, this.titleText]);
 
         // Text.
-
-        this.textBG2 = this.add.sprite(960, 540, 'textBG4-11B').setOrigin(0.5).setScale(2.1, 2.3);
-        this.textBG2.setAlpha(0.88);
-        this.text2 = this.add.rexBBCodeText(960, 420,
-            `What are some of your talents? [b]Write down one of your
-talents and explain how this is a talent.[/b] Examples - I am a
-talented musician because I can sing and play the guitar.`,
-            { fontFamily: "Arial", fontSize: "76px", color: '#000000', align: 'center' }).setOrigin(0.5);
-        // Dealing with text quality.
-        this.text2.scale = 0.5
+        //         this.textBG2 = this.add.sprite(960, 540, 'textBG4-11B').setOrigin(0.5).setScale(2.1, 2.3);
+        //         this.textBG2.setAlpha(0.88);
+        //         this.text2 = this.add.rexBBCodeText(960, 420,
+        //             `What are some of your talents? [b]Write down one of your
+        // talents and explain how this is a talent.[/b] Examples - I am a
+        // talented musician because I can sing and play the guitar.`,
+        //             { fontFamily: "Arial", fontSize: "76px", color: '#000000', align: 'center' }).setOrigin(0.5);
+        //         // Dealing with text quality.
+        //         this.text2.scale = 0.5
 
         // Show the text input.
         this.formUtil = new FormUtil({
