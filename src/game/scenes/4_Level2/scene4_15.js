@@ -69,7 +69,7 @@ export default class Scene4_15 extends Phaser.Scene {
         });
 
         // Text background.
-        var textCard = this.add.sprite(960, 540, 'textBG4-14').setOrigin(0.5).setAlpha(0.9).setScale(2)
+        //   var textCard = this.add.sprite(960, 540, 'textBG4-14').setOrigin(0.5).setAlpha(0.9).setScale(2)
 
         // Checkbox input.
         this.formUtil = new FormUtil({
@@ -77,7 +77,7 @@ export default class Scene4_15 extends Phaser.Scene {
         });
 
         this.formUtil.showElement("m4-checkboxes");
-        this.formUtil.scaleToGameW("m4-checkboxes", .4);
+        //  this.formUtil.scaleToGameW("m4-checkboxes", .4);
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

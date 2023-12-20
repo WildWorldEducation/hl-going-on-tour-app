@@ -20,7 +20,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
         class="text-input" />
 
     <!-- Text input, for the 4th module -->
-    <div id="talents" style="display: none;">
+    <div id="talents" class="text-input" style="display: none;">
         <p>What are some of your talents? <strong>Write down one of your
                 talents and explain how this is a talent.</strong> Example - I am a
             talented musician because I can sing and play the guitar.</p>
@@ -29,32 +29,30 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
     <!-- Check boxes, for 4th module -->
     <div style="display: none;" id="m4-checkboxes" class="checkboxes">
-        <div style="margin-left: 20%;">
-            <p class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-1">
-                <label class="form-check-label" for="defaultCheck1">
-                    Pens can malfunction and actually burst
-                </label>
-            </p>
-            <p class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-2">
-                <label class="form-check-label" for="defaultCheck1">
-                    They have chemical fluids in them
-                </label>
-            </p>
-            <p class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-3">
-                <label class="form-check-label" for="defaultCheck1">
-                    The vape pen could have weed or fentanyl in it
-                </label>
-            </p>
-            <p class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-4">
-                <label class="form-check-label" for="defaultCheck1">
-                    Even vaping produces harmful second hand health issues
-                </label>
-            </p>
-        </div>
+        <p class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-1">
+            <label class="form-check-label" for="defaultCheck1">
+                Pens can malfunction and actually burst
+            </label>
+        </p>
+        <p class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-2">
+            <label class="form-check-label" for="defaultCheck1">
+                They have chemical fluids in them
+            </label>
+        </p>
+        <p class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-3">
+            <label class="form-check-label" for="defaultCheck1">
+                The vape pen could have weed or fentanyl in it
+            </label>
+        </p>
+        <p class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="m4-checkbox-4">
+            <label class="form-check-label" for="defaultCheck1">
+                Even vaping produces harmful second hand health issues
+            </label>
+        </p>
     </div>
 
     <!-- Text input, for the 4th module -->
@@ -156,7 +154,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
-.text-input {
+#student-name {
     z-index: 2;
     top: 50%;
     left: 50%;
@@ -249,6 +247,26 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     aspect-ratio: 4.3 / 1;
     width: 100%;
     text-align: center;
+}
+
+
+/* Check boxes from Module 4: NYC */
+.checkboxes {
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border: none;
+    background: transparent;
+    font-family: 'Open Sans';
+    color: black;
+    font-size: larger;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 25px;
+    width: 50%;
 }
 
 /* Text input from Module 4: NYC */
@@ -409,19 +427,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 
 #m5-notepad:focus {
     outline: none;
-}
-
-/* Check boxes from Module 4: NYC */
-.checkboxes {
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    border: none;
-    background: transparent;
-    font-family: 'Open Sans';
-    color: black
 }
 
 /* * Text area input for scene 7_10 * */
