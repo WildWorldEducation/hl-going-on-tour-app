@@ -52,6 +52,14 @@ export default {
     <div class="login-page">
         <div class="form-signin my-1">
             <img class="mb-4" src="/images/ontour-logo.png" alt="" width="250" height="250">
+
+
+            <!-- Login with Clever -->
+            <a
+                href="https://clever.com/oauth/authorize?response_type=code&redirect_uri=https%3a%2f%2fedupc.org%2foauth%2fclever%2f&client_id=8bf56a5a145bbee01612"><img
+                    class="clever-button" src="/images/sign-in-with-clever-full.png" alt="Log in with Clever"></a>
+
+
             <!-- Login with Google -->
             <div id="g_id_onload" data-client_id="309231279221-r46j4e6utpo00t2292rlpgmeifu3foob.apps.googleusercontent.com"
                 data-context="signin" data-ux_mode="popup" data-login_uri="/api/google-login-attempt"
@@ -129,5 +137,10 @@ export default {
 /* Bootstrap class */
 .accordion-button::after {
     filter: invert();
+}
+
+.clever-button {
+    width: 230px;
+    margin-bottom: 10px;
 }
 </style>

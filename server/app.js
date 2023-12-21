@@ -48,6 +48,8 @@ app.locals.title = ''
 
 
 // Route files.
+const oauthRouter = require('./routes/oauth');
+app.use('/oauth', oauthRouter);
 const userRouter = require('./routes/users');
 app.use('/users', userRouter);
 
@@ -60,7 +62,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    //password: 'password',
+  //  password: 'password',
     database: 'healthy_lifestyles'
 });
 
