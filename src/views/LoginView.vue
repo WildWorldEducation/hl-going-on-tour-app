@@ -56,7 +56,7 @@ export default {
 
             <!-- Login with Clever -->
             <a
-                href="https://clever.com/oauth/authorize?response_type=code&redirect_uri=https%3a%2f%2fedupc.org%2foauth%2fclever%2f&client_id=8bf56a5a145bbee01612"><img
+                href="https://clever.com/oauth/authorize?response_type=code&redirect_uri=http://localhost:3000/oauth/clever&client_id=8bf56a5a145bbee01612"><img
                     class="clever-button" src="/images/sign-in-with-clever-full.png" alt="Log in with Clever"></a>
 
 

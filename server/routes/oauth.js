@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    // password: 'password',
+    password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -36,19 +36,12 @@ conn.connect((err) => {
 // Replace these with environment variables - insecure.
 var cleverClientId = '8bf56a5a145bbee01612';
 var cleverClientSecret = '62a0f42b174f545cb7caeb6dbc3cdf9e346c1bcd';
-var redirect_uri = "http://localhost/oauth/clever/"
-
-router.post('/clever', (req, res) => {
-    cleverUserDetails = jwt.decode(req.body.credential)
-    //res.redirect('/api/google-login-attempt');
-});
+var redirect_uri = "http://localhost:3000/oauth/clever"
 
 router.get('/clever', (req, res) => {
-    cleverUserDetails = jwt.decode(req.body.credential)
-    //res.redirect('/api/google-login-attempt');
+    console.log(req.query.code);
+    res.redirect('/')
 });
-
-
 
 
 
