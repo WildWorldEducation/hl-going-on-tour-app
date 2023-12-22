@@ -1,6 +1,7 @@
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import CustomButton from '../Custom_Classes/CustomButton.js';
 
 export default class Scene3_6 extends Phaser.Scene {
     constructor() {
@@ -15,12 +16,11 @@ export default class Scene3_6 extends Phaser.Scene {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Module music.
-        this.load.audio('theme-module3', [
-            'assets/Audio/Music/3_Level1/theme-module3.mp3',
-        ]);
+        this.load.audio('theme-module3', 'assets/Audio/Music/3_Level1/theme-module3.mp3');
         // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("background-audio-3-6", ["assets/Audio/SFX/3_Level1/signs-audio.mp3"]);
+        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
+        this.load.audio("background-audio-3-6", "assets/Audio/SFX/3_Level1/signs-audio.mp3");
+        this.load.audio("bird-chirping", "assets/Audio/SFX/3_Level1/bird-chirping.mp3");
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
 
@@ -41,22 +41,41 @@ export default class Scene3_6 extends Phaser.Scene {
 
     create() {
         // Music.
+
         // Check if music is playing.
         if (typeof this.music == 'undefined') {
             this.music = this.sound.add('theme-module3');
             this.music.play();
-            this.music.setVolume(0.1);
+            this.music.setVolume(0.07);
             this.music.loop = true
+        } else if (!this.music.isPaused) {
+            this.music.resume()
+        }
+        else {
+            this.music.play()
         }
 
         // Audio.
         const audio = this.sound.add("background-audio-3-6");
         audio.play();
+        const birdChirping = this.sound.add("bird-chirping", { loop: true });
+        birdChirping.play();
+        birdChirping.setVolume(0.25);
 
         // Video.
         const vid = this.add.video(0, 0, 'vid3-2');
         vid.setOrigin(0)
         vid.play();
+
+        // Title.
+        this.textBg = this.add.graphics();
+        this.textBg.fillStyle(0xFFFFFF, 1);
+        this.textBg.fillRoundedRect(-30, 0, 930, 150, 32);
+        this.instructionText = this.add.rexBBCodeText(55, 75, "[b]Drag each item to the group it fits in your life.[/b]",
+            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
+        // Dealing with text quality.
+        this.instructionText.scale = 0.5
+        this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
 
         // Signs.
         // Sign 7.
@@ -227,39 +246,21 @@ export default class Scene3_6 extends Phaser.Scene {
             sign1.y = zone2.y;
         });
 
-
+        /* We use a container to control order of file and delay shows */
+        this.signCntr = this.add.container(0, 0, [this.sign7, this.sign6, this.sign5, this.sign4, this.sign3, this.sign2, this.sign1])
+        this.signCntr.setAlpha(0);
+        this.time.addEvent({
+            delay: 4160,
+            callback: () => {
+                this.signCntr.setAlpha(1);
+            },
+            loop: false
+        })
         // Drop zones.
         const zone1 = this.add.zone(343, 758, 350, 150)
             .setRectangleDropZone(350, 150);
         const zone2 = this.add.zone(1457, 726, 350, 150)
             .setRectangleDropZone(350, 150);
-
-        // Next button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
-            audio.stop();
-            this.scene.start("Scene3_7", { music: this.music });
-        }, this);
-        nextBtn.y = nextBtn.y - 40
-
-        // Back button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
-        backBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_5");
-        }, this);
-        backBtn.y = backBtn.y - 40
-
-        // Title.
-        this.textBg = this.add.graphics();
-        this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 900, 150, 32);
-        this.instructionText = this.add.rexBBCodeText(55, 75, "[b]Drag each item to the group it fits in your life.[/b]",
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
-        // Dealing with text quality.
-        this.instructionText.scale = 0.5
-        this.instructionTextCtnr = this.add.container(0, 55, [this.textBg, this.instructionText]);
 
         // Sparkles. --
         // Spritesheet animation.
@@ -271,35 +272,91 @@ export default class Scene3_6 extends Phaser.Scene {
             hideOnComplete: true
         });
 
+        /**
+         * We can see the sparkle animation get delay until the lady done walking her bike
+         * and the alpha is 0 until that moment too
+         */
         // First pair of sparkle animations.
-        var sparkles1 = this.add.sprite(150, 750, "sparkles3-6");
-        sparkles1.play("sparkles");
-        sparkles1.scale = 0.4
+        var sparkles1 = this.add.sprite(150, 750, "sparkles3-6").setAlpha(0);
+        sparkles1.scale = 0.4;
+        this.time.addEvent({
+            delay: 4160,
+            callback: () => {
+                sparkles1.setAlpha(1);
+                sparkles1.play("sparkles");
+            },
+            loop: false
+        })
         sparkles1.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
             sparkles1.destroy();
         });
 
-        var sparkles2 = this.add.sprite(520, 750, "sparkles3-6");
-        sparkles2.play("sparkles");
-        sparkles2.scale = 0.4
+        var sparkles2 = this.add.sprite(520, 750, "sparkles3-6").setAlpha(0);
+        sparkles2.scale = 0.4;
+        this.time.addEvent({
+            delay: 4160,
+            callback: () => {
+                sparkles2.play("sparkles");
+                sparkles2.setAlpha(1);
+            },
+            loop: false
+        })
         sparkles2.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
             sparkles2.destroy();
         });
 
         // Second pair of sparkle animations.
-        var sparkles3 = this.add.sprite(1280, 750, "sparkles3-6");
-        sparkles3.play("sparkles");
-        sparkles3.scale = 0.4
+        var sparkles3 = this.add.sprite(1280, 750, "sparkles3-6").setAlpha(0);
+        sparkles3.scale = 0.4;
+        this.time.addEvent({
+            delay: 4160,
+            callback: () => {
+                sparkles3.play("sparkles");
+                sparkles3.setAlpha(1);
+            },
+            loop: false
+        });
         sparkles3.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
             sparkles3.destroy();
         });
 
-        var sparkles4 = this.add.sprite(1650, 750, "sparkles3-6");
-        sparkles4.play("sparkles");
-        sparkles4.scale = 0.4
+        var sparkles4 = this.add.sprite(1650, 750, "sparkles3-6").setAlpha(0);
+        sparkles4.scale = 0.4;
+        this.time.addEvent({
+            delay: 4160,
+            callback: () => {
+                sparkles4.setAlpha(1);
+                sparkles4.play("sparkles");
+            },
+            loop: false
+        })
         sparkles4.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
             sparkles4.destroy();
         });
+
+
+        /**
+         * In this scene there are no Next Button but we have a continue wide button 
+         * that act as a next button
+        */
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const continueBtn = new CustomButton(this, 1540, 905, 290, 70, 'Continue', 80, -0.33, -0.3, this.nextBtnAudio, 10);
+        continueBtn.on('pointerdown', function () {
+            audio.stop();
+            birdChirping.stop();
+            this.scene.start("Scene3_7", { music: this.music });
+        }, this)
+
+
+
+        // Back button.
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
+        backBtn.on('pointerdown', function () {
+            birdChirping.stop();
+            this.scene.start("Scene3_5");
+        }, this);
+        backBtn.y = backBtn.y - 40
 
         // Save user progress.
         const save = new SaveProgress(this)

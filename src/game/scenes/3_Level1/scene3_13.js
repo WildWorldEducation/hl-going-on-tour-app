@@ -19,10 +19,10 @@ export default class Scene3_13 extends Phaser.Scene {
         ]);
         // Audio. 
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("jazz1", ["assets/Audio/Music/3_Level1/genre-quiz/jazz1.mp3"]);
-        this.load.audio("rap", ["assets/Audio/Music/3_Level1/genre-quiz/rap.mp3"]);
-        this.load.audio("rock1", ["assets/Audio/Music/3_Level1/genre-quiz/rock1.mp3"]);
-        this.load.audio("country2", ["assets/Audio/Music/3_Level1/genre-quiz/country2.mp3"]);
+        this.load.audio("jazz1", "assets/Audio/Music/3_Level1/genre-quiz/jazz1.mp3");
+        this.load.audio("rap", "assets/Audio/Music/3_Level1/genre-quiz/rap.mp3");
+        this.load.audio("rock1", "assets/Audio/Music/3_Level1/genre-quiz/rock1.mp3");
+        this.load.audio("country2", "assets/Audio/Music/3_Level1/genre-quiz/country2.mp3");
 
         // Sprites.
         this.load.image('notes-bg', 'assets/Images/3_Level1/notes-bg.png');
@@ -31,6 +31,8 @@ export default class Scene3_13 extends Phaser.Scene {
 
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
+        this.load.image('star', 'assets/Images/3_Level1/genre-quiz/star.png');
+
     }
 
     create() {
@@ -42,42 +44,47 @@ export default class Scene3_13 extends Phaser.Scene {
             this.music.loop = true
         }
         else {
+            // Pause the theme music because this scene has it own music
             this.music.pause();
         }
 
-        var isCorrect = false
+        var isCorrect = false;
 
         // BG.
         this.cameras.main.setBackgroundColor("#959fe4");
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
         bg.alpha = 0.5
 
-        // Stars.
-        var stars = this.add.sprite(400, 100, 'stars').setOrigin(0.5);
-        stars.setScale(0.6)
+        // // ** Stars Sprites ** // //.
+        // grey out stars
+        var stars = this.add.sprite(480, 120, 'stars').setOrigin(0.5);
+        stars.setScale(0.66);
+        // yellow star to indicate question order and number of right answers
+        const star = this.add.sprite(285, 116, 'star').setOrigin(0.5).setScale(0.17);
+        //-- End of stars sprites -- //
 
         // Header.
         var header = this.add.graphics();
         header.fillStyle(0xffffff, 1);
-        header.fillRoundedRect(260, 320, 1380, 140, 72);
-        var headerText = this.add.text(960, 390,
+        header.fillRoundedRect(200, 344, 1520, 160, 80);
+        var headerText = this.add.text(960, 425,
             `Listen to the songs below. Which one do you think sounds more like rap?`,
             { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
-        headerText.setOrigin(0.5).setScale(0.5)
+        headerText.setOrigin(0.5).setScale(0.5);
 
         // Buttons.
         const buttonData = [
-            { text: "A. Song 1", x: 260, y: 480, isCorrect: false, trackID: "jazz1" },
-            { text: "B. Song 2", x: 960, y: 480, isCorrect: true, trackID: "rap" },
-            { text: "C. Song 3", x: 260, y: 620, isCorrect: false, trackID: "rock1" },
-            { text: "D. Song 4", x: 960, y: 620, isCorrect: false, trackID: "country1" },
+            { text: "A. Song 1", x: 200, y: 523, isCorrect: false, trackID: "jazz1" },
+            { text: "B. Song 2", x: 968, y: 523, isCorrect: true, trackID: "rap" },
+            { text: "C. Song 3", x: 200, y: 685, isCorrect: false, trackID: "rock1" },
+            { text: "D. Song 4", x: 968, y: 685, isCorrect: false, trackID: "country2" },
         ];
 
         // Button Config.
         const btnConfig = {
             radius: 8,
-            width: 690,
-            height: 120,
+            width: 750,
+            height: 145,
             fill: 0xffffff,
             border: {
                 color: 0x87d1ff,
@@ -94,20 +101,20 @@ export default class Scene3_13 extends Phaser.Scene {
             const sound = this.sound.add(data.trackID)
             sounds.push(sound)
 
-            const playControl = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
-            const stopControl = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
+            const playControl = this.add.sprite(10, 15, 'play-btn-square').setOrigin(0);
+            const stopControl = this.add.sprite(10, 15, 'stop-btn-square').setOrigin(0);
 
             const btnGraphic = this.add.graphics();
             const btnBorder = this.add.graphics();
-            const btnText = this.add.text(200, 60, data.text, {
+            const btnText = this.add.text(230, 75, data.text, {
                 fontFamily: "Arial",
                 fontSize: "72px",
                 fill: "#000000"
             });
 
-            playControl.setScale(0.28)
-            stopControl.setScale(0.28).setAlpha(0)
-            stopButtons.push(stopControl)
+            playControl.setScale(0.3);
+            stopControl.setScale(0.3).setAlpha(0);
+            stopButtons.push(stopControl);
 
             btnText.setOrigin(0.5).setScale(0.5);
             btnGraphic.fillStyle(btnConfig.fill, 1);
@@ -154,10 +161,17 @@ export default class Scene3_13 extends Phaser.Scene {
 
                 stopControl.setAlpha(1)
 
-                sounds.forEach((e) => {
-                    e.stop()
-                })
-                sound.play()
+                /**I think Stop the song when the user click again will have a better ux  */
+                if (sound.isPlaying) {
+                    sound.stop();
+                    stopControl.setAlpha(0);
+                } else {
+                    sounds.forEach((e) => {
+                        e.stop()
+                    })
+                    sound.play();
+                }
+
 
             }, this);
 
@@ -181,7 +195,7 @@ export default class Scene3_13 extends Phaser.Scene {
             }
         }, this);
         submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 150
+        submitBtn.y = 1080 - 70
         submitBtn.alpha = 1
 
         // Back button.

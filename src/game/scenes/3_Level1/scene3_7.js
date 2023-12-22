@@ -1,5 +1,6 @@
 import SideButton from '../Custom_Classes/SideButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import BackButton from '../Custom_Classes/BackButton.js';
 
 export default class Scene3_7 extends Phaser.Scene {
     constructor() {
@@ -35,13 +36,13 @@ export default class Scene3_7 extends Phaser.Scene {
         }
 
         // Video.
-        const vid = this.add.video(0, 0, 'vid3-3');
-        vid.on('complete', () => {
-            this.music.play()
-            this.music.setVolume(0.1);
-        });
-        vid.setOrigin(0)
-        vid.play();
+        this.vid = this.add.video(0, 0, 'vid3-3');
+        // this.vid.on('complete', () => {
+        //     this.music.play()
+        //     this.music.setVolume(0.1);
+        // });
+        this.vid.setOrigin(0)
+        this.vid.play();
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -56,7 +57,37 @@ export default class Scene3_7 extends Phaser.Scene {
         }, this);
         nextBtn.y = nextBtn.y - 40
 
+        // Back button.
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
+        backBtn.on('pointerdown', function () {
+            this.scene.start("Scene3_6");
+        }, this);
+        backBtn.y = backBtn.y - 40
         // Save user progress.
-        const save = new SaveProgress(this)
+        const save = new SaveProgress(this);
+
+        /** 
+       * This is the Loading Bar for the video scene\
+       * If it look does not align with the design. Comment the below code block
+       * */
+
+        this.progressBar = this.add.graphics();
+    }
+
+    /**
+        * This is the Loading Bar for the video scene\
+        * If it look does not align with the design. Comment the below code block
+        * */
+    update() {
+        this.progressBar.clear();
+
+        // Width of progressBar is the game width 
+        const size = 1920;
+        /** 
+         * In Update we just rerender the rectangle width based on video progress
+        */
+        this.progressBar.fillStyle(0x004aad);
+        this.progressBar.fillRect(0, 1080 - 10, size * this.vid.getProgress(), 10);
     }
 }

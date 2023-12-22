@@ -12,7 +12,7 @@ export default class Scene3_1 extends Phaser.Scene {
             'assets/Audio/Music/3_Level1/theme-module3.mp3',
         ]);
         // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
         // Sprites.
         this.load.image('tyre', 'assets/Images/3_Level1/tyre.png');
         this.load.image('sitting', 'assets/Images/3_Level1/sitting.png');

@@ -26,6 +26,9 @@ export default class Scene3_17 extends Phaser.Scene {
         this.load.image('tickets', 'assets/Images/3_Level1/tickets/tickets.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('text-card3-12', 'assets/Images/3_Level1/tickets/text-card.png');
+
+        // Sprite sheets.
+        this.load.spritesheet('sparkles3-17', 'assets/Images/3_Level1/genre-cards/sparkles1-spritesheet.png', { frameWidth: 530, frameHeight: 562 });
     }
 
     create() {
@@ -41,14 +44,64 @@ export default class Scene3_17 extends Phaser.Scene {
         // BG. 
         this.cameras.main.setBackgroundColor("#959fe4");
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
-        bg.alpha = 0.5
+        bg.alpha = 0.5;
 
         // Stars.
-        var stars = this.add.sprite(960, 100, 'stars3-12').setOrigin(0.5);
-        stars.setScale(0.6)
+        var stars = this.add.sprite(480, 120, 'stars3-12').setOrigin(0.5); //960 100
+        stars.setScale(0.6);
 
         var tickets = this.add.sprite(450, 640, 'tickets').setOrigin(0.5);
-        tickets.setScale(1.1)
+        tickets.setScale(1.1);
+
+
+        // Sparkles. --
+        // Spritesheet animation.
+        this.anims.create({
+            key: "sparkles",
+            frameRate: 30,
+            frames: this.anims.generateFrameNumbers("sparkles3-17", { start: 0, end: 119 }),
+            repeat: 0,
+            hideOnComplete: true
+        });
+
+        this.anims.create({
+            key: "sparkles-short",
+            frameRate: 30,
+            frames: this.anims.generateFrameNumbers("sparkles3-17", { start: 0, end: 86 }),
+            repeat: 0,
+            hideOnComplete: true
+        });
+
+        // ** First two sparkle will be at two side of the stars bar
+        var sparkles1 = this.add.sprite(600, 80, "sparkles3-17").setAlpha(0);
+        sparkles1.scale = 0.4;
+        this.time.addEvent({
+            delay: 1160,
+            callback: () => {
+                sparkles1.setAlpha(1);
+                sparkles1.play("sparkles");
+            },
+            loop: false
+        });
+        sparkles1.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+            sparkles1.destroy();
+        });
+
+        var sparkles2 = this.add.sprite(1200, 80, "sparkles3-17").setAlpha(0);
+        sparkles2.scale = 0.4;
+        this.time.addEvent({
+            delay: 1360,
+            callback: () => {
+                sparkles2.play("sparkles");
+                sparkles2.setAlpha(1);
+            },
+            loop: false
+        })
+        sparkles2.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+            sparkles2.destroy();
+        });
+
+
 
 
         // Next button.    
@@ -96,6 +149,91 @@ you?[/b]`,
         // Dealing with text quality.
         this.titleText.scale = 0.5
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
+
+        /* 
+            We add all sprite that not starts container to a Big Container 
+           So we can hide it until the stars animation is done
+        */
+        const sceneContainer = this.add.container(0, 0, [this.titleTextCtnr, instructionsBG, this.instructionsText, tickets, backBtn, nextBtn]).setAlpha(0);
+
+        // ANIMATION CHAIN
+        this.tweens.chain({
+            tweens: [
+                {
+                    targets: stars,
+                    x: 900,
+                    y: 100,
+                    duration: 600,
+                    ease: 'Sine.easeInOut',
+                },
+                {
+                    targets: sceneContainer,
+                    alpha: 1,
+                    duration: 200,
+                    delay: 100
+                }
+            ]
+        })
+
+        // ** Sparkles 3 will be the bottom of the tickets So it have to be below here
+        var sparkles3 = this.add.sprite(600, 880, "sparkles3-17").setAlpha(0);
+        sparkles3.scale = 0.4;
+        this.time.addEvent({
+            delay: 660,
+            callback: () => {
+                sparkles3.play("sparkles");
+                sparkles3.setAlpha(1);
+            },
+            loop: false
+        });
+        sparkles3.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+            sparkles3.destroy();
+        });
+
+        // ** Sparkles 4 will play after 123
+        var sparkles4 = this.add.sprite(222, 310, "sparkles3-17").setAlpha(0);
+        sparkles4.scale = 0.4;
+        this.time.addEvent({
+            delay: 4760,
+            callback: () => {
+                sparkles4.play("sparkles");
+                sparkles4.setAlpha(1);
+            },
+            loop: false
+        });
+        sparkles4.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+            sparkles4.destroy();
+        });
+
+        // SPARKLE 5 AND 6 will be appears after the sparkle 4 a bit. And will end quicker than previous sparkles 
+
+        var sparkles5 = this.add.sprite(622, 210, "sparkles3-17").setAlpha(0);
+        sparkles5.scale = 0.4;
+        this.time.addEvent({
+            delay: 4960,
+            callback: () => {
+                sparkles5.play("sparkles-short");
+                sparkles5.setAlpha(1);
+            },
+            loop: false
+        });
+        sparkles5.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+            sparkles5.destroy();
+        });
+
+        var sparkles6 = this.add.sprite(1222, 80, "sparkles3-17").setAlpha(0);
+        sparkles6.scale = 0.4;
+        this.time.addEvent({
+            delay: 5260,
+            callback: () => {
+                sparkles6.play("sparkles-short");
+                sparkles6.setAlpha(1);
+            },
+            loop: false
+        });
+        sparkles6.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+            sparkles6.destroy();
+        });
 
         // Save user progress.
         const save = new SaveProgress(this)

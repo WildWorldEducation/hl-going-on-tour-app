@@ -15,12 +15,10 @@ export default class Scene3_3 extends Phaser.Scene {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Module music.
-        this.load.audio('theme-module3', [
-            'assets/Audio/Music/3_Level1/theme-module3.mp3',
-        ]);
+        this.load.audio('theme-module3', 'assets/Audio/Music/3_Level1/theme-module3.mp3');
         // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("sparklesSFX", ["assets/Audio/SFX/3_Level1/sparkles.mp3"]);
+        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
+        this.load.audio("sparklesSFX", "assets/Audio/SFX/3_Level1/sparkles.mp3");
 
         // Sprite sheets.
         this.load.spritesheet('sparkles3-3', 'assets/Images/3_Level1/genre-cards/sparkles1-spritesheet.png', { frameWidth: 530, frameHeight: 562 });

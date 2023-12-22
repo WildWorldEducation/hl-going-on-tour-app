@@ -16,11 +16,10 @@ export default class Scene3_4 extends Phaser.Scene {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Module music.
-        this.load.audio('theme-module3', [
-            'assets/Audio/Music/3_Level1/theme-module3.mp3',
-        ]);
+        this.load.audio('theme-module3', 'assets/Audio/Music/3_Level1/theme-module3.mp3');
         // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
+        this.load.audio("suction-sound", "assets/Audio/SFX/3_Level1/click-effect.mp3")
 
         // Sprites.
         this.load.image('room', 'assets/Images/3_Level1/room/room.jpg');
@@ -49,17 +48,24 @@ export default class Scene3_4 extends Phaser.Scene {
             this.music.loop = true
         }
 
+        // // Audio // //
+        this.clickSound = this.sound.add("suction-sound", { loop: false });
+
         // Room bg.
         var room = this.add.sprite(0, 0, 'room').setOrigin(0);
 
         //Instructions.
-        var instructionTextBg = this.add.sprite(1000, -320, 'text-card3-4').setOrigin(0);
-        instructionTextBg.scale = 1.5
+        var instructionTextBg = this.add.sprite(960, -320, 'text-card3-4').setOrigin(0);
+        instructionTextBg.setScale(1.8, 1.5);
+        instructionTextBg.setAlpha(0.95)
         this.instructionText = this.add.rexBBCodeText(1470, 50,
             "When getting ready for any trip or activity, it\nis important to stay healthy. You don't want\nto feel unwell during your adventure!",
             { fontFamily: "Arial", fontSize: "96px", color: '#000000', align: 'center' }).setOrigin(0.5, 0.0);
         // Dealing with text quality.
         this.instructionText.scale = 0.45
+
+        // the instruction background for animate purpose
+        this.instructionCtnr = this.add.container(0, 0, [instructionTextBg, this.instructionText]);
 
         // Suitcase.
         var suitcase = this.add.sprite(0, 0, 'suitcase-closed').setOrigin(0);
@@ -127,6 +133,37 @@ export default class Scene3_4 extends Phaser.Scene {
         // Dealing with text quality.
         this.congratsText.scale = 0.45
         this.congratsText.alpha = 0
+        /**
+         * Because The scene have a global variable slide
+         * I think the previous dev want to open the suitcase and place all the items on it when we go back to this scene
+         * So I will implement that feature instead of make the scene playable again
+         */
+        // // If the slide is go up before
+
+        if (this.slide > 1) {
+            // turn on congrat text and background
+            this.instructionCtnr.setAlpha(0);
+            congratsTextBg.setAlpha(1);
+            this.congratsText.setAlpha(1);
+
+            // open the suit case
+            suitcase.alpha = 0;
+            suitcaseTop.alpha = 1;
+            suitcaseBottom.alpha = 1;
+            // move water bottle to the suitcase
+            waterBottle.setPosition(360, 760);
+            // move news paper to the suitcase
+            newspaper.setPosition(440, 840);
+            // move banana to the suitcase
+            banana.setPosition(440, 790);
+            // move book to the suitcase
+            book.setPosition(260, 860);
+            // move eye cover to the suitcase
+            eyecover.setPosition(480, 850);
+            // move phone to the suitcase
+            phone.setPosition(550, 870);
+
+        }
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -134,14 +171,9 @@ export default class Scene3_4 extends Phaser.Scene {
         nextBtn.on('pointerdown', function () {
             if (this.slide == 1) {
                 this.slide++;
-
                 // Disable button.
                 nextBtn.disableInteractive()
                 nextBtn.alpha = 0
-
-                // Change instruction text.
-                this.instructionText.setText("During your trip, you'll need water.\n[b]Click on an object[/b] that will help\nyou stay hydrated.");
-
                 // Open suitcase.
                 suitcase.alpha = 0
                 suitcaseTop.alpha = 1
@@ -150,8 +182,8 @@ export default class Scene3_4 extends Phaser.Scene {
                 // Make waterbottle interactive.
                 waterBottle.setInteractive({ cursor: 'pointer' })
                 waterBottle.on('pointerdown', () => {
-                    // Change instruction text.
-                    this.instructionText.setText("During your trip, you'll need to maintain a\ngrowth mindset. [b]Click on an object[/b] that will\nhelp you learn about current events.");
+
+
                     // Animation.
                     this.tweens.add({
                         targets: [waterBottle],
@@ -162,11 +194,25 @@ export default class Scene3_4 extends Phaser.Scene {
                         repeat: 0,
                     });
 
+
+                    // Wait for 0.6s to play click sound 
+                    this.time.addEvent({
+                        delay: 600,
+                        callback: () => {
+                            // play the failed sound after 500 ms
+                            this.clickSound.play();
+                            // Change instruction text.
+                            this.instructionText.setText("During your trip, you'll need to maintain a\ngrowth mindset. [b]Click on an object[/b] that will\nhelp you learn about current events.");
+                        },
+                        loop: false
+                    })
+                    // make water bottle un-interactive
+                    waterBottle.disableInteractive();
+
                     // Make newspaper interactive.
                     newspaper.setInteractive({ cursor: 'pointer' })
                     newspaper.on('pointerdown', () => {
-                        // Change instruction text.
-                        this.instructionText.setText("[b]Click on an object[/b] that will help you\neat healthy during your trip.");
+
                         // Animation.
                         this.tweens.add({
                             targets: [newspaper],
@@ -176,12 +222,23 @@ export default class Scene3_4 extends Phaser.Scene {
                             ease: 'Sine.easeInOut',
                             repeat: 0,
                         });
+                        // Wait for 0.6s to play click sound 
+                        this.time.addEvent({
+                            delay: 600,
+                            callback: () => {
+                                // play the failed sound after 500 ms
+                                this.clickSound.play();
+                                // Change instruction text.
+                                this.instructionText.setText("[b]Click on an object[/b] that will help you\neat healthy during your trip.");
+                            },
+                            loop: false
+                        });
+                        // make news paper un-interactive
+                        newspaper.disableInteractive();
 
                         // Make banana interactive.
-                        banana.setInteractive({ cursor: 'pointer' })
+                        banana.setInteractive({ cursor: 'pointer' });
                         banana.on('pointerdown', () => {
-                            // Change instruction text.
-                            this.instructionText.setText("[b]Click on an object[/b] that will help you\nkeep your mind active.");
                             // Animation.
                             this.tweens.add({
                                 targets: [banana],
@@ -192,11 +249,25 @@ export default class Scene3_4 extends Phaser.Scene {
                                 repeat: 0,
                             });
 
+
+                            // Wait for 0.6s to play click sound 
+                            this.time.addEvent({
+                                delay: 600,
+                                callback: () => {
+                                    // play the failed sound after 500 ms
+                                    this.clickSound.play();
+                                    // Change instruction text.
+                                    this.instructionText.setText("[b]Click on an object[/b] that will help you\nkeep your mind active.");
+                                },
+                                loop: false
+                            })
+                            // make banana un-interactive
+                            banana.disableInteractive();
+
                             // Make book interactive.
                             book.setInteractive({ cursor: 'pointer' })
                             book.on('pointerdown', () => {
-                                // Change instruction text.
-                                this.instructionText.setText("[b]Click on an object[/b] that will help you\nget enough sleep.");
+
                                 // Animation.
                                 this.tweens.add({
                                     targets: [book],
@@ -206,12 +277,24 @@ export default class Scene3_4 extends Phaser.Scene {
                                     ease: 'Sine.easeInOut',
                                     repeat: 0,
                                 });
+                                // Wait for 0.6s to play click sound 
+                                this.time.addEvent({
+                                    delay: 600,
+                                    callback: () => {
+                                        // play the failed sound after 500 ms
+                                        this.clickSound.play();
+                                        // Change instruction text.
+                                        this.instructionText.setText("[b]Click on an object[/b] that will help you\nget enough sleep.");
+                                    },
+                                    loop: false
+                                })
+                                // make book un-interactive
+                                book.disableInteractive();
 
                                 // Make eyecover interactive.
                                 eyecover.setInteractive({ cursor: 'pointer' })
                                 eyecover.on('pointerdown', () => {
-                                    // Change instruction text.
-                                    this.instructionText.setText("[b]Click on an object[/b] that will\nhelp you find resources and create a network\nof people that will support you.");
+
                                     // Animation.
                                     this.tweens.add({
                                         targets: [eyecover],
@@ -221,6 +304,19 @@ export default class Scene3_4 extends Phaser.Scene {
                                         ease: 'Sine.easeInOut',
                                         repeat: 0,
                                     });
+                                    // Wait for 0.6s to play click sound 
+                                    this.time.addEvent({
+                                        delay: 600,
+                                        callback: () => {
+                                            // play the failed sound after 500 ms
+                                            this.clickSound.play();
+                                            // Change instruction text.
+                                            this.instructionText.setText("[b]Click on an object[/b] that will\nhelp you find resources and create a network\nof people that will support you.");
+                                        },
+                                        loop: false
+                                    })
+                                    // make eye cover un-interactive
+                                    eyecover.disableInteractive();
 
                                     // Make phone interactive.
                                     phone.setInteractive({ cursor: 'pointer' })
@@ -234,12 +330,20 @@ export default class Scene3_4 extends Phaser.Scene {
                                             ease: 'Sine.easeInOut',
                                             repeat: 0,
                                         });
-
+                                        // Wait for 0.6s to play click sound 
+                                        this.time.addEvent({
+                                            delay: 600,
+                                            callback: () => {
+                                                // play the failed sound after 500 ms
+                                                this.clickSound.play();
+                                            },
+                                            loop: false
+                                        })
+                                        // make phone un-interactive
+                                        phone.disableInteractive();
                                         nextBtn.setInteractive({ cursor: 'pointer' })
                                         nextBtn.alpha = 1
-                                        instructionTextBg.alpha = 0
-                                        this.instructionText.alpha = 0
-
+                                        this.instructionCtnr.setAlpha(0)
                                         this.tweens.add({
                                             targets: [congratsTextBg, this.congratsText],
                                             alpha: 1,

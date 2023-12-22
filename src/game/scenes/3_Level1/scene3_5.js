@@ -13,11 +13,9 @@ export default class Scene3_5 extends Phaser.Scene {
 
     preload() {
         // Module music.
-        this.load.audio('theme-module3', [
-            'assets/Audio/Music/3_Level1/theme-module3.mp3',
-        ]);
+        this.load.audio('theme-module3', 'assets/Audio/Music/3_Level1/theme-module3.mp3');
         // Audio.
-        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         // Video.

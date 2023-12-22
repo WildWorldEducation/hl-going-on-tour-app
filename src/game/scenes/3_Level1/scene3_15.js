@@ -18,10 +18,10 @@ export default class Scene3_15 extends Phaser.Scene {
         ]);
         // Audio. 
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("pop1", ["assets/Audio/Music/3_Level1/genre-quiz/pop1.mp3"]);
-        this.load.audio("jazz2", ["assets/Audio/Music/3_Level1/genre-quiz/jazz2.mp3"]);
-        this.load.audio("rock3", ["assets/Audio/Music/3_Level1/genre-quiz/rock3.mp3"]);
-        this.load.audio("pop2", ["assets/Audio/Music/3_Level1/genre-quiz/pop2.mp3"]);
+        this.load.audio("pop1", "assets/Audio/Music/3_Level1/genre-quiz/pop1.mp3");
+        this.load.audio("jazz2", "assets/Audio/Music/3_Level1/genre-quiz/jazz2.mp3");
+        this.load.audio("rock3", "assets/Audio/Music/3_Level1/genre-quiz/rock3.mp3");
+        this.load.audio("pop2", "assets/Audio/Music/3_Level1/genre-quiz/pop2.mp3");
 
         // Sprites.
         this.load.image('notes-bg', 'assets/Images/3_Level1/notes-bg.png');
@@ -29,6 +29,7 @@ export default class Scene3_15 extends Phaser.Scene {
         this.load.image('stop-btn-square', 'assets/Images/3_Level1/genre-quiz/stop-btn-square.png');
 
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
+        this.load.image('star', 'assets/Images/3_Level1/genre-quiz/star.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
     }
 
@@ -57,36 +58,48 @@ export default class Scene3_15 extends Phaser.Scene {
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
         bg.alpha = 0.5
 
-        // Stars.
-        var stars = this.add.sprite(400, 100, 'stars').setOrigin(0.5);
-        stars.setScale(0.6)
+        // // ** Stars Sprites ** // //.
+        // grey out stars
+        var stars = this.add.sprite(480, 120, 'stars').setOrigin(0.5);
+        stars.setScale(0.66);
+        // yellow star to indicate question order and number of right answers
+        const star = this.add.sprite(285, 116, 'star').setOrigin(0.5).setScale(0.17);
+        const star2 = this.add.sprite(383, 116, 'star').setOrigin(0.5).setScale(0.17);
+        const start3 = this.add.sprite(480, 116, 'star').setOrigin(0.5).setScale(0.17);
+        //-- End of stars sprites -- //
 
         // Header.
         var header = this.add.graphics();
         header.fillStyle(0xffffff, 1);
-        header.fillRoundedRect(260, 320, 1380, 140, 72);
-        var headerText = this.add.text(960, 390,
+        header.fillRoundedRect(200, 344, 1520, 160, 80);
+        var headerText = this.add.text(960, 425,
             `Listen to the songs below. Which one do you think sounds more like jazz?`,
             { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
-        headerText.setOrigin(0.5).setScale(0.5)
+        headerText.setOrigin(0.5).setScale(0.5);
 
-        // Button 1.
+        // // _-_ Button Answer Section _-_ // //
+        /** Different from scene3_12 we use a flag here to determine what border to show, 
+            this way we dont have to loop through array every time we click 
+        */
+        let borderVisible = null;
+        // -- Button 1. //
         var btn1Graphic = this.add.graphics();
         btn1Graphic.fillStyle(0xffffff, 1);
-        btn1Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        var btn1Text = this.add.text(200, 60, "A. Song 1", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn1Text.setOrigin(0.5).setScale(0.5)
-        const btn1Border = this.add.graphics();
-        btn1Border.lineStyle(5, '0x87d1ff');
-        btn1Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn1Border.setAlpha(0)
+        btn1Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn1Text = this.add.text(130, 50, "A. Song 1", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn1Text.setOrigin(0).setScale(0.5);
         // playBtn.
-        var btn1PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
-        btn1PlayBtn.setScale(0.28)
-        var btn1StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
-        btn1StopBtn.setScale(0.28).setAlpha(0)
-        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1PlayBtn, btn1StopBtn, btn1Text, btn1Border]);
-        btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        var btn1PlayBtn = this.add.sprite(10, 15, 'play-btn-square').setOrigin(0);
+        btn1PlayBtn.setScale(0.28);
+        var btn1StopBtn = this.add.sprite(10, 15, 'stop-btn-square').setOrigin(0);
+        btn1StopBtn.setScale(0.28).setAlpha(0);
+        // btn border
+        const btnBorder1 = this.add.graphics();
+        btnBorder1.lineStyle(5, 0x87d1ff, 1);
+        btnBorder1.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        borderVisible = btnBorder1;
+        var btn1 = this.add.container(200, 523, [btn1Graphic, btn1PlayBtn, btn1StopBtn, btnBorder1, btn1Text]);
+        btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -103,36 +116,44 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(0)
             btn3StopBtn.setAlpha(0)
             btn4StopBtn.setAlpha(0)
-            btn1Border.setAlpha(1)
-            btn2Border.setAlpha(0)
-            btn3Border.setAlpha(0)
-            btn4Border.setAlpha(0)
-            // Stop other tracks.            
-            this.rock3.stop()
-            this.pop2.stop()
-            this.jazz2.stop()
-            // Play this track.
-            this.pop1.play()
-        }, this);
-        btn1Graphic.alpha = 1
 
-        // Button 2.
+            /**I think Stop the song when the user click again will have a better ux  */
+            if (this.pop1.isPlaying) {
+                this.pop1.stop();
+                btn1StopBtn.setAlpha(0);
+            } else {
+                // Stop other tracks.            
+                this.rock3.stop();
+                this.pop2.stop();
+                this.jazz2.stop();
+                // Play this track.
+                this.pop1.play();
+            }
+            // Show button border
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder1;
+            borderVisible.setAlpha(1);
+        }, this);
+        btn1Graphic.alpha = 1;
+        // -- End of Button 1 -- //
+
+        // -- Button 2. -- //
         var btn2Graphic = this.add.graphics();
         btn2Graphic.fillStyle(0xffffff, 1);
-        btn2Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        var btn2Text = this.add.text(200, 60, "B. Song 2", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn2Text.setOrigin(0.5).setScale(0.5)
-        const btn2Border = this.add.graphics();
-        btn2Border.lineStyle(5, '0x87d1ff');
-        btn2Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn2Border.setAlpha(0)
+        btn2Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn2Text = this.add.text(130, 50, "B. Song 2", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn2Text.setOrigin(0).setScale(0.5)
         // playBtn.
-        var btn2PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
+        var btn2PlayBtn = this.add.sprite(10, 15, 'play-btn-square').setOrigin(0);
         btn2PlayBtn.setScale(0.28)
-        var btn2StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
-        btn2StopBtn.setScale(0.28).setAlpha(0)
-        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2PlayBtn, btn2StopBtn, btn2Text, btn2Border]);
-        btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        var btn2StopBtn = this.add.sprite(10, 15, 'stop-btn-square').setOrigin(0);
+        btn2StopBtn.setScale(0.28).setAlpha(0);
+        // btn border
+        const btnBorder2 = this.add.graphics();
+        btnBorder2.lineStyle(5, 0x87d1ff, 1);
+        btnBorder2.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        var btn2 = this.add.container(968, 523, [btn2Graphic, btn2PlayBtn, btn2StopBtn, btnBorder2, btn2Text]);
+        btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn2.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -145,40 +166,48 @@ export default class Scene3_15 extends Phaser.Scene {
         });
         btn2.on('pointerdown', function () {
             isCorrect = true
-            btn1StopBtn.setAlpha(0)
-            btn2StopBtn.setAlpha(1)
-            btn3StopBtn.setAlpha(0)
-            btn4StopBtn.setAlpha(0)
-            btn1Border.setAlpha(0)
-            btn2Border.setAlpha(1)
-            btn3Border.setAlpha(0)
-            btn4Border.setAlpha(0)
-            // Stop other tracks.
-            this.rock3.stop()
-            this.pop1.stop()
-            this.pop2.stop()
-            // Play this track.
-            this.jazz2.play()
-        }, this);
-        btn2Graphic.alpha = 1
+            btn1StopBtn.setAlpha(0);
+            btn2StopBtn.setAlpha(1);
+            btn3StopBtn.setAlpha(0);
+            btn4StopBtn.setAlpha(0);
 
-        // Button 3.
+            /**I think Stop the song when the user click again will have a better ux  */
+            if (this.jazz2.isPlaying) {
+                this.jazz2.stop();
+                btn2StopBtn.setAlpha(0);
+            } else {
+                // Stop other tracks.            
+                this.rock3.stop();
+                this.pop2.stop();
+                this.pop1.stop();
+                // Play this track.
+                this.jazz2.play();
+            }
+            // Show button border
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder2;
+            borderVisible.setAlpha(1);
+        }, this);
+        btn2Graphic.alpha = 1;
+        // -- End Of Button 2 -- //
+
+        // -- Button 3. -- //
         var btn3Graphic = this.add.graphics();
         btn3Graphic.fillStyle(0xffffff, 1);
-        btn3Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        var btn3Text = this.add.text(200, 60, "C. Song 3", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn3Text.setOrigin(0.5).setScale(0.5)
-        const btn3Border = this.add.graphics();
-        btn3Border.lineStyle(5, '0x87d1ff');
-        btn3Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn3Border.setAlpha(0)
+        btn3Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn3Text = this.add.text(130, 50, "C. Song 3", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn3Text.setOrigin(0).setScale(0.5)
         // playBtn.
-        var btn3PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
+        var btn3PlayBtn = this.add.sprite(10, 15, 'play-btn-square').setOrigin(0);
         btn3PlayBtn.setScale(0.28)
-        var btn3StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
-        btn3StopBtn.setScale(0.28).setAlpha(0)
-        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3PlayBtn, btn3StopBtn, btn3Text, btn3Border]);
-        btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        var btn3StopBtn = this.add.sprite(10, 15, 'stop-btn-square').setOrigin(0);
+        btn3StopBtn.setScale(0.28).setAlpha(0);
+        // btn border
+        const btnBorder3 = this.add.graphics();
+        btnBorder3.lineStyle(5, 0x87d1ff, 1);
+        btnBorder3.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        var btn3 = this.add.container(200, 685, [btn3Graphic, btn3PlayBtn, btn3StopBtn, btnBorder3, btn3Text]);
+        btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn3.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -195,36 +224,44 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(0)
             btn3StopBtn.setAlpha(1)
             btn4StopBtn.setAlpha(0)
-            btn1Border.setAlpha(0)
-            btn2Border.setAlpha(0)
-            btn3Border.setAlpha(1)
-            btn4Border.setAlpha(0)
-            // Stop other tracks.
-            this.pop1.stop()
-            this.pop2.stop()
-            this.jazz2.stop()
-            // Play this track.
-            this.rock3.play()
-        }, this);
-        btn3Graphic.alpha = 1
 
-        // Button 4.
+            /**I think Stop the song when the user click again will have a better ux  */
+            if (this.rock3.isPlaying) {
+                this.rock3.stop();
+                btn3StopBtn.setAlpha(0);
+            } else {
+                // Stop other tracks.            
+                this.pop1.stop();
+                this.pop2.stop();
+                this.jazz2.stop();
+                // Play this track.
+                this.rock3.play();
+            }
+            // Show button border
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder3;
+            borderVisible.setAlpha(1);
+        }, this);
+        btn3Graphic.alpha = 1;
+        // -- End Of Button 3 -- //
+
+        // -- Button 4. -- //
         var btn4Graphic = this.add.graphics();
         btn4Graphic.fillStyle(0xffffff, 1);
-        btn4Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        var btn4Text = this.add.text(200, 60, "D. Song 4", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn4Text.setOrigin(0.5).setScale(0.5)
-        const btn4Border = this.add.graphics();
-        btn4Border.lineStyle(5, '0x87d1ff');
-        btn4Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn4Border.setAlpha(0)
+        btn4Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn4Text = this.add.text(130, 50, "D. Song 4", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn4Text.setOrigin(0).setScale(0.5)
         // playBtn.
-        var btn4PlayBtn = this.add.sprite(0, 0, 'play-btn-square').setOrigin(0);
+        var btn4PlayBtn = this.add.sprite(10, 15, 'play-btn-square').setOrigin(0);
         btn4PlayBtn.setScale(0.28)
-        var btn4StopBtn = this.add.sprite(0, 0, 'stop-btn-square').setOrigin(0);
-        btn4StopBtn.setScale(0.28).setAlpha(0)
-        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4PlayBtn, btn4StopBtn, btn4Text, btn4Border]);
-        btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        var btn4StopBtn = this.add.sprite(10, 15, 'stop-btn-square').setOrigin(0);
+        btn4StopBtn.setScale(0.28).setAlpha(0);
+        // btn border
+        const btnBorder4 = this.add.graphics();
+        btnBorder4.lineStyle(5, 0x87d1ff, 1);
+        btnBorder4.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        var btn4 = this.add.container(968, 685, [btn4Graphic, btn4PlayBtn, btn4StopBtn, btnBorder4, btn4Text]);
+        btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn4.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -241,18 +278,26 @@ export default class Scene3_15 extends Phaser.Scene {
             btn2StopBtn.setAlpha(0)
             btn3StopBtn.setAlpha(0)
             btn4StopBtn.setAlpha(1)
-            btn1Border.setAlpha(0)
-            btn2Border.setAlpha(0)
-            btn3Border.setAlpha(0)
-            btn4Border.setAlpha(1)
-            // Stop other tracks.
-            this.pop1.stop()
-            this.rock3.stop()
-            this.jazz2.stop()
-            // Play this track.
-            this.pop2.play()
+
+            /**I think Stop the song when the user click again will have a better ux  */
+            if (this.pop2.isPlaying) {
+                this.pop2.stop();
+                btn4StopBtn.setAlpha(0);
+            } else {
+                // Stop other tracks.            
+                this.rock3.stop();
+                this.pop1.stop();
+                this.jazz2.stop();
+                // Play this track.
+                this.pop2.play();
+            }
+            // Show button border
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder4;
+            borderVisible.setAlpha(1);
         }, this);
-        btn4Graphic.alpha = 1
+        btn4Graphic.alpha = 1;
+        // -- End Of Button 4 -- //
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -270,9 +315,9 @@ export default class Scene3_15 extends Phaser.Scene {
                 this.scene.start("Scene3_15_incorrect", { music: this.music });
             }
         }, this);
-        submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 150
-        submitBtn.alpha = 1
+        submitBtn.x = 960 - 130;
+        submitBtn.y = 1080 - 130;
+        submitBtn.alpha = 1;
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
