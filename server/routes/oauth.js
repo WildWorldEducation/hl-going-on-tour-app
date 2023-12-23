@@ -36,13 +36,41 @@ conn.connect((err) => {
 // Replace these with environment variables - insecure.
 var cleverClientId = '8bf56a5a145bbee01612';
 var cleverClientSecret = '62a0f42b174f545cb7caeb6dbc3cdf9e346c1bcd';
-var redirect_uri = "http://localhost:3000/oauth/clever"
+var redirectUri = "http://localhost:3000/oauth/clever"
 
+
+
+/**
+ * Clever API redirect URL. The authentication code from Clever is delivered here.
+ */
+var authenticationCode;
 router.get('/clever', (req, res) => {
     console.log(req.query.code);
-    res.redirect('/')
-});
+    // Get the code from the url params, after the user has successfully logged in.
+    authenticationCode = req.query.code;
 
+    // POST request to Clever to get the user token.
+    fetch('https://clever.com/oauth/tokens', {
+        method: 'POST',
+        body: JSON.stringify({
+            code: authenticationCode,
+            grant_type: 'authorization_code',
+            redirect_uri: redirectUri
+        }),
+        // Need to fix the below.
+        headers: {
+            'Authorization': `Basic OGJmNTZhNWExNDViYmVlMDE2MTI6NjJhMGY0MmIxNzRmNTQ1Y2I3Y2FlYjZkYmMzY2RmOWUzNDZjMWJjZA==`,
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .catch(error => {
+            console.log(error)
+        })
+
+    res.send('Fetch API is available on the global scope by default')
+});
 
 
 
