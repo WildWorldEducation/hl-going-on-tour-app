@@ -15,8 +15,8 @@ export default class Scene3_12_incorrect extends Phaser.Scene {
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
 
         // Audio
-        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
-        this.load.audio("fail-sound", "assets/Audio/SFX/4_Level2/fail.mp3");
+        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("fail-sound", ["assets/Audio/SFX/4_Level2/fail.mp3"]);
 
         // Sprites.        
         this.load.image('stars', 'assets/Images/3_Level1/stars.png');
@@ -63,7 +63,7 @@ export default class Scene3_12_incorrect extends Phaser.Scene {
 
         // Submit button.
 
-        const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Try again', 81, -0.4, -0.3, this.nextBtnAudio, 10)
+        const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Try again', 81, -0.4, -0.3, this.nextBtnAudio, 10);
         submitBtn.on('pointerdown', function () {
             this.scene.start("Scene3_12");
         }, this);

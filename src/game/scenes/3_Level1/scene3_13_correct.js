@@ -108,7 +108,7 @@ export default class Scene3_13_correct extends Phaser.Scene {
 
 
         // Submit button.
-        const submitBtn = new CustomButton(this, 800, 940, 320, 70, 'Continue', 81, -0.44, -0.27, this.nextBtnAudio, 10)
+        const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Continue', 81, -0.44, -0.27, this.nextBtnAudio, 10);
         submitBtn.on('pointerdown', function () {
             this.scene.start("Scene3_14", { music: this.music });
         }, this);

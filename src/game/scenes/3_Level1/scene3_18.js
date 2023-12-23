@@ -53,11 +53,36 @@ export default class Scene3_18 extends Phaser.Scene {
         });
         happyTune.play();
 
+
+        // Instructions.
+        var instructionsBG = this.add.sprite(1055, 225, 'text-card3-13').setOrigin(0.5);
+        instructionsBG.setScale(1.2, 1.17);
+        instructionsBG.alpha = 0.9
+        this.instructionsText = this.add.rexBBCodeText(1040, 267,
+            `\"[i]In life, it's not where you go — it's who you travel with.[/i]\"
+
+            [align=right]Charles M. Schulz[/align]
+
+              `,
+            { fontFamily: "Arial", fontSize: "82px", color: '#000000', align: 'center' }).setOrigin(0.5);
+        // Dealing with text quality.
+        this.instructionsText.scale = 0.5
+        // Instruction container
+        const instrCntr = this.add.container(0, 0, [instructionsBG, this.instructionsText]).setAlpha(0);
+
+        // Animation to turn on the instruction when the char finished walking 
+        this.tweens.add({
+            targets: instrCntr,
+            alpha: 1,
+            delay: 3600,
+            duration: 500
+        })
+
         // Next button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
-            happyTune.stop()
+            happyTune.stop();
             if (!this.music.isPlaying) {
                 this.music.resume();
                 this.music.setVolume(0.1);
@@ -70,23 +95,10 @@ export default class Scene3_18 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
+            happyTune.stop();
             this.scene.start("Scene3_17");
         }, this);
         backBtn.y = backBtn.y - 40
-
-        // Instructions.
-        var instructionsBG = this.add.sprite(1050, 200, 'text-card3-13').setOrigin(0.5);
-        instructionsBG.scale = 1.2
-        instructionsBG.alpha = 0.9
-        this.instructionsText = this.add.rexBBCodeText(1050, 230,
-            `[i]"In life, it's not where you go — it's who you travel with."[/i]
-
-            [align=right]Charles M. Schulz[/align]
-
-              `,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.5);
-        // Dealing with text quality.
-        this.instructionsText.scale = 0.5
 
         // Save user progress.
         const save = new SaveProgress(this)

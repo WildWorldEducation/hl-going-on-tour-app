@@ -1,6 +1,7 @@
 import WideButton from '../Custom_Classes/WideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import CustomButton from '../Custom_Classes/CustomButton.js';
 
 export default class Scene3_14 extends Phaser.Scene {
     constructor() {
@@ -20,7 +21,7 @@ export default class Scene3_14 extends Phaser.Scene {
         ]);
         // Audio. 
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("rock2", "assets/Audio/Music/3_Level1/genre-quiz/rock2.mp3");
+        this.load.audio("rock2", ["assets/Audio/Music/3_Level1/genre-quiz/rock2.mp3"]);
 
         // Sprites.
         this.load.image('notes-bg', 'assets/Images/3_Level1/notes-bg.png');
@@ -280,7 +281,7 @@ and select to which music genre this song belongs to.`,
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
+        const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Submit', 81, -0.67, -0.29, this.nextBtnAudio, 10);
         submitBtn.on('pointerdown', function () {
             this.rock2.stop()
             if (isCorrect) {
@@ -290,9 +291,7 @@ and select to which music genre this song belongs to.`,
                 this.scene.start("Scene3_14_incorrect", { music: this.music });
             }
         }, this);
-        submitBtn.x = 960 - 130;
-        submitBtn.y = 1080 - 130;
-        submitBtn.alpha = 1;
+
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

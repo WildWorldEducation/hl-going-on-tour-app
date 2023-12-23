@@ -1,6 +1,7 @@
 import WideButton from '../Custom_Classes/WideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import CustomButton from '../Custom_Classes/CustomButton.js';
 
 export default class Scene3_13 extends Phaser.Scene {
     constructor() {
@@ -19,10 +20,10 @@ export default class Scene3_13 extends Phaser.Scene {
         ]);
         // Audio. 
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("jazz1", "assets/Audio/Music/3_Level1/genre-quiz/jazz1.mp3");
-        this.load.audio("rap", "assets/Audio/Music/3_Level1/genre-quiz/rap.mp3");
-        this.load.audio("rock1", "assets/Audio/Music/3_Level1/genre-quiz/rock1.mp3");
-        this.load.audio("country2", "assets/Audio/Music/3_Level1/genre-quiz/country2.mp3");
+        this.load.audio("jazz1", ["assets/Audio/Music/3_Level1/genre-quiz/jazz1.mp3"]);
+        this.load.audio("rap", ["assets/Audio/Music/3_Level1/genre-quiz/rap.mp3"]);
+        this.load.audio("rock1", ["assets/Audio/Music/3_Level1/genre-quiz/rock1.mp3"]);
+        this.load.audio("country2", ["assets/Audio/Music/3_Level1/genre-quiz/country2.mp3"]);
 
         // Sprites.
         this.load.image('notes-bg', 'assets/Images/3_Level1/notes-bg.png');
@@ -180,7 +181,7 @@ export default class Scene3_13 extends Phaser.Scene {
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
+        const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Submit', 81, -0.67, -0.29, this.nextBtnAudio, 10)
         submitBtn.on('pointerdown', function () {
             // Stop tracks.
             sounds.forEach((e) => {
@@ -194,9 +195,7 @@ export default class Scene3_13 extends Phaser.Scene {
                 this.scene.start("Scene3_13_incorrect", { music: this.music });
             }
         }, this);
-        submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 70
-        submitBtn.alpha = 1
+
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

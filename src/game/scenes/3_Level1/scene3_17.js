@@ -51,7 +51,7 @@ export default class Scene3_17 extends Phaser.Scene {
         stars.setScale(0.6);
 
         var tickets = this.add.sprite(450, 640, 'tickets').setOrigin(0.5);
-        tickets.setScale(1.1);
+        tickets.setScale(1);
 
 
         // Sparkles. --
@@ -59,7 +59,7 @@ export default class Scene3_17 extends Phaser.Scene {
         this.anims.create({
             key: "sparkles",
             frameRate: 30,
-            frames: this.anims.generateFrameNumbers("sparkles3-17", { start: 0, end: 119 }),
+            frames: this.anims.generateFrameNumbers("sparkles3-17", { start: 0, end: 78 }),
             repeat: 0,
             hideOnComplete: true
         });
@@ -67,13 +67,13 @@ export default class Scene3_17 extends Phaser.Scene {
         this.anims.create({
             key: "sparkles-short",
             frameRate: 30,
-            frames: this.anims.generateFrameNumbers("sparkles3-17", { start: 0, end: 86 }),
+            frames: this.anims.generateFrameNumbers("sparkles3-17", { start: 0, end: 46 }),
             repeat: 0,
             hideOnComplete: true
         });
 
         // ** First two sparkle will be at two side of the stars bar
-        var sparkles1 = this.add.sprite(600, 80, "sparkles3-17").setAlpha(0);
+        var sparkles1 = this.add.sprite(500, 80, "sparkles3-17").setAlpha(0);
         sparkles1.scale = 0.4;
         this.time.addEvent({
             delay: 1160,
@@ -87,7 +87,7 @@ export default class Scene3_17 extends Phaser.Scene {
             sparkles1.destroy();
         });
 
-        var sparkles2 = this.add.sprite(1200, 80, "sparkles3-17").setAlpha(0);
+        var sparkles2 = this.add.sprite(1300, 80, "sparkles3-17").setAlpha(0);
         sparkles2.scale = 0.4;
         this.time.addEvent({
             delay: 1360,
@@ -122,7 +122,7 @@ export default class Scene3_17 extends Phaser.Scene {
 
         // Instructions.
         var instructionsBG = this.add.sprite(1250, 580, 'text-card3-12').setOrigin(0.5);
-        instructionsBG.scale = 1.2
+        instructionsBG.setScale(1.33, 1.25)
         this.instructionsText = this.add.rexBBCodeText(1250, 580,
             `Good job!
 
@@ -157,7 +157,7 @@ you?[/b]`,
         const sceneContainer = this.add.container(0, 0, [this.titleTextCtnr, instructionsBG, this.instructionsText, tickets, backBtn, nextBtn]).setAlpha(0);
 
         // ANIMATION CHAIN
-        this.tweens.chain({
+        const starsChain = this.tweens.chain({
             tweens: [
                 {
                     targets: stars,
@@ -175,14 +175,16 @@ you?[/b]`,
             ]
         })
 
-        // ** Sparkles 3 will be the bottom of the tickets So it have to be below here
+        /*
+        Sparkles 3 will be the bottom of the tickets So it have to be below here
+        */
         var sparkles3 = this.add.sprite(600, 880, "sparkles3-17").setAlpha(0);
         sparkles3.scale = 0.4;
         this.time.addEvent({
-            delay: 660,
+            delay: 1180,
             callback: () => {
-                sparkles3.play("sparkles");
                 sparkles3.setAlpha(1);
+                sparkles3.play("sparkles");
             },
             loop: false
         });

@@ -1,6 +1,7 @@
 import WideButton from '../Custom_Classes/WideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import CustomButton from '../Custom_Classes/CustomButton.js';
 
 export default class Scene3_12 extends Phaser.Scene {
     constructor() {
@@ -21,7 +22,7 @@ export default class Scene3_12 extends Phaser.Scene {
         ]);
         // Audio. 
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("country1", "assets/Audio/Music/3_Level1/genre-quiz/country1.mp3");
+        this.load.audio("country1", ["assets/Audio/Music/3_Level1/genre-quiz/country1.mp3"]);
 
         // Sprites.
         this.load.image('notes-bg', 'assets/Images/3_Level1/notes-bg.png');
@@ -121,8 +122,20 @@ export default class Scene3_12 extends Phaser.Scene {
                 stopBtn.setAlpha(1)
                 playBtn.setAlpha(0)
             }
-
             isPlaying = !isPlaying
+            // We have a time event here to make sure all the sound wave animation will stop when music is not playing
+            this.time.addEvent({
+                delay: 700,
+                callback: () => {
+                    if (!isPlaying) {
+                        soundWave1.anims.stop();
+                        soundWave2.anims.stop();
+                        soundWave1.setAlpha(0);
+                        soundWave2.setAlpha(0);
+                    }
+                }
+            })
+
         }, this);
 
         // Stars.
@@ -220,7 +233,7 @@ and select to which music genre this song belongs to.`,
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
+        const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Submit', 81, -0.67, -0.29, this.nextBtnAudio, 10);
         submitBtn.on('pointerdown', function () {
             this.country1.stop()
             if (isCorrect) {
@@ -230,9 +243,6 @@ and select to which music genre this song belongs to.`,
                 this.scene.start("Scene3_12_incorrect", { music: this.music });
             }
         }, this);
-        submitBtn.x = 960 - 130;
-        submitBtn.y = 1080 - 130;
-        submitBtn.alpha = 1;
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
