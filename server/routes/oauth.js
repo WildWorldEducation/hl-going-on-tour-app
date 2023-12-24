@@ -48,7 +48,8 @@ router.get('/clever', (req, res) => {
     console.log(req.query.code);
     // Get the code from the url params, after the user has successfully logged in.
     authenticationCode = req.query.code;
-
+    var token;
+    var options
     // POST request to Clever to get the user token.
     fetch('https://clever.com/oauth/tokens', {
         method: 'POST',
@@ -64,10 +65,31 @@ router.get('/clever', (req, res) => {
         },
     })
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then((json) => {
+            token = json.access_token
+            token = "Bearer " + token
+            console.log(token)
+            options = {
+                method: 'GET',
+                headers: { "Authorization": token }
+            };
+            fetch('https://api.clever.com/v3.0/me', options)
+                .then(response => response.json())
+                .then(response => console.log(response))
+                .catch(err => console.error(err));
+
+        })
         .catch(error => {
             console.log(error)
         })
+
+
+
+
+
+
+
+
 
     res.send('Fetch API is available on the global scope by default')
 });
