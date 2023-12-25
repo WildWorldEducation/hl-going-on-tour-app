@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    password: 'password',
+    //  password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -75,19 +75,12 @@ router.get('/clever', (req, res) => {
             };
             fetch('https://api.clever.com/v3.0/me', options)
                 .then(response => response.json())
-                .then(response => console.log(response))
+                .then((response) => { console.log(response) })
                 .catch(err => console.error(err));
-
         })
         .catch(error => {
             console.log(error)
         })
-
-
-
-
-
-
 
 
 
