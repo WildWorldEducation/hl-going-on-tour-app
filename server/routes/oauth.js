@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    //password: 'password',
+    //  password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -37,11 +37,19 @@ conn.connect((err) => {
 var cleverClientId = '8bf56a5a145bbee01612';
 var cleverClientSecret = '62a0f42b174f545cb7caeb6dbc3cdf9e346c1bcd';
 var redirectUri = "http://localhost:3000/oauth/clever"
-var User;
 
 
 /**
  * Clever OAuth Flow. 
+ * 
+ * 1) Redirect to Clever login screen
+ * 2) If user logs in to Clever successfully
+ * 3) Get the authentication code from Clever
+ * 4) Then, using the apps credentials, exchange that code for the user's token.
+ * 5) Then, log the user in
+ * 5a) First, check if their Clever ID number already exists on the app. If so, log them in.
+ * 5b) If not, check if their Clever email exists on the system. Add their Clever ID and log them in.
+ * 5c) Otherwise, create new account.
  */
 // Clever API redirect URL. The authentication code from Clever is delivered here.
 // If the user successfully logs in to Clever.
@@ -142,6 +150,7 @@ router.get('/clever', (req, res) => {
                                                             var username = user.data.email
                                                             var firstName = user.data.name.first
                                                             var lastName = user.data.name.last
+                                                            var cleverId = user.data.id
                                                             // Log user in.       
                                                             req.session.userName = username
                                                             // TODO
@@ -156,7 +165,7 @@ router.get('/clever', (req, res) => {
                                                             var startDate = currentDate;
                                                             // TODO
                                                             // Change the below depending on Clever role (isAdmin).
-                                                            let data = { first_name: firstName, last_name: lastName, username: username, email: email, is_admin: 0, start_date: startDate };
+                                                            let data = { first_name: firstName, last_name: lastName, username: username, email: email, is_admin: 0, start_date: startDate, clever_id: cleverId };
                                                             let sqlQuery4 = "INSERT INTO users SET ?";
                                                             let query = conn.query(sqlQuery4, data, (err, results) => {
                                                                 if (err) {
