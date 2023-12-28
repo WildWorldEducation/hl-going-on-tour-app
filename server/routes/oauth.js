@@ -85,7 +85,6 @@ router.get('/clever', (req, res) => {
             // Receive the user's token.
             token = json.access_token
             token = "Bearer " + token
-            console.log(token)
             options = {
                 method: 'GET',
                 headers: { "Authorization": token }
@@ -95,7 +94,6 @@ router.get('/clever', (req, res) => {
                 .then(response1 => response1.json())
                 .then((response1) => {
                     user = response1
-                    console.log(user)
                     // Fetch other user details.
                     fetch('https://api.clever.com/v3.0/users/' + user.data.id, options)
                         .then(response2 => response2.json())
