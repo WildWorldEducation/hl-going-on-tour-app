@@ -80,7 +80,7 @@ router.get('/clever', (req, res) => {
             // Receive the user's token.
             token = json.access_token
             token = "Bearer " + token
-            //console.log(token)
+            console.log(token)
             options = {
                 method: 'GET',
                 headers: { "Authorization": token }
