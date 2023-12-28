@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'H3@lthyL1f35tyl3s',
-    //   password: 'password',
+    //password: 'password',
     database: 'healthy_lifestyles'
 });
 
@@ -36,7 +36,12 @@ conn.connect((err) => {
 // Replace these with environment variables - insecure.
 var cleverClientId = '8bf56a5a145bbee01612';
 var cleverClientSecret = '62a0f42b174f545cb7caeb6dbc3cdf9e346c1bcd';
-var redirectUri = "http://localhost:3000/oauth/clever"
+
+var redirectUri;
+if (process.env.NODE_ENV == "production")
+    redirectUri = "https://edupc.org/oauth/clever"
+else
+    redirectUri = "http://localhost:3000/oauth/clever"
 
 
 /**
