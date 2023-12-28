@@ -55,6 +55,7 @@ var redirectUri = "http://localhost:3000/oauth/clever"
 // If the user successfully logs in to Clever.
 var authenticationCode;
 router.get('/clever', (req, res) => {
+    console.log("test")
     // Get the code from the url params, after the user has successfully logged in.
     authenticationCode = req.query.code;
     var token;
