@@ -1,4 +1,3 @@
-<!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
 <script>
 import router from "../router";
 
@@ -6,10 +5,15 @@ export default {
     data() {
         return {
             username: null,
-            password: null
+            password: null,
+            cleverRedirectUrl: "https://edupc.org/oauth/clever"
         }
     },
     mounted() {
+        if (import.meta.env.DEV) {
+            this.cleverRedirectUrl = "http://localhost:3000/oauth/clever"
+        }
+
         // To allow for logging in with Google.
         let loginWithGoogleScript = document.createElement('script')
         loginWithGoogleScript.setAttribute('src', 'https://accounts.google.com/gsi/client')
@@ -56,7 +60,7 @@ export default {
 
             <!-- Login with Clever -->
             <a
-                href="https://clever.com/oauth/authorize?response_type=code&redirect_uri=http://localhost:3000/oauth/clever&client_id=8bf56a5a145bbee01612"><img
+                :href="`https://clever.com/oauth/authorize?response_type=code&redirect_uri=${cleverRedirectUrl}&client_id=8bf56a5a145bbee01612`"><img
                     class="clever-button" src="/images/sign-in-with-clever-full.png" alt="Log in with Clever"></a>
 
 
