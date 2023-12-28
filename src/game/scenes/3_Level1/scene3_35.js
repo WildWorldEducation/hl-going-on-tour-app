@@ -57,8 +57,8 @@ export default class Scene3_35 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
         this.dz1Text.scale = 0.43
-        const zone1 = this.add.zone(1190, 350, 700, 100)
-            .setRectangleDropZone(700, 100);
+        const zone1 = this.add.zone(1190, 350, 900, 100)
+            .setRectangleDropZone(900, 100);
         zone1.name = "answerZone1"
 
         this.dropZone2 = this.add.graphics();
@@ -68,8 +68,8 @@ export default class Scene3_35 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
         this.dz2Text.scale = 0.43
-        const zone2 = this.add.zone(1070, 480, 700, 100)
-            .setRectangleDropZone(700, 100);
+        const zone2 = this.add.zone(1070, 480, 900, 100)
+            .setRectangleDropZone(900, 100);
         zone2.name = "answerZone2"
 
         this.dropZone3 = this.add.graphics();
@@ -79,8 +79,8 @@ export default class Scene3_35 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
         this.dz3Text.scale = 0.43
-        const zone3 = this.add.zone(1090, 610, 700, 100)
-            .setRectangleDropZone(700, 100);
+        const zone3 = this.add.zone(1090, 610, 900, 100)
+            .setRectangleDropZone(900, 100);
         zone3.name = "answerZone3"
 
         // Starting drop zones.        
@@ -101,7 +101,8 @@ export default class Scene3_35 extends Phaser.Scene {
         this.answer1Text.scale = 0.43
         var answer1Ctnr = this.add.container(960, 730, [answerBg1, this.answer1Text])
         // Make draggable.
-        answer1Ctnr.setSize(answerBg1.width / 2, answerBg1.height).setInteractive();
+        answer1Ctnr.setSize(answerBg1.width / 2, answerBg1.height)
+        answer1Ctnr.setInteractive({ cursor: 'pointer' });
         this.input.setDraggable(answer1Ctnr);
         answer1Ctnr.name = "answer1"
 
@@ -112,7 +113,10 @@ export default class Scene3_35 extends Phaser.Scene {
         this.answer2Text.scale = 0.43
         var answer2Ctnr = this.add.container(960, 820, [answerBg2, this.answer2Text])
         // Make draggable.
-        answer2Ctnr.setSize(answerBg2.width / 2, answerBg2.height).setInteractive();
+        answer2Ctnr.setSize(answerBg2.width / 2, answerBg2.height)
+        answer2Ctnr.setInteractive(
+            { cursor: 'pointer' }
+        );
         this.input.setDraggable(answer2Ctnr);
         answer2Ctnr.name = "answer2"
 
@@ -123,12 +127,15 @@ export default class Scene3_35 extends Phaser.Scene {
         this.answer3Text.scale = 0.43
         var answer3Ctnr = this.add.container(960, 910, [answerBg3, this.answer3Text])
         // Make draggable.
-        answer3Ctnr.setSize(answerBg3.width / 2, answerBg3.height).setInteractive();
+        answer3Ctnr.setSize(answerBg3.width / 2, answerBg3.height);
+        answer3Ctnr.setInteractive({ cursor: 'pointer' })
         this.input.setDraggable(answer3Ctnr);
         answer3Ctnr.name = "answer3"
 
         this.input.on('dragstart', function (pointer, gameObject) {
             this.children.bringToTop(gameObject);
+            this.canvas = document.getElementsByTagName("canvas")[0];
+            this.canvas.style.cursor = "grab"; // I think change cursor to grabbing symbol will have better immersive
         }, this);
 
         this.input.on('dragend', (pointer, gameObject, dropped) => {
@@ -141,6 +148,8 @@ export default class Scene3_35 extends Phaser.Scene {
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
             gameObject.x = dragX;
             gameObject.y = dragY;
+            this.canvas = document.getElementsByTagName("canvas")[0];
+            this.canvas.style.cursor = "grabbing"; // I think change cursor to grabbing symbol will have better immersive
         });
 
         this.input.on('drop', (pointer, gameObject, zone) => {
@@ -160,6 +169,8 @@ export default class Scene3_35 extends Phaser.Scene {
                 gameObject.x = gameObject.input.dragStartX;
                 gameObject.y = gameObject.input.dragStartY;
             }
+            this.canvas = document.getElementsByTagName("canvas")[0];
+            this.canvas.style.cursor = "grab"; // I think change cursor to grabbing symbol will have better immersive
         });
 
         // Next button.     

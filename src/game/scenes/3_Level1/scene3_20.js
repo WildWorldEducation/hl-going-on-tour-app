@@ -41,7 +41,7 @@ export default class Scene3_20 extends Phaser.Scene {
         vid.play();
 
         // Ambient sounds.
-        const ambientSounds = this.sound.add('ambient3-16');
+        const ambientSounds = this.sound.add('ambient3-16', { loop: true });
         ambientSounds.play()
 
         // Next button.     
@@ -64,8 +64,8 @@ export default class Scene3_20 extends Phaser.Scene {
         // Title.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 350, 150, 32);
-        this.titleText = this.add.text(55, 75, "Enter to win!",
+        this.textBg.fillRoundedRect(-30, 0, 365, 150, 32);
+        this.titleText = this.add.text(55, 75, "On The Road",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
         this.titleText.scale = 0.5

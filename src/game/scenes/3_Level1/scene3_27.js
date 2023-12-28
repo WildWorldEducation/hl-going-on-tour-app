@@ -39,13 +39,20 @@ export default class Scene3_27 extends Phaser.Scene {
         vid.setOrigin(0)
         vid.play();
 
-        // Next button.     
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
+        /** In This Scene The play book will automatically go to next scene after the video are done 
+         * So We will have a on over event for the vid
+        */
+        vid.on("complete", () => {
             this.scene.start("Scene3_28", { music: this.music });
-        }, this);
-        nextBtn.y = nextBtn.y - 40
+        });
+
+        // // Next button.     
+        // this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        // const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
+        // nextBtn.on('pointerdown', function () {
+        //     this.scene.start("Scene3_28", { music: this.music });
+        // }, this);
+        // nextBtn.y = nextBtn.y - 40
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });

@@ -61,25 +61,36 @@ export default class Scene3_19 extends Phaser.Scene {
         // Title.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 350, 150, 32);
-        this.titleText = this.add.text(55, 75, "Enter to win!",
+        this.textBg.fillRoundedRect(-30, 0, 365, 150, 32);
+        this.titleText = this.add.text(55, 75, "On The Road",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
         this.titleText.scale = 0.5
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         // Instructions.
-        var instructionsBG = this.add.sprite(1200, 200, 'text-card3-14').setOrigin(0.5);
-        instructionsBG.scale = 1.2
-        this.instructionsText = this.add.rexBBCodeText(1200, 200,
+        var instructionsBG = this.add.sprite(1235, 240, 'text-card3-14').setOrigin(0.5);
+        instructionsBG.setScale(1.3, 1.45);
+        instructionsBG.alpha = 0.9;
+        this.instructionsText = this.add.rexBBCodeText(1210, 240,
             `Musicians, athletes, and other celebrities need to
 take care of themselves on the road, and at home.
 Performers that have long careers [b]know the
 negative effects that alcohol, smoking, and
 vaping[/b] may have on their body.`,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.5);
+            { fontFamily: "Arial", fontSize: "82px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
-        this.instructionsText.scale = 0.5
+        this.instructionsText.scale = 0.5;
+        // Instruction Container
+        const instrCntr = this.add.container(0, 0, [instructionsBG, this.instructionsText]).setAlpha(0);
+
+        // The animation for instruction container
+        this.add.tween({
+            targets: instrCntr,
+            alpha: 1,
+            duration: 400,
+            delay: 700
+        });
 
         // Save user progress.
         const save = new SaveProgress(this)

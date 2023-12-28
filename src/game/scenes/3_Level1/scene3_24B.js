@@ -1,3 +1,4 @@
+import CustomButton from '../Custom_Classes/CustomButton.js';
 import WideButton from '../Custom_Classes/WideButton.js'
 
 export default class Scene3_24B extends Phaser.Scene {
@@ -24,11 +25,18 @@ export default class Scene3_24B extends Phaser.Scene {
 
         // Try again button.
         this.tryAgainBtnAudio = this.sound.add("next-button", { loop: false });
-        const tryAgainBtn = new WideButton(this, 0, 0, 'Try again', this.tryAgainBtnAudio);
+        const tryAgainBtn = new CustomButton(this, 1480, 940, 320, 75, 'Try again', 81, -0.4, -0.3, this.tryAgainBtnAudio, 10);
+        tryAgainBtn.setAlpha(0);
         tryAgainBtn.on('pointerdown', function () {
             this.scene.start("Scene3_23", { music: this.music });
         }, this);
-        Phaser.Display.Align.In.Center(tryAgainBtn, this.add.zone(860, 1000, 1920, 1080));
-        tryAgainBtn.y = tryAgainBtn.y - 40
+
+        // Wait after the character finished her sentence to show try again button
+        this.add.tween({
+            targets: tryAgainBtn,
+            alpha: 1,
+            delay: 3500,
+            duration: 800,
+        });
     }
 }

@@ -35,9 +35,9 @@ export default class Scene3_26 extends Phaser.Scene {
         }
 
         // Video.
-        const vid = this.add.video(0, 0, 'vid3-15');
-        vid.setOrigin(0)
-        vid.play();
+        this.vid = this.add.video(0, 0, 'vid3-15');
+        this.vid.setOrigin(0)
+        this.vid.play();
 
         // Next button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -53,9 +53,23 @@ export default class Scene3_26 extends Phaser.Scene {
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene3_25");
         }, this);
-        backBtn.y = backBtn.y - 40
+        backBtn.y = backBtn.y - 40;
+
+        // The progress bar that will display video time played and time left like in Video Player app
+        this.progressBar = this.add.graphics();
 
         // Save user progress.
-        const save = new SaveProgress(this)
+        const save = new SaveProgress(this);
+    }
+    update() {
+        this.progressBar.clear();
+
+        // Width of progressBar is the game width 
+        const size = 1920;
+        /** 
+         * In Update we just rerender the rectangle width based on video progress
+        */
+        this.progressBar.fillStyle(0x004aad);
+        this.progressBar.fillRect(0, 1080 - 10, size * this.vid.getProgress(), 10);
     }
 }

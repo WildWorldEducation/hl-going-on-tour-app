@@ -6,6 +6,9 @@ export default class Scene3_1 extends Phaser.Scene {
     constructor() {
         super('Scene3_1');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Module music.
         this.load.audio('theme-module3', [
@@ -21,12 +24,14 @@ export default class Scene3_1 extends Phaser.Scene {
     }
 
     create() {
-        // Module music.
-        this.music = this.sound.add('theme-module3');
-        this.music.play();
-        this.music.setVolume(0.1);
-        this.music.loop = true
-        this.sound.pauseOnBlur = true;
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('theme-module3');
+            this.music.play();
+            this.music.loop = true
+            this.music.setVolume(0.1);
+        }
 
         // BG.
         this.cameras.main.setBackgroundColor("#f9f2e8");

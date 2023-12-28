@@ -40,56 +40,97 @@ export default class Scene3_21 extends Phaser.Scene {
         vid.setOrigin(0)
         vid.play();
 
+        // Audio
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+
+
         // Button 1.
         var btn1Graphic = this.add.graphics();
-        btn1Graphic.lineStyle(16, 0xffffff, 1);
-        btn1Graphic.strokeRoundedRect(0, 0, 700, 150, 16);
-        btn1Graphic.fillStyle(0x004aad, 1);
-        btn1Graphic.fillRoundedRect(0, 0, 700, 150, 16);
-        var btn1Text = this.add.rexBBCodeText(350, 75, "[b]Yes, for sure.[/b]", { fontFamily: "Arial", fontSize: "72px", fill: "#ffffff", align: "center" });
-        btn1Text.setOrigin(0.5).setScale(0.5)
-        var btn1 = this.add.container(220, 850, [btn1Graphic, btn1Text]);
+        btn1Graphic.lineStyle(8, 0xffffff, 1);
+        btn1Graphic.strokeRoundedRect(-3.8, -3.5, 708, 158, 20); // Because the btn will have alpha 0.9 so we have to draw it border a bit larger to fit the inner btn
+        btn1Graphic.fillStyle(0x004aad, 0.9);
+        btn1Graphic.fillRoundedRect(0, 0, 702, 152, 16);
+        var btn1Text = this.add.rexBBCodeText(350, 75, "[b]Yes, for sure.[/b]", { fontFamily: "Arial", fontSize: "82px", fill: "#ffffff", align: "center" });
+        btn1Text.setOrigin(0.5).setScale(0.5);
+        // button 1 container 
+        var btn1 = this.add.container(220, 1550, [btn1Graphic, btn1Text]); //850
         btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 700, 150), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
             this.canvas.style.cursor = "pointer";
+            // Change color when hover
+            btn1Graphic.clear()
+                .lineStyle(8, 0xffffff, 1)
+                .strokeRoundedRect(-3.8, -3.5, 708, 158, 20);
+            btn1Graphic.fillStyle(0x0060e0, 0.9)
+                .fillRoundedRect(0, 0, 700, 150, 16);
         });
         btn1.on('pointerout', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
             this.canvas.style.cursor = "default";
+            // Change back original color when not hover
+            btn1Graphic.clear()
+                .lineStyle(8, 0xffffff, 1)
+                .strokeRoundedRect(-3.8, -3.5, 708, 158, 20);
+            btn1Graphic.fillStyle(0x004aad, 0.9)
+                .fillRoundedRect(0, 0, 700, 150, 16);
         });
         btn1.on('pointerdown', function () {
+            this.nextBtnAudio.play();
             this.scene.start("Scene3_22", { music: this.music });
         }, this);
+        // -- //
 
         // Button 2.
         var btn2Graphic = this.add.graphics();
-        btn2Graphic.lineStyle(16, 0xffffff, 1);
-        btn2Graphic.strokeRoundedRect(0, 0, 700, 150, 16);
-        btn2Graphic.fillStyle(0x004aad, 1);
+        btn2Graphic.lineStyle(8, 0xffffff, 1);
+        btn2Graphic.strokeRoundedRect(-3.8, -3.5, 708, 158, 20); // Because the btn will have alpha 0.9 so we have to draw it border a bit larger to fit the inner btn
+        btn2Graphic.fillStyle(0x004aad, 0.9);
         btn2Graphic.fillRoundedRect(0, 0, 700, 150, 16);
-        var btn2Text = this.add.rexBBCodeText(350, 75, "[b]Nah, it's all good. Won't affect me.[/b]", { fontFamily: "Arial", fontSize: "72px", fill: "#ffffff", align: "center" });
-        btn2Text.setOrigin(0.5).setScale(0.5)
-        var btn2 = this.add.container(1000, 850, [btn2Graphic, btn2Text]);
+        var btn2Text = this.add.rexBBCodeText(350, 75, "[b]Nah, it's all good. Won't affect me.[/b]", { fontFamily: "Arial", fontSize: "82px", fill: "#ffffff", align: "center" });
+        btn2Text.setOrigin(0.5).setScale(0.5);
+        // button 2 container 
+        var btn2 = this.add.container(1000, 1550, [btn2Graphic, btn2Text]); //850
         btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 700, 150), Phaser.Geom.Rectangle.Contains);
         btn2.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
             this.canvas.style.cursor = "pointer";
+            // Change color when hover
+            btn2Graphic.clear()
+                .lineStyle(8, 0xffffff, 1)
+                .strokeRoundedRect(-3.8, -3.5, 708, 158, 20);
+            btn2Graphic.fillStyle(0x0060e0, 0.9)
+                .fillRoundedRect(0, 0, 700, 150, 16);
         });
         btn2.on('pointerout', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
             this.canvas.style.cursor = "default";
+            // Change back original color when not hover
+            btn2Graphic.clear()
+                .lineStyle(8, 0xffffff, 1)
+                .strokeRoundedRect(-3.8, -3.5, 708, 158, 20);
+            btn2Graphic.fillStyle(0x004aad, 0.9)
+                .fillRoundedRect(0, 0, 700, 150, 16);
         });
         btn2.on('pointerdown', function () {
+            this.nextBtnAudio.play();
             this.scene.start("Scene3_22B", { music: this.music });
         }, this);
 
+
+        // The animation for 2 btn
+        this.tweens.add({
+            targets: [btn1, btn2],
+            y: 865,
+            delay: 1400,
+            duration: 1000,
+        })
+
         // Back button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene3_20");
@@ -103,10 +144,10 @@ export default class Scene3_21 extends Phaser.Scene {
         this.titleText = this.add.text(55, 75, "What do you know about Vaping?",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
-        this.titleText.scale = 0.5
+        this.titleText.scale = 0.5;
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         // Save user progress.
-        const save = new SaveProgress(this)
+        const save = new SaveProgress(this);
     }
 }

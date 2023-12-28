@@ -20,13 +20,14 @@ export default class Scene3_34 extends Phaser.Scene {
         ]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-        this.load.audio("flip-card", ["assets/Audio/SFX/General/flip-card.mp3"]);
+        this.load.audio('suction-cup', "assets/Audio/SFX/7_Level4/suction-cup-pull.mp3");
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('BG3-23', 'assets/Images/3_Level1/myth-fact-bg.jpg');
-        this.load.image('rotate-arrow', 'assets/Images/3_Level1/rotate-arrow.png');
-        this.load.image('circle-empty', 'assets/Images/General/circle-empty.png');
-        this.load.image('circle-full', 'assets/Images/General/circle-full.png');
+        this.load.image('circle-arrow', 'assets/Images/3_Level1/myth-fact-check/circle-arrow.png');
+        /** I use SVG because it has benefit for better scale pixel */
+        this.load.svg('empty-bullet', "assets/Images/3_Level1/myth-fact-check/ring-empty.svg");
+        this.load.svg('full-bullet', "assets/Images/3_Level1/myth-fact-check/ring-full.svg");
         // Video.
         this.load.video('fact-vid', 'assets/Videos/3_Level1/fact-vid.mp4');
     }
@@ -41,23 +42,43 @@ export default class Scene3_34 extends Phaser.Scene {
             this.music.loop = true
         }
 
+        // Audio
+        this.suctionCup = this.sound.add('suction-cup', { loop: false });
+
         // BG.
-        var bg = this.add.sprite(0, 0, 'BG3-23').setOrigin(0.0)
+        var bg = this.add.sprite(0, 0, 'BG3-23').setOrigin(0.0);
 
         // Video.
         const vid = this.add.video(0, 0, 'fact-vid');
-        vid.setOrigin(0)
+        vid.setOrigin(0);
+
+        /** This scene we have next and back button render before main button because
+         *  based on playbook next button only showing when the answer video show up. 
+         */
+        // Next button.     
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
+        nextBtn.on('pointerdown', function () {
+            this.scene.start("Scene3_35", { music: this.music });
+        }, this);
+        nextBtn.y = nextBtn.y - 40
+        nextBtn.setAlpha(0);
+
+        // Back button.
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
+        backBtn.on('pointerdown', function () {
+            this.scene.start("Scene3_33");
+        }, this);
+        backBtn.y = backBtn.y - 40
 
         // Main button ---
-        this.btnAudio = this.sound.add("flip-card", { loop: false });
         // Graphic.
         const btnGraphic = this.add.graphics();
         btnGraphic.fillStyle(0xffffff, 1)
-            .fillRoundedRect(560, 350, 800, 600, 16)
-            .lineStyle(6, 0x184586, 1)
-            .strokeRoundedRect(560, 350, 800, 600, 16)
-        // Circular arrow.
-        var rotateArrow = this.add.sprite(1260, 860, 'rotate-arrow').setOrigin(0.0)
+            .fillRoundedRect(600, 382, 720, 570, 26)
+            .lineStyle(6, 0x004aad, 1)
+            .strokeRoundedRect(600, 382, 720, 570, 26)
         // Text.
         this.btnText = this.add.rexBBCodeText(960, 650,
             `[b]Myth or Fact?[/b]
@@ -69,7 +90,7 @@ addictive as traditional ones?`,
         // Dealing with text quality.
         this.btnText.scale = 0.4
 
-        btnGraphic.setInteractive(new Phaser.Geom.Rectangle(560, 350, 800, 600), Phaser.Geom.Rectangle.Contains)
+        btnGraphic.setInteractive(new Phaser.Geom.Rectangle(600, 382, 720, 570), Phaser.Geom.Rectangle.Contains)
         btnGraphic.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -82,66 +103,52 @@ addictive as traditional ones?`,
         });
         var isAnswer = false;
         btnGraphic.on('pointerdown', () => {
-            this.btnAudio.play()
             if (!isAnswer) {
-                nextBtn.setInteractive()
-                nextBtn.setAlpha(1)
                 vid.alpha = 1
                 vid.play();
+                nextBtn.setAlpha(1);
                 this.btnText.scale = 0.35
-                this.btnText.setText(`[b]Fact[/b]
+                this.btnText.setText(`[size=100][b]Fact[/b]
 
 Vaping, e-cigarettes and regular cigarettes
 contain nicotine, which research suggests
 may be as addictive as heroin and
 cocaine. What's worse, many e-cigarette
 users get even more nicotine than they
-would from a regular cigarette product.`)
+would from a regular cigarette product.[/size]`)
             }
             else {
-                nextBtn.disableInteractive()
-                nextBtn.setAlpha(0)
-                vid.alpha = 0
-                this.btnText.scale = 0.35
+                vid.alpha = 0;
+                nextBtn.setAlpha(0);
+                this.btnText.scale = 0.35;
                 this.btnText.setText(`[b]Myth or Fact?[/b]
 
 Vapes and electronic
 cigarettes are just as
 addictive as traditional ones?`)
             }
-
+            this.suctionCup.play();
             isAnswer = !isAnswer
         });
 
-        // Progress bar.       
-        // 800 divided by 7 circles is 114. 35 is the offset.
-        var progressBarCircle1 = this.add.sprite(560 + 35, 980, 'circle-full').setOrigin(0.0)
-        var progressBarCircle2 = this.add.sprite(560 + (114 * 1 + 35), 980, 'circle-full').setOrigin(0.0)
-        var progressBarCircle3 = this.add.sprite(560 + (114 * 2 + 35), 980, 'circle-full').setOrigin(0.0)
-        var progressBarCircle4 = this.add.sprite(560 + (114 * 3 + 35), 980, 'circle-full').setOrigin(0.0)
-        var progressBarCircle5 = this.add.sprite(560 + (114 * 4 + 35), 980, 'circle-full').setOrigin(0.0)
-        var progressBarCircle6 = this.add.sprite(560 + (114 * 5 + 35), 980, 'circle-full').setOrigin(0.0)
-        var progressBarCircle7 = this.add.sprite(560 + (114 * 6 + 35), 980, 'circle-full').setOrigin(0.0)
+        // The circle icon
+        const circleArrow = this.add.sprite(1240, 883, 'circle-arrow').setScale(1.1);
+        // - - End of Main Button - - //
 
-        // Next button.     
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        nextBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_35", { music: this.music });
-        }, this);
-        nextBtn.y = nextBtn.y - 40
-        nextBtn.disableInteractive()
-        nextBtn.setAlpha(0)
-
-        // Back button.
-        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
-        backBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_33");
-        }, this);
-        backBtn.y = backBtn.y - 40
+        // Progress Bullets Point
+        /** This scene have 1 full bullet and 6 empty bullet */
+        /** We use an anchor point to make edit the position of those bullets easier  */
+        const bulletsX = 630;
+        const bulletsY = 1020;
+        const bullet1 = this.add.sprite(bulletsX, bulletsY, 'full-bullet').setScale(0.33);
+        const bullet2 = this.add.sprite(bulletsX + 110, bulletsY, 'full-bullet').setScale(0.33);
+        const bullet3 = this.add.sprite(bulletsX + 110 * 2, bulletsY, 'full-bullet').setScale(0.33);
+        const bullet4 = this.add.sprite(bulletsX + 110 * 3, bulletsY, 'full-bullet').setScale(0.33);
+        const bullet5 = this.add.sprite(bulletsX + 110 * 4, bulletsY, 'full-bullet').setScale(0.33);
+        const bullet6 = this.add.sprite(bulletsX + 110 * 5, bulletsY, 'full-bullet').setScale(0.33);
+        const bullet7 = this.add.sprite(bulletsX + 110 * 6, bulletsY, 'full-bullet').setScale(0.33);
 
         // Save user progress.
-        const save = new SaveProgress(this)
+        const save = new SaveProgress(this);
     }
 }

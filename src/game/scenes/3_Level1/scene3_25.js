@@ -59,7 +59,7 @@ export default class Scene3_25 extends Phaser.Scene {
         // Title.
         this.textBg = this.add.graphics();
         this.textBg.fillStyle(0xFFFFFF, 1);
-        this.textBg.fillRoundedRect(-30, 0, 500, 150, 32);
+        this.textBg.fillRoundedRect(-30, 0, 480, 150, 32);
         this.titleText = this.add.text(55, 75, "Vaping and Effects",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
@@ -67,15 +67,15 @@ export default class Scene3_25 extends Phaser.Scene {
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         // Instructions.
-        var instructionsBG = this.add.sprite(1350, 850, 'text-card3-20').setOrigin(0.5).setAlpha(0.8).setScale(0.9);
-        this.instructionsText = this.add.text(1350, 850,
+        var instructionsBG = this.add.sprite(1315, 805, 'text-card3-20').setOrigin(0.5).setAlpha(0.9).setScale(1.1, 1.13);
+        this.instructionsText = this.add.text(1315, 800,
             `Vaping and smoking have many
 negative effects, including to the vocal
 cords. Many musicians actually insure
 their vocal cords in case anything ever
 happens to their vocal cords, which
 affects singing.`,
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.5);
+            { fontFamily: "Arial", fontSize: "88px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.
         this.instructionsText.scale = 0.5
 

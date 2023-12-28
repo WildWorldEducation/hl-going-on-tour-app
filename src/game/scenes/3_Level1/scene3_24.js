@@ -39,6 +39,16 @@ export default class Scene3_24 extends Phaser.Scene {
         vid.setOrigin(0)
         vid.play();
 
+        // Title.
+        this.textBg = this.add.graphics();
+        this.textBg.fillStyle(0xFFFFFF, 1);
+        this.textBg.fillRoundedRect(-30, 0, 700, 150, 32);
+        this.titleText = this.add.text(55, 75, "What do you know about Vaping?",
+            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
+        // Dealing with text quality.
+        this.titleText.scale = 0.5
+        this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
+
         // Next button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
