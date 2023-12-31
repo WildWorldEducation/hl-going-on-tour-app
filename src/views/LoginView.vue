@@ -6,6 +6,7 @@ export default {
         return {
             username: null,
             password: null,
+            //cleverRedirectUrl: "https://edupc.org/oauth/clever"
             cleverRedirectUrl: "https://edupc.org/oauth/clever"
         }
     },
