@@ -21,8 +21,7 @@ export default {
         document.head.appendChild(loginWithGoogleScript)
 
         // To trigger the "submit" button with the "enter" key.
-
-        // Get the input field
+        // Get the input fields.
         var username = document.getElementById("username");
         var password = document.getElementById("password");
 
