@@ -19,6 +19,32 @@ export default {
         let loginWithGoogleScript = document.createElement('script')
         loginWithGoogleScript.setAttribute('src', 'https://accounts.google.com/gsi/client')
         document.head.appendChild(loginWithGoogleScript)
+
+        // To trigger the "submit" button with the "enter" key.
+
+        // Get the input field
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+
+        // Execute a function when the user presses a key on the keyboard
+        username.addEventListener("keypress", (event) => {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                this.LoginAttempt()
+            }
+        });
+        password.addEventListener("keypress", (event) => {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                this.LoginAttempt()
+            }
+        });
     },
     methods: {
         LoginAttempt() {
@@ -77,14 +103,16 @@ export default {
             <div class="mb-3 mt-3 text-start">
                 <!-- <img class="me-1" src="images/icons/user-solid.svg" alt="" width="16" height="16"> -->
                 <label for="username" class="form-label">Username</label>
-                <input type="text" v-model="username" placeholder="Username" class="form-control" required>
+                <input id="username" type="text" v-model="username" placeholder="Username" class="form-control" required>
             </div>
             <div class="mb-3 text-start">
                 <!-- <img class="me-1" src="images/icons/lock-solid.svg" alt="" width="16" height="16"> -->
                 <label for="password" class="form-label">Password</label>
-                <input type="password" v-model="password" placeholder="Password" class="form-control" required>
+                <input id="password" type="password" v-model="password" placeholder="Password" class="form-control"
+                    required>
             </div>
             <button type="submit" @click="LoginAttempt()" class="btn btn-dark">Login</button>
+
             <p>&nbsp;</p>
             <p class="text-center">Don't have an account? <a href="create-account">Sign up</a></p>
         </div>
