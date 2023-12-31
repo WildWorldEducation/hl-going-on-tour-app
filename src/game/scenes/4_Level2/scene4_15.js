@@ -100,6 +100,76 @@ export default class Scene4_15 extends Phaser.Scene {
 
         }, this);
 
+        // Event listener for the "enter key."
+        document.querySelector('#m4-checkbox-1').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.formUtil.hideElement("m4-checkboxes");
+                // Check answer.
+                const box1 = document.getElementById("m4-checkbox-1").checked;
+                const box2 = document.getElementById("m4-checkbox-2").checked;
+                const box3 = document.getElementById("m4-checkbox-3").checked;
+                const box4 = document.getElementById("m4-checkbox-4").checked;
+
+                if (box1 && box2 && box3 && box4) {
+                    this.scene.start("Scene4_15_correct", { music: this.music });
+                }
+                else {
+                    this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong, music: this.music });
+                }
+            }
+        });
+        document.querySelector('#m4-checkbox-2').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.formUtil.hideElement("m4-checkboxes");
+                // Check answer.
+                const box1 = document.getElementById("m4-checkbox-1").checked;
+                const box2 = document.getElementById("m4-checkbox-2").checked;
+                const box3 = document.getElementById("m4-checkbox-3").checked;
+                const box4 = document.getElementById("m4-checkbox-4").checked;
+
+                if (box1 && box2 && box3 && box4) {
+                    this.scene.start("Scene4_15_correct", { music: this.music });
+                }
+                else {
+                    this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong, music: this.music });
+                }
+            }
+        });
+        document.querySelector('#m4-checkbox-3').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.formUtil.hideElement("m4-checkboxes");
+                // Check answer.
+                const box1 = document.getElementById("m4-checkbox-1").checked;
+                const box2 = document.getElementById("m4-checkbox-2").checked;
+                const box3 = document.getElementById("m4-checkbox-3").checked;
+                const box4 = document.getElementById("m4-checkbox-4").checked;
+
+                if (box1 && box2 && box3 && box4) {
+                    this.scene.start("Scene4_15_correct", { music: this.music });
+                }
+                else {
+                    this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong, music: this.music });
+                }
+            }
+        });
+        document.querySelector('#m4-checkbox-4').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.formUtil.hideElement("m4-checkboxes");
+                // Check answer.
+                const box1 = document.getElementById("m4-checkbox-1").checked;
+                const box2 = document.getElementById("m4-checkbox-2").checked;
+                const box3 = document.getElementById("m4-checkbox-3").checked;
+                const box4 = document.getElementById("m4-checkbox-4").checked;
+
+                if (box1 && box2 && box3 && box4) {
+                    this.scene.start("Scene4_15_correct", { music: this.music });
+                }
+                else {
+                    this.scene.start("Scene4_15_incorrect", { timesWrong: this.timesWrong, music: this.music });
+                }
+            }
+        });
+
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
