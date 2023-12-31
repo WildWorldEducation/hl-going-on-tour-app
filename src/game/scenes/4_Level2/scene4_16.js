@@ -68,6 +68,33 @@ export default class Scene4_16 extends Phaser.Scene {
         this.formUtil.showElement("m4-notepad");
         this.formUtil.scaleToGameW("m4-notepad", .4);
 
+        // Event listener for the "enter key."
+        document.querySelector('#m4-notepad').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                let answer = document.getElementById('m4-notepad').value;
+                if (answer.length === 0) {
+                    this.formUtil.hideElement('m4-notepad');
+                    this.noAnswerCtnr.setAlpha(1);
+                    this.textInBubble.setAlpha(1)
+                    nextBtn.disableInteractive();
+                    backBtn.disableInteractive();
+                    tryAgainBtn.setAlpha(1);
+                    this.time.addEvent({
+                        delay: 500,
+                        callback: () => {
+                            // play the failed sound after 500 ms
+                            this.failedBell.play();
+                        },
+                        loop: false
+                    })
+                }
+                else {
+                    this.formUtil.hideElement('m4-notepad');
+                    this.scene.start("Scene4_17", { music: this.music });
+                }
+            }
+        });
+
         // Scene for when text input is left blank. -------------------------- 
         // Add a dark layer to background.
         const subBg = this.add.graphics();
