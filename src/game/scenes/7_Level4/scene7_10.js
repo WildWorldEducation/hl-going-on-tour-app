@@ -71,6 +71,31 @@ export default class Scene7_10 extends Phaser.Scene {
         // this.formUtil.placeElementAt(269.89, "scene7_10-book"); // Place the object base on index of the cell in the matrix of align class 
         //this.formUtil.showNumbers();  // // Call this method to show the grid matrix on screen to manual move the html DOM element  
 
+        // Event listener for the "enter key."
+        document.querySelector('#scene7_10-book').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                let answer = document.getElementById('scene7_10-book').value;
+                if (answer.length === 0) {
+                    this.formUtil.hideElement('scene7_10-book');
+                    this.noAnswerCtnr.setAlpha(1);
+                    nextBtn.disableInteractive();
+                    backBtn.disableInteractive();
+                    tryAgainBtn.setAlpha(1);
+                    this.time.addEvent({
+                        delay: 500,
+                        callback: () => {
+                            // play the failed sound after 500 ms
+                            this.failedBell.play();
+                        },
+                        loop: false
+                    })
+
+                } else {
+                    this.formUtil.hideElement('scene7_10-book');
+                    this.scene.start("Scene7_11", { music: this.music });
+                }
+            }
+        });
 
         // * SPRITE AND BUTTON THAT APPEAR WHEN USER NOT TYPING THE QUESTION IN TO TEXT AREA  * //
 
