@@ -1,6 +1,7 @@
 import WideButton from '../Custom_Classes/WideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
+import CustomButton from '../Custom_Classes/CustomButton.js';
 
 export default class Scene3_36 extends Phaser.Scene {
     constructor() {
@@ -12,6 +13,9 @@ export default class Scene3_36 extends Phaser.Scene {
     }
 
     preload() {
+        // Plugin.
+        this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
+
         // Module music.
         this.load.audio('theme-module3', [
             'assets/Audio/Music/3_Level1/theme-module3.mp3',
@@ -41,62 +45,71 @@ export default class Scene3_36 extends Phaser.Scene {
         var bg = this.add.sprite(0, 0, 'notes-bg').setOrigin(0);
         bg.alpha = 0.5
 
+        /** Because this scene these answer have position different than the music quiz scene
+         * So I have the change amount flag for ease of changing multiple element
+         */
+        const changeAmount = -85;
+
         // Header.
         var header = this.add.graphics();
         header.fillStyle(0xffffff, 1);
-        header.fillRoundedRect(260, 320, 1380, 140, 72);
-        var headerText = this.add.text(960, 390,
-            `Federal law states that you have to be at least _____ years old
-to purchase tobacco and vaping products?`,
+        header.fillRoundedRect(200, 344 + changeAmount, 1520, 160, 80);
+        var headerText = this.add.rexBBCodeText(960, 425 + changeAmount,
+            `Federal law states that you have to be at least ____ years old \nto purchase tobacco and vaping products ?`,
             { fontFamily: "Arial", fontSize: "84px", fill: "#000000", align: "center" });
-        headerText.setOrigin(0.5).setScale(0.5)
-        headerText.alpha = 1
+        headerText.setOrigin(0.5).setScale(0.5);
 
-        // Button 1.
+        // // _-_ Buttons Section _-_ // // 
+        /** Different from scene3_12 we use a flag here to determine what border to show, 
+            this way we dont have to loop through array every time we click 
+        */
+        let borderVisible = null;
+        // == Button 1. == //
         var btn1Graphic = this.add.graphics();
         btn1Graphic.fillStyle(0xffffff, 1);
-        btn1Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        const btn1Border = this.add.graphics();
-        btn1Border.lineStyle(5, '0x87d1ff');
-        btn1Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn1Border.setAlpha(0)
-        var btn1Text = this.add.text(100, 60, "A. 18", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn1Text.setOrigin(0.5).setScale(0.5)
-        btn1Text.alpha = 1
-        var btn1 = this.add.container(260, 480, [btn1Graphic, btn1Text, btn1Border]);
-        btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        btn1Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn1Text = this.add.text(30, 50, "A. 18", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn1Text.setOrigin(0).setScale(0.5);
+        // btn border
+        const btnBorder1 = this.add.graphics();
+        btnBorder1.lineStyle(5, 0x87d1ff, 1);
+        btnBorder1.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        borderVisible = btnBorder1;
+
+        var btn1 = this.add.container(200, 523 + changeAmount, [btn1Graphic, btnBorder1, btn1Text]);
+        btn1.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn1.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
             this.canvas.style.cursor = "pointer";
         });
         btn1.on('pointerout', function () {
+            isCorrect = false;
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
             this.canvas.style.cursor = "default";
         });
         btn1.on('pointerdown', function () {
-            isCorrect = false
-            btn1Border.setAlpha(1)
-            btn2Border.setAlpha(0)
-            btn3Border.setAlpha(0)
-            btn4Border.setAlpha(0)
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder1;
+            borderVisible.setAlpha(1);
         }, this);
         btn1Graphic.alpha = 1
+        // -- //
 
-        // Button 2.
+        // == Button 2. == //
         var btn2Graphic = this.add.graphics();
         btn2Graphic.fillStyle(0xffffff, 1);
-        btn2Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        const btn2Border = this.add.graphics();
-        btn2Border.lineStyle(5, '0x87d1ff');
-        btn2Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn2Border.setAlpha(0)
-        var btn2Text = this.add.text(100, 60, "B. 19", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn2Text.setOrigin(0.5).setScale(0.5)
-        btn2Text.alpha = 1
-        var btn2 = this.add.container(960, 480, [btn2Graphic, btn2Text, btn2Border]);
-        btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        btn2Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn2Text = this.add.text(30, 50, "B. 19", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn2Text.setOrigin(0).setScale(0.5);
+        // btn border
+        const btnBorder2 = this.add.graphics();
+        btnBorder2.lineStyle(5, 0x87d1ff, 1);
+        btnBorder2.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        var btn2 = this.add.container(968, 523 + changeAmount, [btn2Graphic, btnBorder2, btn2Text]);
+        btn2.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
+
         btn2.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -108,27 +121,26 @@ to purchase tobacco and vaping products?`,
             this.canvas.style.cursor = "default";
         });
         btn2.on('pointerdown', function () {
-            isCorrect = false
-            btn1Border.setAlpha(0)
-            btn2Border.setAlpha(1)
-            btn3Border.setAlpha(0)
-            btn4Border.setAlpha(0)
+            isCorrect = false;
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder2;
+            borderVisible.setAlpha(1);
         }, this);
-        btn2Graphic.alpha = 1
+        btn2Graphic.alpha = 1;
+        // -- // 
 
-        // Button 3.
+        // == Button 3. == //
         var btn3Graphic = this.add.graphics();
         btn3Graphic.fillStyle(0xffffff, 1);
-        btn3Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        const btn3Border = this.add.graphics();
-        btn3Border.lineStyle(5, '0x87d1ff');
-        btn3Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn3Border.setAlpha(0)
-        var btn3Text = this.add.text(100, 60, "C. 20", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn3Text.setOrigin(0.5).setScale(0.5)
-        btn3Text.alpha = 1
-        var btn3 = this.add.container(260, 620, [btn3Graphic, btn3Text, btn3Border]);
-        btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        btn3Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn3Text = this.add.text(30, 50, "C. 20", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn3Text.setOrigin(0).setScale(0.5);
+        // btn border
+        const btnBorder3 = this.add.graphics();
+        btnBorder3.lineStyle(5, 0x87d1ff, 1);
+        btnBorder3.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        var btn3 = this.add.container(200, 685 + changeAmount, [btn3Graphic, btnBorder3, btn3Text]);
+        btn3.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn3.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -140,27 +152,25 @@ to purchase tobacco and vaping products?`,
             this.canvas.style.cursor = "default";
         });
         btn3.on('pointerdown', function () {
-            isCorrect = false
-            btn1Border.setAlpha(0)
-            btn2Border.setAlpha(0)
-            btn3Border.setAlpha(1)
-            btn4Border.setAlpha(0)
+            isCorrect = false;
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder3;
+            borderVisible.setAlpha(1);
         }, this);
         btn3Graphic.alpha = 1
 
         // Button 4.
         var btn4Graphic = this.add.graphics();
         btn4Graphic.fillStyle(0xffffff, 1);
-        btn4Graphic.fillRoundedRect(0, 0, 690, 120, 8);
-        const btn4Border = this.add.graphics();
-        btn4Border.lineStyle(5, '0x87d1ff');
-        btn4Border.strokeRoundedRect(0, 0, 690, 120, 8);
-        btn4Border.setAlpha(0)
-        var btn4Text = this.add.text(100, 60, "D. 21", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
-        btn4Text.setOrigin(0.5).setScale(0.5)
-        btn4Text.alpha = 1
-        var btn4 = this.add.container(960, 620, [btn4Graphic, btn4Text, btn4Border]);
-        btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 690, 120), Phaser.Geom.Rectangle.Contains);
+        btn4Graphic.fillRoundedRect(0, 0, 750, 145, 8);
+        var btn4Text = this.add.text(30, 50, "D. 21", { fontFamily: "Arial", fontSize: "72px", fill: "#000000" });
+        btn4Text.setOrigin(0).setScale(0.5);
+        // btn border
+        const btnBorder4 = this.add.graphics();
+        btnBorder4.lineStyle(5, 0x87d1ff, 1);
+        btnBorder4.strokeRoundedRect(0, 0, 750, 145, 8).setAlpha(0);
+        var btn4 = this.add.container(968, 685 + changeAmount, [btn4Graphic, btnBorder4, btn4Text]);
+        btn4.setInteractive(new Phaser.Geom.Rectangle(0, 0, 750, 145), Phaser.Geom.Rectangle.Contains);
         btn4.on('pointerover', function () {
             // Change mouse cursor.
             this.canvas = document.getElementsByTagName("canvas")[0];
@@ -172,17 +182,17 @@ to purchase tobacco and vaping products?`,
             this.canvas.style.cursor = "default";
         });
         btn4.on('pointerdown', function () {
-            isCorrect = true
-            btn1Border.setAlpha(0)
-            btn2Border.setAlpha(0)
-            btn3Border.setAlpha(0)
-            btn4Border.setAlpha(1)
+            isCorrect = true;
+            borderVisible.setAlpha(0);
+            borderVisible = btnBorder4;
+            borderVisible.setAlpha(1);
         }, this);
-        btn4Graphic.alpha = 1
+        btn4Graphic.alpha = 1;
+        // // _-_ End of Buttons Section _-_ // // 
 
         // Submit button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        const submitBtn = new WideButton(this, 0, 0, 'Submit', this.nextBtnAudio);
+        const submitBtn = new CustomButton(this, 800, 940 + changeAmount, 320, 75, 'Submit', 81, -0.67, -0.29, this.nextBtnAudio, 10);
         submitBtn.on('pointerdown', function () {
             if (isCorrect) {
                 this.scene.start("Scene3_36_correct", { music: this.music });
@@ -191,14 +201,13 @@ to purchase tobacco and vaping products?`,
                 this.scene.start("Scene3_36_incorrect", { music: this.music });
             }
         }, this);
-        submitBtn.x = 960 - 130
-        submitBtn.y = 1080 - 150
+        submitBtn.alpha = 1
 
         // Back button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_35");
+            this.scene.start("Scene3_35", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 

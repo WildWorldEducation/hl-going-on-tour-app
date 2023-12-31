@@ -65,7 +65,7 @@ export default class Scene3_12_incorrect extends Phaser.Scene {
 
         const submitBtn = new CustomButton(this, 800, 940, 320, 75, 'Try again', 81, -0.4, -0.3, this.nextBtnAudio, 10);
         submitBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_12");
+            this.scene.start("Scene3_12", { music: this.music });
         }, this);
 
         submitBtn.setAlpha(0);

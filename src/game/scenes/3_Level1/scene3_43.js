@@ -18,6 +18,7 @@ export default class Scene3_43 extends Phaser.Scene {
         ]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("terminal-ambient", ["assets/Audio/SFX/3_Level1/terminal-ambient.mp3"])
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('text-card3-43', 'assets/Images/3_Level1/text-card5.png');
@@ -40,6 +41,10 @@ export default class Scene3_43 extends Phaser.Scene {
         vid.setOrigin(0)
         vid.play();
 
+        // Audio
+        const terminalAmbient = this.sound.add("terminal-ambient", { loop: true });
+        terminalAmbient.play();
+
         // Next button.     
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
@@ -52,7 +57,7 @@ export default class Scene3_43 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_42");
+            this.scene.start("Scene3_42", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 
@@ -67,7 +72,8 @@ export default class Scene3_43 extends Phaser.Scene {
         this.titleTextCtnr = this.add.container(0, 55, [this.textBg, this.titleText]);
 
         //Text.
-        var textBg = this.add.sprite(1400, 870, 'text-card3-43').setOrigin(0.5).setScale(0.9);
+        var textBg = this.add.sprite(1400, 870, 'text-card3-43').setOrigin(0.5).setScale(1);
+        textBg.setAlpha(0.9);
         this.text = this.add.text(1400, 870,
             `You've done your prep
 while learning about music

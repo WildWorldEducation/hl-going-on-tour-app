@@ -248,7 +248,7 @@ and select to which music genre this song belongs to.`,
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene3_10");
+            this.scene.start("Scene3_10", { music: this.music });
             // stop audio
             this.country1.stop();
         }, this);

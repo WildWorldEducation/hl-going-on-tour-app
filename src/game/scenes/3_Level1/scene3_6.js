@@ -354,7 +354,7 @@ export default class Scene3_6 extends Phaser.Scene {
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             birdChirping.stop();
-            this.scene.start("Scene3_5");
+            this.scene.start("Scene3_5", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
 
