@@ -74,6 +74,15 @@ export default class Scene4_11B extends Phaser.Scene {
         this.formUtil.showElement("talents");
         this.formUtil.scaleToGameW("talents", .4);
 
+        // Event listener for the "enter key."
+        document.querySelector('#talents').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.formUtil.hideElement("talents");
+                this.scene.start("Scene4_12", { music: this.music });
+            }
+        });
+
+
         // Background Animation
         const chain = this.tweens.chain({
             tweens: [
