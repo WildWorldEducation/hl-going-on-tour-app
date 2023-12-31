@@ -49,6 +49,7 @@ export default class Scene3_43 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
+            terminalAmbient.stop();
             this.scene.start("Scene3_44", { music: this.music });
         }, this);
         nextBtn.y = nextBtn.y - 40
@@ -57,6 +58,7 @@ export default class Scene3_43 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
+            terminalAmbient.stop();
             this.scene.start("Scene3_42", { music: this.music });
         }, this);
         backBtn.y = backBtn.y - 40
