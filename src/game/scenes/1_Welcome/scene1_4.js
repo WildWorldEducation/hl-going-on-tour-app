@@ -129,6 +129,35 @@ export default class Scene1_4 extends Phaser.Scene {
         Phaser.Display.Align.In.Center(this.submitBtn, this.add.zone(860, 1000, 1920, 1080));
         this.submitBtn.y = this.submitBtn.y - 200
 
+        // Event listener for the "enter key."
+        document.querySelector('#student-name').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                // Check if user gave name.
+                var input = document.getElementById("student-name").value;
+                if (input != "") {
+                    this.btnAudio.play();
+                    this.scene.start("Scene1_5", { music: this.music });
+                }
+                else {
+                    this.btnAudio.play();
+                    this.textBg.alpha = 0;
+                    this.instructionText.alpha = 0;
+                    this.submitBtn.disableInteractive();
+                    this.submitBtn.alpha = 0;
+                    this.tryAgainBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 240, 60), Phaser.Geom.Rectangle.Contains);
+                    this.tryAgainBtn.alpha = 1
+                    this.errorTextCtnr.alpha = 1
+                    this.formUtil.hideElement("student-name");
+                    this.tweens.add({
+                        targets: background,
+                        alpha: 0,
+                        duration: 1000,
+                        repeat: 0,
+                    });
+                }
+            }
+        });
+
         // Save user progress.
         const save = new SaveProgress(this)
     }
