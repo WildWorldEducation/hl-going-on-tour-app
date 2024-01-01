@@ -16,7 +16,7 @@ export default class Scene4_9_correct extends Phaser.Scene {
         this.load.audio("success-4-9", ["assets/Audio/SFX/4_Level2/success.mp3"]);
 
         // Sprites.                
-        this.load.image('char-correct', 'assets/Images/4_Level2/correct.png');
+        this.load.image('char-correct4_9', 'assets/Images/4_Level2/correct.png');
     }
 
     create() {
@@ -51,7 +51,7 @@ Taylor Swift held the record before Justin Bieber.`,
         this.text.scale = 0.5
 
         // Char
-        var char = this.add.sprite(960, 600, 'char-correct').setOrigin(0.5).setScale(0.9);
+        var char = this.add.sprite(960, 600, 'char-correct4_9').setOrigin(0.5).setScale(0.9);
 
 
         // Submit button.
