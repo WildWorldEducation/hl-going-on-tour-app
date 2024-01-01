@@ -296,8 +296,8 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 /* -- */
 .range-illness-stages {
     position: absolute;
-    top: 75%;
-    left: 61%;
+    top: 77%;
+    left: 62%;
     z-index: 2;
     width: 22% !important;
     background: #959fe4;
