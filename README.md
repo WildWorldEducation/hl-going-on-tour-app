@@ -18,9 +18,11 @@
 ### Install dependancies
 npm install
 
-### Create database
+### Setup database
 ```sh
 CREATE DATABASE `healthy_lifestyles` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
+
+USE `healthy_lifestyles`;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,6 +38,8 @@ CREATE TABLE `users` (
   `clever_id` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+```
+
 
 ### Compile and Hot-Reload for Development
 
