@@ -40,10 +40,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 ```
 
-
-### Compile and Hot-Reload for Development
-
-
+## Run or Compile
+### Hot-Reload for Development
 npm run dev
-
-
+### Build
+npm run build
+### Run compiled version
+npm run start
