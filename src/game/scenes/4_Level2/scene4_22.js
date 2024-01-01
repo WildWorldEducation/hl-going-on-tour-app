@@ -207,7 +207,7 @@ about normal and a popcorn lung.`,
                     this.currentShow.setAlpha(1);
                     break
                 default:
-                    this.explainText.setText("[b]Popcorn lung: the air sac is close[/b]");
+                    this.explainText.setText("[b]Popcorn lung: the air sac is closed[/b]");
                     this.currentShow.setAlpha(0);
                     this.currentShow = this.popcornLung;
                     this.currentShow.setAlpha(1);
