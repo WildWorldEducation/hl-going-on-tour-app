@@ -125,6 +125,14 @@ export default class Scene4_27 extends Phaser.Scene {
         const pin4white = this.add.sprite(637, 650, 'pin-white').setScale(0.28);
         const pin4gray = this.add.sprite(pin4white.x, pin4white.y, 'pin-gray').setScale(0.23);
 
+        // Next button.     
+        this.nextBtnAudio = this.sound.add("next-button", { loop: false });
+        const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
+        nextBtn.on('pointerdown', function () {
+            this.music.stop();
+            this.scene.start("Scene7_0");
+        }, this);
+        nextBtn.y = nextBtn.y - 40
 
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
