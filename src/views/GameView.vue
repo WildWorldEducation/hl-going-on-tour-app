@@ -19,6 +19,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     <input style="display: none;" type="text" placeholder="Type your first name here" id="student-name"
         class="text-input" />
 
+
     <!-- Text input, for the 4th module -->
     <div id="talents" class="text-input" style="display: none;">
         <p>What are some of your talents? <strong>Write down one of your
@@ -295,8 +296,8 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 /* -- */
 .range-illness-stages {
     position: absolute;
-    top: 88%;
-    left: 59%;
+    top: 75%;
+    left: 61%;
     z-index: 2;
     width: 22% !important;
     background: #959fe4;
