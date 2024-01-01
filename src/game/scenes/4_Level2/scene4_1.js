@@ -1,7 +1,6 @@
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
 
 export default class Scene4_1 extends Phaser.Scene {
     constructor() {
@@ -82,7 +81,5 @@ the many music tours that play in
 
         // Save user progress.
         const save = new SaveProgress(this)
-        // Unlock module.
-        const unlock = new UnlockModule(4)
     }
 }
