@@ -1,4 +1,3 @@
-
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'

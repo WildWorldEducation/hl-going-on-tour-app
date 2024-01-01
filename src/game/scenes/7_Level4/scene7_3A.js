@@ -65,9 +65,5 @@ export default class Scene7_3A extends Phaser.Scene {
             this.scene.start('Scene7_3');
 
         }, this);
-
-
     }
-
-
 }

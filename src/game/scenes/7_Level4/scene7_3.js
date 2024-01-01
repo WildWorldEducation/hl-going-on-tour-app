@@ -165,7 +165,6 @@ export default class Scene7_3 extends Phaser.Scene {
             tick3.setAlpha(0)
         }
 
-
         // Save user progress.
         const save = new SaveProgress(this);
     }

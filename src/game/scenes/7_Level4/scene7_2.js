@@ -1,4 +1,3 @@
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
@@ -105,8 +104,6 @@ export default class Scene7_2 extends Phaser.Scene {
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene7_1");
         }, this);
-
-
 
         // Save user progress.
         const save = new SaveProgress(this);

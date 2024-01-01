@@ -1,5 +1,6 @@
 import BackButton from '../Custom_Classes/BackButton.js';
 import SideButton from '../Custom_Classes/SideButton.js';
+import SaveProgress from '../Custom_Classes/SaveProgress.js'
 
 export default class Scene7_4 extends Phaser.Scene {
     constructor() {
@@ -182,6 +183,5 @@ export default class Scene7_4 extends Phaser.Scene {
 
         // Save user progress.
         const save = new SaveProgress(this);
-
     }
 }

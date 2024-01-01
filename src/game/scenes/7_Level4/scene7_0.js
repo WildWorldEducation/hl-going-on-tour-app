@@ -75,5 +75,8 @@ export default class Scene7_0 extends Phaser.Scene {
 
         // Save user progress.
         const save = new SaveProgress(this);
+
+        // Unlock module.
+        const unlock = new UnlockModule(7)
     }
 }
