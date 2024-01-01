@@ -64,7 +64,7 @@ export default class Scene4_4 extends Phaser.Scene {
         stamp1.on('pointerdown', () => {
             this.nextBtnAudio.play();
             localStorage.setItem("stamp1", "true");
-            this.scene.start("Scene4_4A");
+            this.scene.start("Scene4_4A", { music: this.music });
         });
         stamp1.on('pointerover', () => {
             stamp1Shadow.setAlpha(1);
@@ -85,7 +85,7 @@ export default class Scene4_4 extends Phaser.Scene {
         stamp2.on('pointerdown', () => {
             this.nextBtnAudio.play();
             localStorage.setItem("stamp2", "true");
-            this.scene.start("Scene4_4B");
+            this.scene.start("Scene4_4B", { music: this.music });
         });
         stamp2.on('pointerover', () => {
             stamp2Shadow.setAlpha(1);
@@ -104,7 +104,7 @@ export default class Scene4_4 extends Phaser.Scene {
         stamp3.on('pointerdown', () => {
             this.nextBtnAudio.play();
             localStorage.setItem("stamp3", "true");
-            this.scene.start("Scene4_4C");
+            this.scene.start("Scene4_4C", { music: this.music });
         });
         stamp3.on('pointerover', () => {
             stamp3Shadow.setAlpha(1);

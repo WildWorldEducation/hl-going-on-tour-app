@@ -72,7 +72,7 @@ export default class Scene4_5 extends Phaser.Scene {
         });
         mapMarker1.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene4_5A");
+            this.scene.start("Scene4_5A", { music: this.music });
         });
         mapMarker1.on('pointerover', () => {
             mapMarker1Focus.setAlpha(1);
@@ -90,7 +90,7 @@ export default class Scene4_5 extends Phaser.Scene {
         });
         mapMarker2.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene4_5B");
+            this.scene.start("Scene4_5B", { music: this.music });
         });
         mapMarker2.on('pointerover', () => {
             mapMarker2Focus.setAlpha(1);
@@ -108,7 +108,7 @@ export default class Scene4_5 extends Phaser.Scene {
         });
         mapMarker3.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene4_5C");
+            this.scene.start("Scene4_5C", { music: this.music });
         });
         mapMarker3.on('pointerover', () => {
             mapMarker3Focus.setAlpha(1);
@@ -125,7 +125,7 @@ export default class Scene4_5 extends Phaser.Scene {
         });
         mapMarker4.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene4_5D");
+            this.scene.start("Scene4_5D", { music: this.music });
         });
         mapMarker4.on('pointerover', () => {
             mapMarker4Focus.setAlpha(1);
@@ -142,7 +142,7 @@ export default class Scene4_5 extends Phaser.Scene {
         });
         mapMarker5.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene4_5E");
+            this.scene.start("Scene4_5E", { music: this.music });
         });
         mapMarker5.on('pointerover', () => {
             mapMarker5Focus.setAlpha(1);
@@ -160,7 +160,7 @@ export default class Scene4_5 extends Phaser.Scene {
         });
         mapMarker6.on('pointerdown', () => {
             this.nextBtnAudio.play();
-            this.scene.start("Scene4_5F");
+            this.scene.start("Scene4_5F", { music: this.music });
         });
         mapMarker6.on('pointerover', () => {
             mapMarker6Focus.setAlpha(1);
