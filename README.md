@@ -2,16 +2,16 @@
 
 ## Tech Stack
 ### Front End
- Markup : * Vue 3
-          * Pinia
-          * Vue Router
-          * Vite
+* Vue 3
+* Pinia
+* Vue Router
+* Vite
 ### Back End
-Markup :  * Node with Express
-          * MariaDB
+* Node with Express
+* MariaDB
 
 ### Game
-Markup :  * Phaser 3
+* Phaser 3
 
 
 ## Project Setup
