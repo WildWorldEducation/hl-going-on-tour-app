@@ -258,20 +258,6 @@ export default {
           </div>
           <div id="module-5" class="grid-card level-button-outer"
             :class="{ 'completed': this.m5Status == 'completed', 'in-progress': this.m5Status == 'in progress', 'not-started': this.m5Status == 'not started' }">
-            <a v-if="this.sessionDetailsStore.isAdmin || this.m5Status == 'not started'"
-              class="level-button-inner thumbnail">
-              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                <path fill="#FFF"
-                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
-              </svg>
-            </a>
-            <a v-else class="level-button-inner thumbnail" href="/game?resume=scene6_1"></a>
-            <p>{{ m5Status }}</p>
-          </div>
-          <div id="module-6" class="grid-card level-button-outer"
-            :class="{ 'completed': this.m6Status == 'completed', 'in-progress': this.m6Status == 'in progress', 'not-started': this.m6Status == 'not started' }">
-            <!-- <a v-if="this.sessionDetailsStore.isAdmin || this.m6Status == 'not started'" -->
             <a class="level-button-inner thumbnail">
               <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -279,7 +265,20 @@ export default {
                   d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
               </svg>
             </a>
-            <!-- <a v-else class="level-button-inner thumbnail" href="/game?resume=scene7_0"></a> -->
+            <!-- <a v-else class="level-button-inner thumbnail" href="/game?resume=scene6_1"></a> -->
+            <p>{{ m5Status }}</p>
+          </div>
+          <div id="module-6" class="grid-card level-button-outer"
+            :class="{ 'completed': this.m6Status == 'completed', 'in-progress': this.m6Status == 'in progress', 'not-started': this.m6Status == 'not started' }">
+            <a v-if="this.sessionDetailsStore.isAdmin || this.m6Status == 'not started'"
+              class="level-button-inner thumbnail">
+              <svg v-if="!this.sessionDetailsStore.isAdmin" class="lock-icon" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#FFF"
+                  d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+              </svg>
+            </a>
+            <a v-else class="level-button-inner thumbnail" href="/game?resume=scene7_0"></a>
             <p>{{ m6Status }}</p>
           </div>
           <div id="module-7" class="grid-card level-button-outer"
