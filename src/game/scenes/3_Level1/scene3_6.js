@@ -16,11 +16,13 @@ export default class Scene3_6 extends Phaser.Scene {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
         // Module music.
-        this.load.audio('theme-module3', 'assets/Audio/Music/3_Level1/theme-module3.mp3');
+        this.load.audio('theme-module3', [
+            'assets/Audio/Music/3_Level1/theme-module3.mp3',
+        ]);
         // Audio.
-        this.load.audio("next-button", "assets/Audio/SFX/General/next-button.mp3");
-        this.load.audio("background-audio-3-6", "assets/Audio/SFX/3_Level1/signs-audio.mp3");
-        this.load.audio("bird-chirping", "assets/Audio/SFX/3_Level1/bird-chirping.mp3");
+        this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
+        this.load.audio("background-audio-3-6", ["assets/Audio/SFX/3_Level1/signs-audio.mp3"]);
+        this.load.audio("bird-chirping", ["assets/Audio/SFX/3_Level1/bird-chirping.mp3"]);
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
 
@@ -246,17 +248,34 @@ export default class Scene3_6 extends Phaser.Scene {
             sign1.y = zone2.y;
         });
 
-        /* We use a container to control order of file and delay shows */
-        this.signCntr = this.add.container(0, 0, [this.sign7, this.sign6, this.sign5, this.sign4, this.sign3, this.sign2, this.sign1])
-        this.signCntr.setAlpha(0);
-        this.time.addEvent({
-            delay: 4160,
-            callback: () => {
-                this.signCntr.setAlpha(1);
-            },
-            loop: false
-        })
+        /* 
+        * show the signs only after the lady finish walking
+        */
+        // Turn off all the signs
+
+        this.sign7.setAlpha(0);
+        this.sign6.setAlpha(0);
+        this.sign5.setAlpha(0);
+        this.sign4.setAlpha(0);
+        this.sign3.setAlpha(0);
+        this.sign2.setAlpha(0);
+        this.sign1.setAlpha(0);
+        // this.signCntr = this.add.container(0, 0, [this.sign7, this.sign6, this.sign5, this.sign4, this.sign3, this.sign2, this.sign1])
+        // this.signCntr.setAlpha(0);
+        // this.time.addEvent({
+        //     delay: 4160,
+        //     callback: () => {
+        //         this.signCntr.setAlpha(1);
+        //     },
+        //     loop: false
+        // })
         // Drop zones.
+        const showSignsTween = this.add.tween({
+            targets: [this.sign7, this.sign6, this.sign5, this.sign4, this.sign3, this.sign2, this.sign1],
+            alpha: 1,
+            delay: 4660,
+            duration: 400
+        })
         const zone1 = this.add.zone(343, 758, 350, 150)
             .setRectangleDropZone(350, 150);
         const zone2 = this.add.zone(1457, 726, 350, 150)
@@ -354,7 +373,7 @@ export default class Scene3_6 extends Phaser.Scene {
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             birdChirping.stop();
-            this.scene.start("Scene3_5", { music: this.music });
+            this.scene.start("Scene3_5");
         }, this);
         backBtn.y = backBtn.y - 40
 
