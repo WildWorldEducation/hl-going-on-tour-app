@@ -24,6 +24,8 @@ export default class Scene2_2 extends Phaser.Scene {
         this.load.video('vid2-1', 'assets/Videos/2_Prelude/scene2-vid1.mp4');
     }
 
+
+
     create() {
         // Music.
         // Check if music is playing.
@@ -37,12 +39,12 @@ export default class Scene2_2 extends Phaser.Scene {
         }
 
         // Video.
-        const vid = this.add.video(0, 0, 'vid2-1');
-        vid.on('complete', () => {
+        this.vid2_2 = this.add.video(0, 0, 'vid2-1');
+        this.vid2_2.on('complete', () => {
             this.music.resume();
         });
-        vid.setOrigin(0)
-        vid.play();
+        this.vid2_2.setOrigin(0)
+        this.vid2_2.play();
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -62,9 +64,31 @@ export default class Scene2_2 extends Phaser.Scene {
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene2_1");
         }, this);
-        backBtn.y = backBtn.y - 40
+        backBtn.y = backBtn.y - 40;
+
+        /** 
+         * This is the Loading Bar for the video scene\
+         * If it look does not align with the design. Comment the below code block
+         * */
+        this.progressBar = this.add.graphics();
 
         // Save user progress.
         const save = new SaveProgress(this)
     };
+
+    /**
+         * This is the Loading Bar for the video scene\
+         * If it look does not align with the design. Comment the below code block
+         * */
+    update() {
+        this.progressBar.clear();
+
+        // Width of progressBar is the game width 
+        const size = 1920;
+        /** 
+         * In Update we just rerender the rectangle width based on video progress
+        */
+        this.progressBar.fillStyle(0x004aad);
+        this.progressBar.fillRect(0, 1080 - 10, size * this.vid2_2.getProgress(), 10);
+    }
 }

@@ -72,6 +72,7 @@ religions have used music to\nimprove physical and mental\nhealth.`;
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const backBtn = new BackButton(this, -60, 540, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
+            this.score.stop()
             this.scene.start("Scene2_2");
         }, this);
         backBtn.y = backBtn.y - 40
@@ -88,7 +89,7 @@ religions have used music to\nimprove physical and mental\nhealth.`;
 
         // Content text and bg.
         this.contentTextBg = this.add.sprite(600, 530, 'content-text-bg1')
-        this.contentTextBg.alpha = 0.8;
+        this.contentTextBg.alpha = 0.9;
         this.contentText = this.add.text(600, 530,
             `Music has been a feature of\nhuman society for thousands\nof years--and there has yet to\nbe a single culture throughout\nhistory that has not had\nmusic.`,
             { fontFamily: "Arial", fontSize: "72px", color: '#000000', align: 'center' }).setOrigin(0.5, 0.5);
