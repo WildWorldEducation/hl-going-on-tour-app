@@ -106,6 +106,7 @@ export default class Scene1_4 extends Phaser.Scene {
             var input = document.getElementById("student-name").value;
             if (input != "") {
                 this.btnAudio.play();
+                this.formUtil.hideElement("student-name");
                 this.scene.start("Scene1_5", { music: this.music });
             }
             else {
@@ -136,6 +137,7 @@ export default class Scene1_4 extends Phaser.Scene {
                 var input = document.getElementById("student-name").value;
                 if (input != "") {
                     this.btnAudio.play();
+                    this.formUtil.hideElement("student-name");
                     this.scene.start("Scene1_5", { music: this.music });
                 }
                 else {

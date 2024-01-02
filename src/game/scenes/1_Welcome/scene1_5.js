@@ -1,6 +1,5 @@
 import SideButton from '../Custom_Classes/SideButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
-import FormUtil from '../util/formUtil.js'
 
 export default class Scene1_5 extends Phaser.Scene {
     constructor() {
@@ -36,20 +35,13 @@ export default class Scene1_5 extends Phaser.Scene {
             this.music.pause();
         }
 
-        // Text input.
-        this.formUtil = new FormUtil({
-            scene: this
-        });
-
-        this.formUtil.hideElement("student-name");
-
         // Video.
-        const vid = this.add.video(0, 0, 'vid1-1');
-        vid.on('complete', () => {
+        this.vid = this.add.video(0, 0, 'vid1-1');
+        this.vid.on('complete', () => {
             this.music.resume();
         });
-        vid.setOrigin(0)
-        vid.play();
+        this.vid.setOrigin(0)
+        this.vid.play();
 
         // Next button. 
         // Next button.
@@ -59,9 +51,31 @@ export default class Scene1_5 extends Phaser.Scene {
             this.music.stop();
             this.scene.start("Scene2_1");
         }, this);
-        nextBtn.y = nextBtn.y - 40
+        nextBtn.y = nextBtn.y - 40;
+
+        /** 
+         * This is the Loading Bar for the video scene\
+         * If it look does not align with the design. Comment the below code block
+         * */
+        this.progressBar = this.add.graphics();
 
         // Save user progress.
         const save = new SaveProgress(this)
+    }
+
+    /**
+         * This is the Loading Bar for the video scene\
+         * If it look does not align with the design. Comment the below code block
+         * */
+    update() {
+        this.progressBar.clear();
+
+        // Width of progressBar is the game width 
+        const size = 1920;
+        /** 
+         * In Update we just rerender the rectangle width based on video progress
+        */
+        this.progressBar.fillStyle(0x004aad);
+        this.progressBar.fillRect(0, 1080 - 10, size * this.vid.getProgress(), 10);
     }
 }

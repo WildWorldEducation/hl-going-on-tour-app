@@ -103,7 +103,7 @@ export default class Scene1_2 extends Phaser.Scene {
                 },
                 {
                     targets: [this.instructionTextBg],
-                    alpha: 0.8,
+                    alpha: 0.9,
                     duration: 1000,
                     repeat: 0,
                 },
