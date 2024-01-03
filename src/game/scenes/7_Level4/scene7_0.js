@@ -7,10 +7,14 @@ export default class Scene7_0 extends Phaser.Scene {
     constructor() {
         super('Scene7_0');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
         // Sprites.        
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('las-vegas-bg', '/assets/Images/7_Level4/vegas-level.jpg');
@@ -18,6 +22,15 @@ export default class Scene7_0 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background Sprite
         var vegasLevel = this.add.sprite(0, 0, 'las-vegas-bg').setOrigin(0);
 
@@ -28,10 +41,10 @@ export default class Scene7_0 extends Phaser.Scene {
             this.scene.start("Scene7_1", { music: this.music });
         }, this);
 
-
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
+            this.music.stop()
             this.scene.start("Scene4_24");
         }, this);
 

@@ -6,13 +6,16 @@ export default class Scene7_4 extends Phaser.Scene {
     constructor() {
         super('Scene7_4');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('person', '/assets/Images/7_Level4/sprite/senses/person-eat-apple.png');
@@ -30,6 +33,15 @@ export default class Scene7_4 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // BG.
         this.cameras.main.setBackgroundColor("#f9f2e8"); // use a single color for background
 
@@ -43,7 +55,6 @@ export default class Scene7_4 extends Phaser.Scene {
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
 
-
         // instructionText and it background sprite. 
         this.instructionTextBg = this.add.sprite(1000, -500, 'text-bg').setOrigin(0.2, -0.2).setScale(1.8, 1.38);
         this.instructionText = this.add.rexBBCodeText(878, 53,
@@ -51,8 +62,6 @@ export default class Scene7_4 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center' }).setOrigin(0).setScale(1.3, 1);
         // Dealing with text quality.
         this.instructionText.scale = 0.5;
-
-
 
         // Sight sense container
         /*
@@ -75,8 +84,6 @@ export default class Scene7_4 extends Phaser.Scene {
         // container
         this.SightCtnr = this.add.container(0, 100, [this.sight, this.sightConnectLine, this.sightText]);
 
-
-
         // Hearing sense container
         /*
         *  Copy the position of sight for easy position manual change  around
@@ -97,7 +104,6 @@ export default class Scene7_4 extends Phaser.Scene {
 
         // container
         this.hearingCtnr = this.add.container(0, 100, [this.hearing, this.hearingConnectLine, this.hearingText]);
-
 
         // Taste sense container
         /*
@@ -143,7 +149,6 @@ export default class Scene7_4 extends Phaser.Scene {
         // container
         this.smellCtnr = this.add.container(93, 238, [this.smell, this.smellConnectLine, this.smellText]);
 
-
         // touch sense container
         /*
         *  Copy the position of sight for easy position manual change  around
@@ -174,11 +179,10 @@ export default class Scene7_4 extends Phaser.Scene {
             this.scene.start("Scene7_5", { music: this.music });
         }, this);
 
-
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_3");
+            this.scene.start("Scene7_3", { music: this.music });
         }, this);
 
         // Save user progress.

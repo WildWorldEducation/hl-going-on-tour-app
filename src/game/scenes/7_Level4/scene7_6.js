@@ -1,4 +1,3 @@
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
@@ -7,21 +6,17 @@ export default class Scene7_6 extends Phaser.Scene {
     constructor() {
         super('Scene7_6');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("circle-click", ["assets/Audio/SFX/7_Level4/chime-sound.mp3"]);
-
-
         // Sprites.
         this.load.image('bg-7-6', 'assets/Images/7_Level4/Backgrounds/background-5.jpg');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
@@ -33,9 +28,17 @@ export default class Scene7_6 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-6').setOrigin(0);
-
 
         // Circle Click sound
         this.circleClickAudio = this.sound.add("circle-click", { loop: false });
@@ -94,7 +97,6 @@ export default class Scene7_6 extends Phaser.Scene {
                 this.cir1Text.alpha = 1;
                 this.cir1Pic.alpha = 0;
             }
-
         });
 
         // Circle 2
@@ -130,7 +132,6 @@ export default class Scene7_6 extends Phaser.Scene {
                 this.cir2Text.alpha = 1;
                 this.cir2Pic.alpha = 0;
             }
-
         });
 
         // Circle 3
@@ -166,9 +167,7 @@ export default class Scene7_6 extends Phaser.Scene {
                 this.cir3Text.alpha = 1;
                 this.cir3Pic.alpha = 0;
             }
-
         });
-
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -177,17 +176,13 @@ export default class Scene7_6 extends Phaser.Scene {
             this.scene.start("Scene7_7", { music: this.music });
         }, this);
 
-
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_5");
+            this.scene.start("Scene7_5", { music: this.music });
         }, this);
-
-
 
         // Save user progress.
         const save = new SaveProgress(this);
-
     }
 }

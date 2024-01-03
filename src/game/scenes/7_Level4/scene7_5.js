@@ -6,42 +6,41 @@ export default class Scene7_5 extends Phaser.Scene {
     constructor() {
         super('Scene7_5');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
         // Video.
         this.load.video('vid7_5', '/assets/Videos/7_Level4/Scene7_5-vid.mp4');
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-
-
-
     }
 
     create() {
-        // Background
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+        else {
+            this.music.pause();
+        }
 
+        // Background
         this.cameras.main.setBackgroundColor("#000000"); // use a single color for background
 
-        // Music
-        // There no theme file 
-
         // Video
-
         this.vid = this.add.video(0, 0, 'vid7_5');
         this.vid.setOrigin(0)
         this.vid.play();
-
 
         // Title.
         this.tileBg = this.add.graphics();
@@ -53,23 +52,20 @@ export default class Scene7_5 extends Phaser.Scene {
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
 
-
-
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
+            this.music.resume();
             this.scene.start("Scene7_6", { music: this.music });
         }, this);
-
 
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_4");
+            this.music.resume();
+            this.scene.start("Scene7_4", { music: this.music });
         }, this);
-
-
 
         // Save user progress.
         const save = new SaveProgress(this);
@@ -90,7 +86,6 @@ export default class Scene7_5 extends Phaser.Scene {
 
         // Width of progressBar is the game width 
         const size = 1920;
-
 
         /** 
          * In Update we just rerender the rectangle width based on video progress

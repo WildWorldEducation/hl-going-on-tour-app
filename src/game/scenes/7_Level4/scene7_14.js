@@ -8,20 +8,17 @@ export default class Scene7_14 extends Phaser.Scene {
     constructor() {
         super('Scene7_14');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("failed-bell", ["assets/Audio/SFX/7_Level4/failed-bell.mp3"]);
-
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
@@ -31,12 +28,19 @@ export default class Scene7_14 extends Phaser.Scene {
         this.load.image('glow-effect', 'assets/Images/7_Level4/sprite/answer-note-book/glow-effect.png');
         this.load.image('text-bubble', 'assets/Images/7_Level4/sprite/answer-note-book/text-bubble.png');
         this.load.image('disappointed-person', 'assets/Images/7_Level4/sprite/answer-note-book/disappointed-person.png');
-
-
     }
 
     create() {
-        // // Background // // 
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
+        // Background // // 
         // Using one color as base background
         this.cameras.main.setBackgroundColor("#f8f4f4");
 
@@ -47,13 +51,11 @@ export default class Scene7_14 extends Phaser.Scene {
         const personWithSpeaker = this.add.sprite(300, 430, 'person-with-speaker').setOrigin(0);
         personWithSpeaker.setScale(0.5)
 
-
         // Dash line border DISABLE
         // this.line1 = drawLine(this, 1030, 70, 680, 16, 3, 10, 'horizontal');
         // this.line2 = drawLine(this, 1030 + 680, 70, 920, 16, 3, 10, 'vertical');
         // this.line3 = drawLine(this, 1030, 70 + 920, 680, 16, 3, 10, 'horizontal');
         // this.line4 = drawLine(this, 1030, 70, 920, 16, 3, 10, 'vertical');
-
 
         // Text input.
         /** 
@@ -62,12 +64,36 @@ export default class Scene7_14 extends Phaser.Scene {
         */
         this.formUtil = new FormUtil({
             scene: this,
-
         });
 
         this.formUtil.showElement("scene7_14-book");
         this.formUtil.scaleToGameW("scene7_14-book", .8);
 
+        // Event listener for the "enter key."
+        document.querySelector('#scene7_14-book').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                let answer = document.getElementById('scene7_14-book').value;
+                if (answer.length === 0) {
+                    this.formUtil.hideElement('scene7_14-book');
+                    this.noAnswerCtnr.setAlpha(1);
+                    nextBtn.disableInteractive();
+                    backBtn.disableInteractive();
+                    tryAgainBtn.setAlpha(1);
+                    this.time.addEvent({
+                        delay: 500,
+                        callback: () => {
+                            // play the failed sound after 500 ms
+                            this.failedBell.play();
+                        },
+                        loop: false
+                    })
+
+                } else {
+                    this.formUtil.hideElement('scene7_14-book');
+                    this.scene.start("Scene7_15", { music: this.music });
+                }
+            }
+        });
 
         // Music
         // There no theme file 
@@ -79,7 +105,6 @@ export default class Scene7_14 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'left', }).setOrigin(0, 0);
         // Dealing with text quality.
         this.instructionText.setScale(0.5, 0.49);
-
 
         // * SPRITE AND BUTTON THAT APPEAR WHEN USER NOT TYPING THE QUESTION IN TO TEXT AREA  * //
 
@@ -96,7 +121,6 @@ export default class Scene7_14 extends Phaser.Scene {
             "Please fill in your answer \nbefore continuing.", { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center' }).setOrigin(0.5, 1).setScale(0.5);
         this.textInBubble.copyPosition(textBubble);
 
-
         const lightBulb = this.add.image(1050, 300, 'light-bulb').setScale(0.15).setOrigin(-1.48, 2.55);
         lightBulb.setAngle(15);
         lightBulb.copyPosition(textBubble);
@@ -104,14 +128,12 @@ export default class Scene7_14 extends Phaser.Scene {
         const glowEffect = this.add.image(0, 0, 'glow-effect').setScale(1).setOrigin(0.05, 1.1);
         glowEffect.copyPosition(lightBulb);
 
-
         this.clickSound = this.sound.add("next-button", { loop: false });
         const tryAgainBtn = new CustomButton(this, 1342, 970, 280, 65, 'Try again', 75, -0.35, -0.20, this.clickSound);
         tryAgainBtn.setAlpha(0);
 
         this.noAnswerCtnr = this.add.container(0, 0, [subBg, glowEffect, disappointedPerson, textBubble, this.textInBubble, lightBulb, tryAgainBtn]);
         this.noAnswerCtnr.setAlpha(0);
-
 
         tryAgainBtn.on('pointerdown', () => {
             console.log('pointer Down');
@@ -126,13 +148,12 @@ export default class Scene7_14 extends Phaser.Scene {
         this.failedBell = this.sound.add("failed-bell", { loop: false });
         this.failedBell.setVolume(0.4);
 
-
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
             let answer = document.getElementById('scene7_14-book').value;
-            if (answer.length === 0) { 
+            if (answer.length === 0) {
                 this.formUtil.hideElement('scene7_14-book');
                 this.noAnswerCtnr.setAlpha(1);
                 nextBtn.disableInteractive();
@@ -158,10 +179,8 @@ export default class Scene7_14 extends Phaser.Scene {
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.formUtil.hideElement('scene7_14-book');
-            this.scene.start("Scene7_13");
+            this.scene.start("Scene7_13", { music: this.music });
         }, this);
-
-
 
         // Save user progress.
         const save = new SaveProgress(this);

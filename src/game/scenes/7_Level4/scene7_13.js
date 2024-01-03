@@ -1,4 +1,3 @@
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
@@ -8,24 +7,20 @@ export default class Scene7_13 extends Phaser.Scene {
     constructor() {
         super('Scene7_13');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-        // Module music.
-
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
         // Video.
         this.load.video('vid7_13-tip1', 'assets/Videos/7_Level4/Scene7_13-tip-1-vid.mp4');
         this.load.video('vid7_13-tip3', 'assets/Videos/7_Level4/Scene7_13-tip-3-vid.mp4');
-
-
         // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("suction-cup-pull", ["assets/Audio/SFX/7_Level4/suction-cup-pull.mp3"]);
-
-
         // Sprites.
         this.load.image('bg-7-13', 'assets/Images/7_Level4/Backgrounds/background-7-blur.jpg');
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
@@ -50,6 +45,15 @@ export default class Scene7_13 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-13').setOrigin(0);
 
@@ -62,10 +66,6 @@ export default class Scene7_13 extends Phaser.Scene {
         // Dealing with text quality.
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
-
-
-        // Music
-        // There no theme file 
 
         // Audio
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -81,9 +81,7 @@ export default class Scene7_13 extends Phaser.Scene {
         this.instructionText.scale = 0.5;
         this.instructionText.copyPosition(this.instructionTextBg);
 
-
         // ** Circles Tip ** //
-
 
         // // Circle 1 tip // //
         const cir1 = this.add.circle(450, 625, 160, 0xffffffff);
@@ -121,8 +119,6 @@ export default class Scene7_13 extends Phaser.Scene {
         // Dealing with text quality.
         this.tip1Text.scale = 0.5;
         this.tip1Text.copyPosition(popup1closeBtn);
-
-
 
         // - + End of Circle 1 container + -
 
@@ -274,7 +270,6 @@ export default class Scene7_13 extends Phaser.Scene {
             this.popup2Container.setAlpha(0);
         })
 
-
         // popup 3 container
         this.popup3Container = this.add.container(0, 0, [this.popup3Graphics, this.tip3vid, video3Frame, popup3closeBtn, this.tip3Text]);
         this.popup3Container.setAlpha(0);
@@ -302,17 +297,15 @@ export default class Scene7_13 extends Phaser.Scene {
         // // End of circles tip section // //
 
         // Next button.
-
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
             this.scene.start("Scene7_14", { music: this.music });
         }, this);
 
-
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_12");
+            this.scene.start("Scene7_12", { music: this.music });
         }, this);
 
 

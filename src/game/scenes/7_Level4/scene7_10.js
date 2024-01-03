@@ -4,27 +4,22 @@ import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import CustomButton from '../Custom_Classes/CustomButton.js';
 
-
 export default class Scene7_10 extends Phaser.Scene {
     constructor() {
         super('Scene7_10');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("failed-bell", ["assets/Audio/SFX/7_Level4/failed-bell.mp3"]);
-
-
         // Sprites.
-
         this.load.image('text-bg-shadow', 'assets/Images/7_Level4/sprite/answer-note-book/text-bg-shadow.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('bg-7-10', 'assets/Images/7_Level4/Backgrounds/background-6.jpg');
@@ -35,13 +30,17 @@ export default class Scene7_10 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background
-
         var bg = this.add.sprite(0, 0, 'bg-7-10').setOrigin(0);
-
-        // Music
-        // There no theme file 
-
 
         // instructionText and it background sprite. 
         this.instructionTextBg = this.add.sprite(105, -5, 'text-bg-shadow').setOrigin(0).setScale(0.97, 1.1);
@@ -49,7 +48,6 @@ export default class Scene7_10 extends Phaser.Scene {
             "So, while dopamine can be used in \na positive way, if overused it can \nlead to many issues including \naddictions, depression, and a 'blah' \nattitude. What else do you think it \ncan affect? \nDiscuss with a group or write some \npossible answers down.", { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center' }).setOrigin(0, 0);
         // Dealing with text quality.
         this.instructionText.scale = 0.5;
-
 
         // Text input.
         /** 
@@ -63,7 +61,6 @@ export default class Scene7_10 extends Phaser.Scene {
             height: 1920,
             width: 1080
         });
-
 
         this.formUtil.showElement("scene7_10-book");
         this.formUtil.scaleToGameW("scene7_10-book", .4);
@@ -112,7 +109,6 @@ export default class Scene7_10 extends Phaser.Scene {
             "Please fill in your answer \nbefore continuing.", { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center' }).setOrigin(0.5, 1).setScale(0.5);
         this.textInBubble.copyPosition(textBubble);
 
-
         const lightBulb = this.add.image(1050, 300, 'light-bulb').setScale(0.15).setOrigin(-1.48, 2.55);
         lightBulb.setAngle(15);
         lightBulb.copyPosition(textBubble);
@@ -120,14 +116,12 @@ export default class Scene7_10 extends Phaser.Scene {
         const glowEffect = this.add.image(0, 0, 'glow-effect').setScale(1).setOrigin(0.05, 1.1);
         glowEffect.copyPosition(lightBulb);
 
-
         this.clickSound = this.sound.add("next-button", { loop: false });
         const tryAgainBtn = new CustomButton(this, 1342, 970, 280, 65, 'Try again', 75, -0.35, -0.20, this.clickSound);
         tryAgainBtn.setAlpha(0);
 
         this.noAnswerCtnr = this.add.container(0, 0, [subBg, glowEffect, disappointedPerson, textBubble, this.textInBubble, lightBulb, tryAgainBtn]);
         this.noAnswerCtnr.setAlpha(0);
-
 
         tryAgainBtn.on('pointerdown', () => {
             console.log('pointer Down');
@@ -146,7 +140,6 @@ export default class Scene7_10 extends Phaser.Scene {
         this.failedBell.setVolume(0.4);
 
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
-
 
         nextBtn.on('pointerdown', function () {
             let answer = document.getElementById('scene7_10-book').value;
@@ -171,14 +164,12 @@ export default class Scene7_10 extends Phaser.Scene {
             }
         }, this);
 
-
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.formUtil.hideElement('scene7_10-book');
-            this.scene.start("Scene7_9");
+            this.scene.start("Scene7_9", { music: this.music });
         }, this);
-
 
         // Save user progress.
         const save = new SaveProgress(this);

@@ -6,33 +6,34 @@ export default class Scene7_2 extends Phaser.Scene {
     constructor() {
         super('Scene7_2');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('bg-7-2', 'assets/Images/7_Level4/Backgrounds/background-3.jpg');
-
-
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-2').setOrigin(0);
-
-        // Music
-        // There no theme file 
 
         // instructionText and it background sprite. 
         this.instructionTextBg = this.add.sprite(630, 210, 'text-bg').setOrigin(0.2, -0.2).setScale(1.3, 0.91);
@@ -46,7 +47,6 @@ export default class Scene7_2 extends Phaser.Scene {
         this.instructionTextBg.alpha = 0
         this.instructionText.alpha = 0
 
-
         // Title.
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
@@ -56,9 +56,6 @@ export default class Scene7_2 extends Phaser.Scene {
         // Dealing with text quality.
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
-
-
-
 
         // Animation.
         const chain = this.tweens.chain({
@@ -91,6 +88,7 @@ export default class Scene7_2 extends Phaser.Scene {
                 },
             ]
         });
+
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
@@ -98,11 +96,10 @@ export default class Scene7_2 extends Phaser.Scene {
             this.scene.start("Scene7_3", { music: this.music });
         }, this);
 
-
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_1");
+            this.scene.start("Scene7_1", { music: this.music });
         }, this);
 
         // Save user progress.

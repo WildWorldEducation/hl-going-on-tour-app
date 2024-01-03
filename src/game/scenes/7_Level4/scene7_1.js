@@ -6,25 +6,33 @@ export default class Scene7_1 extends Phaser.Scene {
     constructor() {
         super('Scene7_1');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // plugin.
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
         // // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('las-vegas-sign', '/assets/Images/7_Level4/sprite/las-vegas-sign.png');
         this.load.image('star', '/assets/Images/7_Level4/sprite/star.png');
-
-
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Using one color as base background
         this.cameras.main.setBackgroundColor("#f9f2e8");
         // Background Sprite
@@ -33,11 +41,6 @@ export default class Scene7_1 extends Phaser.Scene {
         var star = this.add.sprite(175, 363, 'star').setOrigin(0);
 
         star.setScale(0.5);
-
-        // Music
-        // There no theme file 
-
-
 
         // Title.
         this.tileBg = this.add.graphics();
@@ -48,7 +51,6 @@ export default class Scene7_1 extends Phaser.Scene {
         // Dealing with text quality.
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
-
 
         // instructionText . 
         this.instructionTextBg = this.add.sprite(1190, 18, 'text-bg').setOrigin(0.2, -0.1).setScale(0.8, 1.8);
@@ -64,8 +66,6 @@ export default class Scene7_1 extends Phaser.Scene {
         // Hide the text and bg before animate
         this.instructionTextBg.alpha = 0
         this.instructionText.alpha = 0
-
-
 
         const chain = this.tweens.chain({
             tweens: [
@@ -242,13 +242,13 @@ export default class Scene7_1 extends Phaser.Scene {
 
             }
             else if (this.clicks == 1) {
-                this.scene.start("Scene7_2");
+                this.scene.start("Scene7_2", { music: this.music });
             }
             this.clicks++
         }, this);
 
 
         // Save user progress.
-        const save = new SaveProgress(this);       
+        const save = new SaveProgress(this);
     }
 }
