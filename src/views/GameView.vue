@@ -434,13 +434,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 #scene7_10-book {
     font-family: 'Open Sans';
     z-index: 2;
-    top: 17%;
-    left: 58%;
+    top: 23%;
+    left: 61%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
     width: 20.5% !important;
-
-    border: dashed;
+    height: 40%;
+    border: none;
     border-width: 4px;
     text-align: center;
     font-size: 'medium';
