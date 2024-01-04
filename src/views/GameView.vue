@@ -443,7 +443,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     border: none;
     border-width: 4px;
     text-align: center;
-    font-size: 'medium';
+    font-size: large;
     background-color: #ffffff;
 }
 
@@ -461,17 +461,16 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 #scene7_14-book {
     font-family: 'Open Sans';
     z-index: 2;
-    top: 7%;
-    left: 53.5%;
+    top: 15%;
+    left: 55.5%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
     width: 31% !important;
-    height: 84% !important;
-    border: dashed;
+    height: 40% !important;
+    border: none;
     border-width: 4px;
-
     text-align: center;
-    font-size: 'medium';
+    font-size: large;
     background-color: #fcf8eb;
 }
 
@@ -483,17 +482,16 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 #scene7_16_C2-book {
     font-family: 'Open Sans';
     z-index: 2;
-    top: 7%;
-    left: 53.5%;
+    top: 15%;
+    left: 55.5%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
     width: 31% !important;
-    height: 84% !important;
-    border: dashed;
+    height: 40% !important;
+    border: none;
     border-width: 4px;
-
     text-align: center;
-    font-size: 'medium';
+    font-size: large;
     background-color: #fcf8eb;
 
 }
@@ -507,17 +505,16 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 #scene7_18-book {
     font-family: 'Open Sans';
     z-index: 2;
-    top: 7%;
-    left: 53.5%;
+    top: 15%;
+    left: 55.5%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
     width: 31% !important;
-    height: 84% !important;
-    border: dashed;
+    height: 40% !important;
+    border: none;
     border-width: 4px;
-
     text-align: center;
-    font-size: 'medium';
+    font-size: large;
     background-color: #fcf8eb;
 }
 
