@@ -44,7 +44,7 @@ export default class Scene7_3 extends Phaser.Scene {
         // InstructionText Background. 
         this.instructionTextBg = this.add.sprite(910, 40, 'text-bg').setOrigin(0).setScale(0.97, 0.5);
         // Change instructionText opacity
-        this.instructionTextBg.alpha = 1;
+        this.instructionTextBg.alpha = 0.9;
 
         // InstructionText
         this.instructionText = this.add.rexBBCodeText(989, 110,
@@ -63,7 +63,7 @@ export default class Scene7_3 extends Phaser.Scene {
         // Title.
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 500, 150, 32);
+        this.tileBg.fillRoundedRect(-30, 0, 460, 150, 32);
         this.tileText = this.add.text(75, 75, "Other Vegas Facts",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.

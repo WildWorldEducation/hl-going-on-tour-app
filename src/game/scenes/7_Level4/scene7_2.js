@@ -20,6 +20,7 @@ export default class Scene7_2 extends Phaser.Scene {
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('bg-7-2', 'assets/Images/7_Level4/Backgrounds/background-3.jpg');
+        this.load.image('bg-7-2-blur', 'assets/Images/7_Level4/Backgrounds/background-3-blur.jpg');
     }
 
     create() {
@@ -34,23 +35,33 @@ export default class Scene7_2 extends Phaser.Scene {
 
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-2').setOrigin(0);
+        /**
+         * the blur background will appears after 500ms 
+         */
+        const blurBg = this.add.sprite(0, 0, 'bg-7-2-blur').setOrigin(0);
+        blurBg.setAlpha(0);
+        this.tweens.add({
+            targets: blurBg,
+            alpha: 1,
+            duration: 500,
+            delay: 500
+        });
 
         // instructionText and it background sprite. 
         this.instructionTextBg = this.add.sprite(630, 210, 'text-bg').setOrigin(0.2, -0.2).setScale(1.3, 0.91);
-        this.instructionText = this.add.rexBBCodeText(537, 430,
-            // "Before you continue,\nmake sure your [b]sound is activated![/b]\nThen [b]click the Blue Arrow[/b]\non the right to continue.",
+        this.instructionText = this.add.rexBBCodeText(537, 410,
             "With hundreds of live acts a week, including \nmusicians, magicians, dancers, acrobats, \ncomedians, impersonators, stunt people, aerial \nacts, light shows and even dog shows, ranging \nfrom free to over $1000 a show there is \nsomething for almost everyone.",
-            { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center' }).setOrigin(0, 0);
+            { fontFamily: "Arial", fontSize: "78px", color: '#000000', align: 'center' }).setOrigin(0, 0);
         // Dealing with text quality.
-        this.instructionText.scale = 0.5
+        this.instructionText.scale = 0.5;
         // Hide the text and bg before animate
-        this.instructionTextBg.alpha = 0
-        this.instructionText.alpha = 0
+        this.instructionTextBg.alpha = 0;
+        this.instructionText.alpha = 0;
 
         // Title.
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 500, 150, 32);
+        this.tileBg.fillRoundedRect(-30, 0, 460, 150, 32);
         this.tileText = this.add.text(75, 75, "Other Vegas Facts",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.

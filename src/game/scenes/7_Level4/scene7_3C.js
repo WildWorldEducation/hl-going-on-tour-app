@@ -69,7 +69,7 @@ export default class Scene7_3C extends Phaser.Scene {
         blueMan.scale = 0.45;
 
         // Text
-        this.text = this.add.text(1280, 730,
+        this.text = this.add.text(1330, 650,
             "Whether you've heard of \nthem or not, it's exactly \n what it sounds \nlike...almost. \nYes, they are blue and\n yes they are a men in a \ngroup, but their\n performance is very \ndynamic.",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center' }).setOrigin(0.5);
         // Dealing with text quality.

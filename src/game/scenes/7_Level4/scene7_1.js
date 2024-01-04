@@ -45,7 +45,7 @@ export default class Scene7_1 extends Phaser.Scene {
         // Title.
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 535, 150, 32);
+        this.tileBg.fillRoundedRect(-30, 0, 570, 150, 32);
         this.tileText = this.add.text(75, 75, "Welcome to Las Vegas!",
             { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
@@ -53,52 +53,31 @@ export default class Scene7_1 extends Phaser.Scene {
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
 
         // instructionText . 
-        this.instructionTextBg = this.add.sprite(1190, 18, 'text-bg').setOrigin(0.2, -0.1).setScale(0.8, 1.8);
+        this.instructionTextBg = this.add.sprite(1390, 558, 'text-bg').setOrigin(0.5).setScale(0.8, 1.7);
         this.instructionText = this.add.rexBBCodeText(1220, 20,
             // "Before you continue,\nmake sure your [b]sound is activated![/b]\nThen [b]click the Blue Arrow[/b]\non the right to continue.",
             `Las Vegas, Nevada is known \nas one of the greatest \nentertainment hotspots in the \nworld.
-            
-             \n\nIn Vegas you can choose \nbetween watching chart-\ntopping musical acts, world \nclass dance acts, massive light \nshows and mind-bending magic \nshows!
-            `,
-            { fontFamily: "Arial", fontSize: "70px", color: '#000000', align: 'center' }).setOrigin(0.17, -0.40);
+         
+          \n\nIn Vegas you can choose \nbetween watching chart-\ntopping musical acts, world \nclass dance acts, massive light \nshows and mind-bending magic \nshows!
+         `,
+            { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center' }).setOrigin(0.17, -0.40);
         // Dealing with text quality.
         this.instructionText.scale = 0.5
         // Hide the text and bg before animate
         this.instructionTextBg.alpha = 0
         this.instructionText.alpha = 0
-
         const chain = this.tweens.chain({
             tweens: [
-                // {
-                //     targets: [this.textBg],
-                //     x: 220,
-                //     ease: "power3",
-                //     repeat: 0,
-                //     duration: 500
-                // },
-                // {
-                //     targets: [this.tileText],
-                //     alpha: 1,
-                //     repeat: 0,
-                //     duration: 500
-                // },
                 {
-                    targets: [this.instructionTextBg],
+                    targets: [this.instructionTextBg, this.instructionText],
                     alpha: 1,
                     delay: 200,
-                    duration: 1000,
-                    repeat: 0,
-                },
-                {
-                    targets: [this.instructionText],
-                    alpha: 1,
-                    duration: 100,
+                    duration: 500,
                     repeat: 0,
                 },
             ],
-
         });
-
+        // Stars tweens
         const starChain = this.tweens.chain({
             tweens: [
                 {
@@ -140,57 +119,27 @@ export default class Scene7_1 extends Phaser.Scene {
         backBtn.on('pointerdown', function () {
             // turn the instructionText back to the first state
             if (this.clicks == 1) {
-
                 //show the back button
                 backBtn.alpha = 1;
                 this
                     .instructionText
                     .setText(
                         `Las Vegas, Nevada is known \nas one of the greatest \nentertainment hotspots in the \nworld.
-            
-             \n\nIn Vegas you can choose \nbetween watching chart-\ntopping musical acts, world \nclass dance acts, massive light \nshows and mind-bending magic \nshows!
-            `)
+         
+          \n\nIn Vegas you can choose \nbetween watching chart-\ntopping musical acts, world \nclass dance acts, massive light \nshows and mind-bending magic \nshows!
+         `)
                 // render correct position and style for instruction text
                 this.instructionText.setY(20);
                 this.instructionText.setX(1220);
                 this.instructionText.setOrigin(0.17, -0.40);
-                this.instructionText.setStyle({ fontFamily: "Arial", fontSize: "70px", color: '#000000', align: 'center' });
-
-                // render correct position and style for instruction text background
-                this.instructionTextBg.setScale(0.8, 1.8);
-                this.instructionTextBg.setY(-0.2);
+                this.instructionText.setStyle({ fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center' });
 
                 // Hide the new instruction 
-                this.instructionText.alpha = 0;
-                this.instructionTextBg.alpha = 0;
-                // Animation for those two
-                const chain2 = this.tweens.chain({
-                    tweens: [
-                        // {
-                        //     targets: [this.tileText],
-                        //     alpha: 1,
-                        //     repeat: 0,
-                        //     duration: 500
-                        // },
-                        {
-                            targets: [this.instructionTextBg],
-                            alpha: 1,
-                            delay: 200,
-                            duration: 1000,
-                            repeat: 0,
-                        },
-                        {
-                            targets: [this.instructionText],
-                            alpha: 1,
-                            duration: 100,
-                            repeat: 0,
-                        },
-                    ],
-
-                });
+                this.instructionTextBg.setScale(0.8, 1.7);
                 // reset the clicks flag
                 this.clicks = 0;
             }
+            backBtn.setAlpha(0);
         }, this);
         // Hide the back button for click 1
         backBtn.alpha = 0;
@@ -206,14 +155,11 @@ export default class Scene7_1 extends Phaser.Scene {
                     .setText(
                         "Many of the world's biggest starts \nhave had high profile shows \nin Las Vegas.\n\n From golden age stars of the past \nlike Elvis Presley and Frank \n Sinatra or more modern crowd-\npleasers such as Harry Styles, J\n-Lo, Adele, Usher, Drake, Bruno \n Mars, and even America's Got \nTalent, it's clear Vegas is a great \nplace to catch top talent from the \nentertainment world.")
                 this.instructionText.setY(130);
-                this.instructionText.setX(1195);
+                this.instructionText.setX(1200);
                 this.instructionText.setStyle({ fontFamily: "Arial", fontSize: "70px", color: '#000000', align: 'center' });
-                this.instructionTextBg.setScale(0.8, 1.6);
-                this.instructionTextBg.setY(60);
+                // Hide the new instruction
+                this.instructionTextBg.setScale(0.8, 1.3)
 
-                // Hide the new instruction 
-                this.instructionText.alpha = 0;
-                this.instructionTextBg.alpha = 0;
                 // Animation for those two
                 const chain2 = this.tweens.chain({
                     tweens: [
@@ -221,32 +167,16 @@ export default class Scene7_1 extends Phaser.Scene {
                             targets: [this.tileText],
                             alpha: 1,
                             repeat: 0,
-                            duration: 500
-                        },
-                        {
-                            targets: [this.instructionTextBg],
-                            alpha: 1,
-                            delay: 200,
-                            duration: 1000,
-                            repeat: 0,
-                        },
-                        {
-                            targets: [this.instructionText],
-                            alpha: 1,
-                            duration: 100,
-                            repeat: 0,
-                        },
+                            duration: 5,
+                        }
                     ],
-
                 });
-
             }
             else if (this.clicks == 1) {
                 this.scene.start("Scene7_2", { music: this.music });
             }
             this.clicks++
         }, this);
-
 
         // Save user progress.
         const save = new SaveProgress(this);
