@@ -7,24 +7,17 @@ export default class Scene7_20 extends Phaser.Scene {
         super('Scene7_20');
     }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
         // Video.
         this.load.video('vid7_20', 'assets/Videos/7_Level4/Scene7_20-vid.mp4');
-
-        // // Module music.
-
-
-        // // Audio.
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-
-
     }
 
     create() {
@@ -64,7 +57,7 @@ export default class Scene7_20 extends Phaser.Scene {
          *  This is a very hacky solution to make a long line before the author name             *
          *  Will replace this if have better solution                                            *
          ****************************************************************************************/
- 
+
         this.instructionText = this.add.rexBBCodeText(this.TextBg.x, this.TextBg.y,
             "We all have the same amount of \ntime: [b]24 hours in a day, 168 \nhours per week, and a \nwhopping 8,760 hours per year![/b] \n\nHow you spend the time we are all \ngranted is up to you! This is what \nTime Management is all about. \n[b]Managing your time wisely is \nessential to success in school, \nand like most skills [y=-35]_[/y] life in \ngeneral.",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000', align: 'center', lineSpacing: 10 }).setOrigin(-0.08, -0.16);
@@ -81,7 +74,7 @@ export default class Scene7_20 extends Phaser.Scene {
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_19");
+            this.scene.start("Scene7_19", { music: this.music });
         }, this);
 
         // Save user progress.

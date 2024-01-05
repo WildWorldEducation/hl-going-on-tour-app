@@ -1,5 +1,4 @@
 import SideButton from '../Custom_Classes/SideButton.js'
-import SaveProgress from '../Custom_Classes/SaveProgress.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import FormUtil from '../util/formUtil.js'
 
@@ -8,17 +7,12 @@ export default class Scene7_22 extends Phaser.Scene {
         super('Scene7_22');
     }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
@@ -194,7 +188,7 @@ export default class Scene7_22 extends Phaser.Scene {
         backBtn.on('pointerdown', function () {
             // hide the html before changing page
             this.formUtil.hideElement("scene7_22-range-input");
-            this.scene.start("Scene7_21");
+            this.scene.start("Scene7_21", { music: this.music });
         }, this);
 
     }

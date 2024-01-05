@@ -1,4 +1,3 @@
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
@@ -12,16 +11,11 @@ export default class Scene7_16_C2 extends Phaser.Scene {
     preload() {
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("failed-bell", ["assets/Audio/SFX/7_Level4/failed-bell.mp3"]);
-
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
@@ -31,8 +25,6 @@ export default class Scene7_16_C2 extends Phaser.Scene {
         this.load.image('glow-effect', 'assets/Images/7_Level4/sprite/answer-note-book/glow-effect.png');
         this.load.image('text-bubble', 'assets/Images/7_Level4/sprite/answer-note-book/text-bubble.png');
         this.load.image('disappointed-person', 'assets/Images/7_Level4/sprite/answer-note-book/disappointed-person.png');
-
-
     }
 
     create() {
@@ -158,7 +150,7 @@ export default class Scene7_16_C2 extends Phaser.Scene {
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.formUtil.hideElement('scene7_16_C2-book');
-            this.scene.start("Scene7_16_C1");
+            this.scene.start("Scene7_16_C1", { music: this.music });
         }, this);
 
 

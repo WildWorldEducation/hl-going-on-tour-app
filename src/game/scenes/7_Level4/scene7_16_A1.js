@@ -1,26 +1,17 @@
 import SideButton from '../Custom_Classes/SideButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
 
-
 export default class Scene7_16_A1 extends Phaser.Scene {
     constructor() {
         super('Scene7_16_A1');
     }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-        // Video.
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('bg-7-16A1', 'assets/Images/7_Level4/Backgrounds/background-5.jpg');
@@ -30,7 +21,6 @@ export default class Scene7_16_A1 extends Phaser.Scene {
         this.load.image('amazon-logo', 'assets/Images/7_Level4/sprite/brand-hidden-marketing/amazon-logo.png');
         this.load.image('fedex-logo', 'assets/Images/7_Level4/sprite/brand-hidden-marketing/fedex-logo.png');
         this.load.image('yellow-pointer', 'assets/Images/7_Level4/sprite/sensory-overload/yellow-pointer.png')
-
     }
 
     create() {

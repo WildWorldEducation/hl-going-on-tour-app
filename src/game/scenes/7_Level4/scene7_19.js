@@ -7,25 +7,18 @@ export default class Scene7_19 extends Phaser.Scene {
         super('Scene7_19');
     }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
         // Video.
         this.load.video('vid7_19', 'assets/Videos/7_Level4/Scene7_19-vid.mp4');
-
-        // // Module music.
-
-
-        // // Audio.
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
         this.load.audio("clock-rotating", ["assets/Audio/SFX/7_Level4/clock-rotate.mp3"])
-
         // Sprites.
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
-
-
     }
 
     create() {
@@ -97,7 +90,7 @@ export default class Scene7_19 extends Phaser.Scene {
             if (!this.clockRotating.paused) {
                 this.clockRotating.stop();
             }
-            this.scene.start("Scene7_18");
+            this.scene.start("Scene7_18", { music: this.music });
 
         }, this);
 

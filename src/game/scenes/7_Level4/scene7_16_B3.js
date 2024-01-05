@@ -7,20 +7,12 @@ export default class Scene7_16_B3 extends Phaser.Scene {
         super('Scene7_16_B3');
     }
     preload() {
-
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
-
-        // Video.
-
-
-        // // Module music.
-
-
-        // // Audio.
+        // Music.
+        this.load.audio("las-vegas-song", ["assets/Audio/Music/7_Level4/las-vegas-song.mp3"]);
+        // Audio.
         this.load.audio("next-button", ["assets/Audio/SFX/General/next-button.mp3"]);
-
-
         // Sprites.
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
         this.load.image('bg-7-16', 'assets/Images/7_Level4/Backgrounds/background-5.jpg');
@@ -28,8 +20,6 @@ export default class Scene7_16_B3 extends Phaser.Scene {
         this.load.image('text-bg', '/assets/Images/7_Level4/sprite/text-bg.png');
         this.load.image('light-bulb', 'assets/Images/7_Level4/sprite/answer-note-book/light-bulb.png');
         this.load.image('glow-effect', 'assets/Images/7_Level4/sprite/answer-note-book/glow-effect.png');
-
-
     }
 
     create() {
@@ -77,7 +67,7 @@ export default class Scene7_16_B3 extends Phaser.Scene {
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
-            this.scene.start("Scene7_16_A2");
+            this.scene.start("Scene7_16_A2", { music: this.music });
         }, this);
 
         // Save user progress.
