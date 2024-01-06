@@ -6,6 +6,9 @@ export default class Scene7_26 extends Phaser.Scene {
     constructor() {
         super('Scene7_26');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -21,6 +24,15 @@ export default class Scene7_26 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-26').setOrigin(0);
 

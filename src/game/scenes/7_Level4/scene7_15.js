@@ -6,6 +6,9 @@ export default class Scene7_15 extends Phaser.Scene {
     constructor() {
         super('Scene7_15');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -20,12 +23,19 @@ export default class Scene7_15 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('theme-module3');
+            this.music.loop = true
+            this.music.pause();
+        }
+        else {
+            this.music.pause();
+        }
+
         // Background
-
         this.cameras.main.setBackgroundColor("#000000"); // use a single color for background
-
-        // Music
-        // There no theme file 
 
         // Video
         this.vid = this.add.video(0, 0, 'vid7_15');
@@ -42,24 +52,19 @@ export default class Scene7_15 extends Phaser.Scene {
         this.tileText.scale = 0.5;
         this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
 
-
-
-
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
+            this.music.resume();
             this.scene.start("Scene7_16", { music: this.music });
         }, this);
-
 
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
         backBtn.on('pointerdown', function () {
             this.scene.start("Scene7_14", { music: this.music });
         }, this);
-
-
 
         // Save user progress.
         const save = new SaveProgress(this);
@@ -81,7 +86,6 @@ export default class Scene7_15 extends Phaser.Scene {
 
         // Width of progressBar is the game width 
         const size = 1920;
-
 
         /** 
          * In Update we just rerender the rectangle width based on video progress

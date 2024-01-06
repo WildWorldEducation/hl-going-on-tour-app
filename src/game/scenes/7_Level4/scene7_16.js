@@ -1,4 +1,3 @@
-import UnlockModule from '../Custom_Classes/UnlockModule.js'
 import SideButton from '../Custom_Classes/SideButton.js'
 import BackButton from '../Custom_Classes/BackButton.js'
 import SaveProgress from '../Custom_Classes/SaveProgress.js'
@@ -7,6 +6,9 @@ import CustomButton from '../Custom_Classes/CustomButton.js';
 export default class Scene7_16 extends Phaser.Scene {
     constructor() {
         super('Scene7_16');
+    }
+    init(data) {
+        this.music = data.music;
     }
     preload() {
         // Plugin. 
@@ -23,6 +25,15 @@ export default class Scene7_16 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('las-vegas-song');
+            this.music.play();
+            this.music.setVolume(0.4);
+            this.music.loop = true
+        }
+
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-16').setOrigin(0);
 

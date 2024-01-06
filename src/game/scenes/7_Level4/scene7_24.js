@@ -6,6 +6,9 @@ export default class Scene7_24 extends Phaser.Scene {
     constructor() {
         super('Scene7_24');
     }
+    init(data) {
+        this.music = data.music;
+    }
     preload() {
         // Plugin. 
         this.load.plugin('rexbbcodetextplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexbbcodetextplugin.min.js', true);
@@ -20,6 +23,17 @@ export default class Scene7_24 extends Phaser.Scene {
     }
 
     create() {
+        // Music.
+        // Check if music is playing.
+        if (typeof this.music == 'undefined') {
+            this.music = this.sound.add('theme-module3');
+            this.music.loop = true
+            this.music.pause();
+        }
+        else {
+            this.music.pause();
+        }
+
         // Background
 
         this.cameras.main.setBackgroundColor("#000000"); // use a single color for background
@@ -47,6 +61,7 @@ export default class Scene7_24 extends Phaser.Scene {
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);
         nextBtn.on('pointerdown', function () {
+            this.music.resume()
             this.scene.start("Scene7_25", { music: this.music });
         }, this);
 
