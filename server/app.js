@@ -60,9 +60,10 @@ Database Connection
 --------------------------------------------*/
 const conn = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
+    //user: 'root',
+    user: 'admin@localhost',
     password: 'H3@lthyL1f35tyl3s',
-    //  password: 'password',
+    // password: 'password',
     database: 'healthy_lifestyles'
 });
 
