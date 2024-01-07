@@ -47,7 +47,7 @@ export default class Scene7_16_A2 extends Phaser.Scene {
         // Title. //
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 625, 150, 32);
+        this.tileBg.fillRoundedRect(-30, 0, 520, 150, 32);
         this.tileText = this.add.text(75, 75, "1. Hidden Marketing",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.

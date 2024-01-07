@@ -31,6 +31,7 @@ export default class Scene7_30 extends Phaser.Scene {
         this.load.image('pin-white', 'assets/Images/7_Level4/sprite/map/pin-white.png');
         this.load.image('pin-gray', 'assets/Images/7_Level4/sprite/map/pin-gray.png');
         this.load.image('pin-red', 'assets/Images/7_Level4/sprite/map/pin-red.png');
+        this.load.image('pin-hover-red', 'assets/Images/3_Level1/map/red-marker-light.png')
     }
 
     create() {
@@ -44,12 +45,9 @@ export default class Scene7_30 extends Phaser.Scene {
         }
 
         // Background
-        // The map is laid below the frame bg
+        // The map is laying below the frame bg
         var naMap = this.add.sprite(923, 560, 'north-america-map').setScale(0.82);
         var bg = this.add.sprite(0, 0, 'bg-7-30').setOrigin(0);
-
-        // Music
-        // There no theme file 
 
         // Audio
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
@@ -89,7 +87,7 @@ export default class Scene7_30 extends Phaser.Scene {
         pin2red.setAlpha(0);
 
         //hover listener
-        pin2gray.on('pointerover', function () {
+        pin2gray.on('pointerover', () => {
             pin2red.setAlpha(1);
         });
         pin2gray.on('pointerout', () => {
@@ -101,17 +99,36 @@ export default class Scene7_30 extends Phaser.Scene {
         const pin3gray = this.add.sprite(pin3white.x, pin3white.y, 'pin-gray').setScale(0.23);
 
         // Pin 4 
-        const pin4white = this.add.sprite(637, 650, 'pin-white').setScale(0.28);
+        const pin4white = this.add.sprite(637, 650, 'pin-white').setScale(0.28).setAlpha(0);
         const pin4red = this.add.sprite(pin4white.x, pin4white.y, 'pin-red').setScale(0.23);
+        const pinHoverRed = this.add.sprite(pin4white.x, pin4white.y, 'pin-hover-red').setScale(0.23);
+        pinHoverRed.setDepth(-10);
+        this.tweens.add({
+            targets: pin4white,
+            alpha: 1,
+            duration: 1200,
+            yoyo: true,
+            repeat: -1
+        })
 
-        // Next button.     
-        // this.nextBtnAudio = this.sound.add("next-button", { loop: false });
-        // const nextBtn = new SideButton(this, 1920 - 90, 540, 'next-arrow', this.nextBtnAudio);
-        // nextBtn.on('pointerdown', function () {
-        //     // this.music.stop();
-        //     // this.scene.start("Scene8_0");
-        // }, this);
-        // nextBtn.y = nextBtn.y - 40
+        pin4red.setInteractive({
+            useHandCursor: true,
+        })
+
+        pin4red.on('pointerdown', () => {
+            this.scene.start('Scene8_1');
+        })
+
+        pin4red.on('pointerover', () => {
+
+            pinHoverRed.setDepth(10)
+        })
+
+        pin4red.on('pointerout', () => {
+
+            pinHoverRed.setDepth(-10);
+        })
+
 
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);

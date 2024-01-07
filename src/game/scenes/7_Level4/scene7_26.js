@@ -36,17 +36,13 @@ export default class Scene7_26 extends Phaser.Scene {
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-26').setOrigin(0);
 
-
-        // Music
-        // There no theme file 
-
         // Audio
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
 
         // Title. //
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 470, 150, 32);
+        this.tileBg.fillRoundedRect(-30, 0, 450, 150, 32);
         this.tileText = this.add.text(75, 75, "Shifting Mindset",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
@@ -61,6 +57,17 @@ export default class Scene7_26 extends Phaser.Scene {
         // Dealing with text quality.
         this.instructionText.scale = (0.7, 0.5);
 
+        // Instruction container for animating purpose
+        const instructionCntr = this.add.container(0, 0, [this.instructionTextBg, this.instructionText]);
+        instructionCntr.setAlpha(0);
+
+        this.tweens.add({
+            targets: instructionCntr,
+            alpha: 1,
+            duration: 300,
+            delay: 200
+        })
+
         // // Yellow Pointer --Decapitate--
         // this.pointer = this.add.sprite(200, 345, 'yellow-pointer').setScale(0.4);
 
@@ -72,6 +79,10 @@ export default class Scene7_26 extends Phaser.Scene {
         const height = 295;
         const borderRadius = 20;
         const borderWidth = 5;
+        // -- generic value for animating 
+        const baseDelay = 400;
+        const baseDuration = 500;
+        const baseStep = 300;
 
         // - button 1 - //
         const btnX = 370;
@@ -92,6 +103,8 @@ export default class Scene7_26 extends Phaser.Scene {
         // circle arrow 1
         const circleArrow1 = this.add.sprite(btnX + width, btnY + height, 'circle-arrow').setOrigin(1.1);
         this.btn1text1Cntr = this.add.container(0, 0, [this.btn1text1, circleArrow1]);
+
+
         // end of button 1 text 1 container //
 
         // button 1 text 2 (positive text) //
@@ -280,6 +293,7 @@ export default class Scene7_26 extends Phaser.Scene {
         });
         // -- End of button 4 -- //
         // + - End of Buttons Section + - //
+
 
         // Next button.
         const nextBtn = new SideButton(this, 1920 - 90, 500, 'next-arrow', this.nextBtnAudio);

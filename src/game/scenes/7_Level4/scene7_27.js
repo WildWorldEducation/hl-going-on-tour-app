@@ -39,10 +39,6 @@ export default class Scene7_27 extends Phaser.Scene {
         // Background
         this.cameras.main.setBackgroundColor("#94a0e3"); // use a single color for background
 
-
-        // Music
-        // There no theme file 
-
         // Audio
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
         this.lightOnSound = this.sound.add("light-on", { loop: false });
@@ -55,7 +51,7 @@ export default class Scene7_27 extends Phaser.Scene {
         // Title. //
         this.tileBg = this.add.graphics();
         this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 480, 150, 32);
+        this.tileBg.fillRoundedRect(-30, 0, 450, 150, 32);
         this.tileText = this.add.text(75, 75, "Shifting Mindset",
             { fontFamily: "Arial", fontSize: "75px", color: '#000000' }).setOrigin(0.0, 0.5);
         // Dealing with text quality.
@@ -65,10 +61,25 @@ export default class Scene7_27 extends Phaser.Scene {
         // background for instruction text sprite. //
         this.instructionTextBg = this.add.sprite(180, 320, 'text-bg').setOrigin(0).setScale(2, 1.4);
 
+        /**
+         * SOME GENERIC VALUE FOR ANIMATING PURPOSE
+         * --- ----
+         */
+
+        const aniDuration = 150;
+        const aniDelay = 200;
+
         // +- Light Bulbs section -+ // 
         // - light bulb 1 - //
-        // const lightBulb1Off = this.add.sprite(1220, 140, 'short-off-light-bulb').setScale(0.35);
-        const lightBulb1On = this.add.sprite(1220, 140, 'short-on-light-bulb').setScale(0.35);
+        const lightBulb1Off = this.add.sprite(1220, 140, 'short-off-light-bulb').setScale(0.35);
+        const lightBulb1On = this.add.sprite(1220, 140, 'short-on-light-bulb').setScale(0.35).setAlpha(0);
+        this.tweens.add({
+            targets: lightBulb1On,
+            alpha: 1,
+            duration: aniDuration,
+            delay: aniDelay
+        })
+
         // - light bulb 2 - //
         const lightBulb2Off = this.add.sprite(1375, 120, 'short-off-light-bulb').setScale(0.35);
         const lightBulb2On = this.add.sprite(1375, 120, 'short-on-light-bulb').setScale(0.35).setAlpha(0);
@@ -90,6 +101,13 @@ export default class Scene7_27 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center', lineSpacing: 17 }).setOrigin(0, 0);
         // Dealing with text quality.
         this.instructionText1.scale = (0.5);
+        this.instructionText1.setAlpha(0);
+        this.tweens.add({
+            targets: this.instructionText1,
+            duration: aniDuration,
+            delay: aniDelay,
+            alpha: 1
+        });
 
         // instruction text 2
         this.instructionText2 = this.add.rexBBCodeText(480, 515,
@@ -130,27 +148,83 @@ export default class Scene7_27 extends Phaser.Scene {
             switch (click) {
                 case 0:
                     this.lightOnSound.play();
-                    this.instructionText2.setAlpha(1);
-                    lightBulb2On.setAlpha(1);
-                    lightBulb2Off.setAlpha(0); // hide the light bulb off sprite for smaller memory consume
+                    this.tweens.chain({
+                        tweens: [
+                            {
+                                targets: [this.instructionText2, lightBulb2On],
+                                alpha: 1,
+                                delay: aniDelay,
+                                duration: aniDuration
+                            },
+                            {
+                                // hide the light bulb off sprite for smaller memory consume
+                                targets: lightBulb2Off,
+                                alpha: 0,
+                                duration: 0,
+                                delay: 0
+                            }
+                        ]
+                    });
                     break;
                 case 1:
                     this.lightOnSound.play();
-                    this.instructionText3.setAlpha(1);
-                    lightBulb3On.setAlpha(1);
-                    lightBulb3Off.setAlpha(0);
+                    this.tweens.chain({
+                        tweens: [
+                            {
+                                targets: [this.instructionText3, lightBulb3On],
+                                alpha: 1,
+                                delay: aniDelay,
+                                duration: aniDuration
+                            },
+                            {
+                                // hide the light bulb off sprite for smaller memory consume
+                                targets: lightBulb3Off,
+                                alpha: 0,
+                                duration: 0,
+                                delay: 0
+                            }
+                        ]
+                    });
                     break;
                 case 2:
                     this.lightOnSound.play();
-                    this.instructionText4.setAlpha(1);
-                    lightBulb4On.setAlpha(1);
-                    lightBulb4Off.setAlpha(0);
+                    this.tweens.chain({
+                        tweens: [
+                            {
+                                targets: [this.instructionText4, lightBulb4On],
+                                alpha: 1,
+                                delay: aniDelay,
+                                duration: aniDuration
+                            },
+                            {
+                                // hide the light bulb off sprite for smaller memory consume
+                                targets: lightBulb4Off,
+                                alpha: 0,
+                                duration: 0,
+                                delay: 0
+                            }
+                        ]
+                    });
                     break;
                 case 3:
                     this.lightOnSound.play();
-                    this.instructionText5.setAlpha(1);
-                    lightBulb5On.setAlpha(1);
-                    lightBulb5Off.setAlpha(0);
+                    this.tweens.chain({
+                        tweens: [
+                            {
+                                targets: [this.instructionText5, lightBulb5On],
+                                alpha: 1,
+                                delay: aniDelay,
+                                duration: aniDuration
+                            },
+                            {
+                                // hide the light bulb off sprite for smaller memory consume
+                                targets: lightBulb5Off,
+                                alpha: 0,
+                                duration: 0,
+                                delay: 0
+                            }
+                        ]
+                    });
                     break;
                 case 4:
                     this.nextBtnAudio.play();

@@ -38,10 +38,6 @@ export default class Scene7_29 extends Phaser.Scene {
         // Background
         var bg = this.add.sprite(0, 0, 'bg-7-29').setOrigin(0);
 
-
-        // Music
-        // There no theme file 
-
         // Audio
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
 
@@ -62,12 +58,39 @@ export default class Scene7_29 extends Phaser.Scene {
             { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center', lineSpacing: 10 }).setOrigin(0, 0);
         // Dealing with text quality.
         this.instructionText.scale = (0.7, 0.5);
+        // Instruction container for animating purpose
+        const instructionCntr = this.add.container(0, 0, [this.instructionTextBg, this.instructionText]);
+        instructionCntr.setAlpha(0);
+        this.tweens.add({
+            targets: instructionCntr,
+            alpha: 1,
+            duration: 200,
+            delay: 200
+        })
 
         // Planner Sprite
         const weeklyPlanner = this.add.sprite(960, 700, 'weekly-planner').setScale(0.83, 0.77);
+        weeklyPlanner.setAlpha(0);
         // Information button
         const exclamationBtn = new ExclamationBtn(this, weeklyPlanner.x + 500, weeklyPlanner.y - 275, 'white-exclamation', '30');
-
+        exclamationBtn.setAlpha(0);
+        // The animation for weekly Planer
+        this.tweens.chain({
+            tweens: [
+                {
+                    targets: weeklyPlanner,
+                    alpha: 1,
+                    duration: 200,
+                    delay: 300
+                },
+                {
+                    targets: exclamationBtn,
+                    alpha: 1,
+                    duration: 200,
+                    delay: 100
+                }
+            ]
+        })
         // +- The instruction direction bubble text -+ //
         // Generic value for the bubble
         const bubbleX = exclamationBtn.x - 140;
