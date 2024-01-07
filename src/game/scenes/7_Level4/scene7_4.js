@@ -44,25 +44,6 @@ export default class Scene7_4 extends Phaser.Scene {
 
         // BG.
         this.cameras.main.setBackgroundColor("#f9f2e8"); // use a single color for background
-
-        // Title.
-        this.tileBg = this.add.graphics();
-        this.tileBg.fillStyle(0xFFFFFF, 1);
-        this.tileBg.fillRoundedRect(-30, 0, 290, 150, 32);
-        this.tileText = this.add.text(75, 75, "Senses",
-            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
-        // Dealing with text quality.
-        this.tileText.scale = 0.5;
-        this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
-
-        // instructionText and it background sprite. 
-        this.instructionTextBg = this.add.sprite(1000, -500, 'text-bg').setOrigin(0.2, -0.2).setScale(1.8, 1.38);
-        this.instructionText = this.add.rexBBCodeText(878, 53,
-            "You are most likely familiar with the [b]main 5 senses -[/b] \nHearing, Seeing, Taste, Touch and Smell. \nThey are extremly beneficial for our daily lives and \nalso just like the brain or the body, \n they too can get [b]can get tired or overloaded.[/b]",
-            { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center' }).setOrigin(0).setScale(1.3, 1);
-        // Dealing with text quality.
-        this.instructionText.scale = 0.5;
-
         // Sight sense container
         /*
         *  Copy the position of sight for easy position manual change  around
@@ -83,6 +64,8 @@ export default class Scene7_4 extends Phaser.Scene {
 
         // container
         this.SightCtnr = this.add.container(0, 100, [this.sight, this.sightConnectLine, this.sightText]);
+
+
 
         // Hearing sense container
         /*
@@ -105,6 +88,7 @@ export default class Scene7_4 extends Phaser.Scene {
         // container
         this.hearingCtnr = this.add.container(0, 100, [this.hearing, this.hearingConnectLine, this.hearingText]);
 
+
         // Taste sense container
         /*
         *  Copy the position of sight for easy position manual change  around
@@ -126,9 +110,6 @@ export default class Scene7_4 extends Phaser.Scene {
         // container
         this.tasteCtnr = this.add.container(-13, 100, [this.taste, this.tasteConnectLine, this.tasteText]);
 
-        // Person Sprite
-        this.person = this.add.sprite(770, 500, 'person').setOrigin(0).setScale(0.8);
-
         // Smell sense container
         /*
         *  Copy the position of sight for easy position manual change  around
@@ -148,6 +129,7 @@ export default class Scene7_4 extends Phaser.Scene {
         this.smellText.copyPosition(this.smell);
         // container
         this.smellCtnr = this.add.container(93, 238, [this.smell, this.smellConnectLine, this.smellText]);
+
 
         // touch sense container
         /*
@@ -169,8 +151,53 @@ export default class Scene7_4 extends Phaser.Scene {
         // container
         this.touchCtnr = this.add.container(3, 258, [this.touch, this.touchConnectLine, this.touchText]);
 
+        // // End of Senses Containers // //
+
+        /** Put the scenes container above other sprites to make it render first and get hide by the veiled bg */
+        /**
+         * So I have a VERY HACKY solution for how to animate the senses container. We will put a single color bg in front of
+         * The senses container and we will animate the bg ScaleX value to make the rolling effect
+         */
+        const veiledBg = this.add.sprite(960, 540, 'veiled-bg');
+        veiledBg.setOrigin(0.5);
+        this.tweens.chain({
+            tweens: [
+                {
+                    targets: veiledBg,
+                    scaleX: 0,
+                    duration: 1300,
+                    delay: 400,
+                },
+                {
+                    targets: veiledBg,
+                    alpha: 0,
+                }
+            ]
+        })
+
+        // Title.
+        this.tileBg = this.add.graphics();
+        this.tileBg.fillStyle(0xFFFFFF, 1);
+        this.tileBg.fillRoundedRect(-30, 0, 290, 150, 32);
+        this.tileText = this.add.text(75, 75, "Senses",
+            { fontFamily: "Arial", fontSize: "72px", color: '#000000' }).setOrigin(0.0, 0.5);
+        // Dealing with text quality.
+        this.tileText.scale = 0.5;
+        this.tileCtnr = this.add.container(0, 55, [this.tileBg, this.tileText]);
+
+
+        // instructionText and it background sprite. 
+        this.instructionTextBg = this.add.sprite(1000, -500, 'text-bg').setOrigin(0.2, -0.2).setScale(1.8, 1.38);
+        this.instructionText = this.add.rexBBCodeText(878, 53,
+            "You are most likely familiar with the [b]main 5 senses -[/b] \nHearing, Seeing, Taste, Touch and Smell. \nThey are extremly beneficial for our daily lives and \nalso just like the brain or the body, \n they too can get [b]can get tired or overloaded.[/b]",
+            { fontFamily: "Arial", fontSize: "80px", color: '#000000', align: 'center' }).setOrigin(0).setScale(1.3, 1);
+        // Dealing with text quality.
+        this.instructionText.scale = 0.5;
+
+
         // Person Sprite
         this.person = this.add.sprite(770, 500, 'person').setOrigin(0).setScale(0.8);
+
 
         // Next button.
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
