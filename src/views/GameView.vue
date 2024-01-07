@@ -97,8 +97,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
             <option value="90" id="endMinute" label="90">90</option>
         </datalist>
         <input type="range" id="timeSpend" name="time-spend" list="markers" step="15" min="0" max="90" value="0" />
-        <br />
-        <div class="labelForRange">Minutes</div>
     </div>
     <!-- Scene 7_22 range input (use separate input for each scene for easier save management) -->
     <div id="scene7_22-range-input" class="rangeTimeDiv" style="display: none;">
@@ -112,8 +110,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
             <option value="90" id="endMinute" label="90">90</option>
         </datalist>
         <input type="range" id="timeSpend-22" name="time-spend-22" list="markers" step="15" min="0" max="90" value="0" />
-        <br />
-        <div class="labelForRange">Minutes</div>
     </div>
     <!-- Scene 7_23 range input -->
     <div id="scene7_23-range-input" class="rangeTimeDiv" style="display: none;">
@@ -128,8 +124,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
             <option value="90+" id="s7_23-end-minute " label="90+">90+</option>
         </datalist>
         <input type="range" id="timeSpend-23" name="time-spend-22" list="markers" step="15" min="0" max="105" value="0" />
-        <br />
-        <div class="labelForRange">Minutes</div>
     </div>
 
     <!-- text area for scene 8_3  -->
@@ -526,7 +520,7 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 /* css for range input div */
 .rangeTimeDiv {
     position: absolute;
-    top: 80%;
+    top: 76%;
     left: 50%;
     z-index: 2;
     display: flex;
@@ -538,39 +532,18 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 74%;
+    width: 75%;
     font-weight: 900;
     font-style: bold;
     font-family: Arial;
-    font-size: 30px;
-
+    font-size: 24px;
 }
 
 .minute-mark option {
-    padding-left: 30px;
     font-style: bold;
     font-weight: 700;
 }
 
-.startMinute {
-    padding-left: 15px !important;
-    padding-right: 15px;
-}
-
-
-.rangeTimeDiv>.labelForRange {
-    text-align: center;
-    font-size: 33px;
-    font-weight: 700;
-    font-style: bold;
-    width: 75%;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* input[type="range"] {
-                width: 400px;
-                margin: 2;
-            } */
 .rangeTimeDiv>input[type=range] {
     height: 33px;
     -webkit-appearance: none;
@@ -606,8 +579,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     margin-bottom: 1px;
     margin-top: -10px;
 }
-
-
 
 .rangeTimeDiv>input[type=range]:focus::-webkit-slider-runnable-track {
     background: #FFFFFF;
@@ -684,36 +655,17 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     So we have to manual resizing margin of some option for a better match
 */
 #scene7_23-range-input {
-    position: absolute;
-    top: 80%;
-    left: 48%;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
     width: 55% !important;
+    left: 45%;
 }
 
-#s7_23-start-minute {
-    padding-left: 15px !important;
-    margin-right: 10px !important;
-
+#scene7_23-range-input .minute-mark {
+    font-size: 20px;
+    width: 80%;
 }
 
-#s7_23-60m {
-    margin-right: 10px !important;
-    margin-left: 10px !important;
-}
-
-#s7_23-45m {
-    margin-left: 10px !important;
-}
-
-#s7_23-30m {
-    margin-left: 15px !important;
-}
-
-#s7_23-90m {
-    margin-left: 15px !important;
+#scene7_23-range-input #timeSpend-23 {
+    width: 80%;
 }
 
 /* California */
