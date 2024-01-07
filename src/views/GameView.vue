@@ -432,13 +432,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     left: 61%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
-    width: 20.5% !important;
+    width: 15% !important;
     height: 40%;
     border: none;
     border-width: 4px;
     text-align: center;
     font-size: large;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 /* remove the border that replace doted border while focus */
@@ -458,13 +458,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     left: 55.5%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
-    width: 31% !important;
+    width: 25% !important;
     height: 40% !important;
     border: none;
     border-width: 4px;
     text-align: center;
     font-size: large;
-    background-color: #fcf8eb;
+    background-color: transparent;
 }
 
 #scene7_14-book:focus-visible {
@@ -479,13 +479,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     left: 55.5%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
-    width: 31% !important;
+    width: 25% !important;
     height: 40% !important;
     border: none;
     border-width: 4px;
     text-align: center;
     font-size: large;
-    background-color: #fcf8eb;
+    background-color: transparent;
 
 }
 
@@ -502,13 +502,13 @@ import PhaserContainer from '../components/PhaserContainer.vue'
     left: 55.5%;
     position: absolute;
     /* transform: translate(-50%, -50%); */
-    width: 31% !important;
+    width: 25% !important;
     height: 40% !important;
     border: none;
     border-width: 4px;
     text-align: center;
     font-size: large;
-    background-color: #fcf8eb;
+    background-color: transparent;
 }
 
 #scene7_18-book:focus-visible {
