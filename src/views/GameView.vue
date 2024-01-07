@@ -447,7 +447,6 @@ import PhaserContainer from '../components/PhaserContainer.vue'
 }
 
 #scene7_10-book:focus-visible {
-    border: dashed;
     resize: none;
 }
 
