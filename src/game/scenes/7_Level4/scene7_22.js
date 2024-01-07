@@ -113,7 +113,7 @@ export default class Scene7_22 extends Phaser.Scene {
             scene: this,
         });
         this.formUtil.showElement("scene7_22-range-input");
-        this.formUtil.scaleToGameW("scene7_22-range-input", .8);
+        this.formUtil.scaleToGameW("scene7_22-range-input", .5);
         // get the initial value of the range input
         this.inputValue = this.formUtil.getRangeValue('timeSpend-22');
         // -+ End of input range section +- //
