@@ -30,6 +30,7 @@ export default class Scene7_4 extends Phaser.Scene {
         this.load.image('touch', '/assets/Images/7_Level4/sprite/senses/touchSprite/touch.png');
         this.load.image('touch-connect-line', '/assets/Images/7_Level4/sprite/senses/touchSprite/touch-connect-line.png');
         this.load.image('next-arrow', 'assets/Images/General/next-arrow.png');
+        this.load.image('veiled-bg', 'assets/Images/7_Level4/sprite/senses/scene7_4-veiled.png');
     }
 
     create() {
