@@ -72,6 +72,31 @@ export default class Scene7_16_C2 extends Phaser.Scene {
         this.formUtil.showElement("scene7_16_C2-book");
         this.formUtil.scaleToGameW("scene7_16_C2-book", .8);
 
+        // Event listener for the "enter key."
+        document.querySelector('#scene7_16_C2-book').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                let answer = document.getElementById('scene7_16_C2-book').value;
+                if (answer.length === 0) {
+                    this.formUtil.hideElement('scene7_16_C2-book');
+                    this.noAnswerCtnr.setAlpha(1);
+                    nextBtn.disableInteractive();
+                    backBtn.disableInteractive();
+                    tryAgainBtn.setAlpha(1);
+                    this.time.addEvent({
+                        delay: 500,
+                        callback: () => {
+                            // play the failed sound after 500 ms
+                            this.failedBell.play();
+                        },
+                        loop: false
+                    })
+
+                } else {
+                    this.formUtil.hideElement('scene7_16_C2-book');
+                    this.scene.start("Scene7_16", { music: this.music });
+                }
+            }
+        });
 
         // Music
         // There no theme file 
