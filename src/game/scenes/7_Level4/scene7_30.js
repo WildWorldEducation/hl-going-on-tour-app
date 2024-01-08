@@ -49,6 +49,9 @@ export default class Scene7_30 extends Phaser.Scene {
         var naMap = this.add.sprite(923, 560, 'north-america-map').setScale(0.82);
         var bg = this.add.sprite(0, 0, 'bg-7-30').setOrigin(0);
 
+        // Music
+        // There no theme file 
+
         // Audio
         this.nextBtnAudio = this.sound.add("next-button", { loop: false });
 
@@ -100,9 +103,9 @@ export default class Scene7_30 extends Phaser.Scene {
 
         // Pin 4 
         const pin4white = this.add.sprite(637, 650, 'pin-white').setScale(0.28).setAlpha(0);
+        const pin4LightRed = this.add.sprite(pin4white.x, pin4white.y, 'pin-hover-red').setScale(0.23);
         const pin4red = this.add.sprite(pin4white.x, pin4white.y, 'pin-red').setScale(0.23);
-        const pinHoverRed = this.add.sprite(pin4white.x, pin4white.y, 'pin-hover-red').setScale(0.23);
-        pinHoverRed.setDepth(-10);
+
         this.tweens.add({
             targets: pin4white,
             alpha: 1,
@@ -121,14 +124,13 @@ export default class Scene7_30 extends Phaser.Scene {
 
         pin4red.on('pointerover', () => {
 
-            pinHoverRed.setDepth(10)
+            pin4red.setAlpha(0.2)
         })
 
         pin4red.on('pointerout', () => {
 
-            pinHoverRed.setDepth(-10);
+            pin4red.setAlpha(1);
         })
-
 
         // Back button
         const backBtn = new BackButton(this, -60, 500, 'next-arrow', this.nextBtnAudio);
@@ -137,6 +139,6 @@ export default class Scene7_30 extends Phaser.Scene {
         }, this);
 
         // Save user progress.
-        // const save = new SaveProgress(this);
+        const save = new SaveProgress(this);
     }
 }
