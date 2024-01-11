@@ -81,8 +81,7 @@ export default {
 <template>
     <div class="login-page">
         <div class="form-signin my-1">
-            <img class="mb-4" src="/images/ontour-logo.png" alt="" width="250" height="250">
-
+            <img class="mb-4 logo" src="/images/ontour-logo.png" alt="" width="200" height="200">
 
             <!-- Login with Clever -->
             <a
@@ -115,7 +114,8 @@ export default {
             <p>&nbsp;</p>
             <p class="text-center">Don't have an account? <a href="create-account">Sign up</a></p>
         </div>
-        <div class="mt-3 fixed-bottom" style="background-color: #0a659a; color: #fcfeca;border-color:#0a659a">
+        <!-- Providing test logins -->
+        <!--  <div class="mt-3 fixed-bottom" style="background-color: #0a659a; color: #fcfeca;border-color:#0a659a">
             <div class="accordion" id="accordionExample">
                 <div>
                     <button style="background-color: #0f3a53; color: #fcfeca;" class="accordion-button" type="button"
@@ -143,8 +143,8 @@ export default {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
+    </div>-->
     </div>
 </template>
 
@@ -153,6 +153,7 @@ export default {
     height: 100%;
     background-image: url("../images/login-background.jpg");
     background-size: cover;
+    padding: 10px;
 }
 
 .form-signin {
@@ -164,6 +165,12 @@ export default {
     margin: 0 auto;
     border: 1px solid black;
     border-radius: 25px;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Bootstrap class */
