@@ -10,26 +10,26 @@ router.use(bodyParser.json());
 Database Connection
 --------------------------------------------
 --------------------------------------------*/
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    user: 'admin',
-    password: 'H3@lthyL1f35tyl3s',
-    //password: 'password',
-    database: 'healthy_lifestyles'
-});
+// const conn = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     user: 'admin',
+//     password: 'H3@lthyL1f35tyl3s',
+//     //password: 'password',
+//     database: 'healthy_lifestyles'
+// });
 
-/*------------------------------------------
---------------------------------------------
-Shows Mysql Connect
---------------------------------------------
---------------------------------------------*/
-conn.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('MariaDB connected...');
-});
+// /*------------------------------------------
+// --------------------------------------------
+// Shows Mysql Connect
+// --------------------------------------------
+// --------------------------------------------*/
+// conn.connect((err) => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('MariaDB connected...');
+// });
 
 /**
  * List Items
