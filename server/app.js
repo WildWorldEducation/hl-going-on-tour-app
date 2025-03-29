@@ -3,6 +3,8 @@ var express = require("express");
 var app = express();
 
 // Middleware
+// DB
+const conn = require('../config/db');
 const bodyParser = require("body-parser");
 
 const path = require("path");

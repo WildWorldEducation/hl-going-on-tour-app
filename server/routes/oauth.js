@@ -1,36 +1,11 @@
-
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 
 router.use(bodyParser.json());
-
-/*------------------------------------------
---------------------------------------------
-Database Connection
---------------------------------------------
---------------------------------------------*/
-// const conn = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   user: "admin",
-//   password: "H3@lthyL1f35tyl3s",
-//   //password: 'password',
-//   database: "healthy_lifestyles",
-// });
-
-/*------------------------------------------
---------------------------------------------
-Shows Mysql Connect
---------------------------------------------
---------------------------------------------*/
-// conn.connect((err) => {
-//   if (err) {
-//     throw err;
-//   }
-//   console.log("MariaDB connected...");
-// });
+// DB
+const conn = require("../config/db");
 
 // Clever API Credentials (from Clever developer account).
 // TODO
