@@ -17,6 +17,16 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 
+# Server
+.env
+
+# npm
+node_modules
+package-lock.json
+*.log
+*.gz
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
