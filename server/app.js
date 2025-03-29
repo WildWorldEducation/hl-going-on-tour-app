@@ -4,7 +4,7 @@ var app = express();
 
 // Middleware
 // DB
-const conn = require('../config/db');
+const conn = require("./config/db");
 const bodyParser = require("body-parser");
 
 const path = require("path");
@@ -56,16 +56,6 @@ const oauthRouter = require("./routes/oauth");
 app.use("/oauth", oauthRouter);
 const userRouter = require("./routes/users");
 app.use("/users", userRouter);
-
-/*------------------------------------------
---------------------------------------------
-Database Connection
---------------------------------------------
---------------------------------------------*/
-// Database Connection
-const conn = require("./config/db");
-
-return;
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(distPath));
